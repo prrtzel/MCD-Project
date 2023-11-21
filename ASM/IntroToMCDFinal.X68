@@ -31,7 +31,7 @@ SIM	EQU	1		;0 = hardware state, 1 = simulation state
 * MAIN
      
      
-     MOVE.W #$6969, D0
+     MOVE.W #$ABCD, D0
      JSR HEX2ASCII
      
 
@@ -57,42 +57,47 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 
 HEX2ASCII
 
-    MOVE.W  D0, D2
-    AND     #$F000, D2
-    LSR     #8, D2
-    LSR     #4, D2
-    JSR     CONVERT
-    MOVE.B  #$08, D4
-    LSL.L     D4, D3
+    MOVE.W  D0, D2      ; MOVE INTO BUFFER
+    AND     #$F000, D2  ; MASK DESIRED CHAR
+    MOVE.B  #$0C, D4    ; SHIFT TO LSB 
+    LSR     D4, D2      ;
+    JSR     CONVERT     ; CONVERT STRING TO ASCII HEX & STORE IN D3
+    MOVE.B  #$08, D4    ; SHIFT D3
+    LSL.L   D4, D3      ;
     
     MOVE.W  D0, D2
     AND     #$0F00, D2
     LSR     #8, D2
     JSR     CONVERT
     MOVE.B  #$08, D4
-    LSL.L     D4, D3
+    LSL.L   D4, D3
     
     MOVE.W  D0, D2
     AND     #$00F0, D2
     LSR     #4, D2
     JSR     CONVERT
     MOVE.B  #$08, D4
-    LSL.L     D4, D3
+    LSL.L   D4, D3
     
     MOVE.W  D0, D2
     AND     #$000F, D2
     JSR     CONVERT
+    
+
+    MOVE.L  #$01, D0 ; INDICATE SUCCESS
     
     RTS
     
 CONVERT
     IF.B D2 <GE> #$01 AND.L D2 <LE> #$09 THEN.L
         OR #$30, D2
-    ENDI
-    
-    IF.B D2 <GE> #$0A AND.L D2 <LE> #$0F THEN.L
-        SUB #$09, D2 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
-        OR #$40, D2
+    ELSE  
+        IF.B D2 <GE> #$0A AND.L D2 <LE> #$0F THEN.L
+            SUB #$09, D2 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
+            OR #$40, D2 
+        ELSE 
+            MOVE.L  #$00, D0    ;INDICATE ERROR
+        ENDI
     ENDI
     
     MOVE.B D2, D3
@@ -110,16 +115,12 @@ ASCIIDEC2BIN
      
     IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
         JMP EXTRACTDIGIT
-        RTS
-        
-    ELSE
-        IF.B	SIM <NE> #00 THEN.L
-            OUTSTR  ERRTEXT
-        ENDI
-        
-        MOVE.B  #$00, D0    ;INDICATE ERROR
-        
+        MOVE.L #$01, D0 ; INDICATE SUCCESS    
+    ELSE      
+        MOVE.L  #$00, D0    ;INDICATE ERROR      
     ENDI
+    
+    RTS
     
 *-------------------------------------------------------------
 * CONVERT ASCII HEX DIGIT TO HEX VALUE 
@@ -138,31 +139,20 @@ ASCIIHEX2BIN
     
     IF.B D2 <GE> #$30 AND.L D2 <LE> #$3F THEN.L
         JMP EXTRACTDIGIT
-        RTS
+        MOVE.L  #$01, D0        ;INDICATE SUCCESS
+    ELSE
+        IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
+            JMP EXTRACTDIGIT
+            MOVE.L  #$01, D0    ;INDICATE SUCCESS     
+        ELSE        
+            MOVE.L  #$00, D0    ;INDICATE ERROR
+        ENDI
     ENDI
     
-    IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
-        JMP EXTRACTDIGIT
-        RTS
-        
-    ELSE    
-        IF.B	SIM <NE> #00 THEN.L
-            OUTSTR  ERRTEXT
-        ENDI
-        
-        MOVE.B  #$00, D0    ;INDICATE ERROR
-        RTS 
-        
-    ENDI
+    RTS
     
-EXTRACTDIGIT
-        IF.B	SIM <NE> #00 THEN.L
-            OUTSTR  SUCCESSTXT  
-        ENDI
-        
+EXTRACTDIGIT       
         AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT
-        MOVE.B  #$01, D0    ;INDICATE SUCCESS
-        
         RTS
 
 
