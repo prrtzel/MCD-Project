@@ -49,6 +49,14 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * SUBROUTINES
 
 *-------------------------------------------------------------
+* TEST SUBROUTINE
+    ;MOVE.B #$2F, D0
+    
+    
+
+
+
+*-------------------------------------------------------------
 * HEX 2 STRING
 * MOVES IN CHAR FROM D0
 * MASKS AND SHIFTS IT, THEN DEPENDING ON CHAR
@@ -57,7 +65,6 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 
 HEX2ASCII
     MOVE.L  D0, -(SP)
-    MOVE.L  D1, -(SP)
     MOVE.L  D2, -(SP)
     MOVE.L  D3, -(SP)
     
@@ -88,12 +95,10 @@ HEX2ASCII
     AND     #$000F, D1
     JSR     CONVERT
     
-
-    MOVE.L  #$01, D0 ; INDICATE SUCCESS
+    MOVE.L D2, D1
     
     MOVE.L  (SP)+, D3
     MOVE.L  (SP)+, D2
-    MOVE.L  (SP)+, D1
     MOVE.L  (SP)+, D0
     
     RTS
@@ -121,17 +126,11 @@ CONVERT
 ASCIIDEC2BIN
 
     MOVE.L  D0, -(SP)
-    MOVE.L  D1, -(SP)
-
-    MOVE.B  D0, D1
-     
+    MOVE.B  D0, D1  
     IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-        AND #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT         
+        AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT         
     ENDI
-    
-    MOVE.L  (SP)+, D1
-    MOVE.L  (SP)+, D0
-    
+    MOVE.L  (SP)+, D0  
     RTS
     
 *-------------------------------------------------------------
@@ -143,20 +142,13 @@ ASCIIDEC2BIN
 ASCIIHEX2BIN
 
     MOVE.L  D0, -(SP)
-    MOVE.L  D1, -(SP)
-
-    MOVE.B  D0, D1
-    
+    MOVE.B  D0, D1   
     IF.B D0 <GT> #$39 THEN.L
         SUBI #$7, D1        ;SUBTRACTING 7 TO CONCANTENATE ALL
                             ;ASCII VALUES FROM 30-3F
-    ENDI 
-    
+    ENDI    
     AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT  
- 
-    MOVE.L  (SP)+, D1
     MOVE.L  (SP)+, D0
- 
     RTS
 
 *-------------------------------------------------------------
