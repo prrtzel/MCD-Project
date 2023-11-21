@@ -10,3 +10,8 @@ go to next bit
 do same thing
 bit shift Dn
 store
+
+
+TODO
+- SAVE PREVIOUS VALUES ON STACK
+- ADD TEST ROUTINE

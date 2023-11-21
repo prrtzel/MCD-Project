@@ -1,6 +1,6 @@
 00001000 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 11/21/2023 4:06:59 AM
+Created On: 11/21/2023 4:32:31 AM
 
 00000000                             1  *-----------------------------------------------------------
 00000000                             2  * Title      : ASCII hex to binary
@@ -60,146 +60,149 @@ Created On: 11/21/2023 4:06:59 AM
 00001034                            56  * THEN MOVES IT INTO D3 AND SHIFTS
 00001034                            57  
 00001034                            58  HEX2ASCII
-00001034                            59  
-00001034  3400                      60      MOVE.W  D0, D2      ; MOVE INTO BUFFER
-00001036  C47C F000                 61      AND     #$F000, D2  ; MASK DESIRED CHAR
-0000103A  183C 000C                 62      MOVE.B  #$0C, D4    ; SHIFT TO LSB 
-0000103E  E86A                      63      LSR     D4, D2      ;
-00001040  4EB9 00001084             64      JSR     CONVERT     ; CONVERT STRING TO ASCII HEX & STORE IN D3
-00001046  183C 0008                 65      MOVE.B  #$08, D4    ; SHIFT D3
-0000104A  E9AB                      66      LSL.L   D4, D3      ;
-0000104C                            67      
-0000104C  3400                      68      MOVE.W  D0, D2
-0000104E  C47C 0F00                 69      AND     #$0F00, D2
-00001052  E04A                      70      LSR     #8, D2
-00001054  4EB9 00001084             71      JSR     CONVERT
-0000105A  183C 0008                 72      MOVE.B  #$08, D4
-0000105E  E9AB                      73      LSL.L   D4, D3
-00001060                            74      
-00001060  3400                      75      MOVE.W  D0, D2
-00001062  C47C 00F0                 76      AND     #$00F0, D2
-00001066  E84A                      77      LSR     #4, D2
-00001068  4EB9 00001084             78      JSR     CONVERT
-0000106E  183C 0008                 79      MOVE.B  #$08, D4
-00001072  E9AB                      80      LSL.L   D4, D3
-00001074                            81      
-00001074  3400                      82      MOVE.W  D0, D2
-00001076  C47C 000F                 83      AND     #$000F, D2
-0000107A  4EB9 00001084             84      JSR     CONVERT
-00001080                            85      
-00001080                            86  
-00001080  7001                      87      MOVE.L  #$01, D0 ; INDICATE SUCCESS
-00001082                            88      
-00001082  4E75                      89      RTS
-00001084                            90      
-00001084                            91  CONVERT
-00001084                            92      IF.B D2 <GE> #$01 AND.L D2 <LE> #$09 THEN.L
-00001096  847C 0030                 93          OR #$30, D2
-0000109A                            94      ELSE  
-0000109E                            95          IF.B D2 <GE> #$0A AND.L D2 <LE> #$0F THEN.L
-000010B0  0442 0009                 96              SUB #$09, D2 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
-000010B4  847C 0040                 97              OR #$40, D2 
-000010B8                            98          ELSE 
-000010BC  7000                      99              MOVE.L  #$00, D0    ;INDICATE ERROR
-000010BE                           100          ENDI
-000010BE                           101      ENDI
-000010BE                           102      
-000010BE  1602                     103      MOVE.B D2, D3
-000010C0  4E75                     104      RTS
-000010C2                           105  
-000010C2                           106  *-------------------------------------------------------------
-000010C2                           107  * CONVERT ASCII DECIMAL DIGIT TO HEX VALUE 
-000010C2                           108  * TAKES VALUE FROM D0 AND PUTS IT IN
-000010C2                           109  * HEX FORM IN D2
-000010C2                           110  * EX: '9' --> 9(16)
-000010C2                           111  
-000010C2                           112  ASCIIDEC2BIN
-000010C2                           113  
-000010C2  1400                     114      MOVE.B  D0, D2
-000010C4                           115       
-000010C4                           116      IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-000010D6  4EF9 00001132            117          JMP EXTRACTDIGIT
-000010DC  7001                     118          MOVE.L #$01, D0 ; INDICATE SUCCESS    
-000010DE                           119      ELSE      
-000010E2  7000                     120          MOVE.L  #$00, D0    ;INDICATE ERROR      
-000010E4                           121      ENDI
-000010E4                           122      
-000010E4  4E75                     123      RTS
-000010E6                           124      
-000010E6                           125  *-------------------------------------------------------------
-000010E6                           126  * CONVERT ASCII HEX DIGIT TO HEX VALUE 
-000010E6                           127  * TAKES VALUE FROM D0 AND PUTS IT IN
-000010E6                           128  * HEX FORM IN D2
-000010E6                           129  * EX: 'A' --> A(16)
-000010E6                           130  
-000010E6                           131  ASCIIHEX2BIN
-000010E6                           132  
-000010E6  1400                     133      MOVE.B  D0, D2
+00001034  2F00                      59      MOVE.L  D0, -(SP)
+00001036  2F01                      60      MOVE.L  D1, -(SP)
+00001038  2F02                      61      MOVE.L  D2, -(SP)
+0000103A  2F03                      62      MOVE.L  D3, -(SP)
+0000103C                            63      
+0000103C                            64  
+0000103C  3200                      65      MOVE.W  D0, D1      ; MOVE INTO BUFFER
+0000103E  C27C F000                 66      AND     #$F000, D1  ; MASK DESIRED CHAR
+00001042  163C 000C                 67      MOVE.B  #$0C, D3    ; SHIFT TO LSB 
+00001046  E669                      68      LSR     D3, D1      ;
+00001048  4EB9 00001094             69      JSR     CONVERT     ; CONVERT STRING TO ASCII HEX & STORE IN D2
+0000104E  163C 0008                 70      MOVE.B  #$08, D3    ; SHIFT D2
+00001052  E7AA                      71      LSL.L   D3, D2      ;
+00001054                            72      
+00001054  3200                      73      MOVE.W  D0, D1
+00001056  C27C 0F00                 74      AND     #$0F00, D1
+0000105A  E049                      75      LSR     #8, D1
+0000105C  4EB9 00001094             76      JSR     CONVERT
+00001062  163C 0008                 77      MOVE.B  #$08, D3
+00001066  E7AA                      78      LSL.L   D3, D2
+00001068                            79      
+00001068  3200                      80      MOVE.W  D0, D1
+0000106A  C27C 00F0                 81      AND     #$00F0, D1
+0000106E  E849                      82      LSR     #4, D1
+00001070  4EB9 00001094             83      JSR     CONVERT
+00001076  163C 0008                 84      MOVE.B  #$08, D3
+0000107A  E7AA                      85      LSL.L   D3, D2
+0000107C                            86      
+0000107C  3200                      87      MOVE.W  D0, D1
+0000107E  C27C 000F                 88      AND     #$000F, D1
+00001082  4EB9 00001094             89      JSR     CONVERT
+00001088                            90      
+00001088                            91  
+00001088  7001                      92      MOVE.L  #$01, D0 ; INDICATE SUCCESS
+0000108A                            93      
+0000108A  261F                      94      MOVE.L  (SP)+, D3
+0000108C  241F                      95      MOVE.L  (SP)+, D2
+0000108E  221F                      96      MOVE.L  (SP)+, D1
+00001090  201F                      97      MOVE.L  (SP)+, D0
+00001092                            98      
+00001092  4E75                      99      RTS
+00001094                           100      
+00001094                           101  CONVERT
+00001094                           102      IF.B D1 <GE> #$01 AND.L D1 <LE> #$09 THEN.L
+000010A6  827C 0030                103          OR  #$30, D1
+000010AA                           104      ENDI
+000010AA                           105    
+000010AA                           106      IF.B D1 <GE> #$0A AND.L D1 <LE> #$0F THEN.L
+000010BC  0441 0009                107          SUB #$09, D1 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
+000010C0  827C 0040                108          OR  #$40, D1 
+000010C4                           109      ENDI
+000010C4                           110      
+000010C4  1401                     111      MOVE.B D1, D2
+000010C6                           112      
+000010C6  4E75                     113      RTS
+000010C8                           114  
+000010C8                           115  *-------------------------------------------------------------
+000010C8                           116  * CONVERT ASCII DECIMAL DIGIT TO HEX VALUE 
+000010C8                           117  * TAKES VALUE FROM D0 AND PUTS IT IN
+000010C8                           118  * HEX FORM IN D1
+000010C8                           119  * EX: '9' --> 9(16)
+000010C8                           120  
+000010C8                           121  ASCIIDEC2BIN
+000010C8                           122  
+000010C8  2F00                     123      MOVE.L  D0, -(SP)
+000010CA  2F01                     124      MOVE.L  D1, -(SP)
+000010CC                           125  
+000010CC  1200                     126      MOVE.B  D0, D1
+000010CE                           127       
+000010CE                           128      IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
+000010E0  C47C 000F                129          AND #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT         
+000010E4                           130      ENDI
+000010E4                           131      
+000010E4  221F                     132      MOVE.L  (SP)+, D1
+000010E6  201F                     133      MOVE.L  (SP)+, D0
 000010E8                           134      
-000010E8                           135      IF.B D0 <GT> #$39 THEN.L
-000010F0  5F42                     136          SUBI #$7, D2        ;SUBTRACTING 7 TO CONCANTENATE ALL
-000010F2                           137                              ;ASCII VALUES FROM 30-3F
-000010F2                           138      ENDI 
-000010F2                           139      
-000010F2                           140      IF.B D2 <GE> #$30 AND.L D2 <LE> #$3F THEN.L
-00001104  4EF9 00001132            141          JMP EXTRACTDIGIT
-0000110A  7001                     142          MOVE.L  #$01, D0        ;INDICATE SUCCESS
-0000110C                           143      ELSE
-00001110                           144          IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
-00001122  4EF9 00001132            145              JMP EXTRACTDIGIT
-00001128  7001                     146              MOVE.L  #$01, D0    ;INDICATE SUCCESS     
-0000112A                           147          ELSE        
-0000112E  7000                     148              MOVE.L  #$00, D0    ;INDICATE ERROR
-00001130                           149          ENDI
-00001130                           150      ENDI
-00001130                           151      
-00001130  4E75                     152      RTS
-00001132                           153      
-00001132                           154  EXTRACTDIGIT       
-00001132  C47C 000F                155          AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT
-00001136  4E75                     156          RTS
-00001138                           157  
-00001138                           158  
-00001138                           159  *-------------------------------------------------------------
-00001138                           160  * GCHAR gets an input character and stores is in D0
-00001138                           161  
-00001138                           162  GCHAR   IF.B    SIM <EQ> #00 THEN.L
-00001142                           163          
-00001142                           164      *INSERT YOUR HARDWARE GETCHAR CODE
-00001142                           165  
-00001142                           166      ELSE
-00001146                           167      
-00001146  2F01                     168      MOVE.L  D1, -(SP)   ;
-00001148  7005                     169      MOVE.L  #05, D0     ;
-0000114A  4E4F                     170      TRAP    #15         ;
-0000114C  1001                     171      MOVE.B  D1, D0      ;
-0000114E  221F                     172      MOVE.L  (SP)+, D1   ;
-00001150                           173      
-00001150                           174      ENDI
-00001150                           175  
-00001150                           176  *-------------------------------------------------------------
-00001150                           177  
-00001150                           178  * PCHAR outputs the character on D0 
-00001150                           179  PCHAR   IF.B    SIM <EQ> #00 THEN.L
-0000115A                           180      
-0000115A                           181      *INSERT YOUR HARDWARE PUTCHAR CODE
-0000115A                           182      
-0000115A                           183      ELSE
-0000115E                           184      
-0000115E  2F00                     185      MOVE.L  D0, -(SP)   ; Task
-00001160  2F01                     186      MOVE.L  D1, -(SP)   ; Char to display
-00001162  1200                     187      MOVE.B  D0, D1      ;
-00001164  7006                     188      MOVE.L  #06, D0     ;
-00001166  4E4F                     189      TRAP    #15     ;
-00001168  221F                     190      MOVE.L  (SP)+, D1   ;
-0000116A  201F                     191      MOVE.L  (SP)+, D0   ;
-0000116C                           192      
-0000116C                           193      ENDI
-0000116C                           194      
-0000116C  4E75                     195      RTS
-0000116E                           196  
-0000116E                           197  
-0000116E                           198      END    START        ; last line of source
+000010E8  4E75                     135      RTS
+000010EA                           136      
+000010EA                           137  *-------------------------------------------------------------
+000010EA                           138  * CONVERT ASCII HEX DIGIT TO HEX VALUE 
+000010EA                           139  * TAKES VALUE FROM D0 AND PUTS IT IN
+000010EA                           140  * HEX FORM IN D1
+000010EA                           141  * EX: 'A' --> A(16)
+000010EA                           142  
+000010EA                           143  ASCIIHEX2BIN
+000010EA                           144  
+000010EA  2F00                     145      MOVE.L  D0, -(SP)
+000010EC  2F01                     146      MOVE.L  D1, -(SP)
+000010EE                           147  
+000010EE  1200                     148      MOVE.B  D0, D1
+000010F0                           149      
+000010F0                           150      IF.B D0 <GT> #$39 THEN.L
+000010F8  5F41                     151          SUBI #$7, D1        ;SUBTRACTING 7 TO CONCANTENATE ALL
+000010FA                           152                              ;ASCII VALUES FROM 30-3F
+000010FA                           153      ENDI 
+000010FA                           154      
+000010FA  C27C 000F                155      AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT  
+000010FE                           156   
+000010FE  221F                     157      MOVE.L  (SP)+, D1
+00001100  201F                     158      MOVE.L  (SP)+, D0
+00001102                           159   
+00001102  4E75                     160      RTS
+00001104                           161  
+00001104                           162  *-------------------------------------------------------------
+00001104                           163  * GCHAR gets an input character and stores is in D0
+00001104                           164  
+00001104                           165  GCHAR   IF.B    SIM <EQ> #00 THEN.L
+0000110E                           166          
+0000110E                           167      *INSERT YOUR HARDWARE GETCHAR CODE
+0000110E                           168  
+0000110E                           169      ELSE
+00001112                           170      
+00001112  2F01                     171      MOVE.L  D1, -(SP)   ;
+00001114  7005                     172      MOVE.L  #05, D0     ;
+00001116  4E4F                     173      TRAP    #15         ;
+00001118  1001                     174      MOVE.B  D1, D0      ;
+0000111A  221F                     175      MOVE.L  (SP)+, D1   ;
+0000111C                           176      
+0000111C                           177      ENDI
+0000111C                           178  
+0000111C                           179  *-------------------------------------------------------------
+0000111C                           180  
+0000111C                           181  * PCHAR outputs the character on D0 
+0000111C                           182  PCHAR   IF.B    SIM <EQ> #00 THEN.L
+00001126                           183      
+00001126                           184      *INSERT YOUR HARDWARE PUTCHAR CODE
+00001126                           185      
+00001126                           186      ELSE
+0000112A                           187      
+0000112A  2F00                     188      MOVE.L  D0, -(SP)   ; Task
+0000112C  2F01                     189      MOVE.L  D1, -(SP)   ; Char to display
+0000112E  1200                     190      MOVE.B  D0, D1      ;
+00001130  7006                     191      MOVE.L  #06, D0     ;
+00001132  4E4F                     192      TRAP    #15     ;
+00001134  221F                     193      MOVE.L  (SP)+, D1   ;
+00001136  201F                     194      MOVE.L  (SP)+, D0   ;
+00001138                           195      
+00001138                           196      ENDI
+00001138                           197      
+00001138  4E75                     198      RTS
+0000113A                           199  
+0000113A                           200  
+0000113A                           201      END    START        ; last line of source
 
 No errors detected
 No warnings generated
@@ -208,31 +211,23 @@ No warnings generated
 SYMBOL TABLE INFORMATION
 Symbol-name         Value
 -------------------------
-ASCIIDEC2BIN        10C2
-ASCIIHEX2BIN        10E6
-CONVERT             1084
+ASCIIDEC2BIN        10C8
+ASCIIHEX2BIN        10EA
+CONVERT             1094
 ERRTEXT             1022
-EXTRACTDIGIT        1132
-GCHAR               1138
+GCHAR               1104
 HEX2ASCII           1034
 OUTSTR              0
-PCHAR               1150
+PCHAR               111C
 SIM                 1
 START               1000
 SUCCESSTXT          102A
 _00000000           1014
-_00000001           109E
-_00000002           10BE
-_00000003           10BC
-_00000004           10BE
-_00000005           10E2
-_00000006           10E4
-_00000007           10F2
-_00000008           1110
-_00000009           1130
-_0000000A           112E
-_0000000B           1130
-_0000000C           1146
-_0000000D           1150
-_0000000E           115E
-_0000000F           116C
+_00000001           10AA
+_00000002           10C4
+_00000003           10E4
+_00000004           10FA
+_00000005           1112
+_00000006           111C
+_00000007           112A
+_00000008           1138

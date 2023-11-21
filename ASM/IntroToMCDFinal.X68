@@ -56,105 +56,108 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * THEN MOVES IT INTO D3 AND SHIFTS
 
 HEX2ASCII
+    MOVE.L  D0, -(SP)
+    MOVE.L  D1, -(SP)
+    MOVE.L  D2, -(SP)
+    MOVE.L  D3, -(SP)
+    
 
-    MOVE.W  D0, D2      ; MOVE INTO BUFFER
-    AND     #$F000, D2  ; MASK DESIRED CHAR
-    MOVE.B  #$0C, D4    ; SHIFT TO LSB 
-    LSR     D4, D2      ;
-    JSR     CONVERT     ; CONVERT STRING TO ASCII HEX & STORE IN D3
-    MOVE.B  #$08, D4    ; SHIFT D3
-    LSL.L   D4, D3      ;
+    MOVE.W  D0, D1      ; MOVE INTO BUFFER
+    AND     #$F000, D1  ; MASK DESIRED CHAR
+    MOVE.B  #$0C, D3    ; SHIFT TO LSB 
+    LSR     D3, D1      ;
+    JSR     CONVERT     ; CONVERT STRING TO ASCII HEX & STORE IN D2
+    MOVE.B  #$08, D3    ; SHIFT D2
+    LSL.L   D3, D2      ;
     
-    MOVE.W  D0, D2
-    AND     #$0F00, D2
-    LSR     #8, D2
+    MOVE.W  D0, D1
+    AND     #$0F00, D1
+    LSR     #8, D1
     JSR     CONVERT
-    MOVE.B  #$08, D4
-    LSL.L   D4, D3
+    MOVE.B  #$08, D3
+    LSL.L   D3, D2
     
-    MOVE.W  D0, D2
-    AND     #$00F0, D2
-    LSR     #4, D2
+    MOVE.W  D0, D1
+    AND     #$00F0, D1
+    LSR     #4, D1
     JSR     CONVERT
-    MOVE.B  #$08, D4
-    LSL.L   D4, D3
+    MOVE.B  #$08, D3
+    LSL.L   D3, D2
     
-    MOVE.W  D0, D2
-    AND     #$000F, D2
+    MOVE.W  D0, D1
+    AND     #$000F, D1
     JSR     CONVERT
     
 
     MOVE.L  #$01, D0 ; INDICATE SUCCESS
     
+    MOVE.L  (SP)+, D3
+    MOVE.L  (SP)+, D2
+    MOVE.L  (SP)+, D1
+    MOVE.L  (SP)+, D0
+    
     RTS
     
 CONVERT
-    IF.B D2 <GE> #$01 AND.L D2 <LE> #$09 THEN.L
-        OR #$30, D2
-    ELSE  
-        IF.B D2 <GE> #$0A AND.L D2 <LE> #$0F THEN.L
-            SUB #$09, D2 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
-            OR #$40, D2 
-        ELSE 
-            MOVE.L  #$00, D0    ;INDICATE ERROR
-        ENDI
+    IF.B D1 <GE> #$01 AND.L D1 <LE> #$09 THEN.L
+        OR  #$30, D1
+    ENDI
+  
+    IF.B D1 <GE> #$0A AND.L D1 <LE> #$0F THEN.L
+        SUB #$09, D1 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
+        OR  #$40, D1 
     ENDI
     
-    MOVE.B D2, D3
+    MOVE.B D1, D2
+    
     RTS
 
 *-------------------------------------------------------------
 * CONVERT ASCII DECIMAL DIGIT TO HEX VALUE 
 * TAKES VALUE FROM D0 AND PUTS IT IN
-* HEX FORM IN D2
+* HEX FORM IN D1
 * EX: '9' --> 9(16)
 
 ASCIIDEC2BIN
 
-    MOVE.B  D0, D2
+    MOVE.L  D0, -(SP)
+    MOVE.L  D1, -(SP)
+
+    MOVE.B  D0, D1
      
     IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-        JMP EXTRACTDIGIT
-        MOVE.L #$01, D0 ; INDICATE SUCCESS    
-    ELSE      
-        MOVE.L  #$00, D0    ;INDICATE ERROR      
+        AND #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT         
     ENDI
+    
+    MOVE.L  (SP)+, D1
+    MOVE.L  (SP)+, D0
     
     RTS
     
 *-------------------------------------------------------------
 * CONVERT ASCII HEX DIGIT TO HEX VALUE 
 * TAKES VALUE FROM D0 AND PUTS IT IN
-* HEX FORM IN D2
+* HEX FORM IN D1
 * EX: 'A' --> A(16)
 
 ASCIIHEX2BIN
 
-    MOVE.B  D0, D2
+    MOVE.L  D0, -(SP)
+    MOVE.L  D1, -(SP)
+
+    MOVE.B  D0, D1
     
     IF.B D0 <GT> #$39 THEN.L
-        SUBI #$7, D2        ;SUBTRACTING 7 TO CONCANTENATE ALL
+        SUBI #$7, D1        ;SUBTRACTING 7 TO CONCANTENATE ALL
                             ;ASCII VALUES FROM 30-3F
     ENDI 
     
-    IF.B D2 <GE> #$30 AND.L D2 <LE> #$3F THEN.L
-        JMP EXTRACTDIGIT
-        MOVE.L  #$01, D0        ;INDICATE SUCCESS
-    ELSE
-        IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
-            JMP EXTRACTDIGIT
-            MOVE.L  #$01, D0    ;INDICATE SUCCESS     
-        ELSE        
-            MOVE.L  #$00, D0    ;INDICATE ERROR
-        ENDI
-    ENDI
-    
+    AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT  
+ 
+    MOVE.L  (SP)+, D1
+    MOVE.L  (SP)+, D0
+ 
     RTS
-    
-EXTRACTDIGIT       
-        AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT
-        RTS
-
 
 *-------------------------------------------------------------
 * GCHAR gets an input character and stores is in D0
