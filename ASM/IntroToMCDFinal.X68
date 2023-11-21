@@ -30,9 +30,7 @@ SIM	EQU	1		;0 = hardware state, 1 = simulation state
 *-------------------------------------------------------------
 * MAIN
      
-     
-     MOVE.W #$ABCD, D0
-     JSR HEX2ASCII
+     JSR HEX2ASCIITEST
      
 
     SIMHALT                 ; halt simulator
@@ -49,11 +47,129 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * SUBROUTINES
 
 *-------------------------------------------------------------
-* TEST SUBROUTINE
-    ;MOVE.B #$2F, D0
-    
-    
+* TEST SUBROUTINES
+* ASCII DECIMAL TO BINARY
 
+D2BTEST
+    MOVE.B #$00, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    MOVE.B #$2F, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    MOVE.B #$30, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    MOVE.B #$39, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    MOVE.B #$3A, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    MOVE.B #$FF, D0
+    JSR ASCIIDEC2BIN
+    JSR VERF1
+    
+END1    RTS 
+    
+VERF1   
+    IF.B D1 <GE> #$30 AND.L D1 <LE> #$39 THEN.L
+        MOVE.L  #$01, D0
+    ELSE
+        MOVE.L  #$00, D0
+        JMP END1
+    ENDI 
+
+    RTS
+
+
+*-------------------------------------------------------------
+* TEST SUBROUTINES
+* ASCII HEX TO BINARY
+
+H2BTEST
+    MOVE.B #$40, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$41, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$46, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$47, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$60, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$61, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$66, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    MOVE.B #$67, D0
+    JSR ASCIIHEX2BIN
+    JSR VERF2
+    
+END2    RTS 
+    
+VERF2   
+    IF.B D1 <GE> #$30 AND.L D1 <LE> #$39 THEN.L
+    ELSE
+        IF.B D1 <GE> #$41 AND.L D1 <LE> #$46 THEN.L
+        ELSE
+            IF.B D1 <GE> #$61 AND.L D1 <LE> #$66 THEN.L
+            ELSE
+                MOVE.L  #$00, D0
+                JMP END2
+            ENDI
+        ENDI
+    ENDI 
+
+    MOVE.L  #$01, D0
+    
+    RTS
+
+*-------------------------------------------------------------
+* TEST SUBROUTINES
+* ASCII STRING TO ASCII HEX
+
+HEX2ASCIITEST
+
+    MOVE.L  D1, -(SP)
+
+    MOVE.L #$0000, D0
+    MOVE.L #$30303030, D2
+    JSR HEX2ASCII
+    JSR VERF3
+    MOVE.L #$1234, D0
+    MOVE.L #$31323334, D2
+    JSR HEX2ASCII
+    JSR VERF3
+    MOVE.L #$ABCD, D0
+    MOVE.L #$41424344, D2
+    JSR HEX2ASCII
+    JSR VERF3
+    MOVE.L #$FFFF, D0
+    MOVE.L #$46464646, D2
+    JSR HEX2ASCII
+    JSR VERF3
+    
+    MOVE.L  (SP)+, D1
+    
+END3    RTS 
+    
+VERF3   
+    IF.L D1 <EQ> D2 THEN.L
+        MOVE.L  #$01, D0
+    ELSE
+        MOVE.L  #$00, D0
+        JMP END3
+    ENDI 
+    
+    RTS
 
 
 *-------------------------------------------------------------
@@ -127,9 +243,7 @@ ASCIIDEC2BIN
 
     MOVE.L  D0, -(SP)
     MOVE.B  D0, D1  
-    IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-        AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT         
-    ENDI
+    AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT         
     MOVE.L  (SP)+, D0  
     RTS
     
