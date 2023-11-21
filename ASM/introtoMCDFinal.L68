@@ -1,0 +1,195 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 11/21/2023 1:31:43 AM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : ASCII hex to binary
+00000000                             3  * Written by : George Yacoubian
+00000000                             4  * Date       : 11/20/23
+00000000                             5  * Description: converts ASCII hex to binary 
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  * MACROS
+00000000                             8  
+00000000                             9  
+00000000                            10  OUTSTR   MACRO
+00000000                            11              MOVE.L  #14,D0
+00000000                            12              LEA     \1,A1
+00000000                            13              TRAP    #15
+00000000                            14              ENDM       
+00000000                            15  
+00000000                            16  *-------------------------------------------------------------
+00000000                            17  
+00001000                            18      ORG    $1000
+00001000                            19   
+00001000                            20  START:                  ; first instruction of program
+00001000                            21  
+00001000  =00000001                 22  SIM EQU 1       ;0 = hardware state, 1 = simulation state
+00001000                            23  
+00001000                            24      IF.B    SIM <NE> #00 THEN.L ;when simulating, turn off keyboard echo
+0000100A  123C 0000                 25      MOVE.B  #$00,D1
+0000100E  103C 000C                 26      MOVE.B  #12,D0
+00001012  4E4F                      27      TRAP    #15
+00001014                            28      ENDI
+00001014                            29      
+00001014                            30  *-------------------------------------------------------------
+00001014                            31  * MAIN
+00001014                            32       
+00001014                            33  LOOP
+00001014  103C 0030                 34      MOVE.B #$30, D0
+00001018  4EB9 00001038             35      JSR ASCIIDECTOBIN
+0000101E  4EF8 1014                 36      JMP LOOP
+00001022                            37  
+00001022  FFFF FFFF                 38      SIMHALT                 ; halt simulator
+00001026                            39      
+00001026                            40  *------------------------------------------------------------- 
+00001026                            41  * VARIABLES
+00001026                            42     
+00001026                            43      
+00001026= 45 52 52 4F 52 0D ...     44  ERRTEXT     DC.B 'ERROR',$D,$A,0
+0000102E= 53 55 43 43 45 53 ...     45  SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0    
+00001038                            46  
+00001038                            47  *-------------------------------------------------------------
+00001038                            48  
+00001038                            49  * SUBROUTINES
+00001038                            50  
+00001038                            51  *-------------------------------------------------------------
+00001038                            52  * CONVERT ASCII DECIMAL DIGIT TO HEX VALUE 
+00001038                            53  * TAKES VALUE FROM D0 AND PUTS IT IN
+00001038                            54  * HEX FORM IN D2
+00001038                            55  * EX: '9' --> 9(16)
+00001038                            56  
+00001038                            57  ASCIIDECTOBIN
+00001038                            58  
+00001038  1400                      59      MOVE.B  D0, D2
+0000103A                            60       
+0000103A                            61      IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
+0000104C  4EF9 000010CA             62          JMP EXTRACTDIGIT
+00001052  4E75                      63          RTS
+00001054                            64          
+00001054                            65      ELSE
+00001058                            66          IF.B    SIM <NE> #00 THEN.L
+00001062                            67m             OUTSTR  ERRTEXT
+0000106A                            68          ENDI
+0000106A                            69          
+0000106A  103C 0000                 70          MOVE.B  #$00, D0    ;INDICATE ERROR
+0000106E                            71          
+0000106E                            72      ENDI
+0000106E                            73      
+0000106E                            74  *-------------------------------------------------------------
+0000106E                            75  * CONVERT ASCII HEX DIGIT TO HEX VALUE 
+0000106E                            76  * TAKES VALUE FROM D0 AND PUTS IT IN
+0000106E                            77  * HEX FORM IN D2
+0000106E                            78  * EX: 'A' --> A(16)
+0000106E                            79  
+0000106E                            80  ASCIIHEXTOBIN
+0000106E                            81  
+0000106E  1400                      82      MOVE.B  D0, D2
+00001070                            83      
+00001070                            84      IF.B D0 <GT> #$39 THEN.L
+00001078  5F42                      85          SUBI #$7, D2        ;SUBTRACTING 7 TO CONCANTENATE ALL
+0000107A                            86                              ;ASCII VALUES FROM 30-3F
+0000107A                            87      ENDI 
+0000107A                            88      
+0000107A                            89      IF.B D2 <GE> #$30 AND.L D2 <LE> #$3F THEN.L
+0000108C  4EF9 000010CA             90          JMP EXTRACTDIGIT
+00001092  4E75                      91          RTS
+00001094                            92      ENDI
+00001094                            93      
+00001094                            94      IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
+000010A6  4EF9 000010CA             95          JMP EXTRACTDIGIT
+000010AC  4E75                      96          RTS
+000010AE                            97          
+000010AE                            98      ELSE    
+000010B2                            99          IF.B    SIM <NE> #00 THEN.L
+000010BC                           100m             OUTSTR  ERRTEXT
+000010C4                           101          ENDI
+000010C4                           102          
+000010C4  103C 0000                103          MOVE.B  #$00, D0    ;INDICATE ERROR
+000010C8  4E75                     104          RTS 
+000010CA                           105          
+000010CA                           106      ENDI
+000010CA                           107      
+000010CA                           108  EXTRACTDIGIT
+000010CA                           109          IF.B    SIM <NE> #00 THEN.L
+000010D4                           110m             OUTSTR  SUCCESSTXT  
+000010DC                           111          ENDI
+000010DC                           112          
+000010DC  C47C 000F                113          AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT
+000010E0  103C 0001                114          MOVE.B  #$01, D0    ;INDICATE SUCCESS
+000010E4                           115          
+000010E4  4E75                     116          RTS
+000010E6                           117  
+000010E6                           118  
+000010E6                           119  *-------------------------------------------------------------
+000010E6                           120  * GCHAR gets an input character and stores is in D0
+000010E6                           121  
+000010E6                           122  GCHAR   IF.B    SIM <EQ> #00 THEN.L
+000010F0                           123          
+000010F0                           124      *INSERT YOUR HARDWARE GETCHAR CODE
+000010F0                           125  
+000010F0                           126      ELSE
+000010F4                           127      
+000010F4  2F01                     128      MOVE.L  D1, -(SP)   ;
+000010F6  7005                     129      MOVE.L  #05, D0     ;
+000010F8  4E4F                     130      TRAP    #15         ;
+000010FA  1001                     131      MOVE.B  D1, D0      ;
+000010FC  221F                     132      MOVE.L  (SP)+, D1   ;
+000010FE                           133      
+000010FE                           134      ENDI
+000010FE                           135  
+000010FE                           136  *-------------------------------------------------------------
+000010FE                           137  
+000010FE                           138  * PCHAR outputs the character on D0 
+000010FE                           139  PCHAR   IF.B    SIM <EQ> #00 THEN.L
+00001108                           140      
+00001108                           141      *INSERT YOUR HARDWARE PUTCHAR CODE
+00001108                           142      
+00001108                           143      ELSE
+0000110C                           144      
+0000110C  2F00                     145      MOVE.L  D0, -(SP)   ; Task
+0000110E  2F01                     146      MOVE.L  D1, -(SP)   ; Char to display
+00001110  1200                     147      MOVE.B  D0, D1      ;
+00001112  7006                     148      MOVE.L  #06, D0     ;
+00001114  4E4F                     149      TRAP    #15     ;
+00001116  221F                     150      MOVE.L  (SP)+, D1   ;
+00001118  201F                     151      MOVE.L  (SP)+, D0   ;
+0000111A                           152      
+0000111A                           153      ENDI
+0000111A                           154      
+0000111A  4E75                     155      RTS
+0000111C                           156  
+0000111C                           157  
+0000111C                           158      END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ASCIIDECTOBIN       1038
+ASCIIHEXTOBIN       106E
+ERRTEXT             1026
+EXTRACTDIGIT        10CA
+GCHAR               10E6
+LOOP                1014
+OUTSTR              0
+PCHAR               10FE
+SIM                 1
+START               1000
+SUCCESSTXT          102E
+_00000000           1014
+_00000001           1058
+_00000002           106E
+_00000003           106A
+_00000004           107A
+_00000005           1094
+_00000006           10B2
+_00000007           10CA
+_00000008           10C4
+_00000009           10DC
+_0000000A           10F4
+_0000000B           10FE
+_0000000C           110C
+_0000000D           111A

@@ -30,9 +30,10 @@ SIM	EQU	1		;0 = hardware state, 1 = simulation state
 *-------------------------------------------------------------
 * MAIN
      
-    JSR GCHAR
+LOOP
+    MOVE.B #$30, D0
     JSR ASCIIDECTOBIN
- 
+    JMP LOOP
 
     SIMHALT                 ; halt simulator
     
@@ -58,12 +59,8 @@ ASCIIDECTOBIN
     MOVE.B  D0, D2
      
     IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-        IF.B	SIM <NE> #00 THEN.L
-            OUTSTR  SUCCESSTXT  
-        ENDI
-        
-        AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT OF 0-9
-        MOVE.B  #$01, D0    ;INDICATE SUCCESS
+        JMP EXTRACTDIGIT
+        RTS
         
     ELSE
         IF.B	SIM <NE> #00 THEN.L
@@ -80,26 +77,43 @@ ASCIIDECTOBIN
 * HEX FORM IN D2
 * EX: 'A' --> A(16)
 
-ASCIIDECTOBIN
+ASCIIHEXTOBIN
 
     MOVE.B  D0, D2
-     
-    IF.B D0 <GE> #$30 AND.L D0 <LE> #$39 THEN.L
-        IF.B	SIM <NE> #00 THEN.L
-            OUTSTR  SUCCESSTXT  
-        ENDI
+    
+    IF.B D0 <GT> #$39 THEN.L
+        SUBI #$7, D2        ;SUBTRACTING 7 TO CONCANTENATE ALL
+                            ;ASCII VALUES FROM 30-3F
+    ENDI 
+    
+    IF.B D2 <GE> #$30 AND.L D2 <LE> #$3F THEN.L
+        JMP EXTRACTDIGIT
+        RTS
+    ENDI
+    
+    IF.B D2 <GE> #$5A AND.L D2 <LE> #$5F THEN.L   
+        JMP EXTRACTDIGIT
+        RTS
         
-        AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT OF 0-9
-        MOVE.B  #$01, D0    ;INDICATE SUCCESS
-        
-    ELSE
+    ELSE    
         IF.B	SIM <NE> #00 THEN.L
             OUTSTR  ERRTEXT
         ENDI
         
         MOVE.B  #$00, D0    ;INDICATE ERROR
+        RTS 
         
     ENDI
+    
+EXTRACTDIGIT
+        IF.B	SIM <NE> #00 THEN.L
+            OUTSTR  SUCCESSTXT  
+        ENDI
+        
+        AND     #$0F, D2    ;MASK THE LSB TO EXTRACT THE DIGIT
+        MOVE.B  #$01, D0    ;INDICATE SUCCESS
+        
+        RTS
 
 
 *-------------------------------------------------------------
