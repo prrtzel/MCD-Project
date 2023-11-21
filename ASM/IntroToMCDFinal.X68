@@ -30,10 +30,10 @@ SIM	EQU	1		;0 = hardware state, 1 = simulation state
 *-------------------------------------------------------------
 * MAIN
      
-LOOP
-    MOVE.B #$30, D0
-    JSR ASCIIDECTOBIN
-    JMP LOOP
+     
+     MOVE.W #$6969, D0
+     JSR HEX2ASCII
+     
 
     SIMHALT                 ; halt simulator
     
@@ -49,12 +49,62 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * SUBROUTINES
 
 *-------------------------------------------------------------
+* HEX 2 STRING
+* MOVES IN CHAR FROM D0
+* MASKS AND SHIFTS IT, THEN DEPENDING ON CHAR
+* CONVERTS IT TO ASCII CODE IN HEX
+* THEN MOVES IT INTO D3 AND SHIFTS
+
+HEX2ASCII
+
+    MOVE.W  D0, D2
+    AND     #$F000, D2
+    LSR     #8, D2
+    LSR     #4, D2
+    JSR     CONVERT
+    MOVE.B  #$08, D4
+    LSL.L     D4, D3
+    
+    MOVE.W  D0, D2
+    AND     #$0F00, D2
+    LSR     #8, D2
+    JSR     CONVERT
+    MOVE.B  #$08, D4
+    LSL.L     D4, D3
+    
+    MOVE.W  D0, D2
+    AND     #$00F0, D2
+    LSR     #4, D2
+    JSR     CONVERT
+    MOVE.B  #$08, D4
+    LSL.L     D4, D3
+    
+    MOVE.W  D0, D2
+    AND     #$000F, D2
+    JSR     CONVERT
+    
+    RTS
+    
+CONVERT
+    IF.B D2 <GE> #$01 AND.L D2 <LE> #$09 THEN.L
+        OR #$30, D2
+    ENDI
+    
+    IF.B D2 <GE> #$0A AND.L D2 <LE> #$0F THEN.L
+        SUB #$09, D2 ; CONVERT LETTER TO DIGIT BY SUBTRACTING 9
+        OR #$40, D2
+    ENDI
+    
+    MOVE.B D2, D3
+    RTS
+
+*-------------------------------------------------------------
 * CONVERT ASCII DECIMAL DIGIT TO HEX VALUE 
 * TAKES VALUE FROM D0 AND PUTS IT IN
 * HEX FORM IN D2
 * EX: '9' --> 9(16)
 
-ASCIIDECTOBIN
+ASCIIDEC2BIN
 
     MOVE.B  D0, D2
      
@@ -77,7 +127,7 @@ ASCIIDECTOBIN
 * HEX FORM IN D2
 * EX: 'A' --> A(16)
 
-ASCIIHEXTOBIN
+ASCIIHEX2BIN
 
     MOVE.B  D0, D2
     
@@ -156,6 +206,7 @@ PCHAR	IF.B	SIM <EQ> #00 THEN.L
 
 
     END    START        ; last line of source
+
 
 
 *~Font name~Courier New~

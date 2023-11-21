@@ -1,0 +1,12 @@
+Hex to ASCII
+0-9 30-39
+A-F 41-46
+a-f 61-66
+
+select msb
+convert to hex ascii code
+store in Dn
+go to next bit
+do same thing
+bit shift Dn
+store
