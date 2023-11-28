@@ -51,30 +51,39 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * ASCII DECIMAL TO BINARY
 
 D2BTEST
-    MOVE.B #$00, D0
-    JSR ASCIIDEC2BIN
-    JSR VERF1
-    MOVE.B #$2F, D0
-    JSR ASCIIDEC2BIN
-    JSR VERF1
-    MOVE.B #$30, D0
-    JSR ASCIIDEC2BIN
-    JSR VERF1
-    MOVE.B #$39, D0
-    JSR ASCIIDEC2BIN
-    JSR VERF1
-    MOVE.B #$3A, D0
-    JSR ASCIIDEC2BIN
-    JSR VERF1
-    MOVE.B #$FF, D0
-    JSR ASCIIDEC2BIN
+    MOVE.B  #$00, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.B  #$2F, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.B  #$30, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.B  #$39, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.B  #$3A, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.B  #$FF, D0
+    JSR     ASCIIDEC2BIN
+    JSR     VERF1
+    
+    MOVE.L  #$01, D0
     JSR VERF1
     
-END1    RTS 
+END1    
+    RTS 
     
 VERF1   
     IF.B D1 <GE> #$30 AND.L D1 <LE> #$39 THEN.L
-        MOVE.L  #$01, D0
+
     ELSE
         MOVE.L  #$00, D0
         JMP END1
@@ -139,34 +148,45 @@ VERF2
 HEX2ASCIITEST
 
     MOVE.L  D1, -(SP)
+    MOVE.L  D2, -(SP)
+    MOVE.L  D4, -(SP)
 
     MOVE.L #$0000, D0
+    JSR HEX2ASCII
     MOVE.L #$30303030, D2
-    JSR HEX2ASCII
-    JSR VERF3
-    MOVE.L #$1234, D0
-    MOVE.L #$31323334, D2
-    JSR HEX2ASCII
-    JSR VERF3
-    MOVE.L #$ABCD, D0
-    MOVE.L #$41424344, D2
-    JSR HEX2ASCII
-    JSR VERF3
-    MOVE.L #$FFFF, D0
-    MOVE.L #$46464646, D2
-    JSR HEX2ASCII
     JSR VERF3
     
+    MOVE.L #$1234, D0
+    JSR HEX2ASCII
+    MOVE.L #$31323334, D2
+    JSR VERF3
+    
+    MOVE.L #$ABCD, D0
+    JSR HEX2ASCII
+    MOVE.L #$41424344, D2
+    JSR VERF3
+    
+    MOVE.L #$FFFF, D0
+    JSR HEX2ASCII
+    MOVE.L #$46464646, D2
+    JSR VERF3
+    
+    IF.L D4 <EQ> #$01 THEN.L
+        MOVE.L #$00, D0
+    ENDI
+    
+    MOVE.L  (SP)+, D4
+    MOVE.L  (SP)+, D2
     MOVE.L  (SP)+, D1
     
-END3    RTS 
+    RTS
+    
     
 VERF3   
     IF.L D1 <EQ> D2 THEN.L
         MOVE.L  #$01, D0
     ELSE
-        MOVE.L  #$00, D0
-        JMP END3
+        MOVE.L  #$01, D4
     ENDI 
     
     RTS
@@ -185,7 +205,7 @@ HEX2ASCII
     MOVE.L  D3, -(SP)
     
 
-    MOVE.W  D0, D1      ; MOVE INTO BUFFER
+    MOVE.L  D0, D1      ; MOVE INTO BUFFER
     AND     #$F000, D1  ; MASK DESIRED CHAR
     MOVE.B  #$0C, D3    ; SHIFT TO LSB 
     LSR     D3, D1      ;
@@ -193,21 +213,21 @@ HEX2ASCII
     MOVE.B  #$08, D3    ; SHIFT D2
     LSL.L   D3, D2      ;
     
-    MOVE.W  D0, D1
+    MOVE.L  D0, D1
     AND     #$0F00, D1
     LSR     #8, D1
     JSR     CONVERT
     MOVE.B  #$08, D3
     LSL.L   D3, D2
     
-    MOVE.W  D0, D1
+    MOVE.L  D0, D1
     AND     #$00F0, D1
     LSR     #4, D1
     JSR     CONVERT
     MOVE.B  #$08, D3
     LSL.L   D3, D2
     
-    MOVE.W  D0, D1
+    MOVE.L  D0, D1
     AND     #$000F, D1
     JSR     CONVERT
     
@@ -220,7 +240,7 @@ HEX2ASCII
     RTS
     
 CONVERT
-    IF.B D1 <GE> #$01 AND.L D1 <LE> #$09 THEN.L
+    IF.B D1 <GE> #$00 AND.L D1 <LE> #$09 THEN.L
         OR  #$30, D1
     ENDI
   
@@ -305,6 +325,8 @@ PCHAR	IF.B	SIM <EQ> #00 THEN.L
 
 
     END    START        ; last line of source
+
+
 
 
 
