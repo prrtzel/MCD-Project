@@ -29,10 +29,13 @@ SIM	EQU	1		;0 = hardware state, 1 = simulation state
 	
 *-------------------------------------------------------------
 * MAIN
-     
-     JSR HEX2ASCIITEST
-     
-
+    MOVE.L #$FFFF, D0
+    JSR HEX2ASCII
+    IF D0 <EQ> #$00 THEN.L
+        OUTSTR ERRTEXT
+    ELSE
+        OUTSTR SUCCESSTXT
+    ENDI
     SIMHALT                 ; halt simulator
     
 *------------------------------------------------------------- 
@@ -51,11 +54,11 @@ SUCCESSTXT  DC.B 'SUCCESS',$D,$A,0
 * ASCII DECIMAL TO BINARY
 
 D2BTEST
-    MOVE.B  #$00, D0
+    MOVE.B  #$32, D0
     JSR     ASCIIDEC2BIN
     JSR     VERF1
     
-    MOVE.B  #$2F, D0
+    MOVE.B  #$31, D0
     JSR     ASCIIDEC2BIN
     JSR     VERF1
     
@@ -67,28 +70,25 @@ D2BTEST
     JSR     ASCIIDEC2BIN
     JSR     VERF1
     
-    MOVE.B  #$3A, D0
+    MOVE.B  #$33, D0
     JSR     ASCIIDEC2BIN
     JSR     VERF1
     
-    MOVE.B  #$FF, D0
+    MOVE.B  #$34, D0
     JSR     ASCIIDEC2BIN
     JSR     VERF1
     
-    MOVE.L  #$01, D0
+    MOVE.L  #$36, D0
     JSR VERF1
-    
-END1    
+     
     RTS 
     
 VERF1   
-    IF.B D1 <GE> #$30 AND.L D1 <LE> #$39 THEN.L
+    IF.B D1 <GE> #$00 AND.L D1 <LE> #$09 THEN.L
 
     ELSE
         MOVE.L  #$00, D0
-        JMP END1
     ENDI 
-
     RTS
 
 
@@ -97,44 +97,46 @@ VERF1
 * ASCII HEX TO BINARY
 
 H2BTEST
-    MOVE.B #$40, D0
+    MOVE.B #$63, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
+    
     MOVE.B #$41, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
+    
     MOVE.B #$46, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
-    MOVE.B #$47, D0
+    
+    MOVE.B #$44, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
+    
     MOVE.B #$60, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
+    
     MOVE.B #$61, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
+    
     MOVE.B #$66, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
-    MOVE.B #$67, D0
+    
+    MOVE.B #$65, D0
     JSR ASCIIHEX2BIN
     JSR VERF2
     
-END2    RTS 
+    RTS
     
 VERF2   
-    IF.B D1 <GE> #$30 AND.L D1 <LE> #$39 THEN.L
+    IF.L D1 <GE> #$00 AND.L D1 <LE> #$0F THEN.L
+    
     ELSE
-        IF.B D1 <GE> #$41 AND.L D1 <LE> #$46 THEN.L
-        ELSE
-            IF.B D1 <GE> #$61 AND.L D1 <LE> #$66 THEN.L
-            ELSE
-                MOVE.L  #$00, D0
-                JMP END2
-            ENDI
-        ENDI
+        MOVE.L  #$00, D0
+        RTS
     ENDI 
 
     MOVE.L  #$01, D0
@@ -262,8 +264,10 @@ CONVERT
 ASCIIDEC2BIN
 
     MOVE.L  D0, -(SP)
-    MOVE.B  D0, D1  
-    AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT         
+    
+    MOVE.B  D0, D1    
+    SUB     #$30, D1 ;SUBTRACT 30 FROM OPERAND TO GET DIGIT
+        
     MOVE.L  (SP)+, D0  
     RTS
     
@@ -276,12 +280,17 @@ ASCIIDEC2BIN
 ASCIIHEX2BIN
 
     MOVE.L  D0, -(SP)
-    MOVE.B  D0, D1   
-    IF.B D0 <GT> #$39 THEN.L
-        SUBI #$7, D1        ;SUBTRACTING 7 TO CONCANTENATE ALL
-                            ;ASCII VALUES FROM 30-3F
-    ENDI    
-    AND #$0F, D1    ;MASK THE LSB TO EXTRACT THE DIGIT  
+    MOVE.B  D0, D1
+    IF.L D1 <GE> #$61 AND.L D1 <LE> #$66 THEN.L
+        SUB #$60, D1 
+        
+    ELSE    
+        IF.B D0 <GT> #$39 THEN.L
+            SUBI #$7, D1        ;SUBTRACTING 7 TO CONCANTENATE ALL
+        ENDI    
+    SUB #$30, D1                    ;ASCII VALUES FROM 30-3F
+    ENDI        
+
     MOVE.L  (SP)+, D0
     RTS
 
@@ -325,6 +334,8 @@ PCHAR	IF.B	SIM <EQ> #00 THEN.L
 
 
     END    START        ; last line of source
+
+
 
 
 

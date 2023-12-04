@@ -1,0 +1,5 @@
+		Main Menu
+
+		GeorgeOS
+
+Memory		Registers	Jump to Program
