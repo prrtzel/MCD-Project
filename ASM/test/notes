@@ -1,3 +1,13 @@
-//env variables
-set VBCC=C:\Program Files\vbcc\vbcc
-set PATH=C:\Program Files\vbcc\vbcc\bin;%PATH%
+env variables:
+    set VBCC=C:\Program Files\vbcc\vbcc
+    set PATH=C:\Program Files\vbcc\vbcc\bin;%PATH%
+
+makefile builds as follows:
+    C is compiled with vbccm68k (32bit) using the amiga softfloat lib
+    the object file is then compiled to assembly
+    this runs a batch file to open easy68k sim
+
+notes:
+    .L debugging files currently not supported 
+    time spent:
+
