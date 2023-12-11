@@ -1,4 +1,4 @@
 all:
-	vasmm68k_madmac src/assembly/test.m68k -Fsrec -o test.S68
-# vc src/C/test.c +m68k-linux -o test.S68
+	vbccm68ks src/C/test.c
+	vasmm68k_mot src/C/test.asm -Fsrec -o test.S68
 
