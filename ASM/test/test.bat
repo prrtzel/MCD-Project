@@ -1,0 +1,1 @@
+"c:\easy68k\SIM68K" test.S68 /r /e

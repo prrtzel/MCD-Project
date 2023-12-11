@@ -1,0 +1,6 @@
+START:
+    org $1000
+    move.b #$69, D0
+
+
+
