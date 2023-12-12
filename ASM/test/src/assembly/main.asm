@@ -4,39 +4,39 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#16,a7
-	movem.l	l6,-(a7)
+	sub.w	#24,a7
+	movem.l	l4,-(a7)
 	lea	l3,a0
-	lea	(0+l8,a7),a1
+	lea	(0+l6,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	move.b	#102,(9+l8,a7)
-	move.b	#97,(10+l8,a7)
-	move.b	#105,(11+l8,a7)
-	move.b	#108,(12+l8,a7)
-	move.b	#0,(13+l8,a7)
-	move.l	#102,-(a7)
-	jsr	_aHex2Bin
-	move.b	d0,(18+l8,a7)
-	addq.w	#4,a7
-	cmp.b	#15,(14+l8,a7)
-	bne	l5
-l4
-	lea	(0+l8,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-l5
-	lea	(14+l8,a7),a0
+	move.b	#102,(9+l6,a7)
+	move.b	#97,(10+l6,a7)
+	move.b	#105,(11+l6,a7)
+	move.b	#108,(12+l6,a7)
+	move.b	#0,(13+l6,a7)
+	move.l	#64203,-(a7)
+	jsr	_bin2ahex
+	move.l	d0,(18+l6,a7)
+	move.l	(18+l6,a7),a0
+	move.b	(a0),(22+l6,a7)
+	move.l	(18+l6,a7),a0
+	move.b	(1,a0),(23+l6,a7)
+	move.l	(18+l6,a7),a0
+	move.b	(2,a0),(24+l6,a7)
+	move.l	(18+l6,a7),a0
+	move.b	(3,a0),(25+l6,a7)
+	move.b	#0,(26+l6,a7)
+	lea	(22+l6,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#9,d0
-	addq.w	#4,a7
+	addq.w	#8,a7
 l1
-l6	reg
-l8	equ	0
-	add.w	#16,a7
+l4	reg
+l6	equ	0
+	add.w	#24,a7
 	rts
 	cnop	0,4
 l3
@@ -50,4 +50,4 @@ l3
 	dc.b	33
 	dc.b	0
 	public	_sprint
-	public	_aHex2Bin
+	public	_bin2ahex

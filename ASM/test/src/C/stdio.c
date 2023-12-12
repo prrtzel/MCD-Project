@@ -1,10 +1,5 @@
 #include "headers/stdio.h"
 
-/*
-until the EOT char is recieved
-a character is put into a string buffer
-the buffer index is incremented and it repeats
-*/
 char * sgetStr(void) {
     char character;
     char buffer[50];
@@ -21,8 +16,13 @@ char * sgetStr(void) {
 //--------------------------------------------------------------
 // Conversions
 
-//Converts Ascii Hex to Hex Ex: 'F' -> 0x0F
-char aHex2Bin(char asciiChar) {
+char adec2bin(char asciiChar) {
+    unsigned int value = (unsigned int) asciiChar;
+    value = value - 0x30;
+    return (char) value;
+}
+
+char ahex2bin(char asciiChar) {
     unsigned int value = (unsigned int) asciiChar;
     // if lowercase value subtract amount to convert letter to number
     if (value >= 0x61 && value <= 0x66) {
@@ -36,5 +36,50 @@ char aHex2Bin(char asciiChar) {
     else {
         value = value - 0x30;
     }
+    if (value > 0x0F || value < 0x00) {
+        char error[] = "error";
+        sprint(error);
+        return 0;
+    }
     return (char) value;
+}
+
+char * bin2ahex(int binaryValue) {
+    /*
+    30 - 39 | 0-9
+    41 - 46 | A - F
+    convert integer into array of chars
+    for each char
+        if 0-9
+            concantinate 3
+        else if a-f
+            concantinate 4
+        else
+            error
+        place each ascii value into buffer
+    return buffer
+    */
+    binaryValue = binaryValue & 0x0000ffff;
+    char array[4];
+    array[0] = (binaryValue & 0xf000) >> 12;
+    array[1] = (binaryValue & 0x0f00) >> 8;
+    array[2] = (binaryValue & 0x00f0) >> 4;
+    array[3] = (binaryValue & 0x000f);
+
+
+    for(int i=0; i<4; i++) {
+        if (array[i] <= 0x09 && array[i] >= 0x00) {
+            array[i] = array[i] | 0x30;
+        }
+        else if (array[i] <= 0x0f && array[i] >= 0x0a) {
+            array[i] = array[i] - 0x09;
+            array[i] = array[i] | 0x40;
+        }
+        else {
+            char error[] = "error";
+            sprint(error);
+            return 0;
+        }
+    }
+    return array;
 }
