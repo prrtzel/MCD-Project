@@ -1,7 +1,5 @@
 #define EOT '\0' //type ctl + shift + 2 for EOT
 
-
-
 //Serial Print Functions for Simulator
 extern void sprintTest(void);
 extern void sprint(char* string); //add support for multiple lines
@@ -14,6 +12,9 @@ a character is put into a string buffer
 the buffer index is incremented and it repeats
 */
 extern char* sgetStr(void);
+
+//prints 2 ascii bytes from bin2ahex conversion
+void sprintWord(char * array); 
 
 //--------------------------------------------------------------
 // Conversions

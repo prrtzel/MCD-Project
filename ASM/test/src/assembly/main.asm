@@ -4,7 +4,7 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#24,a7
+	sub.w	#20,a7
 	movem.l	l4,-(a7)
 	lea	l3,a0
 	lea	(0+l6,a7),a1
@@ -19,24 +19,14 @@ _main
 	move.l	#64203,-(a7)
 	jsr	_bin2ahex
 	move.l	d0,(18+l6,a7)
-	move.l	(18+l6,a7),a0
-	move.b	(a0),(22+l6,a7)
-	move.l	(18+l6,a7),a0
-	move.b	(1,a0),(23+l6,a7)
-	move.l	(18+l6,a7),a0
-	move.b	(2,a0),(24+l6,a7)
-	move.l	(18+l6,a7),a0
-	move.b	(3,a0),(25+l6,a7)
-	move.b	#0,(26+l6,a7)
-	lea	(22+l6,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
+	move.l	(18+l6,a7),-(a7)
+	jsr	_sprintWord
 	moveq	#9,d0
 	addq.w	#8,a7
 l1
 l4	reg
 l6	equ	0
-	add.w	#24,a7
+	add.w	#20,a7
 	rts
 	cnop	0,4
 l3
@@ -49,5 +39,5 @@ l3
 	dc.b	115
 	dc.b	33
 	dc.b	0
-	public	_sprint
+	public	_sprintWord
 	public	_bin2ahex

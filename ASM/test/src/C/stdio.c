@@ -13,6 +13,17 @@ char * sgetStr(void) {
     }
     return buffer;
 }
+
+void sprintWord(char* arrayPtr) {
+    char array[5];
+    array[0] = *arrayPtr;
+    array[1] = *(arrayPtr + 1);
+    array[2] = *(arrayPtr + 2);
+    array[3] = *(arrayPtr + 3);
+    array[4] = '\0';
+    sprint(array);
+}
+
 //--------------------------------------------------------------
 // Conversions
 
@@ -45,20 +56,6 @@ char ahex2bin(char asciiChar) {
 }
 
 char * bin2ahex(int binaryValue) {
-    /*
-    30 - 39 | 0-9
-    41 - 46 | A - F
-    convert integer into array of chars
-    for each char
-        if 0-9
-            concantinate 3
-        else if a-f
-            concantinate 4
-        else
-            error
-        place each ascii value into buffer
-    return buffer
-    */
     binaryValue = binaryValue & 0x0000ffff;
     char array[4];
     array[0] = (binaryValue & 0xf000) >> 12;
@@ -83,3 +80,5 @@ char * bin2ahex(int binaryValue) {
     }
     return array;
 }
+//--------------------------------------------------------------
+// End of Conversions
