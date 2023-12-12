@@ -1,19 +1,18 @@
 #define EOT '\0' //type ctl + shift + 2 for EOT
 
 //Serial Print Functions for Simulator
-extern void sprintTest(void);
-extern void sprint(char* string); //add support for multiple lines
 
+//prints pointer to string array
+extern void sprint(char* string);
+
+//returns a character
 extern char sgetChar(void);
 
-/*
-until the EOT char is recieved
-a character is put into a string buffer
-the buffer index is incremented and it repeats
-*/
+//returns a pointer to a string
 extern char* sgetStr(void);
 
 //prints 2 ascii bytes from bin2ahex conversion
+//pointer may need to be reset for multiple occurences of this function
 void sprintWord(char * array); 
 
 //--------------------------------------------------------------

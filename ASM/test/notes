@@ -14,3 +14,25 @@ notes:
     time spent:
 
 # TODO
+- add if define for simulator vs hardware
+- figure out how to put all strings into header file
+
+# Morg the Monitor Program
+Morg needs to:
+    1. read from memory
+    2. write to memory
+    3. read from a register
+    4. write to a register
+    5. load an s-record
+    6. run an s-record
+
+Morg Menu
+
+To select an option select the number and press enter
+
+1. read from memory
+2. write to memory
+3. read from a register
+4. write to a register
+5. load an s-record
+6. run an s-record

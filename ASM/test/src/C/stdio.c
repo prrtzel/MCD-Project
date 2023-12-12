@@ -1,6 +1,11 @@
 #include "headers/stdio.h"
 
 char * sgetStr(void) {
+/*
+until the EOT char is recieved
+a character is put into a string buffer
+the buffer index is incremented and it repeats
+*/
     char character;
     char buffer[50];
     unsigned int i = 0;

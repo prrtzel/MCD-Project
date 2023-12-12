@@ -3,6 +3,7 @@
         "*.s": "m68k",
         "*.m68k": "m68k",
         "*.asm": "m68k",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "morg.h": "c"
     }
 }
