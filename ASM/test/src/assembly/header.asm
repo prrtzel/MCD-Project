@@ -7,10 +7,18 @@ _sprintTest
 	trap    #15
     rts
 
-_sprint
-    move.l  a0,a1
+_sprint	
+	move.l	a0, -(sp)
+	move.l	a1, -(sp)
+	move.l	d0, -(sp)
+
+    move.l  8(sp),a1
 	move.b  #13,d0    
 	trap    #15
+
+	move.l 	d0, (sp)+
+	move.l	a1, (sp)+
+	move.l	a0, (sp)+
     rts
 
 cr 	equ		$0D
