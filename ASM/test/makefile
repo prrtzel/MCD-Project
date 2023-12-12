@@ -1,8 +1,12 @@
-all: C ass link out
+linker := etc\linker.ld
+all: C mv ass link clean out
 C:
 # C file
-# compile to assembly
-	vbccm68k src/assembly/main.c  -amiga-softfloat -quiet
+# compile to assembly for readability
+	vbccm68k src/C/main.c -amiga-softfloat -quiet
+mv:
+# move file into assembly folder because -o does not work
+	move src\C\main.asm src\assembly
 # compile assembly to executable
 	vasmm68k_mot src/assembly/main.asm -Faout -o main.out -quiet
 ass:
@@ -10,9 +14,13 @@ ass:
 	vasmm68k_mot src/assembly/header.asm -Faout -o header.out -quiet -spaces -ldots
 link:
 #linker
-	vlink main.out header.out -o test.S68 -fixunnamed -b srec37 -T linker.ld
+	vlink main.out header.out -o test.S68 -fixunnamed -b srec37 -T $(linker)
+clean:
+	del /f main.out
+	del /f header.out
 out:
 #launch easy68k
-	test.bat
+	etc/test.bat
+
 
 

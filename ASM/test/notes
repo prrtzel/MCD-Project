@@ -3,9 +3,11 @@ env variables:
     set PATH=C:\Program Files\vbcc\vbcc\bin;%PATH%
 
 makefile builds as follows:
-    C is compiled with vbccm68k (32bit) using the amiga softfloat lib
-    the object file is then compiled to assembly
-    this runs a batch file to open easy68k sim
+    - C is compiled with vbccm68k (32bit) using the amiga softfloat lib for floating point values
+    - the object file is then compiled to assembly for readability
+    - this is then linked with an assembly header file
+    - final object is converted to s-record
+    - the s-record is opened with batch file to easy68k sim
 
 notes:
     .L debugging files currently not supported 

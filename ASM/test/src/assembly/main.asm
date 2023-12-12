@@ -1,4 +1,4 @@
-	idnt	"src/assembly/main.c"
+	idnt	"src/C/main.c"
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	section	"CODE",code
 	public	_main

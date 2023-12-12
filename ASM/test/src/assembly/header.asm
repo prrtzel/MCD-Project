@@ -1,10 +1,17 @@
+	
+;------------------------------------
+; serial print functions	
 	public _sprintTest
 	public _sprint
 
 _sprintTest
+	move.l	a1, -(sp)
+	move.l	d0, -(sp)
     lea     testMessage,a1
 	move.b  #14,d0    
 	trap    #15
+	move.l 	d0, (sp)+
+	move.l	a1, (sp)+
     rts
 
 _sprint	

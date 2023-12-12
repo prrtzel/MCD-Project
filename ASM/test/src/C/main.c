@@ -1,5 +1,4 @@
-extern void sprintTest(void);
-extern void sprint(char*string);
+#include "headers/stdio.h"
 
 int main(){
     char difStr[50] = "this is a different string";
