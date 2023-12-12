@@ -16,6 +16,7 @@ notes:
 # TODO
 - add if define for simulator vs hardware
 - figure out how to put all strings into header file
+- implement malloc
 
 # Morg the Monitor Program
 Morg needs to:
@@ -36,3 +37,31 @@ To select an option select the number and press enter
 4. write to a register
 5. load an s-record
 6. run an s-record
+
+
+
+
+# Reading From Memory (1)
+Ex: Read Address 0x6969
+'6969' ascii hex to binary for each byte
+shift each byte in word
+final result is 0x6969
+ptr = 0x6969
+
+data = *ptr
+convert data into ascii
+output ascii
+
+printMemory
+
+
+
+
+
+
+
+
+
+
+
+

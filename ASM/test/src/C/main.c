@@ -1,6 +1,7 @@
 #include "headers/stdio.h"
 #include "headers/morg.h"
 
+
 int main(){
 // Morg the Monitor
 
@@ -17,7 +18,12 @@ int main(){
     "7. Kill Morg"
     "\0";
 
-    char rdmem[] = "Read Memory Selected\n\r";
+    char rdmem[] = "Read Memory Selected\n\n\rSelect Address to Read From";
+    char wrmem[] = "Write to Memory Selected\n\r";
+    char rdreg[] = "Read from a Register Selected\n\r";
+    char wrreg[] = "Write to a Register Selected\n\r";
+    char ldsrec[] = "Load an S-Record Selected\n\r";
+    char runsrec[] = "Run an S-Record Selected\n\r";
 
     char exitProgramString[] = "\n\rMorg has been Terminated\n\rYou are a monster!!!";
 
@@ -30,7 +36,7 @@ int main(){
 
 //-----------------------------------------------------------------------------
 // Main Loop
-
+    char* address;
     char MorgAlive = 1; //if 0 Morg is dead :(
 
     while (MorgAlive != 0) {
@@ -49,8 +55,25 @@ int main(){
             {
             case 1:
                 sprint(rdmem);
+                address = sgetStr();
+                printMemory(address);
+                address = 0; 
                 break;
-            
+            case 2:
+                sprint(wrmem);
+                break;
+            case 3:
+                sprint(rdreg);
+                break;
+            case 4:
+                sprint(wrreg);
+                break;
+            case 5:
+                sprint(ldsrec);
+                break;
+            case 6:
+                sprint(runsrec);
+                break;
             default:
                 sprint(invalidOption);
                 break;

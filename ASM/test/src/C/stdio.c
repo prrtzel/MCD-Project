@@ -10,9 +10,15 @@ the buffer index is incremented and it repeats
     char buffer[50];
     unsigned int i = 0;
 
+    //clear buffer
+    for(int i=0; i<50; i++){
+        buffer[i] = 0;
+    }
+
+
     while(character != EOT) {
-        unsigned int value = (unsigned int)character;
         character = sgetChar();
+        unsigned int value = (unsigned int)character;
         buffer[i] = character;
         i++;
     }
