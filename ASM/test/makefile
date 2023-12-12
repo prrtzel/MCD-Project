@@ -22,6 +22,7 @@ link:
 clean:
 	del /f main.out
 	del /f header.out
+	del /f stdio.out
 out:
 #launch easy68k
 	etc/test.bat

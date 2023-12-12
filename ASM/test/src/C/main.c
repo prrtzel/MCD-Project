@@ -1,8 +1,17 @@
 #include "headers/stdio.h"
 
 int main(){
-    char* str_ptr = sgetStr();
-    sprint(str_ptr);
+
+    char success[] = "success!";
+    char fail[] = "fail";
+
+    char character = aHex2Bin('f');
+
+    if (character == 0x0F){
+        sprint(success);
+    }
+
+    sprint(&character);
     return 9;
 }
 
