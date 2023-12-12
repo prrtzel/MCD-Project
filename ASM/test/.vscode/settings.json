@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.s": "m68k",
+        "*.m68k": "m68k",
+        "stdio.h": "c"
+    }
+}
