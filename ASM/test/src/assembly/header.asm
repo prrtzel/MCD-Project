@@ -1,9 +1,20 @@
-	public _print
+	public _sprintTest
+	public _sprint
 
-_print
-    lea     message,a1
+_sprintTest
+    lea     testMessage,a1
 	move.b  #14,d0    
 	trap    #15
     rts
-message 
-	dc.b    'hello',0   
+
+_sprint
+    move.l  a0,a1
+	move.b  #13,d0    
+	trap    #15
+    rts
+
+cr 	equ		$0D
+lf	equ		$0A 
+
+testMessage
+	dc.b    'Test Message :)',cr,lf,0   
