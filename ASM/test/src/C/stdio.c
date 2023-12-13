@@ -17,7 +17,6 @@ char* sgetStr(void) {
     int k=0;
     while(character != '\r') {
         character = sgetChar();
-
         if(character == BACKSPACE) {
             j--;
             buffer[j] = '\0';
@@ -33,12 +32,14 @@ char* sgetStr(void) {
 }
 
 void sprintWord(char* arrayPtr) {
-    char array[5];
+    char array[6];
     array[0] = *arrayPtr;
     array[1] = *(arrayPtr + 1);
     array[2] = *(arrayPtr + 2);
     array[3] = *(arrayPtr + 3);
-    array[4] = '\0';
+    array[4] = '\r';
+    array[5] = '\n';
+    array[6] = '\0';
     sprint(array);
 }
 
@@ -73,7 +74,7 @@ char ahex2bin(char asciiChar) {
     return (char) value;
 }
 
-char * bin2ahex(int binaryValue) {
+char* bin2ahex(int binaryValue) {
     binaryValue = binaryValue & 0x0000ffff;
     char array[4];
     array[0] = (binaryValue & 0xf000) >> 12;

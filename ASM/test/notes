@@ -63,7 +63,10 @@ printMemory
 # backspace
 
 buffer = [a, b, c, d, e, f, g, bs]
+j=7
 backspace
+
+TRACKED POSITION OF J!!
 
 
 

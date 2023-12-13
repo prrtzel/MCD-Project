@@ -18,9 +18,9 @@ int main(){
     "5. Load an S-Record\n\r"
     "6. Run an S-Record\n\r"
     "7. Kill Morg"
-    "\0";
+    "\n\r\0";
 
-    char rdmem[] = "Read Memory Selected\n\n\rSelect Address to Read From";
+    char rdmem[] = "Read Memory Selected\n\n\rSelect Address to Read From\n\r";
     char wrmem[] = "Write to Memory Selected\n\r";
     char rdreg[] = "Read from a Register Selected\n\r";
     char wrreg[] = "Write to a Register Selected\n\r";
@@ -58,7 +58,7 @@ int main(){
             case 1:
                 sprint(rdmem);
                 address = sgetStr();
-                printMemory(address);
+                readMemory(address);
                 break;
             case 2:
                 sprint(wrmem);
@@ -85,10 +85,12 @@ int main(){
 #ifdef TEST
     char testMode[] = "Test Mode Console\n\r";
     sprint(testMode);
-    char* string;
-    string = sgetStr();
-    sprint(string);
+//----------------------
 
+    char address[] = "abcd";
+    readMemory(address);
+
+//----------------------
 #endif
     sprint(exitProgramString);
     return 9;

@@ -85,7 +85,9 @@ _sprintWord
 	move.b	(2,a0),(2+l20,a7)
 	move.l	(12+l20,a7),a0
 	move.b	(3,a0),(3+l20,a7)
-	move.b	#0,(4+l20,a7)
+	move.b	#13,(4+l20,a7)
+	move.b	#10,(5+l20,a7)
+	move.b	#0,(6+l20,a7)
 	lea	(0+l20,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
