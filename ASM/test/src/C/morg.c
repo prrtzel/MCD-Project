@@ -6,7 +6,7 @@ void readMemory(char* address){
     int value = parseAddress(address);
     value = *(char*)value;
 
-    char* string = bin2ahexmem(value);
+    char* string = bin2ahexbyte(value);
     sprintByte(string);
 }
 

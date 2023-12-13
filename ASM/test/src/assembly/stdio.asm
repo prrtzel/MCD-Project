@@ -316,9 +316,9 @@ l61	equ	0
 	add.w	#16,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
-	public	_bin2ahexmem
+	public	_bin2ahexbyte
 	cnop	0,4
-_bin2ahexmem
+_bin2ahexbyte
 	sub.w	#16,a7
 	movem.l	l76,-(a7)
 	and.l	#255,(20+l78,a7)

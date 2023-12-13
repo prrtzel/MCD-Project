@@ -112,7 +112,7 @@ char* bin2ahexword(int binaryValue) {
     return array;
 }
 
-char* bin2ahexmem(int binaryValue) {
+char* bin2ahexbyte(int binaryValue) {
     binaryValue = binaryValue & 0x000000ff;
     char array[4];
     array[0] = (binaryValue & 0x00f0) >> 4;

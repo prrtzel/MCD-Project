@@ -37,5 +37,5 @@ char ahex2bin(char asciiChar);
 char * bin2ahexword(int binaryValue);
 
 //Ex: 0xFF -> 0x4646
-char* bin2ahexmem(int binaryValue);
+char* bin2ahexbyte(int binaryValue);
 #endif

@@ -15,7 +15,7 @@ _readMemory
 	ext.l	d0
 	move.l	d0,(4+l5,a7)
 	move.l	(4+l5,a7),-(a7)
-	jsr	_bin2ahexmem
+	jsr	_bin2ahexbyte
 	move.l	d0,(12+l5,a7)
 	move.l	(12+l5,a7),-(a7)
 	jsr	_sprintByte
@@ -125,4 +125,4 @@ l14	equ	4
 	rts
 	public	_sprintByte
 	public	_ahex2bin
-	public	_bin2ahexmem
+	public	_bin2ahexbyte

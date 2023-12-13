@@ -1,8 +1,8 @@
 #include "headers/stdio.h"
 #include "headers/morg.h"
 
-#define TEST
-//#define MAIN
+//#define TEST
+#define MAIN
 
 int main(){
 // Morg the Monitor
