@@ -4,72 +4,79 @@
 	public	_sgetStr
 	cnop	0,4
 _sgetStr
-	sub.w	#72,a7
+	sub.w	#76,a7
 	movem.l	l13,-(a7)
-	move.b	#10,(0+l15,a7)
-	move.b	#13,(1+l15,a7)
+	move.b	#62,(0+l15,a7)
+	move.b	#62,(1+l15,a7)
 	move.b	#0,(2+l15,a7)
-	move.b	#0,(3+l15,a7)
-	move.b	#32,(4+l15,a7)
-	move.b	#8,(5+l15,a7)
-	move.b	#0,(6+l15,a7)
-	move.b	#0,(7+l15,a7)
-	move.b	#1,(8+l15,a7)
-	move.l	#0,(60+l15,a7)
-	move.l	#0,(64+l15,a7)
+	lea	(0+l15,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	move.b	#10,(7+l15,a7)
+	move.b	#13,(8+l15,a7)
+	move.b	#0,(9+l15,a7)
+	move.b	#0,(10+l15,a7)
+	move.b	#32,(11+l15,a7)
+	move.b	#8,(12+l15,a7)
+	move.b	#0,(13+l15,a7)
+	move.b	#0,(14+l15,a7)
+	move.b	#1,(15+l15,a7)
+	move.l	#0,(66+l15,a7)
+	move.l	#0,(70+l15,a7)
+	addq.w	#4,a7
 	bra	l4
 l3
-	lea	(9+l15,a7),a0
-	move.w	(66+l15,a7),d0
+	lea	(12+l15,a7),a0
+	move.w	(68+l15,a7),d0
 	and.l	#65535,d0
 	move.b	#0,(0,a0,d0.l)
 l6
-	addq.l	#1,(64+l15,a7)
+	addq.l	#1,(66+l15,a7)
 l4
 	moveq	#50,d0
-	cmp.l	(64+l15,a7),d0
+	cmp.l	(66+l15,a7),d0
 	bgt	l3
 l5
-	move.l	#0,(64+l15,a7)
-	move.l	#0,(68+l15,a7)
+	move.l	#0,(66+l15,a7)
+	move.l	#0,(70+l15,a7)
 	bra	l8
 l7
 	jsr	_sgetChar
-	move.b	d0,(8+l15,a7)
-	cmp.b	#8,(8+l15,a7)
+	move.b	d0,(11+l15,a7)
+	cmp.b	#8,(11+l15,a7)
 	bne	l11
 l10
-	subq.l	#1,(64+l15,a7)
-	lea	(9+l15,a7),a0
-	move.w	(66+l15,a7),d0
+	subq.l	#1,(66+l15,a7)
+	lea	(12+l15,a7),a0
+	move.w	(68+l15,a7),d0
 	and.l	#65535,d0
 	move.b	#0,(0,a0,d0.l)
-	lea	(4+l15,a7),a0
+	lea	(7+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 	bra	l12
 l11
-	lea	(9+l15,a7),a0
-	move.w	(66+l15,a7),d0
+	lea	(12+l15,a7),a0
+	move.w	(68+l15,a7),d0
 	and.l	#65535,d0
-	move.b	(8+l15,a7),(0,a0,d0.l)
-	addq.l	#1,(64+l15,a7)
+	move.b	(11+l15,a7),(0,a0,d0.l)
+	addq.l	#1,(66+l15,a7)
 l12
 l8
-	cmp.b	#13,(8+l15,a7)
+	cmp.b	#13,(11+l15,a7)
 	bne	l7
 l9
-	lea	(0+l15,a7),a0
+	lea	(3+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
-	lea	(13+l15,a7),a0
+	lea	(16+l15,a7),a0
 	move.l	a0,d0
 	addq.w	#4,a7
 l1
 l13	reg
 l15	equ	0
-	add.w	#72,a7
+	add.w	#76,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	public	_sprintWord
@@ -98,9 +105,9 @@ l20	equ	0
 	addq.w	#8,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
-	public	_sprintMem
+	public	_sprintByte
 	cnop	0,4
-_sprintMem
+_sprintByte
 	subq.w	#8,a7
 	movem.l	l23,-(a7)
 	move.l	(12+l25,a7),a0

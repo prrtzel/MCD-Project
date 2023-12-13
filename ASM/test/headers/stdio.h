@@ -21,6 +21,8 @@ extern char* sgetStr(void);
 //pointer may need to be reset for multiple occurences of this function
 void sprintWord(char * array); 
 
+void sprintByte(char * array); 
+
 //--------------------------------------------------------------
 // Conversions
 

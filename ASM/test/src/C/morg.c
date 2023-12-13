@@ -7,22 +7,27 @@ void readMemory(char* address){
     value = *(char*)value;
 
     char* string = bin2ahexmem(value);
-    sprintMem(string);
+    sprintByte(string);
 }
 
+
 int parseAddress(char* address) {
-    char buffer[5];
+    char buffer[8];
     int addrOut = 0;
     buffer[0] = *address;
     buffer[1] = *(address + 1); 
     buffer[2] = *(address + 2); 
     buffer[3] = *(address + 3);
+    buffer[4] = *(address + 4);
+    buffer[5] = *(address + 5); 
+    buffer[6] = *(address + 6); 
+    buffer[7] = *(address + 7);
 
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<8; i++) {
         buffer[i] = ahex2bin(buffer[i]);
     }
 
-    addrOut = (buffer[0] << 12) + (buffer[1] << 8) + (buffer[2] << 4) + (buffer[3]);
+    addrOut = (buffer[0] << 28) + (buffer[1] << 24) + (buffer[2] << 20) + (buffer[3] << 16) + (buffer[4] << 12) + (buffer[5] << 8) + (buffer[6] << 4) + (buffer[7]);
 
     return addrOut;
 }

@@ -2,6 +2,8 @@
 
 //NEEDS MALLOC FOR SAFE OPERATION
 char* sgetStr(void) {
+    char inputStrSymbol[] = ">>";
+    sprint(inputStrSymbol);
     char eot[] = "\n\r\0";
     char back[] = " \b\0";
     char character = 1; //DO NOT CHANGE TO 0!!!
@@ -43,7 +45,7 @@ void sprintWord(char* arrayPtr) {
     sprint(array);
 }
 
-void sprintMem(char* arrayPtr) {
+void sprintByte(char* arrayPtr) {
     char array[5];
     array[0] = *(arrayPtr);
     array[1] = *(arrayPtr + 1);

@@ -1,8 +1,8 @@
 #include "headers/stdio.h"
 #include "headers/morg.h"
 
-//#define TEST
-#define MAIN
+#define TEST
+//#define MAIN
 
 int main(){
 // Morg the Monitor
@@ -31,6 +31,8 @@ int main(){
 
     char newline[] = "\n\r";
 
+    char linuxThing[] = ">>";
+
     char invalidOption[] = "Invalid Option. Morg thinks you cant read\n\r";
 //-----------------------------------------------------------------------------
 #ifdef MAIN
@@ -42,7 +44,7 @@ int main(){
     char MorgAlive = 1; //if 0 Morg is dead :(
 
     while (MorgAlive != 0) {
-        
+        sprint(linuxThing);
         //get number and go to new line
         char choice = sgetChar();
         choice = adec2bin(choice);
@@ -87,7 +89,7 @@ int main(){
     sprint(testMode);
 //----------------------
 
-    char address[] = "1000";
+    char address[] = "00001000";
     readMemory(address);
 
 //----------------------

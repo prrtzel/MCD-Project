@@ -2,10 +2,7 @@
 #define MORG_H
 
 /*
-This function passes in a hex ascii address (4 letters, 8 bytes)
-the ascii address is converted to a 4 byte hex address 
-this pointer is dereferenced to see what is in that memory
-the value is converted to ascii and is returned
+reads an ascii longword and prints its contents 
 */
 void readMemory(char* address);
 

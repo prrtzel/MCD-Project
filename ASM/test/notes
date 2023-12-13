@@ -17,6 +17,9 @@ notes:
 - add if define for simulator vs hardware
 - figure out how to put all strings into header file
 - implement malloc
+- add exceptions for read mem
+- ADD LONG WORD SUPPORT FOR READING
+- cleanup code
 
 # Morg the Monitor Program
 Morg needs to:
