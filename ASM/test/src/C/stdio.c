@@ -7,19 +7,26 @@ char* sgetStr(void) {
     char character = 1; //DO NOT CHANGE TO 0!!!
     char buffer[50];
     unsigned int i = 0;
+
     //clear buffer
     for(int i=0; i<50; i++){
         buffer[i] = 0;
-    }
-    
+    }  
+
+    int j=0;
+    int k=0;
     while(character != '\r') {
         character = sgetChar();
-        sprint(&character);
+
         if(character == BACKSPACE) {
+            j--;
+            buffer[j] = '\0';
             sprint(back);
         }
-        buffer[i] = character;
-        i++;
+        else {
+            buffer[j] = character;
+            j++;
+        }  
     }
     sprint(eot);
     return buffer; 

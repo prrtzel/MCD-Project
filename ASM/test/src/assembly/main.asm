@@ -4,7 +4,7 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#504,a7
+	sub.w	#508,a7
 	movem.l	l13,-(a7)
 	lea	l3,a0
 	lea	(0+l15,a7),a1
@@ -117,15 +117,18 @@ l22:
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetStr
-	lea	(391+l15,a7),a0
+	move.l	d0,(508+l15,a7)
+	move.l	(508+l15,a7),-(a7)
+	jsr	_sprint
+	lea	(395+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#9,d0
-	addq.w	#8,a7
+	add.w	#12,a7
 l1
 l13	reg
 l15	equ	0
-	add.w	#504,a7
+	add.w	#508,a7
 	rts
 	cnop	0,4
 l3

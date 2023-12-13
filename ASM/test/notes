@@ -60,7 +60,10 @@ printMemory
 
 
 
+# backspace
 
+buffer = [a, b, c, d, e, f, g, bs]
+backspace
 
 
 

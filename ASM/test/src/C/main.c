@@ -85,7 +85,9 @@ int main(){
 #ifdef TEST
     char testMode[] = "Test Mode Console\n\r";
     sprint(testMode);
-    sgetStr();
+    char* string;
+    string = sgetStr();
+    sprint(string);
 
 #endif
     sprint(exitProgramString);
