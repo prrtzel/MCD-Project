@@ -107,6 +107,7 @@ l34:
 	lea	(0+l28,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
+	move.l	#0,(488+l28,a7)
 	move.b	#1,(492+l28,a7)
 	addq.w	#4,a7
 	bra	l13
@@ -151,7 +152,6 @@ l19
 	move.l	d0,(488+l28,a7)
 	move.l	(488+l28,a7),-(a7)
 	jsr	_printMemory
-	move.l	#0,(492+l28,a7)
 	addq.w	#8,a7
 	bra	l18
 l20

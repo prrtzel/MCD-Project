@@ -6,16 +6,13 @@ until the EOT char is recieved
 a character is put into a string buffer
 the buffer index is incremented and it repeats
 */
-    char character;
+    char character = 1; //DO NOT CHANGE!!
     char buffer[50];
     unsigned int i = 0;
-
     //clear buffer
     for(int i=0; i<50; i++){
         buffer[i] = 0;
     }
-
-
     while(character != EOT) {
         character = sgetChar();
         unsigned int value = (unsigned int)character;

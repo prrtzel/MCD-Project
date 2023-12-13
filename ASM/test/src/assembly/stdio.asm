@@ -6,6 +6,7 @@
 _sgetStr
 	sub.w	#60,a7
 	movem.l	l10,-(a7)
+	move.b	#1,(0+l12,a7)
 	move.l	#0,(52+l12,a7)
 	move.l	#0,(56+l12,a7)
 	bra	l4
@@ -23,12 +24,12 @@ l4
 l5
 	bra	l8
 l7
+	jsr	_sgetChar
+	move.b	d0,(0+l12,a7)
 	move.b	(0+l12,a7),d0
 	ext.w	d0
 	ext.l	d0
 	move.l	d0,(56+l12,a7)
-	jsr	_sgetChar
-	move.b	d0,(0+l12,a7)
 	lea	(1+l12,a7),a0
 	move.w	(54+l12,a7),d0
 	and.l	#65535,d0

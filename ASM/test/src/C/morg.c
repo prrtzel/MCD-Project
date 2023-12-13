@@ -4,5 +4,7 @@
 char string[] = "hola";
 
 void printMemory(char* address) {
+    char output[16];
+    
     sprint(address);
 }
