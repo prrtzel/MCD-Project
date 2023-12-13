@@ -6,8 +6,8 @@ void readMemory(char* address){
     int value = parseAddress(address);
     value = *(char*)value;
 
-    char* string = bin2ahex(value);
-    sprintWord(string);
+    char* string = bin2ahexmem(value);
+    sprintMem(string);
 }
 
 int parseAddress(char* address) {
@@ -26,3 +26,4 @@ int parseAddress(char* address) {
 
     return addrOut;
 }
+

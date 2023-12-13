@@ -15,10 +15,10 @@ _readMemory
 	ext.l	d0
 	move.l	d0,(4+l5,a7)
 	move.l	(4+l5,a7),-(a7)
-	jsr	_bin2ahex
+	jsr	_bin2ahexmem
 	move.l	d0,(12+l5,a7)
 	move.l	(12+l5,a7),-(a7)
-	jsr	_sprintWord
+	jsr	_sprintMem
 	add.w	#12,a7
 l1
 l3	reg
@@ -90,6 +90,6 @@ l12	reg
 l14	equ	0
 	add.w	#16,a7
 	rts
-	public	_sprintWord
 	public	_ahex2bin
-	public	_bin2ahex
+	public	_bin2ahexmem
+	public	_sprintMem

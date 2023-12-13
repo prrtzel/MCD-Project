@@ -43,6 +43,16 @@ void sprintWord(char* arrayPtr) {
     sprint(array);
 }
 
+void sprintMem(char* arrayPtr) {
+    char array[5];
+    array[0] = *(arrayPtr);
+    array[1] = *(arrayPtr + 1);
+    array[2] = '\r';
+    array[3] = '\n';
+    array[4] = '\0';
+    sprint(array);
+}
+
 //--------------------------------------------------------------
 // Conversions
 
@@ -74,7 +84,7 @@ char ahex2bin(char asciiChar) {
     return (char) value;
 }
 
-char* bin2ahex(int binaryValue) {
+char* bin2ahexword(int binaryValue) {
     binaryValue = binaryValue & 0x0000ffff;
     char array[4];
     array[0] = (binaryValue & 0xf000) >> 12;
@@ -84,6 +94,30 @@ char* bin2ahex(int binaryValue) {
 
 
     for(int i=0; i<4; i++) {
+        if (array[i] <= 0x09 && array[i] >= 0x00) {
+            array[i] = array[i] | 0x30;
+        }
+        else if (array[i] <= 0x0f && array[i] >= 0x0a) {
+            array[i] = array[i] - 0x09;
+            array[i] = array[i] | 0x40;
+        }
+        else {
+            char error[] = "error";
+            sprint(error);
+            return 0;
+        }
+    }
+    return array;
+}
+
+char* bin2ahexmem(int binaryValue) {
+    binaryValue = binaryValue & 0x000000ff;
+    char array[4];
+    array[0] = (binaryValue & 0x00f0) >> 4;
+    array[1] = (binaryValue & 0x000f);
+
+
+    for(int i=0; i<2; i++) {
         if (array[i] <= 0x09 && array[i] >= 0x00) {
             array[i] = array[i] | 0x30;
         }
