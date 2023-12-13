@@ -1,4 +1,6 @@
 #define EOT '\0' //type ctl + shift + 2 for EOT
+#define ENTER 10
+
 
 //Serial Print Functions for Simulator
 

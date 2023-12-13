@@ -2,14 +2,13 @@
 ; keyboard variables
 bs	equ	$08 ;backspace	
 ht	equ	$09	;tab
-lf	equ	$0a
-cr	equ	$0d
+lf	equ	$0a ;line feed
+cr	equ	$0d ;caaraiegeef return IDK how to spell :)
 
 ;------------------------------------
 ; Serial Print Functions for Simulator	
 	public _sprint
 	public _sgetChar
-	public _sgetString
 
 _sprint	
 	move.l	a0, -(sp)
@@ -17,7 +16,7 @@ _sprint
 	move.l	d0, -(sp)
 
     move.l  8(sp),a1
-	move.b  #13,d0    
+	move.b  #14,d0    
 	trap    #15
 
 	move.l 	d0, (sp)+

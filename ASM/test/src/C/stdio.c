@@ -1,25 +1,26 @@
 #include "headers/stdio.h"
 
-char * sgetStr(void) {
-/*
-until the EOT char is recieved
-a character is put into a string buffer
-the buffer index is incremented and it repeats
-*/
-    char character = 1; //DO NOT CHANGE!!
+//NEEDS MALLOC FOR SAFE OPERATION
+char* sgetStr(void) {
+    char back[] = " \b\0";
+    char character = 1; //DO NOT CHANGE TO 0!!!
     char buffer[50];
     unsigned int i = 0;
-    //clear buffer
+    //clear buffer VERY IMPORTANT
     for(int i=0; i<50; i++){
         buffer[i] = 0;
     }
+    
     while(character != EOT) {
         character = sgetChar();
-        unsigned int value = (unsigned int)character;
+        //BACKSPACE
+        if(character == 0x08) {
+            sprint(back);
+        }
         buffer[i] = character;
         i++;
     }
-    return buffer;
+    return buffer; 
 }
 
 void sprintWord(char* arrayPtr) {
@@ -55,7 +56,7 @@ char ahex2bin(char asciiChar) {
     else {
         value = value - 0x30;
     }
-    if (value > 0x0F || value < 0x00) {
+    if (value > 0x0F) {
         char error[] = "error";
         sprint(error);
         return 0;

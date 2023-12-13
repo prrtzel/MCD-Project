@@ -1,8 +1,8 @@
 #include "headers/stdio.h"
 #include "headers/morg.h"
 
-//#define TEST
-#define MAIN
+#define TEST
+//#define MAIN
 
 int main(){
 // Morg the Monitor
@@ -83,37 +83,10 @@ int main(){
     }
 #endif
 #ifdef TEST
-    char testMode[] = "Test Mode Console";
+    char testMode[] = "Test Mode Console\n\r";
     sprint(testMode);
-    sprint(menu);
+    sgetStr();
 
-    char* address = 0;
-    char MorgAlive = 1; //if 0 Morg is dead :(
-
-    while (MorgAlive != 0) {
-        
-        //get number and go to new line
-        char choice = sgetChar();
-        choice = adec2bin(choice);
-        sprint(newline);
-
-        if (choice == 7){
-            MorgAlive = 0; // YOU MONSTER!!
-        }
-        else {
-            //main switch case statement parser
-            switch (choice)
-            {
-            case 1:
-                sprint(rdmem);
-                address = sgetStr();         
-                break;
-            default:
-                sprint(invalidOption);
-                break;
-            }
-        }
-    }
 #endif
     sprint(exitProgramString);
     return 9;

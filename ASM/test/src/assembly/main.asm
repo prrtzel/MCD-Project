@@ -4,36 +4,36 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#492,a7
-	movem.l	l26,-(a7)
+	sub.w	#504,a7
+	movem.l	l13,-(a7)
 	lea	l3,a0
-	lea	(0+l28,a7),a1
+	lea	(0+l15,a7),a1
 	moveq.l	#10,d0
-l29:
+l16:
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
-	dbra	d0,l29
+	dbra	d0,l16
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l4,a0
-	lea	(191+l28,a7),a1
+	lea	(191+l15,a7),a1
 	moveq.l	#11,d0
-l30:
+l17:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l30
+	dbra	d0,l17
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l5,a0
-	lea	(242+l28,a7),a1
+	lea	(242+l15,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -43,28 +43,28 @@ l30:
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l6,a0
-	lea	(269+l28,a7),a1
+	lea	(269+l15,a7),a1
 	moveq.l	#7,d0
-l31:
+l18:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l31
+	dbra	d0,l18
 	lea	l7,a0
-	lea	(301+l28,a7),a1
+	lea	(301+l15,a7),a1
 	moveq.l	#6,d0
-l32:
+l19:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l32
+	dbra	d0,l19
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l8,a0
-	lea	(332+l28,a7),a1
+	lea	(332+l15,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -73,7 +73,7 @@ l32:
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	lea	l9,a0
-	lea	(360+l28,a7),a1
+	lea	(360+l15,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -83,127 +83,49 @@ l32:
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l10,a0
-	lea	(387+l28,a7),a1
+	lea	(387+l15,a7),a1
 	moveq.l	#11,d0
-l33:
+l20:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l33
+	dbra	d0,l20
 	move.b	(a0)+,(a1)+
-	move.b	#10,(436+l28,a7)
-	move.b	#13,(437+l28,a7)
-	move.b	#0,(438+l28,a7)
+	move.b	#10,(436+l15,a7)
+	move.b	#13,(437+l15,a7)
+	move.b	#0,(438+l15,a7)
 	lea	l11,a0
-	lea	(439+l28,a7),a1
+	lea	(439+l15,a7),a1
 	moveq.l	#10,d0
-l34:
+l21:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l34
-	lea	(0+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	move.l	#0,(488+l28,a7)
-	move.b	#1,(492+l28,a7)
-	addq.w	#4,a7
-	bra	l13
-l12
-	jsr	_sgetChar
-	move.b	d0,(489+l28,a7)
-	move.b	(489+l28,a7),d0
-	ext.w	d0
-	ext.l	d0
-	move.l	d0,-(a7)
-	jsr	_adec2bin
-	move.b	d0,(493+l28,a7)
-	lea	(440+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#8,a7
-	cmp.b	#7,(489+l28,a7)
-	bne	l16
-l15
-	move.b	#0,(488+l28,a7)
-	bra	l17
-l16
-	move.b	(489+l28,a7),d0
-	subq.b	#1,d0
-	beq	l19
-	subq.b	#1,d0
-	beq	l20
-	subq.b	#1,d0
-	beq	l21
-	subq.b	#1,d0
-	beq	l22
-	subq.b	#1,d0
-	beq	l23
-	subq.b	#1,d0
-	beq	l24
-	bra	l25
-l19
-	lea	(191+l28,a7),a0
+	dbra	d0,l21
+	lea	l12,a0
+	lea	(483+l15,a7),a1
+	moveq.l	#4,d0
+l22:
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	dbra	d0,l22
+	lea	(483+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetStr
-	move.l	d0,(488+l28,a7)
-	move.l	(488+l28,a7),-(a7)
-	jsr	_printMemory
-	addq.w	#8,a7
-	bra	l18
-l20
-	lea	(242+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l21
-	lea	(269+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l22
-	lea	(301+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l23
-	lea	(332+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l24
-	lea	(360+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l25
-	lea	(439+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-l18
-l17
-l13
-	tst.b	(488+l28,a7)
-	bne	l12
-l14
-	lea	(387+l28,a7),a0
+	lea	(391+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#9,d0
-	addq.w	#4,a7
+	addq.w	#8,a7
 l1
-l26	reg
-l28	equ	0
-	add.w	#492,a7
+l13	reg
+l15	equ	0
+	add.w	#504,a7
 	rts
 	cnop	0,4
 l3
@@ -703,8 +625,27 @@ l11
 	dc.b	10
 	dc.b	13
 	dc.b	0
+	cnop	0,4
+l12
+	dc.b	84
+	dc.b	101
+	dc.b	115
+	dc.b	116
+	dc.b	32
+	dc.b	77
+	dc.b	111
+	dc.b	100
+	dc.b	101
+	dc.b	32
+	dc.b	67
+	dc.b	111
+	dc.b	110
+	dc.b	115
+	dc.b	111
+	dc.b	108
+	dc.b	101
+	dc.b	10
+	dc.b	13
+	dc.b	0
 	public	_sprint
-	public	_sgetChar
 	public	_sgetStr
-	public	_adec2bin
-	public	_printMemory
