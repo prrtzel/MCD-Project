@@ -110,10 +110,10 @@ l22:
 	lea	(487+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
-	move.b	#97,(511+l15,a7)
-	move.b	#98,(512+l15,a7)
-	move.b	#99,(513+l15,a7)
-	move.b	#100,(514+l15,a7)
+	move.b	#49,(511+l15,a7)
+	move.b	#48,(512+l15,a7)
+	move.b	#48,(513+l15,a7)
+	move.b	#48,(514+l15,a7)
 	move.b	#0,(515+l15,a7)
 	lea	(511+l15,a7),a0
 	move.l	a0,-(a7)

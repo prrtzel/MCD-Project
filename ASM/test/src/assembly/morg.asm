@@ -9,6 +9,11 @@ _readMemory
 	move.l	(12+l5,a7),-(a7)
 	jsr	_parseAddress
 	move.l	d0,(4+l5,a7)
+	move.l	(4+l5,a7),a0
+	move.b	(a0),d0
+	ext.w	d0
+	ext.l	d0
+	move.l	d0,(4+l5,a7)
 	move.l	(4+l5,a7),-(a7)
 	jsr	_bin2ahex
 	move.l	d0,(12+l5,a7)

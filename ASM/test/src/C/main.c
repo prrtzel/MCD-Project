@@ -87,7 +87,7 @@ int main(){
     sprint(testMode);
 //----------------------
 
-    char address[] = "abcd";
+    char address[] = "1000";
     readMemory(address);
 
 //----------------------

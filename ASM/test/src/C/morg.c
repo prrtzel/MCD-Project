@@ -4,11 +4,12 @@
 
 void readMemory(char* address){
     int value = parseAddress(address);
+    value = *(char*)value;
+
     char* string = bin2ahex(value);
     sprintWord(string);
 }
 
-//EX: FFFF OR 46464646
 int parseAddress(char* address) {
     char buffer[5];
     int addrOut = 0;

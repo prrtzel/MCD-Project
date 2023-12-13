@@ -33,7 +33,4 @@ char ahex2bin(char asciiChar);
 //Converts binary value to Ascii Hex Ex: 0xFFFF -> 0x46464646
 // \returns pointer to ascii word 
 char * bin2ahex(int binaryValue);
-
-//converts 4 bytes in ascii hex to binary
-char* asciihex2bin (char* asciiStrValue);
 #endif
