@@ -2,24 +2,26 @@
 
 //NEEDS MALLOC FOR SAFE OPERATION
 char* sgetStr(void) {
+    char eot[] = "\n\r\0";
     char back[] = " \b\0";
     char character = 1; //DO NOT CHANGE TO 0!!!
     char buffer[50];
     unsigned int i = 0;
-    //clear buffer VERY IMPORTANT
+    //clear buffer
     for(int i=0; i<50; i++){
         buffer[i] = 0;
     }
     
-    while(character != EOT) {
+    while(character != '\r') {
         character = sgetChar();
-        //BACKSPACE
-        if(character == 0x08) {
+        sprint(&character);
+        if(character == BACKSPACE) {
             sprint(back);
         }
         buffer[i] = character;
         i++;
     }
+    sprint(eot);
     return buffer; 
 }
 

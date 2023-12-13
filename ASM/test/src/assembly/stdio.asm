@@ -4,55 +4,67 @@
 	public	_sgetStr
 	cnop	0,4
 _sgetStr
-	sub.w	#64,a7
+	sub.w	#68,a7
 	movem.l	l12,-(a7)
-	move.b	#32,(0+l14,a7)
-	move.b	#8,(1+l14,a7)
+	move.b	#10,(0+l14,a7)
+	move.b	#13,(1+l14,a7)
 	move.b	#0,(2+l14,a7)
 	move.b	#0,(3+l14,a7)
-	move.b	#1,(4+l14,a7)
-	move.l	#0,(56+l14,a7)
+	move.b	#32,(4+l14,a7)
+	move.b	#8,(5+l14,a7)
+	move.b	#0,(6+l14,a7)
+	move.b	#0,(7+l14,a7)
+	move.b	#1,(8+l14,a7)
 	move.l	#0,(60+l14,a7)
+	move.l	#0,(64+l14,a7)
 	bra	l4
 l3
-	lea	(5+l14,a7),a0
-	move.w	(62+l14,a7),d0
+	lea	(9+l14,a7),a0
+	move.w	(66+l14,a7),d0
 	and.l	#65535,d0
 	move.b	#0,(0,a0,d0.l)
 l6
-	addq.l	#1,(60+l14,a7)
+	addq.l	#1,(64+l14,a7)
 l4
 	moveq	#50,d0
-	cmp.l	(60+l14,a7),d0
+	cmp.l	(64+l14,a7),d0
 	bgt	l3
 l5
 	bra	l8
 l7
 	jsr	_sgetChar
-	move.b	d0,(4+l14,a7)
-	cmp.b	#8,(4+l14,a7)
+	move.b	d0,(8+l14,a7)
+	lea	(8+l14,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	addq.w	#4,a7
+	cmp.b	#8,(8+l14,a7)
 	bne	l11
 l10
-	lea	(0+l14,a7),a0
+	lea	(4+l14,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 l11
-	lea	(5+l14,a7),a0
-	move.w	(58+l14,a7),d0
+	lea	(9+l14,a7),a0
+	move.w	(62+l14,a7),d0
 	and.l	#65535,d0
-	move.b	(4+l14,a7),(0,a0,d0.l)
-	addq.l	#1,(56+l14,a7)
+	move.b	(8+l14,a7),(0,a0,d0.l)
+	addq.l	#1,(60+l14,a7)
 l8
-	tst.b	(4+l14,a7)
+	cmp.b	#13,(8+l14,a7)
 	bne	l7
 l9
-	lea	(5+l14,a7),a0
+	lea	(0+l14,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	lea	(13+l14,a7),a0
 	move.l	a0,d0
+	addq.w	#4,a7
 l1
 l12	reg
 l14	equ	0
-	add.w	#64,a7
+	add.w	#68,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	public	_sprintWord
