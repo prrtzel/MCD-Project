@@ -4,7 +4,7 @@
 	public	_sgetStr
 	cnop	0,4
 _sgetStr
-	sub.w	#76,a7
+	sub.w	#72,a7
 	movem.l	l13,-(a7)
 	move.b	#62,(0+l15,a7)
 	move.b	#62,(1+l15,a7)
@@ -38,7 +38,6 @@ l4
 	bgt	l3
 l5
 	move.l	#0,(66+l15,a7)
-	move.l	#0,(70+l15,a7)
 	bra	l8
 l7
 	jsr	_sgetChar
@@ -67,6 +66,11 @@ l8
 	cmp.b	#13,(11+l15,a7)
 	bne	l7
 l9
+	lea	(12+l15,a7),a0
+	move.w	(68+l15,a7),d0
+	addq.w	#1,d0
+	and.l	#65535,d0
+	move.b	#0,(0,a0,d0.l)
 	lea	(3+l15,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
@@ -76,7 +80,7 @@ l9
 l1
 l13	reg
 l15	equ	0
-	add.w	#76,a7
+	add.w	#72,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	public	_sprintWord

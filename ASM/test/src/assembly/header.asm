@@ -9,6 +9,26 @@ cr	equ	$0d ;caaraiegeef return IDK how to spell :)
 ; Serial Print Functions for Simulator	
 	public _sprint
 	public _sgetChar
+	public _clrscreen
+	public _writetomem
+
+_writetomem
+
+
+
+_clrscreen
+
+	move.l	d1, -(sp)
+	move.l	d0, -(sp)
+
+	move.l  #$ff00, d1
+	move.l	#11, d0   
+	trap    #15
+
+	move.l 	d0, (sp)+
+	move.l	d1, (sp)+
+
+    rts
 
 _sprint	
 	move.l	a0, -(sp)

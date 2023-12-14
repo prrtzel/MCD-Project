@@ -4,30 +4,30 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#496,a7
-	movem.l	l26,-(a7)
+	sub.w	#532,a7
+	movem.l	l28,-(a7)
 	lea	l3,a0
-	lea	(0+l28,a7),a1
+	lea	(0+l30,a7),a1
 	moveq.l	#11,d0
-l29:
+l31:
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
-	dbra	d0,l29
+	dbra	d0,l31
 	move.b	(a0)+,(a1)+
 	lea	l4,a0
-	lea	(193+l28,a7),a1
+	lea	(193+l30,a7),a1
 	moveq.l	#12,d0
-l30:
+l32:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l30
+	dbra	d0,l32
 	move.b	(a0)+,(a1)+
 	lea	l5,a0
-	lea	(246+l28,a7),a1
+	lea	(246+l30,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -37,28 +37,28 @@ l30:
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l6,a0
-	lea	(273+l28,a7),a1
+	lea	(273+l30,a7),a1
 	moveq.l	#7,d0
-l31:
+l33:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l31
+	dbra	d0,l33
 	lea	l7,a0
-	lea	(305+l28,a7),a1
+	lea	(305+l30,a7),a1
 	moveq.l	#6,d0
-l32:
+l34:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	dbra	d0,l32
+	dbra	d0,l34
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l8,a0
-	lea	(336+l28,a7),a1
+	lea	(336+l30,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -67,7 +67,7 @@ l32:
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	lea	l9,a0
-	lea	(364+l28,a7),a1
+	lea	(364+l30,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -77,67 +77,83 @@ l32:
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	lea	l10,a0
-	lea	(391+l28,a7),a1
-	moveq.l	#11,d0
-l33:
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	dbra	d0,l33
-	move.b	(a0)+,(a1)+
-	move.b	#10,(440+l28,a7)
-	move.b	#13,(441+l28,a7)
-	move.b	#0,(442+l28,a7)
-	move.b	#62,(443+l28,a7)
-	move.b	#62,(444+l28,a7)
-	move.b	#0,(445+l28,a7)
-	lea	l11,a0
-	lea	(446+l28,a7),a1
+	lea	(391+l30,a7),a1
 	moveq.l	#1,d0
-l34:
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	dbra	d0,l34
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	lea	(0+l28,a7),a0
+l35:
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	dbra	d0,l35
+	lea	l11,a0
+	lea	(399+l30,a7),a1
+	moveq.l	#11,d0
+l36:
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	dbra	d0,l36
+	move.b	(a0)+,(a1)+
+	move.b	#10,(448+l30,a7)
+	move.b	#13,(449+l30,a7)
+	move.b	#0,(450+l30,a7)
+	lea	l12,a0
+	lea	(451+l30,a7),a1
+	moveq.l	#3,d0
+l37:
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	dbra	d0,l37
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	#62,(470+l30,a7)
+	move.b	#62,(471+l30,a7)
+	move.b	#0,(472+l30,a7)
+	lea	l13,a0
+	lea	(473+l30,a7),a1
+	moveq.l	#10,d0
+l38:
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	dbra	d0,l38
+	lea	(0+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
-	move.l	#0,(494+l28,a7)
-	move.b	#1,(498+l28,a7)
+	move.l	#0,(522+l30,a7)
+	move.l	#0,(526+l30,a7)
+	move.b	#1,(530+l30,a7)
+	move.b	#0,(531+l30,a7)
 	addq.w	#4,a7
-	bra	l13
-l12
-	lea	(443+l28,a7),a0
+	bra	l15
+l14
+	lea	(470+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetChar
-	move.b	d0,(499+l28,a7)
-	move.b	(499+l28,a7),d0
+	move.b	d0,(532+l30,a7)
+	move.b	(532+l30,a7),d0
 	ext.w	d0
 	ext.l	d0
 	move.l	d0,-(a7)
 	jsr	_adec2bin
-	move.b	d0,(503+l28,a7)
-	lea	(448+l28,a7),a0
+	move.b	d0,(536+l30,a7)
+	lea	(456+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	add.w	#12,a7
-	cmp.b	#7,(495+l28,a7)
-	bne	l16
-l15
-	move.b	#0,(494+l28,a7)
-	bra	l17
-l16
-	move.b	(495+l28,a7),d0
-	subq.b	#1,d0
-	beq	l19
-	subq.b	#1,d0
-	beq	l20
+	cmp.b	#7,(528+l30,a7)
+	bne	l18
+l17
+	move.b	#0,(526+l30,a7)
+	bra	l19
+l18
+	move.b	(528+l30,a7),d0
 	subq.b	#1,d0
 	beq	l21
 	subq.b	#1,d0
@@ -146,67 +162,68 @@ l16
 	beq	l23
 	subq.b	#1,d0
 	beq	l24
-	bra	l25
-l19
-	lea	(193+l28,a7),a0
+	subq.b	#1,d0
+	beq	l25
+	subq.b	#1,d0
+	beq	l26
+	bra	l27
+l21
+	lea	(193+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetStr
-	move.l	d0,(494+l28,a7)
-	move.l	(494+l28,a7),-(a7)
+	move.l	d0,(522+l30,a7)
+	move.l	(522+l30,a7),-(a7)
 	jsr	_readMemory
 	addq.w	#8,a7
-	bra	l18
-l20
-	lea	(246+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
-l21
-	lea	(273+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
+	bra	l20
 l22
-	lea	(305+l28,a7),a0
-	move.l	a0,-(a7)
-	jsr	_sprint
-	addq.w	#4,a7
-	bra	l18
+	jsr	_writeMemory
+	bra	l20
 l23
-	lea	(336+l28,a7),a0
+	lea	(273+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
-	bra	l18
+	bra	l20
 l24
-	lea	(364+l28,a7),a0
+	lea	(305+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
-	bra	l18
+	bra	l20
 l25
-	lea	(446+l28,a7),a0
+	lea	(336+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
-l18
-l17
-l13
-	tst.b	(494+l28,a7)
-	bne	l12
-l14
-	lea	(391+l28,a7),a0
+	bra	l20
+l26
+	lea	(364+l30,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	addq.w	#4,a7
+	bra	l20
+l27
+	lea	(473+l30,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	addq.w	#4,a7
+l20
+l19
+l15
+	tst.b	(526+l30,a7)
+	bne	l14
+l16
+	lea	(399+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#9,d0
 	addq.w	#4,a7
 l1
-l26	reg
-l28	equ	0
-	add.w	#496,a7
+l28	reg
+l30	equ	0
+	add.w	#532,a7
 	rts
 	cnop	0,4
 l3
@@ -615,6 +632,16 @@ l9
 	dc.b	0
 	cnop	0,4
 l10
+	dc.b	101
+	dc.b	114
+	dc.b	114
+	dc.b	111
+	dc.b	114
+	dc.b	10
+	dc.b	13
+	dc.b	0
+	cnop	0,4
+l11
 	dc.b	10
 	dc.b	13
 	dc.b	77
@@ -665,7 +692,28 @@ l10
 	dc.b	33
 	dc.b	0
 	cnop	0,4
-l11
+l12
+	dc.b	69
+	dc.b	110
+	dc.b	116
+	dc.b	101
+	dc.b	114
+	dc.b	32
+	dc.b	97
+	dc.b	32
+	dc.b	72
+	dc.b	101
+	dc.b	120
+	dc.b	32
+	dc.b	66
+	dc.b	121
+	dc.b	116
+	dc.b	101
+	dc.b	10
+	dc.b	13
+	dc.b	0
+	cnop	0,4
+l13
 	dc.b	73
 	dc.b	110
 	dc.b	118
@@ -715,3 +763,4 @@ l11
 	public	_sgetStr
 	public	_adec2bin
 	public	_readMemory
+	public	_writeMemory

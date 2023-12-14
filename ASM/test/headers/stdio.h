@@ -8,6 +8,9 @@
 
 //Serial Print Functions for Simulator
 
+//clears the screen
+extern void clrscreen(void);
+
 //prints pointer to string array
 extern void sprint(char* string);
 

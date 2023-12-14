@@ -16,7 +16,6 @@ char* sgetStr(void) {
     }  
 
     int j=0;
-    int k=0;
     while(character != '\r') {
         character = sgetChar();
         if(character == BACKSPACE) {
@@ -29,6 +28,7 @@ char* sgetStr(void) {
             j++;
         }  
     }
+    buffer[j+1] = '\0';
     sprint(eot);
     return buffer; 
 }

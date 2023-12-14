@@ -16,9 +16,11 @@ notes:
 # TODO
 - add if define for simulator vs hardware
 - figure out how to put all strings into header file
-- implement malloc
+- implement malloc if time
 - add exceptions for read mem
 - cleanup code
+- implement clrscreen into main
+- change parse of commands
 
 # Morg the Monitor Program
 Morg needs to:
@@ -72,4 +74,23 @@ TRACKED POSITION OF J!!
 
 
 
+# parsing commmands
+- Read memory
+    rm (location in hex)
+    Ex: rm 0000ff00
+
+- write to memory
+    wm (location to write to) (byte)
+    Ex: wm 0000ff00 0f
+    
+- read register
+
+- write to register
+
+- load s-rec
+
+- run s-rec
+
+
+# write to memory
 

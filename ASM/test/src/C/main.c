@@ -26,11 +26,12 @@ int main(){
     char wrreg[] = "Write to a Register Selected\n\r";
     char ldsrec[] = "Load an S-Record Selected\n\r";
     char runsrec[] = "Run an S-Record Selected\n\r";
+    char error[] = "error\n\r";
 
     char exitProgramString[] = "\n\rMorg has been Terminated\n\rYou are a monster!!!";
 
     char newline[] = "\n\r";
-
+    char writeValue[] = "Enter a Hex Byte\n\r";
     char linuxThing[] = ">>";
 
     char invalidOption[] = "Invalid Option. Morg thinks you cant read\n\r";
@@ -41,7 +42,9 @@ int main(){
 //-----------------------------------------------------------------------------
 // Main Loop
     char* address = 0;
+    char* value = 0;
     char MorgAlive = 1; //if 0 Morg is dead :(
+    char writeToByteValue = 0;
 
     while (MorgAlive != 0) {
         sprint(linuxThing);
@@ -50,7 +53,7 @@ int main(){
         choice = adec2bin(choice);
         sprint(newline);
 
-        if (choice == 7){
+        if (choice == 7){ //put this in the switch u dummy
             MorgAlive = 0; // YOU MONSTER!!
         }
         else {
@@ -63,7 +66,7 @@ int main(){
                 readMemory(address);
                 break;
             case 2:
-                sprint(wrmem);
+                writeMemory();
                 break;
             case 3:
                 sprint(rdreg);
@@ -88,9 +91,19 @@ int main(){
     char testMode[] = "Test Mode Console\n\r";
     sprint(testMode);
 //----------------------
+    char* address;
+    char* data;
+    char* addressPtr;
+    char dataBuffer;
+    
+    address = sgetStr();
+    addressPtr = getAddress(address);
 
-    char address[] = "00001000";
-    readMemory(address);
+    data = sgetStr();
+    dataBuffer = parseValue(data); 
+
+    char* value = addressPtr; //parse string into address
+    *value = dataBuffer;  //dereference address and write to location
 
 //----------------------
 #endif
