@@ -17,7 +17,9 @@ void sprintValueAtAddress(char value);
 
 //writes a byte to a memory location
 //takes two string pointers
-void writeMemory();
+void morgWriteMemory();
+
+void writeMemory(char* address, char data);
 
 //parse a byte from
 char parseValue(char* string);

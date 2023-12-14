@@ -20,8 +20,8 @@ int main(){
     "7. Kill Morg"
     "\n\r\0";
 
-    char rdmem[] = "Read Memory Selected\n\n\rSelect Address to Read From\n\r";
-    char wrmem[] = "Write to Memory Selected\n\r";
+    char rdmem[] = "Select Address to Read From\n\r";
+    char wrmem[] = "Select Memory Location to Write to\n\r";
     char rdreg[] = "Read from a Register Selected\n\r";
     char wrreg[] = "Write to a Register Selected\n\r";
     char ldsrec[] = "Load an S-Record Selected\n\r";
@@ -66,7 +66,8 @@ int main(){
                 readMemory(address);
                 break;
             case 2:
-                writeMemory();
+                sprint(wrmem);
+                morgWriteMemory();
                 break;
             case 3:
                 sprint(rdreg);

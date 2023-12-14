@@ -4,7 +4,7 @@
 	public	_main
 	cnop	0,4
 _main
-	sub.w	#532,a7
+	sub.w	#516,a7
 	movem.l	l28,-(a7)
 	lea	l3,a0
 	lea	(0+l30,a7),a1
@@ -18,7 +18,7 @@ l31:
 	move.b	(a0)+,(a1)+
 	lea	l4,a0
 	lea	(193+l30,a7),a1
-	moveq.l	#12,d0
+	moveq.l	#6,d0
 l32:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
@@ -26,48 +26,29 @@ l32:
 	move.b	(a0)+,(a1)+
 	dbra	d0,l32
 	move.b	(a0)+,(a1)+
-	lea	l5,a0
-	lea	(246+l30,a7),a1
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	lea	l6,a0
-	lea	(273+l30,a7),a1
-	moveq.l	#7,d0
+	lea	l5,a0
+	lea	(223+l30,a7),a1
+	moveq.l	#8,d0
 l33:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	dbra	d0,l33
-	lea	l7,a0
-	lea	(305+l30,a7),a1
-	moveq.l	#6,d0
+	move.b	(a0)+,(a1)+
+	lea	l6,a0
+	lea	(260+l30,a7),a1
+	moveq.l	#1,d0
 l34:
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
 	dbra	d0,l34
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	lea	l8,a0
-	lea	(336+l30,a7),a1
+	lea	l7,a0
+	lea	(292+l30,a7),a1
 	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	lea	l9,a0
-	lea	(364+l30,a7),a1
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
@@ -76,18 +57,18 @@ l34:
 	move.l	(a0)+,(a1)+
 	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	lea	l10,a0
-	lea	(391+l30,a7),a1
-	moveq.l	#1,d0
+	lea	l8,a0
+	lea	(323+l30,a7),a1
+	moveq.l	#6,d0
 l35:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
 	dbra	d0,l35
-	lea	l11,a0
-	lea	(399+l30,a7),a1
-	moveq.l	#11,d0
+	lea	l9,a0
+	lea	(351+l30,a7),a1
+	moveq.l	#5,d0
 l36:
 	move.b	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
@@ -95,65 +76,80 @@ l36:
 	move.b	(a0)+,(a1)+
 	dbra	d0,l36
 	move.b	(a0)+,(a1)+
-	move.b	#10,(448+l30,a7)
-	move.b	#13,(449+l30,a7)
-	move.b	#0,(450+l30,a7)
-	lea	l12,a0
-	lea	(451+l30,a7),a1
-	moveq.l	#3,d0
+	move.b	(a0)+,(a1)+
+	move.b	(a0)+,(a1)+
+	lea	l10,a0
+	lea	(378+l30,a7),a1
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	lea	l11,a0
+	lea	(386+l30,a7),a1
+	moveq.l	#2,d0
 l37:
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
 	dbra	d0,l37
 	move.b	(a0)+,(a1)+
+	move.b	#10,(435+l30,a7)
+	move.b	#13,(436+l30,a7)
+	move.b	#0,(437+l30,a7)
+	lea	l12,a0
+	lea	(438+l30,a7),a1
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.w	(a0)+,(a1)+
 	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	#62,(470+l30,a7)
-	move.b	#62,(471+l30,a7)
-	move.b	#0,(472+l30,a7)
+	move.b	#62,(457+l30,a7)
+	move.b	#62,(458+l30,a7)
+	move.b	#0,(459+l30,a7)
 	lea	l13,a0
-	lea	(473+l30,a7),a1
-	moveq.l	#10,d0
+	lea	(460+l30,a7),a1
+	moveq.l	#1,d0
 l38:
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
-	move.b	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
 	dbra	d0,l38
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
 	lea	(0+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
-	move.l	#0,(522+l30,a7)
-	move.l	#0,(526+l30,a7)
-	move.b	#1,(530+l30,a7)
-	move.b	#0,(531+l30,a7)
+	move.l	#0,(508+l30,a7)
+	move.l	#0,(512+l30,a7)
+	move.b	#1,(516+l30,a7)
+	move.b	#0,(517+l30,a7)
 	addq.w	#4,a7
 	bra	l15
 l14
-	lea	(470+l30,a7),a0
+	lea	(457+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetChar
-	move.b	d0,(532+l30,a7)
-	move.b	(532+l30,a7),d0
+	move.b	d0,(518+l30,a7)
+	move.b	(518+l30,a7),d0
 	ext.w	d0
 	ext.l	d0
 	move.l	d0,-(a7)
 	jsr	_adec2bin
-	move.b	d0,(536+l30,a7)
-	lea	(456+l30,a7),a0
+	move.b	d0,(522+l30,a7)
+	lea	(443+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	add.w	#12,a7
-	cmp.b	#7,(528+l30,a7)
+	cmp.b	#7,(514+l30,a7)
 	bne	l18
 l17
-	move.b	#0,(526+l30,a7)
+	move.b	#0,(512+l30,a7)
 	bra	l19
 l18
-	move.b	(528+l30,a7),d0
+	move.b	(514+l30,a7),d0
 	subq.b	#1,d0
 	beq	l21
 	subq.b	#1,d0
@@ -172,50 +168,54 @@ l21
 	move.l	a0,-(a7)
 	jsr	_sprint
 	jsr	_sgetStr
-	move.l	d0,(522+l30,a7)
-	move.l	(522+l30,a7),-(a7)
+	move.l	d0,(508+l30,a7)
+	move.l	(508+l30,a7),-(a7)
 	jsr	_readMemory
 	addq.w	#8,a7
 	bra	l20
 l22
-	jsr	_writeMemory
+	lea	(223+l30,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	jsr	_morgWriteMemory
+	addq.w	#4,a7
 	bra	l20
 l23
-	lea	(273+l30,a7),a0
+	lea	(260+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 	bra	l20
 l24
-	lea	(305+l30,a7),a0
+	lea	(292+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 	bra	l20
 l25
-	lea	(336+l30,a7),a0
+	lea	(323+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 	bra	l20
 l26
-	lea	(364+l30,a7),a0
+	lea	(351+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 	bra	l20
 l27
-	lea	(473+l30,a7),a0
+	lea	(460+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	addq.w	#4,a7
 l20
 l19
 l15
-	tst.b	(526+l30,a7)
+	tst.b	(512+l30,a7)
 	bne	l14
 l16
-	lea	(399+l30,a7),a0
+	lea	(386+l30,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#9,d0
@@ -223,7 +223,7 @@ l16
 l1
 l28	reg
 l30	equ	0
-	add.w	#532,a7
+	add.w	#516,a7
 	rts
 	cnop	0,4
 l3
@@ -422,29 +422,6 @@ l3
 	dc.b	0
 	cnop	0,4
 l4
-	dc.b	82
-	dc.b	101
-	dc.b	97
-	dc.b	100
-	dc.b	32
-	dc.b	77
-	dc.b	101
-	dc.b	109
-	dc.b	111
-	dc.b	114
-	dc.b	121
-	dc.b	32
-	dc.b	83
-	dc.b	101
-	dc.b	108
-	dc.b	101
-	dc.b	99
-	dc.b	116
-	dc.b	101
-	dc.b	100
-	dc.b	10
-	dc.b	10
-	dc.b	13
 	dc.b	83
 	dc.b	101
 	dc.b	108
@@ -477,14 +454,12 @@ l4
 	dc.b	0
 	cnop	0,4
 l5
-	dc.b	87
-	dc.b	114
-	dc.b	105
-	dc.b	116
+	dc.b	83
 	dc.b	101
-	dc.b	32
+	dc.b	108
+	dc.b	101
+	dc.b	99
 	dc.b	116
-	dc.b	111
 	dc.b	32
 	dc.b	77
 	dc.b	101
@@ -493,14 +468,26 @@ l5
 	dc.b	114
 	dc.b	121
 	dc.b	32
-	dc.b	83
-	dc.b	101
-	dc.b	108
-	dc.b	101
+	dc.b	76
+	dc.b	111
 	dc.b	99
+	dc.b	97
+	dc.b	116
+	dc.b	105
+	dc.b	111
+	dc.b	110
+	dc.b	32
+	dc.b	116
+	dc.b	111
+	dc.b	32
+	dc.b	87
+	dc.b	114
+	dc.b	105
 	dc.b	116
 	dc.b	101
-	dc.b	100
+	dc.b	32
+	dc.b	116
+	dc.b	111
 	dc.b	10
 	dc.b	13
 	dc.b	0
@@ -763,4 +750,4 @@ l13
 	public	_sgetStr
 	public	_adec2bin
 	public	_readMemory
-	public	_writeMemory
+	public	_morgWriteMemory

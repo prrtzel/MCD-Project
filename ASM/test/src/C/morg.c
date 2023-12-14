@@ -1,19 +1,23 @@
 #include "headers/morg.h"
 #include "headers/stdio.h"
 
-void writeMemory() {
+void morgWriteMemory() {
     char* addressPtr;
     char data;
     char* addressStr;
     char* byteToWriteStr;
-    
+    char selectData[] = "Select Byte to Write in Hex\n\r";
+
     addressStr = sgetStr();
     addressPtr = getAddress(addressStr); //get address and store in buffer
-
+    sprint(selectData);
     byteToWriteStr = sgetStr();
     data = parseValue(byteToWriteStr); //get data and store in buffer
-
     char* address = addressPtr; //parse string into address
+    writeMemory(address, data);
+}
+
+void writeMemory(char* address, char data) {
     *address = data;  //dereference address and write to location
 }
 

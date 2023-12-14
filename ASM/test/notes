@@ -21,6 +21,7 @@ notes:
 - cleanup code
 - implement clrscreen into main
 - change parse of commands
+- GET BETTER WAY OF PUTTING INPUT STRING DATA IN BUIFEFR
 
 # Morg the Monitor Program
 Morg needs to:
@@ -75,22 +76,7 @@ TRACKED POSITION OF J!!
 
 
 # parsing commmands
-- Read memory
-    rm (location in hex)
-    Ex: rm 0000ff00
-
-- write to memory
-    wm (location to write to) (byte)
-    Ex: wm 0000ff00 0f
-    
-- read register
-
-- write to register
-
-- load s-rec
-
-- run s-rec
-
+- PUT THINGS IN BUFFER!!!
 
 # write to memory
 
