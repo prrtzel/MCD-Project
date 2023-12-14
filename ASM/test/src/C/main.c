@@ -44,67 +44,52 @@ int main(){
     char* address = 0;
     char* value = 0;
     char MorgAlive = 1; //if 0 Morg is dead :(
-    char writeToByteValue = 0;
 
     while (MorgAlive != 0) {
         sprint(linuxThing);
-        //get number and go to new line
+
         char choice = sgetChar();
         choice = adec2bin(choice);
         sprint(newline);
 
-        if (choice == 7){ //put this in the switch u dummy
+
+        switch (choice)
+        {
+        case 1:
+            sprint(rdmem);
+            address = sgetStr();
+            readMemory(address);
+            break;
+        case 2:
+            sprint(wrmem);
+            morgWriteMemory();
+            break;
+        case 3:
+            sprint(rdreg);
+            break;
+        case 4:
+            sprint(wrreg);
+            break;
+        case 5:
+            sprint(ldsrec);
+            break;
+        case 6:
+            sprint(runsrec);
+            break;
+        case 7:
             MorgAlive = 0; // YOU MONSTER!!
-        }
-        else {
-            //main switch case statement parser
-            switch (choice)
-            {
-            case 1:
-                sprint(rdmem);
-                address = sgetStr();
-                readMemory(address);
-                break;
-            case 2:
-                sprint(wrmem);
-                morgWriteMemory();
-                break;
-            case 3:
-                sprint(rdreg);
-                break;
-            case 4:
-                sprint(wrreg);
-                break;
-            case 5:
-                sprint(ldsrec);
-                break;
-            case 6:
-                sprint(runsrec);
-                break;
-            default:
-                sprint(invalidOption);
-                break;
-            }
-        }
+            break;
+        default:
+            sprint(invalidOption);
+            break;
+        }      
     }
 #endif
 #ifdef TEST
     char testMode[] = "Test Mode Console\n\r";
     sprint(testMode);
 //----------------------
-    char* address;
-    char* data;
-    char* addressPtr;
-    char dataBuffer;
-    
-    address = sgetStr();
-    addressPtr = getAddress(address);
 
-    data = sgetStr();
-    dataBuffer = parseValue(data); 
-
-    char* value = addressPtr; //parse string into address
-    *value = dataBuffer;  //dereference address and write to location
 
 //----------------------
 #endif
