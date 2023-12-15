@@ -10,18 +10,13 @@ cr	equ	$0d ;caaraiegeef return IDK how to spell :)
 	public _sprint
 	public _sgetChar
 	public _clrscreen
-	public _writetomem
-
-_writetomem
-
-
 
 _clrscreen
 
 	move.l	d1, -(sp)
 	move.l	d0, -(sp)
 
-	move.l  #$ff00, d1
+	move.l  #$ff00, d1 
 	move.l	#11, d0   
 	trap    #15
 
@@ -35,8 +30,8 @@ _sprint
 	move.l	a1, -(sp)
 	move.l	d0, -(sp)
 
-    move.l  8(sp),a1
-	move.b  #14,d0    
+    move.l  8(sp),a1 ;go to beginning of stack where parameter was passed
+	move.b  #14,d0   
 	trap    #15
 
 	move.l 	d0, (sp)+
@@ -51,7 +46,7 @@ _sgetChar
 	move.l	d0, -(sp)
 	move.l 	d1, -(sp) 
 
-	move.l	16(sp), a1
+	move.l	16(sp), a1 ;go to beginning of stack where parameter was passed
 	move.l	#5, d0
 	trap	#15
 	move.l	d1, d0

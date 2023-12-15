@@ -207,97 +207,116 @@ l44	equ	0
 	add.w	#12,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
-	public	_bin2ahexword
+	public	_bin2ahexlongword
 	cnop	0,4
-_bin2ahexword
-	sub.w	#16,a7
+_bin2ahexlongword
+	sub.w	#20,a7
 	movem.l	l59,-(a7)
-	and.l	#65535,(20+l61,a7)
+	move.l	#4026531840,d0
+	and.l	(24+l61,a7),d0
+	moveq	#20,d1
+	lsr.l	d1,d0
+	move.b	d0,(0+l61,a7)
+	move.l	#251658240,d0
+	and.l	(24+l61,a7),d0
+	moveq	#20,d1
+	asr.l	d1,d0
+	move.b	d0,(1+l61,a7)
+	move.l	#15728640,d0
+	and.l	(24+l61,a7),d0
+	moveq	#20,d1
+	asr.l	d1,d0
+	move.b	d0,(2+l61,a7)
+	move.l	#983040,d0
+	and.l	(24+l61,a7),d0
+	moveq	#16,d1
+	asr.l	d1,d0
+	move.b	d0,(3+l61,a7)
 	move.l	#61440,d0
-	and.l	(20+l61,a7),d0
+	and.l	(24+l61,a7),d0
 	moveq	#12,d1
 	asr.l	d1,d0
-	move.b	d0,(0+l61,a7)
+	move.b	d0,(4+l61,a7)
 	move.l	#3840,d0
-	and.l	(20+l61,a7),d0
+	and.l	(24+l61,a7),d0
 	asr.l	#8,d0
-	move.b	d0,(1+l61,a7)
+	move.b	d0,(5+l61,a7)
 	move.l	#240,d0
-	and.l	(20+l61,a7),d0
+	and.l	(24+l61,a7),d0
 	asr.l	#4,d0
-	move.b	d0,(2+l61,a7)
-	move.b	(23+l61,a7),d0
+	move.b	d0,(6+l61,a7)
+	move.b	(27+l61,a7),d0
 	moveq	#15,d1
 	and.b	d0,d1
-	move.b	d1,(3+l61,a7)
-	move.l	#0,(4+l61,a7)
+	move.b	d1,(7+l61,a7)
+	move.l	#0,(8+l61,a7)
 	bra	l48
 l47
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	cmp.b	#9,(0,a0,d0.l)
 	bgt	l52
 l53
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	tst.b	(0,a0,d0.l)
 	blt	l52
 l51
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	add.l	d0,a0
 	moveq	#48,d0
 	or.b	(a0),d0
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d1
+	move.w	(10+l61,a7),d1
 	and.l	#65535,d1
 	move.b	d0,(0,a0,d1.l)
 	bra	l54
 l52
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	cmp.b	#15,(0,a0,d0.l)
 	bgt	l56
 l57
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	cmp.b	#10,(0,a0,d0.l)
 	blt	l56
 l55
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	add.l	d0,a0
 	move.b	(a0),d0
 	sub.b	#9,d0
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d1
+	move.w	(10+l61,a7),d1
 	and.l	#65535,d1
 	move.b	d0,(0,a0,d1.l)
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d0
+	move.w	(10+l61,a7),d0
 	and.l	#65535,d0
 	add.l	d0,a0
 	moveq	#64,d0
 	or.b	(a0),d0
 	lea	(0+l61,a7),a0
-	move.w	(6+l61,a7),d1
+	move.w	(10+l61,a7),d1
 	and.l	#65535,d1
 	move.b	d0,(0,a0,d1.l)
 	bra	l58
 l56
-	move.b	#101,(8+l61,a7)
-	move.b	#114,(9+l61,a7)
-	move.b	#114,(10+l61,a7)
-	move.b	#111,(11+l61,a7)
-	move.b	#114,(12+l61,a7)
-	move.b	#0,(13+l61,a7)
-	lea	(8+l61,a7),a0
+	move.b	#101,(12+l61,a7)
+	move.b	#114,(13+l61,a7)
+	move.b	#114,(14+l61,a7)
+	move.b	#111,(15+l61,a7)
+	move.b	#114,(16+l61,a7)
+	move.b	#0,(17+l61,a7)
+	lea	(12+l61,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
 	moveq	#0,d0
@@ -306,10 +325,10 @@ l56
 l58
 l54
 l50
-	addq.l	#1,(4+l61,a7)
+	addq.l	#1,(8+l61,a7)
 l48
-	moveq	#4,d0
-	cmp.l	(4+l61,a7),d0
+	moveq	#8,d0
+	cmp.l	(8+l61,a7),d0
 	bgt	l47
 l49
 	lea	(0+l61,a7),a0
@@ -317,23 +336,32 @@ l49
 l45
 l59	reg
 l61	equ	0
-	add.w	#16,a7
+	add.w	#20,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
-	public	_bin2ahexbyte
+	public	_bin2ahexword
 	cnop	0,4
-_bin2ahexbyte
+_bin2ahexword
 	sub.w	#16,a7
 	movem.l	l76,-(a7)
-	and.l	#255,(20+l78,a7)
+	and.l	#65535,(20+l78,a7)
+	move.l	#61440,d0
+	and.l	(20+l78,a7),d0
+	moveq	#12,d1
+	asr.l	d1,d0
+	move.b	d0,(0+l78,a7)
+	move.l	#3840,d0
+	and.l	(20+l78,a7),d0
+	asr.l	#8,d0
+	move.b	d0,(1+l78,a7)
 	move.l	#240,d0
 	and.l	(20+l78,a7),d0
 	asr.l	#4,d0
-	move.b	d0,(0+l78,a7)
+	move.b	d0,(2+l78,a7)
 	move.b	(23+l78,a7),d0
 	moveq	#15,d1
 	and.b	d0,d1
-	move.b	d1,(1+l78,a7)
+	move.b	d1,(3+l78,a7)
 	move.l	#0,(4+l78,a7)
 	bra	l65
 l64
@@ -412,7 +440,7 @@ l71
 l67
 	addq.l	#1,(4+l78,a7)
 l65
-	moveq	#2,d0
+	moveq	#4,d0
 	cmp.l	(4+l78,a7),d0
 	bgt	l64
 l66
@@ -421,6 +449,110 @@ l66
 l62
 l76	reg
 l78	equ	0
+	add.w	#16,a7
+	rts
+	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
+	public	_bin2ahexbyte
+	cnop	0,4
+_bin2ahexbyte
+	sub.w	#16,a7
+	movem.l	l93,-(a7)
+	and.l	#255,(20+l95,a7)
+	move.l	#240,d0
+	and.l	(20+l95,a7),d0
+	asr.l	#4,d0
+	move.b	d0,(0+l95,a7)
+	move.b	(23+l95,a7),d0
+	moveq	#15,d1
+	and.b	d0,d1
+	move.b	d1,(1+l95,a7)
+	move.l	#0,(4+l95,a7)
+	bra	l82
+l81
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	cmp.b	#9,(0,a0,d0.l)
+	bgt	l86
+l87
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	tst.b	(0,a0,d0.l)
+	blt	l86
+l85
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	add.l	d0,a0
+	moveq	#48,d0
+	or.b	(a0),d0
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d1
+	and.l	#65535,d1
+	move.b	d0,(0,a0,d1.l)
+	bra	l88
+l86
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	cmp.b	#15,(0,a0,d0.l)
+	bgt	l90
+l91
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	cmp.b	#10,(0,a0,d0.l)
+	blt	l90
+l89
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	add.l	d0,a0
+	move.b	(a0),d0
+	sub.b	#9,d0
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d1
+	and.l	#65535,d1
+	move.b	d0,(0,a0,d1.l)
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d0
+	and.l	#65535,d0
+	add.l	d0,a0
+	moveq	#64,d0
+	or.b	(a0),d0
+	lea	(0+l95,a7),a0
+	move.w	(6+l95,a7),d1
+	and.l	#65535,d1
+	move.b	d0,(0,a0,d1.l)
+	bra	l92
+l90
+	move.b	#101,(8+l95,a7)
+	move.b	#114,(9+l95,a7)
+	move.b	#114,(10+l95,a7)
+	move.b	#111,(11+l95,a7)
+	move.b	#114,(12+l95,a7)
+	move.b	#0,(13+l95,a7)
+	lea	(8+l95,a7),a0
+	move.l	a0,-(a7)
+	jsr	_sprint
+	moveq	#0,d0
+	addq.w	#4,a7
+	bra	l79
+l92
+l88
+l84
+	addq.l	#1,(4+l95,a7)
+l82
+	moveq	#2,d0
+	cmp.l	(4+l95,a7),d0
+	bgt	l81
+l83
+	lea	(0+l95,a7),a0
+	move.l	a0,d0
+l79
+l93	reg
+l95	equ	0
 	add.w	#16,a7
 	rts
 	public	_sprint

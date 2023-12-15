@@ -1,6 +1,43 @@
 #include "headers/morg.h"
 #include "headers/stdio.h"
 
+
+void readRegisters(char choice) {
+    int d0 = readRegD0();
+    int d1 = readRegD1();
+    int d2 = readRegD2();
+    int d3 = readRegD3();
+    int d4 = readRegD4();
+    int d5 = readRegD5();
+    int d6 = readRegD6();
+    int d7 = readRegD7();
+}
+
+int readRegD0 (__reg("d0") int d0) {
+    return d0;
+}   
+int readRegD1 (__reg("d1") int d1) {
+    return d1;
+}   
+int readRegD2 (__reg("d2") int d2) {
+    return d2;
+}
+int readRegD3 (__reg("d3") int d3) {
+    return d3;
+}
+int readRegD4 (__reg("d4") int d4) {
+    return d4;
+}
+int readRegD5 (__reg("d5") int d5) {
+    return d5;
+}
+int readRegD6 (__reg("d6") int d6) {
+    return d6;
+}
+int readRegD7 (__reg("d7") int d7) {
+    return d7;
+}
+
 void morgWriteMemory() {
     char* addressPtr;
     char data;
@@ -57,6 +94,12 @@ char* getAddress(char* address) {
         j--;
     }
     return addrOut;
+}
+
+char* register2ASCII(long int reg) {
+    char* string;
+    string = bin2ahexlongword(reg);
+    return string;
 }
 
 char parseValue(char* string) {

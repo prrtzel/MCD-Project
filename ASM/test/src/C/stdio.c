@@ -1,5 +1,7 @@
 #include "headers/stdio.h"
 
+void modReg(void);
+
 //NEEDS MALLOC FOR SAFE OPERATION
 char* sgetStr(void) {
     char inputStrSymbol[] = ">>";
@@ -86,6 +88,37 @@ char ahex2bin(char asciiChar) {
     return (char) value;
 }
 
+char* bin2ahexlongword(long int binaryValue) {
+    char array[8];
+    array[0] = (binaryValue & 0xf0000000) >> 20;
+    array[1] = (binaryValue & 0x0f000000) >> 20;
+    array[2] = (binaryValue & 0x00f00000) >> 20;
+    array[3] = (binaryValue & 0x000f0000) >> 16;
+    array[4] = (binaryValue & 0x0000f000) >> 12;
+    array[5] = (binaryValue & 0x00000f00) >> 8;
+    array[6] = (binaryValue & 0x000000f0) >> 4;
+    array[7] = (binaryValue & 0x0000000f);
+
+
+    for(int i=0; i<8; i++) {
+        if (array[i] <= 0x09 && array[i] >= 0x00) {
+            array[i] = array[i] | 0x30;
+        }
+        else if (array[i] <= 0x0f && array[i] >= 0x0a) {
+            array[i] = array[i] - 0x09;
+            array[i] = array[i] | 0x40;
+        }
+        else {
+            char error[] = "error";
+            sprint(error);
+            return 0;
+        }
+    }
+    return array;
+}
+
+
+
 char* bin2ahexword(int binaryValue) {
     binaryValue = binaryValue & 0x0000ffff;
     char array[4];
@@ -137,3 +170,4 @@ char* bin2ahexbyte(int binaryValue) {
 }
 //--------------------------------------------------------------
 // End of Conversions
+

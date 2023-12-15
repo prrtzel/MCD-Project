@@ -39,6 +39,14 @@ char ahex2bin(char asciiChar);
 // \returns pointer to ascii word 
 char * bin2ahexword(int binaryValue);
 
+char* bin2ahexlongword(long int binaryValue);
+
 //Ex: 0xFF -> 0x4646
 char* bin2ahexbyte(int binaryValue);
+
+//modifies a register
+__regsused("d0/d1") void modReg(void) = "_modReg\n\r\tmove.l\t#$00123456,d0\n";
+
+
+
 #endif

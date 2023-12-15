@@ -12,4 +12,8 @@ SECTIONS
     {
         *(.data)
     }
+    .bss :
+    {
+        *(.bss)
+    }
 }

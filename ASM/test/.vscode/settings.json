@@ -5,5 +5,7 @@
         "*.asm": "m68k",
         "stdio.h": "c",
         "morg.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "cloudcode.duetAI.inlineSuggestions.enableAuto": false
 }

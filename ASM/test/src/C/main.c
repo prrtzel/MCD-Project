@@ -2,12 +2,17 @@
 #include "headers/morg.h"
 
 //#define TEST
-#define MAIN
+//#define MAIN
+#define ASSTEST
+
+
+
+char value = 0;
 
 int main(){
 // Morg the Monitor
 
-
+#ifndef ASSTEST
 //-----------------------------------------------------------------------------
 // Strings
     char menu[] = "Morg Menu\n\n\rSelect a Number and Press Enter\n\n\r"
@@ -36,6 +41,7 @@ int main(){
 
     char invalidOption[] = "Invalid Option. Morg thinks you cant read\n\r";
 //-----------------------------------------------------------------------------
+#endif
 #ifdef MAIN
     sprint(menu);
 
@@ -66,6 +72,9 @@ int main(){
             break;
         case 3:
             sprint(rdreg);
+
+            
+
             break;
         case 4:
             sprint(wrreg);
@@ -93,6 +102,20 @@ int main(){
 
 //----------------------
 #endif
+
+#ifdef ASSTEST
+    
+    //__regsused("d0/d1") void modReg(void) = "_modReg\n\r\tmove.l\t#$00123456,d0\n";
+    modReg();
+
+
+
+
+
+#endif
+
+#ifndef ASSTEST
     sprint(exitProgramString);
+#endif
     return 9;
 }

@@ -46,6 +46,26 @@ To select an option select the number and press enter
 
 
 
+
+# read from register
+move all resgisters to the stack
+choose which one to read from 
+index the stack to the chosen register
+move it to d0
+send 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Reading From Memory (1)
 Ex: Read Address 0x6969
 '6969' ascii hex to binary for each byte
@@ -80,3 +100,17 @@ TRACKED POSITION OF J!!
 
 # write to memory
 
+
+
+# notes with Brian
+.txt rom
+.data ram
+
+all .data:
+second linker script for user program
+
+crt0.s
+
+figure out linker and 
+
+look at std lib!!!!
