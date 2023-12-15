@@ -2,15 +2,47 @@
 #include "headers/stdio.h"
 
 
+
 void readRegisters(char choice) {
-    int d0 = readRegD0();
-    int d1 = readRegD1();
-    int d2 = readRegD2();
-    int d3 = readRegD3();
-    int d4 = readRegD4();
-    int d5 = readRegD5();
-    int d6 = readRegD6();
-    int d7 = readRegD7();
+    int reg;
+    modReg();
+    switch (choice) {
+        case 0:
+            reg = readRegD0();
+            break;
+        case 1:
+            reg = readRegD1();
+            break;
+        case 2:
+            reg = readRegD2();
+            break;
+        case 3:
+            reg = readRegD3();
+            break;
+        case 4:
+            reg = readRegD4();
+            break;
+        case 5:
+            reg = readRegD5();
+            break;
+        case 6:
+            reg = readRegD6();
+            break;
+        case 7:
+            reg = readRegD7();
+            break;
+        default:
+            break;
+    }
+
+    //print reg by combining two words
+    int firstWord = (reg >> 16) & 0x0000ffff;
+    int secondWord = reg & 0x0000ffff; 
+
+    char* string1 = bin2ahexword(firstWord);
+    sprintWord(string1);
+    char* string2 = bin2ahexword(secondWord);
+    sprintWord(string2);
 }
 
 int readRegD0 (__reg("d0") int d0) {

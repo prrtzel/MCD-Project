@@ -96,9 +96,7 @@ _sprintWord
 	move.b	(2,a0),(2+l20,a7)
 	move.l	(12+l20,a7),a0
 	move.b	(3,a0),(3+l20,a7)
-	move.b	#13,(4+l20,a7)
-	move.b	#10,(5+l20,a7)
-	move.b	#0,(6+l20,a7)
+	move.b	#0,(4+l20,a7)
 	lea	(0+l20,a7),a0
 	move.l	a0,-(a7)
 	jsr	_sprint
@@ -214,12 +212,12 @@ _bin2ahexlongword
 	movem.l	l59,-(a7)
 	move.l	#4026531840,d0
 	and.l	(24+l61,a7),d0
-	moveq	#20,d1
+	moveq	#28,d1
 	lsr.l	d1,d0
 	move.b	d0,(0+l61,a7)
 	move.l	#251658240,d0
 	and.l	(24+l61,a7),d0
-	moveq	#20,d1
+	moveq	#24,d1
 	asr.l	d1,d0
 	move.b	d0,(1+l61,a7)
 	move.l	#15728640,d0

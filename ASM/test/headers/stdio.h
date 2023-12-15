@@ -6,6 +6,7 @@
 #define BACKSPACE 0x08
 
 
+
 //Serial Print Functions for Simulator
 
 //clears the screen
@@ -45,8 +46,6 @@ char* bin2ahexlongword(long int binaryValue);
 char* bin2ahexbyte(int binaryValue);
 
 //modifies a register
-__regsused("d0/d1") void modReg(void) = "_modReg\n\r\tmove.l\t#$00123456,d0\n";
-
-
+void modReg(void) = "\tmove.l\t#$00123456,d0\n";
 
 #endif

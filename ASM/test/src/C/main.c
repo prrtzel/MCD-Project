@@ -103,14 +103,9 @@ int main(){
 //----------------------
 #endif
 
-#ifdef ASSTEST
-    
-    //__regsused("d0/d1") void modReg(void) = "_modReg\n\r\tmove.l\t#$00123456,d0\n";
-    modReg();
+#ifdef ASSTEST 
 
-
-
-
+    readRegisters(0);
 
 #endif
 

@@ -36,14 +36,12 @@ char* sgetStr(void) {
 }
 
 void sprintWord(char* arrayPtr) {
-    char array[6];
+    char array[5];
     array[0] = *arrayPtr;
     array[1] = *(arrayPtr + 1);
     array[2] = *(arrayPtr + 2);
     array[3] = *(arrayPtr + 3);
-    array[4] = '\r';
-    array[5] = '\n';
-    array[6] = '\0';
+    array[4] = '\0';
     sprint(array);
 }
 
@@ -90,8 +88,8 @@ char ahex2bin(char asciiChar) {
 
 char* bin2ahexlongword(long int binaryValue) {
     char array[8];
-    array[0] = (binaryValue & 0xf0000000) >> 20;
-    array[1] = (binaryValue & 0x0f000000) >> 20;
+    array[0] = (binaryValue & 0xf0000000) >> 28;
+    array[1] = (binaryValue & 0x0f000000) >> 24;
     array[2] = (binaryValue & 0x00f00000) >> 20;
     array[3] = (binaryValue & 0x000f0000) >> 16;
     array[4] = (binaryValue & 0x0000f000) >> 12;

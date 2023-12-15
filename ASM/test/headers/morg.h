@@ -1,6 +1,11 @@
 #ifndef MORG_H
 #define MORG_H
 
+
+
+
+
+
 /*
 reads an ascii longword and prints its contents 
 */
