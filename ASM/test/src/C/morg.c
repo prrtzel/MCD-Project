@@ -8,41 +8,49 @@ void readRegisters(char choice) {
     modReg();
     switch (choice) {
         case 0:
-            reg = readRegD0();
+            reg = readRegD0(0);
             break;
         case 1:
-            reg = readRegD1();
+            reg = readRegD1(0);
             break;
         case 2:
-            reg = readRegD2();
+            reg = readRegD2(0);
             break;
         case 3:
-            reg = readRegD3();
+            reg = readRegD3(0);
             break;
         case 4:
-            reg = readRegD4();
+            reg = readRegD4(0);
             break;
         case 5:
-            reg = readRegD5();
+            reg = readRegD5(0);
             break;
         case 6:
-            reg = readRegD6();
+            reg = readRegD6(0);
             break;
         case 7:
-            reg = readRegD7();
+            reg = readRegD7(0);
             break;
         default:
             break;
     }
 
-    //print reg by combining two words
-    int firstWord = (reg >> 16) & 0x0000ffff;
-    int secondWord = reg & 0x0000ffff; 
 
-    char* string1 = bin2ahexword(firstWord);
-    sprintWord(string1);
-    char* string2 = bin2ahexword(secondWord);
-    sprintWord(string2);
+    char* str = bin2ahexlongword(reg); 
+    sprintLongWord(str);
+
+    //print reg by combining two words
+    // int firstWord = (reg >> 16) & 0x0000ffff;
+
+    // char* string0 = bin2ahexword(reg);
+
+    // int secondWord = reg & 0x0000ffff; 
+
+    // char* string1 = bin2ahexword(firstWord);
+    // sprintWord(string1);
+    // char* string2 = bin2ahexword(secondWord);
+    // sprintWord(string2);
+
 }
 
 int readRegD0 (__reg("d0") int d0) {

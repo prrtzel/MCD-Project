@@ -114,3 +114,15 @@ crt0.s
 figure out linker and 
 
 look at std lib!!!!
+
+
+
+
+
+
+
+
+
+
+# startup file
+vector table on page 448 in textbook from 000 to 3FC

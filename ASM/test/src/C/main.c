@@ -1,3 +1,4 @@
+#include "headers/main.h"
 #include "headers/stdio.h"
 #include "headers/morg.h"
 
@@ -105,7 +106,8 @@ int main(){
 
 #ifdef ASSTEST 
 
-    readRegisters(0);
+    char* str[] = "reset";
+    sprint(str);
 
 #endif
 

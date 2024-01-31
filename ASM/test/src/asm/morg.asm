@@ -4,11 +4,11 @@
 	public	_readRegisters
 	cnop	0,4
 _readRegisters
-	sub.w	#20,a7
+	subq.w	#8,a7
 	movem.l	l13,-(a7)
-	move.l	#$00123456,d0
+	move.l	#$69ffffff,d0
 
-	move.b	(27+l15,a7),d0
+	move.b	(15+l15,a7),d0
 	move.b	d0,d1
 	ext.w	d1
 	cmp.w	#7,d1
@@ -27,63 +27,59 @@ l16
 	dc.l	l10
 	dc.l	l11
 l4
+	moveq	#0,d0
 	jsr	_readRegD0
-	move.l	d0,(0+l15,a7)
+	move.l	d0,d1
+	move.l	d1,(0+l15,a7)
 	bra	l3
 l5
+	moveq	#0,d1
 	jsr	_readRegD1
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l6
+	moveq	#0,d2
 	jsr	_readRegD2
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l7
+	moveq	#0,d3
 	jsr	_readRegD3
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l8
+	moveq	#0,d4
 	jsr	_readRegD4
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l9
+	moveq	#0,d5
 	jsr	_readRegD5
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l10
+	moveq	#0,d6
 	jsr	_readRegD6
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l11
+	moveq	#0,d7
 	jsr	_readRegD7
 	move.l	d0,(0+l15,a7)
 	bra	l3
 l12
 l3
-	moveq	#16,d1
-	move.l	(0+l15,a7),d0
-	asr.l	d1,d0
-	move.l	#65535,d1
-	and.l	d0,d1
-	move.l	d1,(4+l15,a7)
-	move.l	#65535,d0
-	and.l	(0+l15,a7),d0
+	move.l	(0+l15,a7),-(a7)
+	jsr	_bin2ahexlongword
 	move.l	d0,(8+l15,a7)
-	move.l	(4+l15,a7),-(a7)
-	jsr	_bin2ahexword
-	move.l	d0,(16+l15,a7)
-	move.l	(16+l15,a7),-(a7)
-	jsr	_sprintWord
-	move.l	(16+l15,a7),-(a7)
-	jsr	_bin2ahexword
-	move.l	d0,(28+l15,a7)
-	move.l	(28+l15,a7),-(a7)
-	jsr	_sprintWord
-	add.w	#16,a7
+	move.l	(8+l15,a7),-(a7)
+	jsr	_sprintLongWord
+	addq.w	#8,a7
 l1
-l13	reg
-l15	equ	0
-	add.w	#20,a7
+l13	reg	d2/d3/d4/d5/d6/d7
+	movem.l	(a7)+,d2/d3/d4/d5/d6/d7
+l15	equ	24
+	addq.w	#8,a7
 	rts
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	public	_readRegD0
@@ -492,9 +488,8 @@ l105	equ	0
 	rts
 	public	_sprint
 	public	_sgetStr
-	public	_sprintWord
+	public	_sprintLongWord
 	public	_sprintByte
 	public	_ahex2bin
-	public	_bin2ahexword
 	public	_bin2ahexlongword
 	public	_bin2ahexbyte

@@ -21,11 +21,14 @@ extern char sgetChar(void);
 //returns a pointer to a string
 extern char* sgetStr(void);
 
+
+void sprintLongWord(char* array);
+
 //prints 2 ascii bytes from bin2ahex conversion
 //pointer may need to be reset for multiple occurences of this function
-void sprintWord(char * array); 
+void sprintWord(char* array); 
 
-void sprintByte(char * array); 
+void sprintByte(char* array); 
 
 //--------------------------------------------------------------
 // Conversions
@@ -46,6 +49,6 @@ char* bin2ahexlongword(long int binaryValue);
 char* bin2ahexbyte(int binaryValue);
 
 //modifies a register
-void modReg(void) = "\tmove.l\t#$00123456,d0\n";
+void modReg(void) = "\tmove.l\t#$69ffffff,d0\n";
 
 #endif
