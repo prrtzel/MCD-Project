@@ -1,13 +1,31 @@
 	idnt	"src\C\main.c"
 	opt o+,ol+,op+,oc+,ot+,oj+,ob+,om+
 	section	"CODE",code
-	public	_thing
+	public	_main
 	cnop	0,4
-_thing
-	movem.l	l3,-(a7)
-	moveq	#1,d0
-l1
-l3	reg
-l5	equ	0
+_main
+	movem.l	l4,-(a7)
+	move.l	_h,-(a7)
+	jsr	_sprint
+	moveq	#0,d0
+	addq.w	#4,a7
+l2
+l4	reg
+l6	equ	0
 	rts
-; stacksize=0
+	public	_h
+	section	"DATA",data
+	cnop	0,4
+_h
+	dc.l	l1
+	public	_sprint
+	section	"CODE",code
+	cnop	0,4
+l1
+	dc.b	104
+	dc.b	101
+	dc.b	108
+	dc.b	108
+	dc.b	111
+	dc.b	33
+	dc.b	0

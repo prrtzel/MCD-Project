@@ -1,4 +1,5 @@
-int main()
-{
-    return 0;
+#include "headers/main.h"
+
+void startup() {
+    main();
 }

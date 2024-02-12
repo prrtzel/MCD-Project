@@ -1,30 +1,33 @@
-C_DIR := src\C
-ASM_DIR := src\ASM
-
 LINKER := etc\linker.ld
 
-FILES := main startup
+C_FILES := main startup stdio
+ASM_FILES := main startup stdio asmFunctions
+OUTPUT_FILES := main.out startup.out stdio.out asmFunctions.out
 
 CMD_SEPERATOR := &
 
-all: C_ASM MOVE ASM_SREC LINK CLEAN
+all: C_ASM MOVE ASM_SREC LINK CLEAN EASY68K
 
 C_ASM:
-	$(foreach c_file, $(FILES), vbccm68k src\C\$(c_file).c -amiga-softfloat -quiet $(CMD_SEPERATOR))
+	$(foreach c_file, $(C_FILES), vbccm68k src\C\$(c_file).c -amiga-softfloat -quiet -no-fp-return -cpu=68000 -no-inline-peephole$(CMD_SEPERATOR))
 
 MOVE:
 # move file into assembly folder because -o does not work
-	$(foreach asm_C_file, $(FILES), move src\C\$(asm_C_file).asm src\ASM $(CMD_SEPERATOR))
+	$(foreach asm_C_file, $(C_FILES), move src\C\$(asm_C_file).asm src\ASM $(CMD_SEPERATOR))
 
 ASM_SREC:
 # compile assembly to executable
-	$(foreach asm_file, $(ASM_FILES), )
+	$(foreach asm_file, $(ASM_FILES), vasmm68k_mot src\ASM\$(asm_file).asm -Faout -o $(asm_file).out -quiet -spaces -ldots $(CMD_SEPERATOR))
 
-# vasmm68k_mot $(MAIN_ASM) -Faout -o main.out -quiet
-# vasmm68k_mot $(STARTUP_ASM) -Faout -o startup.out -quiet
 
 LINK:
-	vlink $(OUTPUT_FILES) -o GeorgeOS.S68 -fixunnamed -b srec37 -T $(LINKER)	
+#srec37
+#elf32m68k
+	vlink $(OUTPUT_FILES) -o GeorgeOS.S68 -fixunnamed -b srec28 -T $(LINKER)
+	vlink $(OUTPUT_FILES) -o GeorgeOS.elf -fixunnamed -b elf32m68k -T $(LINKER)	
 
 CLEAN:
-	del /f $(OUTPUT_FILES)
+	$(foreach outFile, $(ASM_FILES), del /f $(outFile).out $(CMD_SEPERATOR))
+
+EASY68K:
+	etc\GeorgeOS_Sim.bat

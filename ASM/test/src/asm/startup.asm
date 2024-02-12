@@ -19,7 +19,7 @@ l8	equ	0
 _Reset_handler
 	ds.b	4
 	public	_vectors
-	section	code"thign"
+	section	code
 	cnop	0,4
 _vectors
 	ds.b	0
