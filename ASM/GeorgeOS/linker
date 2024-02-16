@@ -1,0 +1,33 @@
+ENTRY(main)
+OUTPUT_ARCH(m68k)
+OUTPUT_FORMAT(srec)
+
+MEMORY
+{
+    rom (rx)  : ORIGIN = 0x00000000, LENGTH = 500K
+    RAM (rx) : ORIGIN = 0x00080000, LENGTH = 128K
+    UART (rx): ORIGIN = 0x000C0000, LENGTH = 255
+}
+
+SECTIONS
+{
+    .text :
+    {
+        *(.text)
+        __end_text__ = .;
+    }> ROM
+
+    .data :
+    {
+        __start_data__ = .;
+        *(.data)
+        __end_data__ = .;
+    }> RAM
+
+    .bss :
+    {
+        __start_bss__ = .;
+        *(.bss)
+        __end_bss__ = .;
+    }> RAM   
+}
