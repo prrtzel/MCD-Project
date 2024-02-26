@@ -1,10 +1,9 @@
-all: test
-test:
-#m68k-coff-as crt0.s -o crt0.o -m68000	
-	m68k-coff-gcc main.c -c -m68000 
-	m68k-coff-ld -T linker main.o
-
-
-clean: 
-	rm crt0.o
+all: gcc link clean
+gcc:
+	m68k-coff-gcc -Wall -g main.c -c -m68000 -o main.o
+link:
+	m68k-coff-ld -o main.S68 -T linker main.o 
+run: 
+	GeorgeOS_Sim.bat
+clean:
 	rm main.o
