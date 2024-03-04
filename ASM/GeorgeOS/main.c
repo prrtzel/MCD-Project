@@ -6,7 +6,6 @@ void sprint(char* str_p) {
         move.l  8(%a7),%a1
         move.b  #14,%d0   
         trap    #15
-        rts
                 ");
 }
 
