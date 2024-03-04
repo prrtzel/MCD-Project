@@ -29,5 +29,5 @@ l3
 	section	"DATA",data
 	cnop	0,4
 _value
-	dc.b	0
+	dc.b	105
 	public	_sprint

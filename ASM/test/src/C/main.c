@@ -8,7 +8,7 @@
 
 
 
-char value = 0;
+char value = 0x69;
 
 int main(){
 // Morg the Monitor

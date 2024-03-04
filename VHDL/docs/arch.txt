@@ -1,0 +1,54 @@
+KEY: IN -> OUT
+X = FLOATING
+
+RESET:
+SRESET AND BRESET -> RESET, HALT
+
+ADDRESS DECODING/CHIP SELECT
+ABUS, AS, LDS, UDS -> CHIP SELECT
+
+LED'S:
+ANY_LOGIC -> LED0-LED5
+
+DTACK:
+DUART_DTACK -> CPU_DTACK
+
+OTHER:
+BERR -> '1'
+
+
+
+
+AS JUST AND IT WITH LDS, UDS AND ALL THAT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

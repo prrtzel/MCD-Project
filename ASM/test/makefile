@@ -1,11 +1,11 @@
 # make command: mingw32-make
 
 
-linker := etc\linker.ld
+linker := etc/linker.ld
 all: C mv asm link clean out
 C:
 # compile to assembly for readability
-	vbccm68k src/C/main.c -amiga-softfloat -quiet
+	vbccm68k src/C/main.c -amiga-softfloat
 	vbccm68k src/C/stdio.c -amiga-softfloat -quiet
 	vbccm68k src/C/morg.c -amiga-softfloat -quiet
 	vbccm68k src/C/startup.c -amiga-softfloat -quiet
