@@ -1,1 +1,1 @@
-"c:\easy68k\SIM68K" main.S68 /r /e
+"c:\easy68k\SIM68K" GeorgeOS.S68 /r /e
