@@ -4,6 +4,8 @@ char* serial_print_pointer = 0;
 char style_buffer = 0;
 int color_buffer = 0;
 char input_buffer[INPUT_BUFFER_SIZE] = {0};
+char backspace[] = " \b\0";
+char eot[] = "\n\r\0";
 
 extern void serial_print(char* str_p) {
     serial_print_pointer = str_p;
@@ -22,9 +24,9 @@ char charBuffer = 0;
 extern char getChar() {
 #ifdef SIM
     __asm__("
-	move.l	#5, %d0
-	trap	#15
-	move.l	%d1, charBuffer
+	    move.l	#5, %d0
+	    trap	#15
+	    move.b	%d1, charBuffer
     ");
     return charBuffer;
 #endif
@@ -56,12 +58,27 @@ extern void clear_input_buffer() {
 
 extern void getString() {
     int i = 0;
-
+    char char_buffer = 1;
+    
     clear_input_buffer();
 
-    while (i == 0) {
-        input_buffer[i] = getChar();
-        i++;
+    while (char_buffer != '\r') {
+        char_buffer = getChar();
+
+        if (char_buffer == BACKSPACE) {
+            i--;
+            input_buffer[i] = '\0';
+            serial_print(&backspace[0]);
+        }
+        else {
+            input_buffer[i] = char_buffer;
+            i++;
+        }
     }
     input_buffer[i + 1] = '\0';
+    serial_print(&eot[0]);
+
+    //this line eliminates the last character in the
+    //last spot. Dont know why this is but...yeah
+    input_buffer[100] = '\0';
 }

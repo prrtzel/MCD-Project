@@ -9,9 +9,9 @@
 #define ITALLIC     0x2
 #define UNDERSCORE  0x4
 #define STRIKEOUT   0x8
-
 #define INPUT_BUFFER_SIZE 100
 extern char input_buffer[INPUT_BUFFER_SIZE];
+#define BACKSPACE 0x08
 
 #define SIM
 //#define HARDWARE
@@ -40,10 +40,9 @@ extern void serial_print(char* str_p);
 */
 extern char getChar();
 
-/*
-get string into input buffer
-parse the string into a command
-clear input buffer for next command
+/**
+ * \name clear_input_buffer
+ * initializes the buffer to 0
 */
 extern void clear_input_buffer();
 

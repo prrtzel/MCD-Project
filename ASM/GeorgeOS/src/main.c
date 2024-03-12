@@ -2,12 +2,7 @@
 #include "stdio.h"
 
 extern int __main() {
-
-    char exit_prog = 0;
-
-    while(exit_prog == 0) {
-        getString();
-        exit_prog = 1;
-    }
+    getString();
+    serial_print(&input_buffer[0]);
     return 0;
 }
