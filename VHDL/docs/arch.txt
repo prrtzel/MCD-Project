@@ -22,13 +22,31 @@ BERR -> '1'
 AS JUST AND IT WITH LDS, UDS AND ALL THAT
 
 
+address decoding:
+
+0x00000000 - 0x0007FFFF ROM
+0x00080000 - 0x000BFFFF RAM
+0x000C0000 - 0x000C00FF DUART
+0X000C0100 - 0xFFFFFFFF UNUSED
+
+00 0000      _______
+            |       |
+            |  ROM  |
+07 FFFF     |_______|
+08 0000     |       |
+            |  RAM  |
+0B FFFF     |_______|
+0C 0000     |       |
+            | UART  |
+0C 00FF     |_______|
+0C 0100     |       |
+            |UNUSED |
+            |_______|
+FF FFFF
 
 
 
-
-
-
-
+ROM: '00000'
 
 
 

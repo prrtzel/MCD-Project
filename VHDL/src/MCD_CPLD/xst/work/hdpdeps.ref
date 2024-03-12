@@ -1,0 +1,8 @@
+V3 3
+FL "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" 2024/03/07.18:10:54 P.20131013
+EN work/glue_logic 1709856659 \
+      FL "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" \
+      PB ieee/std_logic_1164 1381692176
+AR work/glue_logic/Behavioral 1709856660 \
+      FL "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" \
+      EN work/glue_logic 1709856659

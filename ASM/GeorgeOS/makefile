@@ -4,15 +4,17 @@ LINKER := etc/linker
 
 FILES := main stdio
 
+OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
+
 CMD_SEPERATOR := &
 
 
-all: gcc link
+all: gcc link clean
 gcc:
 	$(foreach file, $(FILES), m68k-coff-gcc -Wall -g src/$(file).c -c -m68000 -o $(file).o $(CMD_SEPERATOR))
 link:
-	m68k-coff-ld -o GeorgeOS.S68 -T $(LINKER) main.o stdio.o -mm68kcoff
+	m68k-coff-ld -o GeorgeOS.S68 -T $(LINKER) $(OUTPUT_FILES) -mm68kcoff
 clean:
-	rm $(foreach file, $(FILES), rm $(file).o)
+	$(foreach file, $(FILES), rm $(file).o $(CMD_SEPERATOR))
 run: 
 	GeorgeOS_Sim.bat

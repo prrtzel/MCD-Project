@@ -1,0 +1,175 @@
+ 
+cpldfit:  version P.20131013                        Xilinx Inc.
+                                  No Fit Report
+Design Name: glue_logic                          Date:  3- 7-2024,  6:11PM
+Device Used: XC9572XL-10-PC44
+Fitting Status: Design Rule Checking Failed
+
+**************************  Errors and Warnings  ***************************
+
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'glue_logic.ise'.
+WARNING:Cpld:936 - The output buffer 'ROMLOE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'ROMLCE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'ROMHOE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'ROMHCE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMLOE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMLCE<1>_OBUF' is missing an input and
+   will be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMLCE<0>_OBUF' is missing an input and
+   will be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMHOE_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMHCE<1>_OBUF' is missing an input and
+   will be deleted.
+WARNING:Cpld:936 - The output buffer 'RAMHCE<0>_OBUF' is missing an input and
+   will be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<5>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<4>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<3>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<2>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<1>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'LED<0>_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'DUARTCS_OBUF' is missing an input and will
+   be deleted.
+WARNING:Cpld:936 - The output buffer 'CPU_DTACK_OBUF' is missing an input and
+   will be deleted.
+WARNING:Cpld:936 - The output buffer 'BERR_OBUF' is missing an input and will be
+   deleted.
+WARNING:Cpld:1007 - Removing unused input(s) 'ABUS<0>'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'ABUS<1>'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'ABUS<2>'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'ABUS<3>'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'ABUS<4>'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'AS'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'CLK'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'DUART_DTACK'.  The input(s) are
+   unused after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'HALT'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'LDS'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'UDS'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+ERROR:Cpld:832 - 'SRESET' is assigned to an invalid location ('P21') for this
+   device.  This will prevent the design from fitting on the current device.
+   'SRESET' must be reassigned before attempting a re-fit.
+ERROR:Cpld:868 - Cannot fit the design into any of the specified devices with
+   the selected implementation options.
+*************************  Mapped Resource Summary  **************************
+
+No logic has been mapped.
+
+Macrocells     Product Terms    Function Block   Registers      Pins           
+Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
+1  /72  (  1%) 1   /360  (  1%) 2  /216 (  1%)   0  /72  (  0%) 2  /34  (  6%)
+
+** Function Block Resources **
+
+Function    Mcells      FB Inps     Pterms      IO          
+Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
+FB1           0/18        0/54        0/90       0/ 9
+FB2           1/18        2/54        1/90       1/ 9
+FB3           0/18        0/54        0/90       1/ 9
+FB4           0/18        0/54        0/90       0/ 7
+             -----       -----       -----      -----    
+              1/72        2/216       1/360      2/34 
+
+* - Resource is exhausted
+
+** Global Control Resources **
+
+Global clock net(s) unused.
+Global output enable net(s) unused.
+Global set/reset net(s) unused.
+
+** Pin Resources **
+
+Signal Type    Required     Mapped  |  Pin Type            Used    Total 
+------------------------------------|------------------------------------
+Input         :    2           1    |  I/O              :     2      28
+Output        :    1           1    |  GCK/IO           :     0       3
+Bidirectional :    0           0    |  GTS/IO           :     0       2
+GCK           :    0           0    |  GSR/IO           :     0       1
+GTS           :    0           0    |
+GSR           :    0           0    |
+                 ----        ----
+        Total      3           2
+
+End of Mapped Resource Summary
+*************************  Summary of Mapped Logic  ************************
+
+** 1 Outputs **
+
+Signal              Total Total Loc     Pin  Pin     Pin     
+Name                Pts   Inps          No.  Type    Use     
+RESET               1     2     FB2_6   37   I/O     O       
+
+** 1 Inputs **
+
+Signal              Loc     Pin  Pin     Pin     
+Name                        No.  Type    Use     
+BRESET              FB3_11  18   I/O     I
+
+Legend:
+Pin No. - ~ - User Assigned
+*************************  Summary of UnMapped Logic  ************************
+
+** 1 Inputs **
+
+Signal              User
+Name                Assignment
+SRESET              P21
+
+*******************************  Equations  ********************************
+
+********** Mapped Logic **********
+
+
+RESET <= (SRESET AND BRESET);
+
+Register Legend:
+ FDCPE (Q,D,C,CLR,PRE,CE); 
+ FTCPE (Q,D,C,CLR,PRE,CE); 
+ LDCP  (Q,D,G,CLR,PRE); 
+
+****************************  Compiler Options  ****************************
+
+Following is a list of all global compiler options used by the fitter run.
+
+Device(s) Specified                         : xc9572xl-10-PC44
+Optimization Method                         : SPEED
+Multi-Level Logic Optimization              : ON
+Ignore Timing Specifications                : OFF
+Default Register Power Up Value             : LOW
+Keep User Location Constraints              : ON
+What-You-See-Is-What-You-Get                : OFF
+Exhaustive Fitting                          : OFF
+Keep Unused Inputs                          : OFF
+Slew Rate                                   : FAST
+Power Mode                                  : STD
+Ground on Unused IOs                        : OFF
+Set I/O Pin Termination                     : KEEPER
+Global Clock Optimization                   : ON
+Global Set/Reset Optimization               : ON
+Global Ouput Enable Optimization            : ON
+Input Limit                                 : 54
+Pterm Limit                                 : 25
