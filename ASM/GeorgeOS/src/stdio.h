@@ -10,7 +10,6 @@
 #define UNDERSCORE  0x4
 #define STRIKEOUT   0x8
 #define INPUT_BUFFER_SIZE 100
-extern char input_buffer[INPUT_BUFFER_SIZE];
 #define BACKSPACE 0x08
 
 #define SIM
@@ -46,12 +45,12 @@ extern char getChar();
  * \name clear_input_buffer
  * initializes the buffer to 0
 */
-extern void clear_input_buffer();
+extern void clear_buffer(char* input_buffer, char length);
 
 /**
  * fills the input buffer with a string
 */
-extern void getString();
+extern void getString(char* input_buffer, char length);
 
 extern void serial_print_error(char* error_message);
 

@@ -3,7 +3,6 @@
 char* serial_print_pointer = 0;
 char style_buffer = 0;
 int color_buffer = 0;
-char input_buffer[INPUT_BUFFER_SIZE] = {0};
 char backspace[] = " \b\0";
 char eot[] = "\n\r\0";
 
@@ -60,18 +59,18 @@ extern void serial_print_error(char* error_message) {
 }
 
 
-extern void clear_input_buffer() {
+extern void clear_buffer(char* input_buffer, char length) {
     int i = 0;
-    for (i = 0; i < INPUT_BUFFER_SIZE; i++) {
+    for (i = 0; i < length; i++) {
         input_buffer[i] = 0;
     }
 }
 
-extern void getString() {
+extern void getString(char* input_buffer, char length) {
     int i = 0;
     char char_buffer = 1;
     
-    clear_input_buffer();
+    clear_buffer(input_buffer, length);
 
     while (char_buffer != '\r') {
         char_buffer = getChar();
@@ -91,5 +90,5 @@ extern void getString() {
 
     //this line eliminates the last character in the
     //last spot. Dont know why this is but...yeah
-    input_buffer[100] = '\0';
+    input_buffer[length] = '\0';
 }
