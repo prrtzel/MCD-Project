@@ -2,7 +2,7 @@ SRC_DIR := src/
 
 LINKER := etc/linker
 
-FILES := main stdio conversions 
+FILES := main stdio conversions morg
 
 OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
 

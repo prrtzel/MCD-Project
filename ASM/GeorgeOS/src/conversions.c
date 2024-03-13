@@ -26,15 +26,15 @@ extern char ascii_hex_to_bin (char ascii_char) {
     return value;
 }
 
-char ascii_decimal_to_bin(char ascii_char) {
+extern char ascii_decimal_to_bin(char ascii_char) {
     char value = ascii_char;
     value = value - 0x30;
     return value;
 }
 
-void binary_to_ascii_hex(int binary_value, char* str_buffer, char length) {
+extern void binary_to_ascii_hex(int binary_value, char* str_buffer, unsigned char length) {
     int i = 0;
-    char shift_value = 0;
+    unsigned char shift_value = 0;
 
     //set binary value to array of characters
     for (i = 0; i < length; i++) {

@@ -66,7 +66,7 @@ extern void clear_buffer(char* input_buffer, char length) {
     }
 }
 
-extern void getString(char* input_buffer, char length) {
+extern void getString(char* input_buffer, unsigned char length) {
     int i = 0;
     char char_buffer = 1;
     
@@ -90,5 +90,5 @@ extern void getString(char* input_buffer, char length) {
 
     //this line eliminates the last character in the
     //last spot. Dont know why this is but...yeah
-    input_buffer[length] = '\0';
+    input_buffer[length] = 0;
 }

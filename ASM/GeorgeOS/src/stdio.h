@@ -50,7 +50,7 @@ extern void clear_buffer(char* input_buffer, char length);
 /**
  * fills the input buffer with a string
 */
-extern void getString(char* input_buffer, char length);
+extern void getString(char* input_buffer, unsigned char length);
 
 extern void serial_print_error(char* error_message);
 

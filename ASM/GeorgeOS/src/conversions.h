@@ -6,7 +6,8 @@
 #define HEX_LONG_LENGTH 8
 
 extern char ascii_hex_to_bin (char asciiChar);
-char ascii_decimal_to_bin(char ascii_char);
+
+extern char ascii_decimal_to_bin(char ascii_char);
 
 /**
  * \name binary_to_ascii_hex
@@ -20,9 +21,7 @@ char ascii_decimal_to_bin(char ascii_char);
  * 
  * \param length BYTE, WORD, LONG
  * \param binary_value value to convert to ascii hexadecimal
- * 
- * \returns a pointer to the ascii string
 */
-void binary_to_ascii_hex(int binary_value, char* str_buffer, char length);
+extern void binary_to_ascii_hex(int binary_value, char* str_buffer, unsigned char length);
 
 #endif
