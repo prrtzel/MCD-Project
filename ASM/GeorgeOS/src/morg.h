@@ -1,7 +1,7 @@
 #ifndef MORG_H
 #define MORG_H
 
-#define OUTPUT_BUFFER_LENGTH 1
+#define OUTPUT_BUFFER_LENGTH 100
 char output_buffer[OUTPUT_BUFFER_LENGTH];
 
 enum registers {

@@ -4,5 +4,6 @@
 #include "morg.h"
 
 extern int __main() {
+
     return 0;
 }

@@ -1,0 +1,37 @@
+read memory
+    takes in an 8 digit hex address and prints out the value
+    rm address
+    Ex: rm $00f00000
+
+memory dump
+    dumps memory from a starting address to an ending address
+    dmp $00000000 $00005000
+
+write to memory
+    writes a byte to an address in data
+    wm address data
+    Ex: wm $00813011 $72
+
+read register
+    reads the register specified
+    rr register
+    Ex: rr d0
+
+write to register
+    writes to the register specified
+    wr register data
+    Ex: wr d0 $01234567
+
+load srecord
+    loads an srec into memory
+    lds srecord
+    Ex: lds S0029R3R23...
+
+run srecord
+    runs the srecord that was stored in memory
+    run
+    Ex: run
+
+help
+    displays the list of commands
+    Ex: help
