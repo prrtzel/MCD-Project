@@ -1,6 +1,9 @@
 #ifndef MORG_H
 #define MORG_H
 
+#define OUTPUT_BUFFER_LENGTH 1
+char output_buffer[OUTPUT_BUFFER_LENGTH];
+
 enum registers {
     d0,
     d1,

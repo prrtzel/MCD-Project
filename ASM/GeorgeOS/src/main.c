@@ -4,6 +4,6 @@
 #include "morg.h"
 
 extern int __main() {
-    read_memory(0);
+    mem_dump(0, 0x00001000);
     return 0;
 }

@@ -45,7 +45,7 @@ extern char getChar();
  * \name clear_input_buffer
  * initializes the buffer to 0
 */
-extern void clear_buffer(char* input_buffer, char length);
+extern void clear_buffer(char* input_buffer, int length);
 
 /**
  * fills the input buffer with a string

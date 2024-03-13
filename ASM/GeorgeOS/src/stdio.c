@@ -59,7 +59,7 @@ extern void serial_print_error(char* error_message) {
 }
 
 
-extern void clear_buffer(char* input_buffer, char length) {
+extern void clear_buffer(char* input_buffer, int length) {
     int i = 0;
     for (i = 0; i < length; i++) {
         input_buffer[i] = 0;
