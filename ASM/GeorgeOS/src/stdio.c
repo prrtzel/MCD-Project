@@ -49,6 +49,17 @@ extern void set_font(int color, char style) {
 #endif
 }
 
+extern void reset_font() {  
+    set_font(0x00ffffff, 0);
+}
+
+extern void serial_print_error(char* error_message) {
+    set_font(RED, BOLD);
+    serial_print(error_message);
+    reset_font();
+}
+
+
 extern void clear_input_buffer() {
     int i = 0;
     for (i = 0; i < INPUT_BUFFER_SIZE; i++) {

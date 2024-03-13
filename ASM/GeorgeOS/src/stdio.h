@@ -24,6 +24,8 @@ extern char input_buffer[INPUT_BUFFER_SIZE];
 */
 extern void set_font(int color, char style);
 
+extern void reset_font();
+
 /**
  * \name serial_print
  * Prints a string to the serial monitor
@@ -50,5 +52,7 @@ extern void clear_input_buffer();
  * fills the input buffer with a string
 */
 extern void getString();
+
+extern void serial_print_error(char* error_message);
 
 #endif
