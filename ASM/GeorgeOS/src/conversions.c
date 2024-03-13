@@ -2,8 +2,8 @@
 #include "stdio.h"
 
 //error codes
-char error0[] = "Conversion error in ascii_hex_to_bin: value > 0x0F\0";
-
+char ascii_hex_to_bin_error[] = "Conversion error in ascii_hex_to_bin: value > 0x0F\0";
+char binary_to_ascii_hex_error[] = "Conversion error in binary_to_ascii_hex: idk some weird stuff\0";
 
 extern char ascii_hex_to_bin (char ascii_char) {
     char value = ascii_char;
@@ -20,7 +20,7 @@ extern char ascii_hex_to_bin (char ascii_char) {
         value = value - 0x30;
     }
     if (value > 0x0F) {
-        serial_print_error(&error0[0]);
+        serial_print_error(&ascii_hex_to_bin_error[0]);
         return 0;
     }
     return value;
@@ -32,11 +32,27 @@ char ascii_decimal_to_bin(char ascii_char) {
     return value;
 }
 
-void binary_to_ascii_hex(char binary_value, char* str_buffer, char length) {
+void binary_to_ascii_hex(int binary_value, char* str_buffer, char length) {
     int i = 0;
+    char shift_value = 0;
 
     //set binary value to array of characters
-    for(i = 0; i < length; i++) {
-        
+    for (i = 0; i < length; i++) {
+        //shift value decrements. Ex: 12, 8, 4 if length = 4
+        shift_value = ((length - 1) * 4) - (i * 4);
+        str_buffer[i] = (binary_value & (0x0000000f << shift_value)) >> shift_value;
+
+        if (str_buffer[i] <= 0x09 && str_buffer[i] >= 0x00) {
+            str_buffer[i] = str_buffer[i] | 0x30;
+        }
+        else if (str_buffer[i] <= 0x0f && str_buffer[i] >= 0x0a) {
+            str_buffer[i] = str_buffer[i] - 0x09;
+            str_buffer[i] = str_buffer[i] | 0x40;
+        }
+        else {
+            serial_print_error(&binary_to_ascii_hex_error[0]);
+            return;
+        }
     }
+    str_buffer[length] = 0;
 }
