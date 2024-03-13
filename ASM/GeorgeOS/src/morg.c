@@ -2,11 +2,13 @@
 #include "stdio.h"
 #include "conversions.h"
 
+//BE SURE TO ADD EXCEPTIONS!!!
+
 char space[] = " ";
 char newline[] = "\n\r";
 char output_buffer[OUTPUT_BUFFER_LENGTH] = {0};
 
-void read_memory(int address){
+void read_memory(long address){
     char* address_pointer = (char*) address;
     char value = *address_pointer;
     binary_to_ascii_hex(value, output_buffer, HEX_BYTE_LENGTH);
@@ -14,7 +16,7 @@ void read_memory(int address){
     clear_buffer(output_buffer, OUTPUT_BUFFER_LENGTH);
 }
 
-void mem_dump(int starting_address, int ending_address){
+void mem_dump(long starting_address, long ending_address){
     int i = 0;
     int j = 1;
     for (i = starting_address; i < ending_address; i++) {
@@ -28,8 +30,9 @@ void mem_dump(int starting_address, int ending_address){
     }
 }
 
-void write_memory(int address, char data){
-
+void write_memory(long address, char data){
+    char* address_pointer = (char*) address;
+    *address_pointer = data;
 }
 
 void read_register(enum registers reg){
@@ -41,12 +44,6 @@ void write_register(enum registers reg, int data){
 }
 
 void parse_cmd(char* command, char length){
-
-    //read and display memory
-
-    // char value = read_memory(0);
-    // binary_to_ascii_hex(value, hex_ascii_buffer, HEX_BYTE_LENGTH);
-    // serial_print(&hex_ascii_buffer[0]);
 
 
 

@@ -23,11 +23,11 @@ enum registers {
     a7
 };
 
-void read_memory(int address);
+void read_memory(long address);
 
-void mem_dump(int starting_address, int ending_address);
+void mem_dump(long starting_address, long ending_address);
 
-void write_memory(int address, char data);
+void write_memory(long address, char data);
 
 void read_register(enum registers reg);
 
