@@ -20,7 +20,7 @@ enum registers {
     a7
 };
 
-char read_memory(int address);
+void read_memory(int address);
 
 void mem_dump(int starting_address, int ending_address);
 
