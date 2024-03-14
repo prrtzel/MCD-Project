@@ -2,18 +2,46 @@
 #include "stdio.h"
 #include "conversions.h"
 
-//BE SURE TO ADD EXCEPTIONS!!!
+//menu strings
+char menu_name[] = "GeorgeOS\n\r\0";
+char menu_distribute[] = "Distribute at your own risk!\n\r\0";
+char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands";
+
+char shell_pretty_thing[] = ">>\0";
 
 char space[] = " ";
 char newline[] = "\n\r";
-char output_buffer[OUTPUT_BUFFER_LENGTH] = {0};
+char output_buffer[OUTPUT_BUFFER_SIZE] = {0};
+char input_buffer[INPUT_BUFFER_SIZE] = {0};
+
+//if exit status == 1, stop the program
+char exit_status = 0;
+
+void print_menu() {
+    set_font(WHITE, BOLD);
+    serial_print(&menu_name[0]);
+    set_font(RED, ITALLIC);
+    serial_print(&menu_distribute[0]);
+    reset_font();
+    serial_print(&menu_version[0]);
+}
+
+void init() {
+    print_menu();
+}
+
+void get_input() {
+    serial_print(&shell_pretty_thing[0]);
+    getString(input_buffer, INPUT_BUFFER_SIZE);
+}
+
 
 void read_memory(long address){
     char* address_pointer = (char*) address;
     char value = *address_pointer;
     binary_to_ascii_hex(value, output_buffer, HEX_BYTE_LENGTH);
     serial_print(&output_buffer[0]);
-    clear_buffer(output_buffer, OUTPUT_BUFFER_LENGTH);
+    clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }
 
 void mem_dump(long starting_address, long ending_address){
@@ -35,73 +63,22 @@ void write_memory(long address, char data){
     *address_pointer = data;
 }
 
-//NEEDS TO SAVE REGISTERS BEFORE EDITING/READING!!
-long result = 0;
 void read_register(enum registers reg){
-    switch(reg) {
-        case d0:
-            __asm__("move.l %d0, result");
-            break;
-        case d1:
-            __asm__("move.l %d1, result");
-            break;
-        case d2:
-            __asm__("move.l %d2, result");
-            break;
-        case d3:
-            __asm__("move.l %d3, result");
-            break;
-        case d4:
-            __asm__("move.l %d4, result");
-            break;
-        case d5:
-            __asm__("move.l %d5, result");
-            break;
-        case d6:
-            __asm__("move.l %d6, result");
-            break;
-        case d7:
-            __asm__("move.l %d7, result");
-            break;
-        case a0:
-            __asm__("move.l %a0, result");
-            break;
-        case a1:
-            __asm__("move.l %a1, result");
-            break;
-        case a2:
-            __asm__("move.l %a2, result");
-            break;
-        case a3:
-            __asm__("move.l %a3, result");
-            break;
-        case a4:
-            __asm__("move.l %a4, result");
-            break;
-        case a5:
-            __asm__("move.l %a5, result");
-            break;
-        case a6:
-            __asm__("move.l %a6, result");
-            break;
-        case a7:
-            __asm__("move.l %a7, result");
-            break;
-        default:
-            break;
-    }
-    binary_to_ascii_hex(result, output_buffer, HEX_LONG_LENGTH);
-    serial_print(&output_buffer[0]);
-    clear_buffer(output_buffer, OUTPUT_BUFFER_LENGTH);
+
 }
 
 void write_register(enum registers reg, int data){
 
 }
 
-void parse_cmd(char* command_buffer, char length){
-    int i = 0;
-    for (i = 0; i < length; i++) {
-        
+void parse_cmd(){
+    if (input_buffer[0] == 'e') {
+        if (input_buffer[0] == 'x') {
+            if (input_buffer[0] == 'i') {
+                if (input_buffer[0] == 't') {
+                    exit_status = 1;
+                }
+            }
+        }
     }
 }

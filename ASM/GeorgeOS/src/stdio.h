@@ -4,12 +4,11 @@
 #define RED         0x000000ff
 #define GREEN       0x0000ff00
 #define BLUE        0x00ff0000
-#define WHITE       0
+#define WHITE       0x00ffffff
 #define BOLD        0x1
 #define ITALLIC     0x2
 #define UNDERSCORE  0x4
 #define STRIKEOUT   0x8
-#define INPUT_BUFFER_SIZE 100
 #define BACKSPACE 0x08
 
 #define SIM

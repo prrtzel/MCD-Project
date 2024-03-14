@@ -1,8 +1,12 @@
 #ifndef MORG_H
 #define MORG_H
 
-#define OUTPUT_BUFFER_LENGTH 100
-char output_buffer[OUTPUT_BUFFER_LENGTH];
+#define OUTPUT_BUFFER_SIZE 100
+#define INPUT_BUFFER_SIZE 100
+char output_buffer[OUTPUT_BUFFER_SIZE];
+char input_buffer[INPUT_BUFFER_SIZE];
+
+char exit_status;
 
 enum registers {
     d0,
@@ -23,6 +27,12 @@ enum registers {
     a7
 };
 
+void print_menu();
+
+void init();
+
+void get_input();
+
 void read_memory(long address);
 
 void mem_dump(long starting_address, long ending_address);
@@ -33,5 +43,5 @@ void read_register(enum registers reg);
 
 void write_register(enum registers reg, int data);
 
-void parse_cmd(char* command, char length);
+void parse_cmd();
 #endif

@@ -4,7 +4,9 @@
         "*.m68k": "m68k",
         "*.ld": "mapfile",
         "main.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "conversions.h": "c",
+        "morg.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
