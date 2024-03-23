@@ -3,8 +3,10 @@
 
 #define OUTPUT_BUFFER_SIZE 100
 #define INPUT_BUFFER_SIZE 100
+#define COMMAND_BUFFER_SIZE 100;
 char output_buffer[OUTPUT_BUFFER_SIZE];
 char input_buffer[INPUT_BUFFER_SIZE];
+char command_buffer[100];
 
 char exit_status;
 
@@ -44,4 +46,6 @@ void read_register(enum registers reg);
 void write_register(enum registers reg, int data);
 
 void parse_cmd();
+
+void transfer_buffer();
 #endif

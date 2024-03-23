@@ -10,7 +10,7 @@ Total CPU time to Xst completion: 0.09 secs
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: glue_logic.prj
 
@@ -76,10 +76,6 @@ wysiwyg                            : NO
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" in Library work.
-WARNING:HDLParsers:3350 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" Line 8. Null range: 0 downto 4
-WARNING:HDLParsers:3350 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" Line 18. Null range: 0 downto 5
-WARNING:HDLParsers:3350 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" Line 23. Null range: 0 downto 1
-WARNING:HDLParsers:3350 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" Line 25. Null range: 0 downto 1
 Entity <glue_logic> compiled.
 Entity <glue_logic> (Architecture <behavioral>) compiled.
 
@@ -93,10 +89,6 @@ Analyzing hierarchy for entity <glue_logic> in library <work> (architecture <beh
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <glue_logic> in library <work> (Architecture <behavioral>).
-WARNING:Xst:1994 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" line 8: Null range in type of signal <ABUS>.
-WARNING:Xst:1994 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" line 18: Null range in type of signal <LED>.
-WARNING:Xst:1994 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" line 23: Null range in type of signal <RAMLCE>.
-WARNING:Xst:1994 - "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd" line 25: Null range in type of signal <RAMHCE>.
 Entity <glue_logic> analyzed. Unit <glue_logic> generated.
 
 
@@ -108,28 +100,36 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <glue_logic>.
     Related source file is "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd".
-WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <LDS> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <AS> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1306 - Output <DUARTCS> is never assigned.
-WARNING:Xst:1306 - Output <ROMHOE> is never assigned.
-WARNING:Xst:647 - Input <UDS> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1306 - Output <BERR> is never assigned.
-WARNING:Xst:1306 - Output <RAMLOE> is never assigned.
-WARNING:Xst:1306 - Output <ROMLCE> is never assigned.
-WARNING:Xst:2565 - Inout <HALT> is never assigned.
-WARNING:Xst:647 - Input <DUART_DTACK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1306 - Output <ROMLOE> is never assigned.
-WARNING:Xst:1306 - Output <RAMHOE> is never assigned.
-WARNING:Xst:1306 - Output <CPU_DTACK> is never assigned.
-WARNING:Xst:1306 - Output <ROMHCE> is never assigned.
+    Register <ROMHOE> equivalent to <ROMHCE> has been removed
+    Register <ROMLOE> equivalent to <ROMLCE> has been removed
+    Found 1-bit tristate buffer for signal <LED<5>>.
+    Found 1-bit tristate buffer for signal <LED<3>>.
+    Found 1-bit tristate buffer for signal <LED<1>>.
+    Found 1-bit register for signal <ROMLCE>.
+    Found 1-bit register for signal <ROMHCE>.
+    Found 2-bit register for signal <RAMLCE>.
+    Found 1-bit register for signal <RAMLOE>.
+    Found 2-bit register for signal <RAMHCE>.
+    Found 1-bit register for signal <RAMHOE>.
+    Found 1-bit register for signal <DUARTCS>.
+    Found 8-bit register for signal <decode_bus>.
+    Summary:
+	inferred   5 D-type flip-flop(s).
+	inferred   3 Tristate(s).
 Unit <glue_logic> synthesized.
 
 
 =========================================================================
 HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 8
+ 1-bit register                                        : 5
+ 2-bit register                                        : 2
+ 8-bit register                                        : 1
+# Tristates                                            : 3
+ 1-bit tristate buffer                                 : 3
+
 =========================================================================
 
 =========================================================================
@@ -140,7 +140,10 @@ Found no macro
 =========================================================================
 Advanced HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 5
+ Flip-Flops                                            : 5
+
 =========================================================================
 
 =========================================================================
@@ -179,22 +182,33 @@ Design Statistics
 # IOs                              : 33
 
 Cell Usage :
-# BELS                             : 1
-#      AND2                        : 1
-# IO Buffers                       : 3
-#      IBUF                        : 2
-#      OBUF                        : 1
+# BELS                             : 108
+#      AND2                        : 25
+#      AND3                        : 10
+#      AND4                        : 2
+#      GND                         : 1
+#      INV                         : 49
+#      OR2                         : 12
+#      OR3                         : 6
+#      VCC                         : 1
+#      XOR2                        : 2
+# FlipFlops/Latches                : 17
+#      FD                          : 17
+# IO Buffers                       : 33
+#      IBUF                        : 12
+#      OBUF                        : 18
+#      OBUFE                       : 3
 =========================================================================
 
 
-Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.52 secs
+Total REAL time to Xst completion: 2.00 secs
+Total CPU time to Xst completion: 2.83 secs
  
 --> 
 
-Total memory usage is 4491184 kilobytes
+Total memory usage is 4499444 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   23 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

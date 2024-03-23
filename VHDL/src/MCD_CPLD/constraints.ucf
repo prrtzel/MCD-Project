@@ -23,7 +23,7 @@ NET LED<5>	    LOC=P12;
 NET CLK         LOC=P44;
 NET AS          LOC=P42;
 NET UDS         LOC=P40;
-NET LDS         LOC=P41;
+NET LDS         LOC=p41;
 
 NET ROMLOE      LOC=P28;
 NET ROMLCE      LOC=P30;

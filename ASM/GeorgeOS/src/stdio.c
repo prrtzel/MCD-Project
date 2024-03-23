@@ -66,6 +66,8 @@ extern void clear_buffer(char* input_buffer, int length) {
     }
 }
 
+
+char input_overflow[] = "Error: too large an input!";
 extern void getString(char* input_buffer, unsigned char length) {
     int i = 0;
     char char_buffer = 1;
@@ -73,6 +75,10 @@ extern void getString(char* input_buffer, unsigned char length) {
     clear_buffer(input_buffer, length);
 
     while (char_buffer != '\r') {
+        if (i > length) {
+            serial_print_error(&input_overflow[0]);
+            return;
+        }
         char_buffer = getChar();
 
         if (char_buffer == BACKSPACE) {

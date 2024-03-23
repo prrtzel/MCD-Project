@@ -32,8 +32,8 @@ address decoding:
 00 0000      _______
             |       |
             |  ROM  |
-07 FFFF     |_______|
-08 0000     |       |
+0F FFFF     |_______|
+10 0000     |       |
             |  RAM  |
 0B FFFF     |_______|
 0C 0000     |       |
@@ -46,7 +46,9 @@ FF FFFF
 
 
 
-ROM: '00000'
+ROM:    '00000'
+RAM:    '00010'
+UART:   '00100'
 
 
 
@@ -69,4 +71,14 @@ ROM: '00000'
 
 
 
-
+        if AS = '1' then
+            if ABUS = "00000" then
+                if LDS = '1' then
+                    ROMLOE <= '0';
+                    ROMLCE <= '0';
+                else if UDS = '1' then
+                    ROMHOE <= '0';
+                    ROMHCE <= '0';
+                    
+            end if;
+        end if;S

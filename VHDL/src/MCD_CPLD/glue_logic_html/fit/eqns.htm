@@ -3,17 +3,325 @@
 <script src="paths.js"></script><script src="eqns.js"></script><script>
       var design = "glue_logic";
       var device = "XC9572XL";
-      signals = new Array("RESET");
-      sigNegs = new Array("OFF");
-      sigTypes = new Array("");
+      signals = new Array("BERR","CPU_DTACK","DUARTCS","HALT","LED0_SPECSIG","LED1_SPECSIG","LED2_SPECSIG","LED3_SPECSIG","LED4_SPECSIG","LED5_SPECSIG","RAMHCE0_SPECSIG","RAMHCE1_SPECSIG","RAMHOE","RAMLCE0_SPECSIG","RAMLCE1_SPECSIG","RAMLOE","RESET","ROMHCE","ROMHOE","ROMLCE","ROMLOE","decode_bus0_SPECSIG","decode_bus1_SPECSIG","decode_bus2_SPECSIG","decode_bus3_SPECSIG","decode_bus4_SPECSIG","decode_bus5_SPECSIG","decode_bus6_SPECSIG","decode_bus7_SPECSIG");
+      sigNegs = new Array("OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","ON","ON","OFF","ON","ON","OFF","ON","ON","ON","ON","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF");
+      sigTypes = new Array("","","D","","","","","","","","D","D","D","D","D","D","","D","D","D","D","D","D","D","D","D","D","D","D");
 
       
-            pterms["FB2_6_1"]=new Array("SRESET","BRESET");
+        specSig["ABUS2_SPECSIG"]=new Array("ABUS<2>");
+      
+        specSig["ABUS1_SPECSIG"]=new Array("ABUS<1>");
+      
+        specSig["ABUS0_SPECSIG"]=new Array("ABUS<0>");
+      
+        specSig["ABUS3_SPECSIG"]=new Array("ABUS<3>");
+      
+        specSig["ABUS4_SPECSIG"]=new Array("ABUS<4>");
+      
+        specSig["LED0_SPECSIG"]=new Array("LED<0>");
+      
+        specSig["LED1_SPECSIG"]=new Array("LED<1>");
+      
+        specSig["LED2_SPECSIG"]=new Array("LED<2>");
+      
+        specSig["LED4_SPECSIG"]=new Array("LED<4>");
+      
+        specSig["LED3_SPECSIG"]=new Array("LED<3>");
+      
+        specSig["LED5_SPECSIG"]=new Array("LED<5>");
+      
+        specSig["RAMHCE1_SPECSIG"]=new Array("RAMHCE<1>");
+      
+        specSig["RAMHCE0_SPECSIG"]=new Array("RAMHCE<0>");
+      
+        specSig["RAMLCE1_SPECSIG"]=new Array("RAMLCE<1>");
+      
+        specSig["RAMLCE0_SPECSIG"]=new Array("RAMLCE<0>");
+      
+        specSig["decode_bus7_SPECSIG"]=new Array("decode_bus<7>");
+      
+        specSig["decode_bus0_SPECSIG"]=new Array("decode_bus<0>");
+      
+        specSig["decode_bus1_SPECSIG"]=new Array("decode_bus<1>");
+      
+        specSig["decode_bus2_SPECSIG"]=new Array("decode_bus<2>");
+      
+        specSig["decode_bus3_SPECSIG"]=new Array("decode_bus<3>");
+      
+        specSig["decode_bus4_SPECSIG"]=new Array("decode_bus<4>");
+      
+        specSig["decode_bus5_SPECSIG"]=new Array("decode_bus<5>");
+      
+        specSig["decode_bus6_SPECSIG"]=new Array("decode_bus<6>");
+      
+            pterms["FB1_2_1"]=new Array("SRESET","BRESET");
           
-          d2["RESET"]=new Array("FB2_6_1");
+            pterms["FB1_14_1"]=new Array("DUARTCS","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB1_14_2"]=new Array("DUARTCS","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB1_14_3"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","decode_bus2_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB1_18_1"]=new Array("AS");
+          
+            pterms["FB2_5_1"]=new Array("/ROMLOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB2_5_2"]=new Array("/ROMLOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB2_5_3"]=new Array("/ROMLOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB2_5_4"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB2_13_1"]=new Array("LDS");
+          
+            pterms["FB2_14_1"]=new Array("UDS");
+          
+            pterms["FB2_15_1"]=new Array("SRESET","BRESET");
+          
+            pterms["FB2_16_1"]=new Array("ABUS4_SPECSIG");
+          
+            pterms["FB2_17_1"]=new Array("DUART_DTACK");
+          
+            pterms["FB2_18_1"]=new Array("ABUS3_SPECSIG");
+          
+            pterms["FB3_14_1"]=new Array("/RAMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_14_2"]=new Array("/RAMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_14_3"]=new Array("/RAMHOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_14_4"]=new Array("/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_15_1"]=new Array("/RAMHCE1_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_15_2"]=new Array("/RAMHCE1_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_15_3"]=new Array("/RAMHCE1_SPECSIG","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_15_4"]=new Array("/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_17_1"]=new Array("RAMHCE0_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_17_2"]=new Array("RAMHCE0_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_17_3"]=new Array("RAMHCE0_SPECSIG","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB3_17_4"]=new Array("/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_2_1"]=new Array("/ROMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_2_2"]=new Array("/ROMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_2_3"]=new Array("/ROMHOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_2_4"]=new Array("/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_5_1"]=new Array("/ROMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_5_2"]=new Array("/ROMHOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_5_3"]=new Array("/ROMHOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_5_4"]=new Array("/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_11_1"]=new Array("/RAMLCE1_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_11_2"]=new Array("/RAMLCE1_SPECSIG","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_11_3"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_13_1"]=new Array("ABUS2_SPECSIG");
+          
+            pterms["FB4_14_1"]=new Array("/RAMLOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_14_2"]=new Array("/RAMLOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_14_3"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_15_1"]=new Array("RAMLCE0_SPECSIG","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_15_2"]=new Array("RAMLCE0_SPECSIG","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_15_3"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_16_1"]=new Array("ABUS1_SPECSIG");
+          
+            pterms["FB4_17_1"]=new Array("/ROMLOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_17_2"]=new Array("/ROMLOE","decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_17_3"]=new Array("/ROMLOE","/decode_bus5_SPECSIG","decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_17_4"]=new Array("decode_bus5_SPECSIG","/decode_bus6_SPECSIG","/decode_bus2_SPECSIG","/decode_bus1_SPECSIG","/decode_bus0_SPECSIG","/decode_bus3_SPECSIG","/decode_bus4_SPECSIG","/decode_bus7_SPECSIG");
+          
+            pterms["FB4_18_1"]=new Array("ABUS0_SPECSIG");
+          
+          d2["HALT"]=new Array("FB1_2_1");
+          
+            d2imp["HALT"]=new Array("1");
+          
+          d2["DUARTCS"]=new Array("FB1_14_1","FB1_14_2","FB1_14_3");
+          
+            d2imp["DUARTCS"]=new Array("1","1","1");
+          
+              gblclk["DUARTCS"]=new Array("CLK");
+            prld["DUARTCS"]="GND";
+          d2["LED0_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED0_SPECSIG"]=new Array("1");
+          
+          d2["decode_bus7_SPECSIG"]=new Array("FB1_18_1");
+          
+            d2imp["decode_bus7_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus7_SPECSIG"]=new Array("CLK");
+            prld["decode_bus7_SPECSIG"]="GND";
+          d2["ROMLCE"]=new Array("FB2_5_1","FB2_5_2","FB2_5_3","FB2_5_4");
+          
+            d2imp["ROMLCE"]=new Array("1","1","1","1");
+          
+              gblclk["ROMLCE"]=new Array("CLK");
+            prld["ROMLCE"]="GND";
+          d2["BERR"]=new Array("VCC");
+          
+            d2imp["BERR"]=new Array("1");
+          
+          d2["decode_bus6_SPECSIG"]=new Array("FB2_13_1");
+          
+            d2imp["decode_bus6_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus6_SPECSIG"]=new Array("CLK");
+            prld["decode_bus6_SPECSIG"]="GND";
+          d2["decode_bus5_SPECSIG"]=new Array("FB2_14_1");
+          
+            d2imp["decode_bus5_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus5_SPECSIG"]=new Array("CLK");
+            prld["decode_bus5_SPECSIG"]="GND";
+          d2["RESET"]=new Array("FB2_15_1");
           
             d2imp["RESET"]=new Array("1");
           
+          d2["decode_bus4_SPECSIG"]=new Array("FB2_16_1");
+          
+            d2imp["decode_bus4_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus4_SPECSIG"]=new Array("CLK");
+            prld["decode_bus4_SPECSIG"]="GND";
+          d2["CPU_DTACK"]=new Array("FB2_17_1");
+          
+            d2imp["CPU_DTACK"]=new Array("1");
+          
+          d2["decode_bus3_SPECSIG"]=new Array("FB2_18_1");
+          
+            d2imp["decode_bus3_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus3_SPECSIG"]=new Array("CLK");
+            prld["decode_bus3_SPECSIG"]="GND";
+          d2["LED1_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED1_SPECSIG"]=new Array("1");
+          
+              trst["LED1_SPECSIG"]=new Array("GND");
+              
+                trstimp["LED1_SPECSIG"]=new Array("1");
+              
+          d2["LED2_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED2_SPECSIG"]=new Array("1");
+          
+          d2["LED4_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED4_SPECSIG"]=new Array("1");
+          
+          d2["LED3_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED3_SPECSIG"]=new Array("1");
+          
+              trst["LED3_SPECSIG"]=new Array("GND");
+              
+                trstimp["LED3_SPECSIG"]=new Array("1");
+              
+          d2["LED5_SPECSIG"]=new Array("GND");
+          
+            d2imp["LED5_SPECSIG"]=new Array("1");
+          
+              trst["LED5_SPECSIG"]=new Array("GND");
+              
+                trstimp["LED5_SPECSIG"]=new Array("1");
+              
+          d2["RAMHOE"]=new Array("FB3_14_1","FB3_14_2","FB3_14_3","FB3_14_4");
+          
+            d2imp["RAMHOE"]=new Array("1","1","1","1");
+          
+              gblclk["RAMHOE"]=new Array("CLK");
+            prld["RAMHOE"]="GND";
+          d2["RAMHCE1_SPECSIG"]=new Array("FB3_15_1","FB3_15_2","FB3_15_3","FB3_15_4");
+          
+            d2imp["RAMHCE1_SPECSIG"]=new Array("1","1","1","1");
+          
+              gblclk["RAMHCE1_SPECSIG"]=new Array("CLK");
+            prld["RAMHCE1_SPECSIG"]="GND";
+          d2["RAMHCE0_SPECSIG"]=new Array("FB3_17_1","FB3_17_2","FB3_17_3","FB3_17_4");
+          
+            d2imp["RAMHCE0_SPECSIG"]=new Array("1","1","1","1");
+          
+              gblclk["RAMHCE0_SPECSIG"]=new Array("CLK");
+            prld["RAMHCE0_SPECSIG"]="GND";
+          d2["ROMHOE"]=new Array("FB4_2_1","FB4_2_2","FB4_2_3","FB4_2_4");
+          
+            d2imp["ROMHOE"]=new Array("1","1","1","1");
+          
+              gblclk["ROMHOE"]=new Array("CLK");
+            prld["ROMHOE"]="GND";
+          d2["ROMHCE"]=new Array("FB4_5_1","FB4_5_2","FB4_5_3","FB4_5_4");
+          
+            d2imp["ROMHCE"]=new Array("1","1","1","1");
+          
+              gblclk["ROMHCE"]=new Array("CLK");
+            prld["ROMHCE"]="GND";
+          d2["RAMLCE1_SPECSIG"]=new Array("FB4_11_1","FB4_11_2","FB4_11_3");
+          
+            d2imp["RAMLCE1_SPECSIG"]=new Array("1","1","1");
+          
+              gblclk["RAMLCE1_SPECSIG"]=new Array("CLK");
+            prld["RAMLCE1_SPECSIG"]="GND";
+          d2["decode_bus2_SPECSIG"]=new Array("FB4_13_1");
+          
+            d2imp["decode_bus2_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus2_SPECSIG"]=new Array("CLK");
+            prld["decode_bus2_SPECSIG"]="GND";
+          d2["RAMLOE"]=new Array("FB4_14_1","FB4_14_2","FB4_14_3");
+          
+            d2imp["RAMLOE"]=new Array("1","1","1");
+          
+              gblclk["RAMLOE"]=new Array("CLK");
+            prld["RAMLOE"]="GND";
+          d2["RAMLCE0_SPECSIG"]=new Array("FB4_15_1","FB4_15_2","FB4_15_3");
+          
+            d2imp["RAMLCE0_SPECSIG"]=new Array("1","1","1");
+          
+              gblclk["RAMLCE0_SPECSIG"]=new Array("CLK");
+            prld["RAMLCE0_SPECSIG"]="GND";
+          d2["decode_bus1_SPECSIG"]=new Array("FB4_16_1");
+          
+            d2imp["decode_bus1_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus1_SPECSIG"]=new Array("CLK");
+            prld["decode_bus1_SPECSIG"]="GND";
+          d2["ROMLOE"]=new Array("FB4_17_1","FB4_17_2","FB4_17_3","FB4_17_4");
+          
+            d2imp["ROMLOE"]=new Array("1","1","1","1");
+          
+              gblclk["ROMLOE"]=new Array("CLK");
+            prld["ROMLOE"]="GND";
+          d2["decode_bus0_SPECSIG"]=new Array("FB4_18_1");
+          
+            d2imp["decode_bus0_SPECSIG"]=new Array("1");
+          
+              gblclk["decode_bus0_SPECSIG"]=new Array("CLK");
+            prld["decode_bus0_SPECSIG"]="GND";
 
       uimSignals = new Array();
 

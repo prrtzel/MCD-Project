@@ -1,7 +1,7 @@
 Release 8.1i - Fit P.20131013
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 3- 7-2024  6:11PM
+ 3-19-2024  9:50AM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The comma ','
@@ -12,56 +12,56 @@ Input file:  glue_logic.ngd
 output file: glue_logic_pad.csv
 Part type:   xc9572xl
 Speed grade: -10
-Package:     pc44
+Package:     vq44
 
 Pinout by Pin Number:
 
 -----,-----,-----,-----,-----,-----,-----,-----,-----,-----,
 Pin Number,Signal Name,Pin Usage,Pin Name,Direction,IO Standard,IO Bank Number,{blank},Slew Rate,Termination,{blank},Voltage,Constraint,
-P1,TIE,,I/O,,,,,,,,,,
-P2,TIE,,I/O,,,,,,,,,,
-P3,TIE,,I/O,,,,,,,,,,
-P4,TIE,,I/O,,,,,,,,,,
-P5,TIE,,I/O/GCK1,,,,,,,,,,
-P6,TIE,,I/O/GCK2,,,,,,,,,,
-P7,TIE,,I/O/GCK3,,,,,,,,,,
-P8,TIE,,I/O,,,,,,,,,,
-P9,TIE,,I/O,,,,,,,,,,
-P10,GND,,GND,,,,,,,,,,
-P11,TIE,,I/O,,,,,,,,,,
-P12,TIE,,I/O,,,,,,,,,,
-P13,TIE,,I/O,,,,,,,,,,
-P14,TIE,,I/O,,,,,,,,,,
-P15,TDI,,TDI,,,,,,,,,,
-P16,TMS,,TMS,,,,,,,,,,
-P17,TCK,,TCK,,,,,,,,,,
+P1,DUARTCS,O,I/O/GCK3,OUTPUT,,,,,,,,,
+P2,DUART_DTACK,I,I/O,INPUT,,,,,,,,,
+P3,LED<0>,O,I/O,OUTPUT,,,,,,,,,
+P4,GND,,GND,,,,,,,,,,
+P5,LED<1>,O,I/O,OUTPUT,,,,,,,,,
+P6,LED<2>,O,I/O,OUTPUT,,,,,,,,,
+P7,LED<4>,O,I/O,OUTPUT,,,,,,,,,
+P8,LED<3>,O,I/O,OUTPUT,,,,,,,,,
+P9,TDI,,TDI,,,,,,,,,,
+P10,TMS,,TMS,,,,,,,,,,
+P11,TCK,,TCK,,,,,,,,,,
+P12,LED<5>,O,I/O,OUTPUT,,,,,,,,,
+P13,RAMHOE,O,I/O,OUTPUT,,,,,,,,,
+P14,RAMHCE<1>,O,I/O,OUTPUT,,,,,,,,,
+P15,VCC,,VCCINT,,,,,,,,,,
+P16,RAMHCE<0>,O,I/O,OUTPUT,,,,,,,,,
+P17,GND,,GND,,,,,,,,,,
 P18,BRESET,I,I/O,INPUT,,,,,,,,,
-P19,TIE,,I/O,,,,,,,,,,
-P20,TIE,,I/O,,,,,,,,,,
-P21,VCC,,VCCINT,,,,,,,,,,
-P22,TIE,,I/O,,,,,,,,,,
-P23,GND,,GND,,,,,,,,,,
-P24,TIE,,I/O,,,,,,,,,,
-P25,TIE,,I/O,,,,,,,,,,
-P26,TIE,,I/O,,,,,,,,,,
-P27,TIE,,I/O,,,,,,,,,,
-P28,TIE,,I/O,,,,,,,,,,
-P29,TIE,,I/O,,,,,,,,,,
-P30,TDO,,TDO,,,,,,,,,,
-P31,GND,,GND,,,,,,,,,,
-P32,VCC,,VCCIO,,,,,,,,,,
-P33,TIE,,I/O,,,,,,,,,,
-P34,TIE,,I/O,,,,,,,,,,
-P35,TIE,,I/O,,,,,,,,,,
-P36,TIE,,I/O,,,,,,,,,,
+P19,ROMHOE,O,I/O,OUTPUT,,,,,,,,,
+P20,ROMHCE,O,I/O,OUTPUT,,,,,,,,,
+P21,SRESET,I,I/O,INPUT,,,,,,,,,
+P22,RAMLCE<1>,O,I/O,OUTPUT,,,,,,,,,
+P23,RAMLOE,O,I/O,OUTPUT,,,,,,,,,
+P24,TDO,,TDO,,,,,,,,,,
+P25,GND,,GND,,,,,,,,,,
+P26,VCC,,VCCIO,,,,,,,,,,
+P27,RAMLCE<0>,O,I/O,OUTPUT,,,,,,,,,
+P28,ROMLOE,O,I/O,OUTPUT,,,,,,,,,
+P29,ABUS<3>,I,I/O,INPUT,,,,,,,,,
+P30,ROMLCE,O,I/O,OUTPUT,,,,,,,,,
+P31,ABUS<2>,I,I/O,INPUT,,,,,,,,,
+P32,ABUS<4>,I,I/O,INPUT,,,,,,,,,
+P33,BERR,O,I/O/GSR,OUTPUT,,,,,,,,,
+P34,ABUS<1>,I,I/O/GTS2,INPUT,,,,,,,,,
+P35,VCC,,VCCINT,,,,,,,,,,
+P36,ABUS<0>,I,I/O/GTS1,INPUT,,,,,,,,,
 P37,RESET,O,I/O,OUTPUT,,,,,,,,,
-P38,TIE,,I/O,,,,,,,,,,
-P39,TIE,,I/O/GSR,,,,,,,,,,
-P40,TIE,,I/O/GTS2,,,,,,,,,,
-P41,VCC,,VCCINT,,,,,,,,,,
-P42,TIE,,I/O/GTS1,,,,,,,,,,
-P43,TIE,,I/O,,,,,,,,,,
-P44,TIE,,I/O,,,,,,,,,,
+P38,CPU_DTACK,O,I/O,OUTPUT,,,,,,,,,
+P39,HALT,O,I/O,OUTPUT,,,,,,,,,
+P40,UDS,I,I/O,INPUT,,,,,,,,,
+P41,LDS,I,I/O,INPUT,,,,,,,,,
+P42,AS,I,I/O,INPUT,,,,,,,,,
+P43,TIE,,I/O/GCK1,,,,,,,,,,
+P44,CLK,GCK,I/O/GCK2,,,,,,,,,,
 
 To preserve the pinout above for future design iterations in
 Project Navigator simply execute the (Lock Pins) process

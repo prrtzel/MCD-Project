@@ -5,14 +5,23 @@
 //menu strings
 char menu_name[] = "GeorgeOS\n\r\0";
 char menu_distribute[] = "Distribute at your own risk!\n\r\0";
-char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands";
-
+char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands\r\n\0";
 char shell_pretty_thing[] = ">>\0";
+
+char parse_error[] = "Error: parse error!";
+
+char help_menu[] = "GeorgeOS\n\r
+'help' -- gives a list of commands\n\r
+'rm'   -- read memory Ex: rm 00ff00ff\n\r
+'wm'   -- write to memory Ex: wm 00ff0012 00000000\n\r
+'dmp'  -- dump memory Ex: dmp 00000000 00001000  
+\n\r";
 
 char space[] = " ";
 char newline[] = "\n\r";
 char output_buffer[OUTPUT_BUFFER_SIZE] = {0};
 char input_buffer[INPUT_BUFFER_SIZE] = {0};
+char command_buffer[100] = {0};
 
 //if exit status == 1, stop the program
 char exit_status = 0;
@@ -71,11 +80,31 @@ void write_register(enum registers reg, int data){
 
 }
 
+void transfer_buffer() {
+    int i = 0;
+    for (i = 0; i < 100; i++) {
+        command_buffer[i] = input_buffer[i];
+    }    
+}
+
+
+
 void parse_cmd(){
-    if (input_buffer[0] == 'e') {
-        if (input_buffer[0] == 'x') {
-            if (input_buffer[0] == 'i') {
-                if (input_buffer[0] == 't') {
+    transfer_buffer();
+
+    if (command_buffer[0] == 'h') {
+        if (command_buffer[1] == 'e') {
+            if (command_buffer[2] == 'l') {
+                if (command_buffer[3] == 'p') {
+                    serial_print(&help_menu[0]);
+                }
+            }
+        }
+    }
+    if (command_buffer[0] == 'e') {
+        if (command_buffer[1] == 'x') {
+            if (command_buffer[2] == 'i') {
+                if (command_buffer[3] == 't') {
                     exit_status = 1;
                 }
             }

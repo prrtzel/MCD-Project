@@ -5,7 +5,7 @@
 #define HEX_WORD_LENGTH 4
 #define HEX_LONG_LENGTH 8
 
-extern char ascii_hex_to_bin (char asciiChar);
+extern long ascii_hex_to_bin (char* ascii_buffer, int length);
 
 extern char ascii_decimal_to_bin(char ascii_char);
 
