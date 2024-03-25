@@ -5,20 +5,12 @@
 char ascii_hex_to_bin_error[] = "Conversion error in ascii_hex_to_bin: value > 0x0F\0";
 char binary_to_ascii_hex_error[] = "Conversion error in binary_to_ascii_hex: idk some weird stuff\0";
 
-
-
-
-
-
-
-
-
-
 extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
     int i = 0;
-    long result;
+    long result = 0;
     char value = 0;
     int shift_value = 0;
+    long buffer = 0;
     for (i = 0; i < length; i++) {
         value = ascii_buffer[i];
 
@@ -44,22 +36,11 @@ extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
 //shift it into the result
 
         shift_value = ((length - 1) * 4) - (i * 4);
-        result = value << shift_value;
+        buffer = value;
+        result = (buffer << shift_value) | result;
     }
-
-
-
     return result;
 }
-
-
-
-
-
-
-
-
-
 
 extern char ascii_decimal_to_bin(char ascii_char) {
     char value = ascii_char;
@@ -67,7 +48,7 @@ extern char ascii_decimal_to_bin(char ascii_char) {
     return value;
 }
 
-extern void binary_to_ascii_hex(int binary_value, char* str_buffer, unsigned char length) {
+extern void binary_to_ascii_hex(long binary_value, char* str_buffer, unsigned char length) {
     int i = 0;
     unsigned char shift_value = 0;
 

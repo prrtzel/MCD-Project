@@ -22,6 +22,6 @@ extern char ascii_decimal_to_bin(char ascii_char);
  * \param length BYTE, WORD, LONG
  * \param binary_value value to convert to ascii hexadecimal
 */
-extern void binary_to_ascii_hex(int binary_value, char* str_buffer, unsigned char length);
+extern void binary_to_ascii_hex(long binary_value, char* str_buffer, unsigned char length);
 
 #endif
