@@ -3,8 +3,8 @@
 #include "conversions.h"
 #include "morg.h"
 
-//#define MAIN
-#define TEST
+#define MAIN
+//#define TEST
 
 char str[8] = {0};
 long value;
@@ -13,8 +13,7 @@ extern int __main() {
     init();
     while (exit_status == 0) {
         get_input();
-        parse_cmd(input_buffer, INPUT_BUFFER_SIZE);
-        
+        parse_cmd();      
     }
 
 #endif

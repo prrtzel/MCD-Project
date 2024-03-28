@@ -1,33 +1,33 @@
-read memory
+1 read memory
     takes in an 8 digit hex address and prints out the value
     rm address
     Ex: rm $00f00000
 
-memory dump
+2 memory dump
     dumps memory from a starting address to an ending address
     dmp $00000000 $00005000
 
-write to memory
+3 write to memory
     writes a byte to an address in data
     wm address data
     Ex: wm $00813011 $72
 
-read register
+4 read register
     reads the register specified
     rr register
     Ex: rr d0
 
-write to register
+5 write to register
     writes to the register specified
     wr register data
     Ex: wr d0 $01234567
 
-load srecord
+6 load srecord
     loads an srec into memory
     lds srecord
     Ex: lds S0029R3R23...
 
-run srecord
+7 run srecord
     runs the srecord that was stored in memory
     run
     Ex: run
@@ -35,3 +35,13 @@ run srecord
 help
     displays the list of commands
     Ex: help
+
+
+
+Parsing:
+rm 00345671
+
+read r and m
+command_arg = 1
+
+switch case command_arg

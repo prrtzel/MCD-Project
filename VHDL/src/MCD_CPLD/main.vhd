@@ -36,7 +36,7 @@ begin
 
 -------------------------------------------
 -- reset logic
-    reset_output <= BRESET and SRESET;
+    reset_output <= BRESET or SRESET;
     RESET <= reset_output;
     HALT <= reset_output;
 
@@ -56,21 +56,21 @@ begin
                     ROMHCE <= '0';
                 when "00100010" =>
                     RAMLOE <= '0';
-                    RAMLCE <= "01";
+                    RAMLCE <= "0Z";
                 when "01000010" =>
                     RAMHOE <= '0';
-                    RAMHCE <= "01";
+                    RAMHCE <= "0Z";
                 when "00100100" =>
-                    DUARTCS <= '1';
+                    DUARTCS <= '0';
                 when others =>
-                    ROMLOE <= '1';
-                    ROMLCE <= '1';
-                    ROMHOE <= '1';
-                    ROMHCE <= '1';
-                    RAMHOE <= '1';
-                    RAMHCE <= "10";
-                    RAMLOE <= '1';
-                    RAMLCE <= "10";
+                    ROMLOE <= 'Z';
+                    ROMLCE <= 'Z';
+                    ROMHOE <= 'Z';
+                    ROMHCE <= 'Z';
+                    RAMHOE <= 'Z';
+                    RAMHCE <= "Z0";
+                    RAMLOE <= 'Z';
+                    RAMLCE <= "Z0";
                     DUARTCS <= '0';
             end case;
         end if;
@@ -81,7 +81,7 @@ begin
     LED <= "Z0Z0Z0";
 -------------------------------------------
 -- other
-    BERR <= '1';
+    BERR <= 'Z';
     CPU_DTACK <= DUART_DTACK;
 
 end Behavioral;

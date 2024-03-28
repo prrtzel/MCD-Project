@@ -6,15 +6,16 @@
 char menu_name[] = "GeorgeOS\n\r\0";
 char menu_distribute[] = "Distribute at your own risk!\n\r\0";
 char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands\r\n\0";
-char shell_pretty_thing[] = ">>\0";
+char shell_pretty_thing[] = "\n\r>>\0";
 
 char parse_error[] = "Error: parse error!";
 
 char help_menu[] = "GeorgeOS\n\r
 'help' -- gives a list of commands\n\r
-'rm'   -- read memory Ex: rm 00ff00ff\n\r
-'wm'   -- write to memory Ex: wm 00ff0012 00000000\n\r
-'dmp'  -- dump memory Ex: dmp 00000000 00001000  
+'1'    -- read memory Ex: 1 00ff00ff\n\r
+'2'    -- dump memory Ex: 2 00000000 00001000\n\r
+'3'    -- write to memory Ex: 3 00ff0012 32\n\r
+
 \n\r";
 
 char space[] = " ";
@@ -56,7 +57,7 @@ void read_memory(long address){
 void mem_dump(long starting_address, long ending_address){
     int i = 0;
     int j = 1;
-    for (i = starting_address; i < ending_address; i++) {
+    for (i = starting_address; i <= ending_address; i++) {
         read_memory(starting_address + i);
         serial_print(&space[0]);
         if (j == 16) {
@@ -88,8 +89,8 @@ void transfer_buffer() {
 }
 
 
-
-void parse_cmd(){
+char testBuffer[8] = {0};
+void parse_cmd() {
     transfer_buffer();
 
     if (command_buffer[0] == 'h') {
@@ -109,5 +110,40 @@ void parse_cmd(){
                 }
             }
         }
+    }
+    switch (command_buffer[0]) {
+    long value_1;
+    long value_2;
+    case '1':
+    //read memory
+        value_1 = ascii_hex_to_bin(&command_buffer[2], 8);
+        read_memory(value_1);
+        break;
+    case '2':
+    //mem dump
+        value_1 = ascii_hex_to_bin(&command_buffer[2], 8);
+        value_2 = ascii_hex_to_bin(&command_buffer[11], 8);
+        mem_dump(value_1, value_2);
+        break;
+    case '3':
+    //write to memory
+        value_1 = ascii_hex_to_bin(&command_buffer[2], 8);
+        value_2 = ascii_hex_to_bin(&command_buffer[11], 2);
+        write_memory(value_1, value_2);
+        break;
+    case '4':
+    //read register
+        break;
+    case '5':
+    //write to register
+        break;
+    case '6':
+    //load srec
+        break;
+    case '7':
+    //run srec
+        break;
+    default:
+        break;
     }
 }
