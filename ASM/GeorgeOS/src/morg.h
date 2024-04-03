@@ -2,11 +2,14 @@
 #define MORG_H
 
 #define OUTPUT_BUFFER_SIZE 100
-#define INPUT_BUFFER_SIZE 100
-#define COMMAND_BUFFER_SIZE 100;
+#define INPUT_BUFFER_SIZE 80
+#define COMMAND_BUFFER_SIZE 80;
 char output_buffer[OUTPUT_BUFFER_SIZE];
 char input_buffer[INPUT_BUFFER_SIZE];
-char command_buffer[100];
+char command_buffer[80];
+char srec_data[255];
+
+char srecord[80];
 
 char exit_status;
 
@@ -45,7 +48,13 @@ void read_register(enum registers reg);
 
 void write_register(enum registers reg, int data);
 
+void load_srecord();
+
 void parse_cmd();
 
 void transfer_buffer();
+
+void run_srec();
+
+void parse_srecord();
 #endif

@@ -1,0 +1,10 @@
+registers
+
+everytime call subroutine
+put all registers on stack
+alter values on registers
+return stuff from stack except register altered
+
+put all registers on stack
+write to register
+put all registers except that register onto the stack
