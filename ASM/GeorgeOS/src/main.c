@@ -3,11 +3,9 @@
 #include "conversions.h"
 #include "morg.h"
 
-//#define MAIN
-#define TEST
+#define MAIN
+//#define TEST
 
-
-char nl[] = "\n\r"; 
 char str[8] = {0};
 long value;
 extern int __main() {
@@ -22,9 +20,9 @@ extern int __main() {
 #ifdef TEST
     
     read_register(d0);
-    serial_print(nl);
-    write_register(d0, 0x69);
-    serial_print(nl);
+    serial_print(newline);
+    write_register(d0, 0x12345678);
+    serial_print(newline);
     read_register(d0);
 #endif
     return 0;

@@ -11,6 +11,8 @@ char srec_data[255];
 
 char srecord[80];
 
+extern char newline[];
+
 char exit_status;
 
 enum registers {

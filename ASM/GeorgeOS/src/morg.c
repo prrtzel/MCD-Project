@@ -82,104 +82,54 @@ void write_memory(long address, char data){
 int register_result = 0;
 void read_register(enum registers reg){
     register_result = 0;
-    __asm__("
-        move.l %d0, -(%sp)
-        move.l %d1, -(%sp)
-        move.l %d2, -(%sp)
-        move.l %d3, -(%sp)
-        move.l %d4, -(%sp)
-        move.l %d5, -(%sp)
-        move.l %d6, -(%sp)
-        move.l %d7, -(%sp)
-        move.l %a0, -(%sp)
-        move.l %a1, -(%sp)
-        move.l %a2, -(%sp)
-        move.l %a3, -(%sp)
-        move.l %a4, -(%sp)
-        move.l %a5, -(%sp)
-        move.l %a6, -(%sp)
-        move.l %a7, -(%sp)
-    ");
     switch (reg) {
     case d0:
-        __asm__("
-        add.l #64, %sp
-        move.l (%sp)+, register_result");
+        __asm__("move.l %d0, register_result");
         break;
     case d1:
-        __asm__("
-        add.l #60, %sp
-        move.l %d1, register_result");
+        __asm__("move.l %d1, register_result");
         break;
     case d2: 
-        __asm__("
-        add.l #56, %sp
-        move.l %d2, register_result");
+        __asm__("move.l %d2, register_result");
         break;
     case d3:
-        __asm__("
-        add.l #52, %sp
-        move.l %d3, register_result");
+        __asm__("move.l %d3, register_result");
         break;
     case d4: 
-        __asm__("
-        add.l #48, %sp
-        move.l %d4, register_result");
+        __asm__("move.l %d4, register_result");
         break;
     case d5:
-        __asm__("
-        add.l #44, %sp
-        move.l %d5, register_result");
+        __asm__("move.l %d5, register_result");
         break;
     case d6: 
-        __asm__("
-        add.l #40, %sp
-        move.l %d6, register_result");
+        __asm__("move.l %d6, register_result");
         break;
     case d7:
-        __asm__("
-        add.l #36, %sp
-        move.l %d7, register_result");
+        __asm__("move.l %d7, register_result");
         break;
     case a0: 
-        __asm__("
-        add.l #32, %sp
-        move.l %a0, register_result");
+        __asm__("move.l %a0, register_result");
         break;
     case a1: 
-        __asm__("
-        add.l #28, %sp
-        move.l %a1, register_result");
+        __asm__("move.l %a1, register_result");
         break;
     case a2: 
-        __asm__("
-        add.l #24, %sp
-        move.l %a2, register_result");
+        __asm__("move.l %a2, register_result");
         break;
     case a3: 
-        __asm__("
-        add.l #20, %sp
-        move.l %a3, register_result");
+        __asm__("move.l %a3, register_result");
         break;
     case a4: 
-        __asm__("
-        add.l #16, %sp
-        move.l %a4, register_result");
+        __asm__("move.l %a4, register_result");
         break;
     case a5: 
-        __asm__("
-        add.l #12, %sp
-        move.l %a5, register_result");
+        __asm__("move.l %a5, register_result");
         break;
     case a6: 
-        __asm__("
-        add.l #8, %sp
-        move.l %a6, register_result");
+        __asm__("move.l %a6, register_result");
         break;
     case a7: 
-        __asm__("
-        add.l #4, %sp
-        move.l %a7, register_result");
+        __asm__("move.l %a7, register_result");
         break;
     default:
         break;
@@ -193,6 +143,58 @@ void read_register(enum registers reg){
 int reg_write_value = 0;
 void write_register(enum registers reg, int data){
     reg_write_value = data;
+    switch (reg) {
+    case d0:
+        __asm__("move.l reg_write_value, %d0");
+        break;
+    case d1:
+        __asm__("move.l reg_write_value, %d1");
+        break;
+    case d2: 
+        __asm__("move.l reg_write_value, %d2");
+        break;
+    case d3:
+        __asm__("move.l reg_write_value, %d3");
+        break;
+    case d4: 
+        __asm__("move.l reg_write_value, %d4");
+        break;
+    case d5:
+        __asm__("move.l reg_write_value, %d5");
+        break;
+    case d6: 
+        __asm__("move.l reg_write_value, %d6");
+        break;
+    case d7:
+        __asm__("move.l reg_write_value, %d7");
+        break;
+    case a0: 
+        __asm__("move.l reg_write_value, %a0");
+        break;
+    case a1: 
+        __asm__("move.l reg_write_value, %a1");
+        break;
+    case a2: 
+        __asm__("move.l reg_write_value, %a2");
+        break;
+    case a3: 
+        __asm__("move.l reg_write_value, %a3");
+        break;
+    case a4: 
+        __asm__("move.l reg_write_value, %a4");
+        break;
+    case a5: 
+        __asm__("move.l reg_write_value, %a5");
+        break;
+    case a6: 
+        __asm__("move.l reg_write_value, %a6");
+        break;
+    case a7: 
+        __asm__("move.l reg_write_value, %a7");
+        break;
+    default:
+        break;
+    }
 }
 
 void load_srecord() {
@@ -211,7 +213,7 @@ void transfer_buffer() {
 }
 
 void run_srec() {
-    //char ptr = &srecord[0];
+    //char* ptr = &srecord[0];
 
 }
 
