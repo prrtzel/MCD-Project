@@ -3,7 +3,7 @@
 
 //error codes
 char ascii_hex_to_bin_error[] = "Conversion error in ascii_hex_to_bin: value > 0x0F\0";
-char binary_to_ascii_hex_error[] = "Conversion error in binary_to_ascii_hex: idk some weird stuff\0";
+char binary_to_ascii_hex_error[] = "Conversion error in binary_to_ascii_hex\0";
 
 extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
     int i = 0;
