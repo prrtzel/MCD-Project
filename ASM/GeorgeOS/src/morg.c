@@ -102,52 +102,84 @@ void read_register(enum registers reg){
     ");
     switch (reg) {
     case d0:
-        __asm__("move.l %d0, register_result");
+        __asm__("
+        add.l #64, %sp
+        move.l (%sp)+, register_result");
         break;
     case d1:
-        __asm__("move.l %d1, register_result");
+        __asm__("
+        add.l #60, %sp
+        move.l %d1, register_result");
         break;
     case d2: 
-        __asm__("move.l %d2, register_result");
+        __asm__("
+        add.l #56, %sp
+        move.l %d2, register_result");
         break;
     case d3:
-        __asm__("move.l %d3, register_result");
+        __asm__("
+        add.l #52, %sp
+        move.l %d3, register_result");
         break;
     case d4: 
-        __asm__("move.l %d4, register_result");
+        __asm__("
+        add.l #48, %sp
+        move.l %d4, register_result");
         break;
     case d5:
-        __asm__("move.l %d5, register_result");
+        __asm__("
+        add.l #44, %sp
+        move.l %d5, register_result");
         break;
     case d6: 
-        __asm__("move.l %d6, register_result");
+        __asm__("
+        add.l #40, %sp
+        move.l %d6, register_result");
         break;
     case d7:
-        __asm__("move.l %d7, register_result");
+        __asm__("
+        add.l #36, %sp
+        move.l %d7, register_result");
         break;
     case a0: 
-        __asm__("move.l %a0, register_result");
+        __asm__("
+        add.l #32, %sp
+        move.l %a0, register_result");
         break;
     case a1: 
-        __asm__("move.l %a1, register_result");
+        __asm__("
+        add.l #28, %sp
+        move.l %a1, register_result");
         break;
     case a2: 
-        __asm__("move.l %a2, register_result");
+        __asm__("
+        add.l #24, %sp
+        move.l %a2, register_result");
         break;
     case a3: 
-        __asm__("move.l %a3, register_result");
+        __asm__("
+        add.l #20, %sp
+        move.l %a3, register_result");
         break;
     case a4: 
-        __asm__("move.l %a4, register_result");
+        __asm__("
+        add.l #16, %sp
+        move.l %a4, register_result");
         break;
     case a5: 
-        __asm__("move.l %a5, register_result");
+        __asm__("
+        add.l #12, %sp
+        move.l %a5, register_result");
         break;
     case a6: 
-        __asm__("move.l %a6, register_result");
+        __asm__("
+        add.l #8, %sp
+        move.l %a6, register_result");
         break;
     case a7: 
-        __asm__("move.l %a7, register_result");
+        __asm__("
+        add.l #4, %sp
+        move.l %a7, register_result");
         break;
     default:
         break;
@@ -161,350 +193,6 @@ void read_register(enum registers reg){
 int reg_write_value = 0;
 void write_register(enum registers reg, int data){
     reg_write_value = data;
-    __asm__("
-        move.l %d0, -(%sp)
-        move.l %d1, -(%sp)
-        move.l %d2, -(%sp)
-        move.l %d3, -(%sp)
-        move.l %d4, -(%sp)
-        move.l %d5, -(%sp)
-        move.l %d6, -(%sp)
-        move.l %d7, -(%sp)
-        move.l %a0, -(%sp)
-        move.l %a1, -(%sp)
-        move.l %a2, -(%sp)
-        move.l %a3, -(%sp)
-        move.l %a4, -(%sp)
-        move.l %a5, -(%sp)
-        move.l %a6, -(%sp)
-        move.l %a7, -(%sp)
-    ");
-    switch (reg) {
-    case d0:
-        __asm__("
-            move.l reg_write_value, %d0
-
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            add.l #4, %sp
-        ");
-        break;
-    case d1:
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            add.l #4, %sp
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d2: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d1
-            add.l #4, %sp
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d3:
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            add.l #4, %sp
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d4: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            add.l #4, %sp
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d5:
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            add.l #4, %sp
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d6: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            add.l #4, %sp
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case d7:
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            add.l #4, %sp
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a0: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            add.l #4, %sp
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a1: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            add.l #4, %sp
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a2: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            add.l #4, %sp
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a3: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            add.l #4, %sp
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a4: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            add.l #4, %sp
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a5: 
-        __asm__("
-            move.l (%sp)+, %a7
-            move.l (%sp)+, %a6
-            add.l #4, %sp
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a6: 
-        __asm__("
-            move.l (%sp)+, %a7
-            add.l #4, %sp
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    case a7: 
-        __asm__("
-            add.l #4, %sp
-            move.l (%sp)+, %a6
-            move.l (%sp)+, %a5
-            move.l (%sp)+, %a4
-            move.l (%sp)+, %a3
-            move.l (%sp)+, %a2
-            move.l (%sp)+, %a1
-            move.l (%sp)+, %a0
-            move.l (%sp)+, %d7
-            move.l (%sp)+, %d6
-            move.l (%sp)+, %d5
-            move.l (%sp)+, %d4
-            move.l (%sp)+, %d3
-            move.l (%sp)+, %d2
-            move.l (%sp)+, %d1
-            move.l (%sp)+, %d0
-        ");
-        break;
-    default:
-        break;
-    }
 }
 
 void load_srecord() {
@@ -568,7 +256,6 @@ void parse_srecord() {
     //     break;
     // }
 }
-
 
 char testBuffer[8] = {0};
 void parse_cmd() {
@@ -677,6 +364,68 @@ void parse_cmd() {
         break;
     case '5':
     //write to register
+        value_1 = ascii_hex_to_bin(&command_buffer[5], 8);
+
+        if (command_buffer[2] == 'd') {
+            switch (command_buffer[3]) {
+                case '0':
+                    write_register(d0, value_1);
+                    break;
+                case '1':
+                    write_register(d1, value_1);
+                    break;
+                case '2':
+                    write_register(d2, value_1);
+                    break;
+                case '3':
+                    write_register(d3, value_1);
+                    break;
+                case '4':
+                    write_register(d4, value_1);
+                    break;
+                case '5':
+                    write_register(d5, value_1);
+                    break;
+                case '6':
+                    write_register(d6, value_1);
+                    break;
+                case '7':
+                    write_register(d7, value_1);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (command_buffer[2] == 'a') {
+            switch (command_buffer[3]) {
+                case '0':
+                    write_register(a0, value_1);
+                    break;
+                case '1':
+                    write_register(a1, value_1);
+                    break;
+                case '2':
+                    write_register(a2, value_1);
+                    break;
+                case '3':
+                    write_register(a3, value_1);
+                    break;
+                case '4':
+                    write_register(a4, value_1);
+                    break;
+                case '5':
+                    write_register(a5, value_1);
+                    break;
+                case '6':
+                    write_register(a6, value_1);
+                    break;
+                case '7':
+                    write_register(a7, value_1);
+                    break;
+                default:
+                    break;
+            }
+        }
         break;
     case '6':
     //load srec
