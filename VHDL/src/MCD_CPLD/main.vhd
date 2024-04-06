@@ -36,7 +36,7 @@ begin
 
 -------------------------------------------
 -- reset logic
-    reset_output <= BRESET or SRESET;
+    reset_output <= not ((not BRESET) or (not SRESET));
     RESET <= reset_output;
     HALT <= reset_output;
 
@@ -54,13 +54,13 @@ begin
                 when "01000000" =>
                     ROMHOE <= '0';
                     ROMHCE <= '0';
-                when "00100010" =>
+                when "00100100" =>
                     RAMLOE <= '0';
                     RAMLCE <= "0Z";
-                when "01000010" =>
+                when "01000100" =>
                     RAMHOE <= '0';
                     RAMHCE <= "0Z";
-                when "00100100" =>
+                when "00101000" =>
                     DUARTCS <= '0';
                 when others =>
                     ROMLOE <= 'Z';

@@ -1,0 +1,89 @@
+/*
+GET CHAR SUBROUTINE 
+GET_CHAR  
+IN_POLL 
+    *checks if reciever is ready
+    MOVE.B  SRA(A0),D1 
+    BTST    #0,D1 
+    BEQ     IN_POLL 
+    MOVE.B  RBA(A0),D1 
+    JSR     PUT_CHAR
+    RTS 
+
+;PUT CHAR SUBROUTINE 
+PUT_CHAR  
+    MOVE.W  D2, -(SP) 
+
+OUT_POLL 
+    MOVE.B  SRA(A0),D2 
+    BTST    #2,D2 
+    BEQ     OUT_POLL 
+    MOVE.B  D1,TBA(A0) 
+    MOVE.W  (SP)+,D2 
+    RTS  
+*/
+
+
+#include "test.h"
+
+char test_char = '7';
+
+int DUART = 0x00200000; 
+int MR1A  = 0x00200000;
+int MR2A  = 0x00200000;	
+int SRA   = 0x00200001; 
+int CSRA  = 0x00200001;
+int CRA   = 0x00200002;	  
+int THRA  = 0x00200003;    
+int RBA   = 0x00200003;
+int ACR   = 0x00200004;
+int TBA   = 0x00200007;
+int BAUD  = 0xCC;
+
+extern void init_duart() {
+#ifdef ASM
+    __asm__("
+        move.l	0x30,   CRA
+        move.l	0x20,   CRA
+        move.l	0x10,   CRA
+
+        move.l  #0x80,  ACR 
+        move.l  BAUD,   CSRA
+        move.l  #0x13,  MR1A
+
+        move.l	0x47,   MR2A 
+        move.l	0x05,   CRA
+    ");
+#endif
+#ifdef C
+#endif
+}
+
+extern void get_char() {
+#ifdef ASM
+    __asm__("
+        MOVE.B  SRA,%d1 
+        BTST    #0,%d1 
+        BEQ     get_char 
+        MOVE.B  RBA,%d1 
+        JSR     put_char
+    ");
+#endif
+#ifdef C
+#endif
+}
+
+extern void put_char() {
+#ifdef ASM
+    __asm__("
+        MOVE.B  SRA,%D2 
+        BTST    #2,%D2 
+        BEQ     put_char 
+        MOVE.B  test_char,TBA 
+    ");
+#endif
+#ifdef C
+#endif
+}
+
+

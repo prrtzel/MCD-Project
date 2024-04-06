@@ -66,8 +66,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1710859806" xil_pn:in_ck="4774924130197" xil_pn:name="TRANEXT_xstsynthesize_xc9500xl" xil_pn:prop_ck="-583787237375217804" xil_pn:start_ts="1710859801">
+    <transform xil_pn:end_ts="1712278431" xil_pn:in_ck="4774924130197" xil_pn:name="TRANEXT_xstsynthesize_xc9500xl" xil_pn:prop_ck="3946032617803443616" xil_pn:start_ts="1712278425">
       <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="glue_logic.lso"/>
@@ -86,7 +87,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1710859810" xil_pn:in_ck="-6370377249028120732" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="-736101761533034375" xil_pn:start_ts="1710859806">
+    <transform xil_pn:end_ts="1712278435" xil_pn:in_ck="-6370377249028120732" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="920057667651985957" xil_pn:start_ts="1712278431">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
@@ -95,7 +96,7 @@
       <outfile xil_pn:name="glue_logic.ngd"/>
       <outfile xil_pn:name="glue_logic_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1710859818" xil_pn:in_ck="7743339364853868545" xil_pn:name="TRANEXT_vm6File_xc9500xl" xil_pn:prop_ck="5425880703082752378" xil_pn:start_ts="1710859810">
+    <transform xil_pn:end_ts="1712278443" xil_pn:in_ck="7743339364853868545" xil_pn:name="TRANEXT_vm6File_xc9500xl" xil_pn:prop_ck="-5778162912812442714" xil_pn:start_ts="1712278435">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -111,12 +112,12 @@
       <outfile xil_pn:name="glue_logic_html"/>
       <outfile xil_pn:name="glue_logic_pad.csv"/>
     </transform>
-    <transform xil_pn:end_ts="1710859820" xil_pn:in_ck="7743339364853877409" xil_pn:name="TRANEXT_crtProg_xc9500" xil_pn:prop_ck="-6294026017969277533" xil_pn:start_ts="1710859818">
+    <transform xil_pn:end_ts="1712278445" xil_pn:in_ck="7743339364853877409" xil_pn:name="TRANEXT_crtProg_xc9500" xil_pn:prop_ck="-6294026017969277533" xil_pn:start_ts="1712278443">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="glue_logic.jed"/>
     </transform>
-    <transform xil_pn:end_ts="1710864875" xil_pn:in_ck="7743339364853864123" xil_pn:name="TRAN_configureTargetDevice_CPLD" xil_pn:prop_ck="-154879694275837835" xil_pn:start_ts="1710864874">
+    <transform xil_pn:end_ts="1712278446" xil_pn:in_ck="7743339364853864123" xil_pn:name="TRAN_configureTargetDevice_CPLD" xil_pn:prop_ck="-154879694275837835" xil_pn:start_ts="1712278445">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>

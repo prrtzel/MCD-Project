@@ -22,7 +22,10 @@ char newline[] = "\n\r";
 char output_buffer[OUTPUT_BUFFER_SIZE] = {0};
 char input_buffer[INPUT_BUFFER_SIZE] = {0};
 char command_buffer[80] = {0};
-char srec_data[255] = {0};
+
+char srec_data[] = "S00B0000535245432E533638D8
+S11100004E5600007000600000024E5E4E7509
+S9030000FC";
 
 
 //---------
@@ -135,7 +138,7 @@ void read_register(enum registers reg){
         break;
     }
 
-    binary_to_ascii_hex(register_result, output_buffer, HEX_LONG_LENGTH);
+    binary_to_ascii_hex(register_result, output_buffer, 8);
     serial_print(&output_buffer[0]);
     clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }
@@ -198,10 +201,10 @@ void write_register(enum registers reg, int data){
 }
 
 void load_srecord() {
-    int i = 2;
-    for (i = 2; i < 80; i++) {
-        srecord[i] = input_buffer[i];
-    }
+    // int i = 2;
+    // for (i = 2; i < 80; i++) {
+    //     srecord[i] = input_buffer[i];
+    // }
     parse_srecord();    
 }
 
@@ -218,45 +221,45 @@ void run_srec() {
 }
 
 void parse_srecord() {
-    // switch (type) {
-    // char type = srecord[1];
-    // int count = ascii_hex_to_bin(&srecord[2], 2);
-    // int address = 0;
-    // int i = 0;
-    // case '0':
-    // //skip line with S0 by incrementing counter
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // case '1':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
+    switch (type) {
+    char type = srecord[1];
+    int count = ascii_hex_to_bin(&srecord[2], 2);
+    int address = 0;
+    int i = 0;
+    case '0':
+    //skip line with S0 by incrementing counter
+        address = ascii_hex_to_bin(&srecord[4], 4);
+        break;
+    case '1':
+        address = ascii_hex_to_bin(&srecord[4], 4);
 
-    //     for(i = 0; i < count; i++) {
-    //         data[i] = ascii_hex_to_bin(&srecord[8], 2);
-    //     }
+        for(i = 0; i < count; i++) {
+            data[i] = ascii_hex_to_bin(&srecord[8], 2);
+        }
 
-    //     break;
-    // case '2':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '3':
-    //     address = ascii_hex_to_bin(&srecord[4], 8);
-    //     break;
-    // case '5':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // case '6':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '7':
-    //     address = ascii_hex_to_bin(&srecord[4], 8);
-    //     break;
-    // case '8':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '9':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // }
+        break;
+    case '2':
+        address = ascii_hex_to_bin(&srecord[4], 6);
+        break;
+    case '3':
+        address = ascii_hex_to_bin(&srecord[4], 8);
+        break;
+    case '5':
+        address = ascii_hex_to_bin(&srecord[4], 4);
+        break;
+    case '6':
+        address = ascii_hex_to_bin(&srecord[4], 6);
+        break;
+    case '7':
+        address = ascii_hex_to_bin(&srecord[4], 8);
+        break;
+    case '8':
+        address = ascii_hex_to_bin(&srecord[4], 6);
+        break;
+    case '9':
+        address = ascii_hex_to_bin(&srecord[4], 4);
+        break;
+    }
 }
 
 char testBuffer[8] = {0};

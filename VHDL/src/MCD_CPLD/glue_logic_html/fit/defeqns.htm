@@ -6,21 +6,15 @@
 ********** Mapped Logic **********
 </td></tr><tr><td>
 </td></tr><tr><td>
-BERR <= '1';
+BERR_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BERR <= BERR_I when BERR_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BERR_OE <= '0';
 </td></tr><tr><td>
 </td></tr><tr><td>
 CPU_DTACK <= DUART_DTACK;
 </td></tr><tr><td>
-FDCPE_DUARTCS: FDCPE port map (DUARTCS,DUARTCS_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUARTCS_D <= ((DUARTCS AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DUARTCS AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+DUARTCS <= '0';
 </td></tr><tr><td>
 </td></tr><tr><td>
 HALT <= (SRESET AND BRESET);
@@ -49,139 +43,200 @@ LED_I(5) <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LED(5) <= LED_I(5) when LED_OE(5) = '1' else 'Z';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LED_OE(5) <= '0';
 </td></tr><tr><td>
-FDCPE_RAMHCE0: FDCPE port map (RAMHCE(0),RAMHCE_D(0),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_D(0) <= ((RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHCE0: FDCPE port map (Mtrien_RAMHCE(0),Mtrien_RAMHCE_D(0),CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMHCE_D(0) <= ((Mtrien_RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Mtrien_RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RAMHCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Mtrien_RAMHCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_RAMHCE1: FDCPE port map (RAMHCE(1),RAMHCE_D(1),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_D(1) <= ((NOT RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHCE1: FDCPE port map (Mtrien_RAMHCE(1),Mtrien_RAMHCE_D(1),CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMHCE_D(1) <= ((NOT Mtrien_RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMHCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMHCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_RAMHOE: FDCPE port map (RAMHOE,RAMHOE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE_D <= ((NOT RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHOE: FDCPE port map (Mtrien_RAMHOE,Mtrien_RAMHOE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMHOE_D <= ((NOT Mtrien_RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_RAMLCE0: FDCPE port map (RAMLCE(0),RAMLCE_D(0),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_D(0) <= ((RAMLCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLCE0: FDCPE port map (Mtrien_RAMLCE(0),Mtrien_RAMLCE_D(0),CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMLCE_D(0) <= ((Mtrien_RAMLCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RAMLCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Mtrien_RAMLCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_RAMLCE1: FDCPE port map (RAMLCE(1),RAMLCE_D(1),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_D(1) <= ((NOT RAMLCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLCE1: FDCPE port map (Mtrien_RAMLCE(1),Mtrien_RAMLCE_D(1),CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMLCE_D(1) <= ((NOT Mtrien_RAMLCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMLCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMLCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_RAMLOE: FDCPE port map (RAMLOE,RAMLOE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE_D <= ((NOT RAMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLOE: FDCPE port map (Mtrien_RAMLOE,Mtrien_RAMLOE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_RAMLOE_D <= ((NOT Mtrien_RAMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RAMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_RAMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+FDCPE_Mtrien_ROMHCE: FDCPE port map (Mtrien_ROMHCE,Mtrien_ROMHCE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_ROMHCE_D <= ((NOT Mtrien_ROMHCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMHCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMHCE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+FDCPE_Mtrien_ROMHOE: FDCPE port map (Mtrien_ROMHOE,Mtrien_ROMHOE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_ROMHOE_D <= ((NOT Mtrien_ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+FDCPE_Mtrien_ROMLCE: FDCPE port map (Mtrien_ROMLCE,Mtrien_ROMLCE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_ROMLCE_D <= ((NOT Mtrien_ROMLCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMLCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMLCE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+FDCPE_Mtrien_ROMLOE: FDCPE port map (Mtrien_ROMLOE,Mtrien_ROMLOE_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mtrien_ROMLOE_D <= ((NOT Mtrien_ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Mtrien_ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMHCE_I(0) <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE(0) <= RAMHCE_I(0) when RAMHCE_OE(0) = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_OE(0) <= NOT Mtrien_RAMHCE(0);
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMHCE_I(1) <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE(1) <= RAMHCE_I(1) when RAMHCE_OE(1) = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_OE(1) <= NOT Mtrien_RAMHCE(1);
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMHOE_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE <= RAMHOE_I when RAMHOE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE_OE <= NOT Mtrien_RAMHOE;
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMLCE_I(0) <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE(0) <= RAMLCE_I(0) when RAMLCE_OE(0) = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_OE(0) <= NOT Mtrien_RAMLCE(0);
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMLCE_I(1) <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE(1) <= RAMLCE_I(1) when RAMLCE_OE(1) = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_OE(1) <= NOT Mtrien_RAMLCE(1);
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAMLOE_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE <= RAMLOE_I when RAMLOE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE_OE <= NOT Mtrien_RAMLOE;
 </td></tr><tr><td>
 </td></tr><tr><td>
 RESET <= (SRESET AND BRESET);
 </td></tr><tr><td>
-FDCPE_ROMHCE: FDCPE port map (ROMHCE,ROMHCE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE_D <= ((NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
 </td></tr><tr><td>
-FDCPE_ROMHOE: FDCPE port map (ROMHOE,ROMHOE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE_D <= ((NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+ROMHCE_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE <= ROMHCE_I when ROMHCE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE_OE <= NOT Mtrien_ROMHCE;
 </td></tr><tr><td>
-FDCPE_ROMLCE: FDCPE port map (ROMLCE,ROMLCE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE_D <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+</td></tr><tr><td>
+ROMHOE_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE <= ROMHOE_I when ROMHOE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE_OE <= NOT Mtrien_ROMHOE;
+</td></tr><tr><td>
+</td></tr><tr><td>
+ROMLCE_I <= ROMLOE;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE <= ROMLCE_I when ROMLCE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE_OE <= NOT Mtrien_ROMLCE;
+</td></tr><tr><td>
+FDCPE_ROMLOE: FDCPE port map (ROMLOE_I,ROMLOE,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
-</td></tr><tr><td>
-FDCPE_ROMLOE: FDCPE port map (ROMLOE,ROMLOE_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE_D <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT decode_bus(7)));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE <= ROMLOE_I when ROMLOE_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE_OE <= NOT Mtrien_ROMLOE;
 </td></tr><tr><td>
 FDCPE_decode_bus0: FDCPE port map (decode_bus(0),ABUS(0),CLK,'0','0');
 </td></tr><tr><td>

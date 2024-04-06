@@ -5,5 +5,83 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">DUARTCS</arg>&gt; in unit &lt;<arg fmt="%s" index="2">glue_logic</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMLCE&lt;1&gt;</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMLCE&lt;0&gt;</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_ROMHOE</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMLOE</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMHCE&lt;1&gt;</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMHCE&lt;0&gt;</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_RAMHOE</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Mtridata_ROMHCE</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_ROMHCE</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMHOE</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMHCE&lt;0&gt;</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMHCE&lt;1&gt;</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMLOE</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_ROMHOE</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMLCE&lt;0&gt;</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_RAMLCE&lt;1&gt;</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">glue_logic</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_ROMHCE</arg> and <arg fmt="%s" index="3">Mtridata_RAMHOE</arg> <arg fmt="%s" index="4">Mtridata_RAMHOE</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHOE</arg> and <arg fmt="%s" index="3">Mtridata_RAMHCE&lt;0&gt;</arg> <arg fmt="%s" index="4">Mtridata_RAMHCE&lt;0&gt;</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHCE&lt;0&gt;</arg> and <arg fmt="%s" index="3">Mtridata_RAMHCE&lt;1&gt;</arg> <arg fmt="%s" index="4">Mtridata_RAMHCE&lt;1&gt;</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHCE&lt;0&gt;</arg> and <arg fmt="%s" index="3">Mtridata_RAMLOE</arg> <arg fmt="%s" index="4">Mtridata_RAMLOE</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHCE&lt;0&gt;</arg> and <arg fmt="%s" index="3">Mtridata_ROMHOE</arg> <arg fmt="%s" index="4">Mtridata_ROMHOE</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHCE&lt;0&gt;</arg> and <arg fmt="%s" index="3">Mtridata_RAMLCE&lt;0&gt;</arg> <arg fmt="%s" index="4">Mtridata_RAMLCE&lt;0&gt;</arg> signal will be lost.
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_RAMHCE&lt;0&gt;</arg> and <arg fmt="%s" index="3">Mtridata_RAMLCE&lt;1&gt;</arg> <arg fmt="%s" index="4">Mtridata_RAMLCE&lt;1&gt;</arg> signal will be lost.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Mtridata_ROMLCE</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">glue_logic</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Mtridata_ROMLOE&gt; </arg>
+</msg>
+
+<msg type="warning" file="Xst" num="638" delta="old" >in unit <arg fmt="%s" index="1">glue_logic</arg> Conflict on KEEP property on signal <arg fmt="%s" index="2">Mtridata_ROMLCE</arg> and <arg fmt="%s" index="3">Mtridata_ROMLOE</arg> <arg fmt="%s" index="4">Mtridata_ROMLOE</arg> signal will be lost.
+</msg>
+
 </messages>
 

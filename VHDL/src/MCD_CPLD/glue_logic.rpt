@@ -1,26 +1,26 @@
  
 cpldfit:  version P.20131013                        Xilinx Inc.
                                   Fitter Report
-Design Name: glue_logic                          Date:  3-19-2024,  9:50AM
-Device Used: XC9572XL-10-VQ44
+Design Name: glue_logic                          Date:  4- 4-2024,  7:53PM
+Device Used: XC9572XL-10-PC44
 Fitting Status: Successful
 
 *************************  Mapped Resource Summary  **************************
 
 Macrocells     Product Terms    Function Block   Registers      Pins           
 Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
-29 /72  ( 40%) 51  /360  ( 14%) 55 /216 ( 25%)   19 /72  ( 26%) 33 /34  ( 97%)
+39 /72  ( 54%) 63  /360  ( 17%) 40 /216 ( 19%)   19 /72  ( 26%) 33 /34  ( 97%)
 
 ** Function Block Resources **
 
 Function    Mcells      FB Inps     Pterms      IO          
 Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
-FB1           4/18       12/54        5/90       8/ 9
-FB2           8/18       16/54       10/90       9/ 9*
-FB3           8/18       11/54       12/90       9/ 9*
-FB4           9/18       16/54       24/90       7/ 7*
+FB1           7/18        0/54        0/90       9/ 9*
+FB2          11/18       10/54       10/90       9/ 9*
+FB3          11/18       15/54       22/90       8/ 9
+FB4          10/18       15/54       31/90       7/ 7*
              -----       -----       -----      -----    
-             29/72       55/216      51/360     33/34 
+             39/72       40/216      63/360     33/34 
 
 * - Resource is exhausted
 
@@ -34,8 +34,8 @@ Global set/reset net(s) unused.
 
 Signal Type    Required     Mapped  |  Pin Type            Used    Total 
 ------------------------------------|------------------------------------
-Input         :   11          11    |  I/O              :    28      28
-Output        :   21          21    |  GCK/IO           :     2       3
+Input         :   11          11    |  I/O              :    27      28
+Output        :   21          21    |  GCK/IO           :     3       3
 Bidirectional :    0           0    |  GTS/IO           :     2       2
 GCK           :    1           1    |  GSR/IO           :     1       1
 GTS           :    0           0    |
@@ -45,7 +45,7 @@ GSR           :    0           0    |
 
 ** Power Data **
 
-There are 29 macrocells in high performance mode (MCHP).
+There are 39 macrocells in high performance mode (MCHP).
 There are 0 macrocells in low power mode (MCLP).
 End of Mapped Resource Summary
 **************************  Errors and Warnings  ***************************
@@ -53,8 +53,8 @@ End of Mapped Resource Summary
 WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
    use the default filename of 'glue_logic.ise'.
 INFO:Cpld - Inferring BUFG constraint for signal 'CLK' based upon the LOC
-   constraint 'P44'. It is recommended that you declare this BUFG explicitedly
-   in your design. Note that for certain device families the output of a BUFG
+   constraint 'P6'. It is recommended that you declare this BUFG explicitedly in
+   your design. Note that for certain device families the output of a BUFG
    constraint can not drive a gated clock, and the BUFG constraint will be
    ignored.
 *************************  Summary of Mapped Logic  ************************
@@ -63,57 +63,67 @@ INFO:Cpld - Inferring BUFG constraint for signal 'CLK' based upon the LOC
 
 Signal              Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
 Name                Pts   Inps          No.  Type    Use     Mode Rate State
-HALT                1     2     FB1_2   39   I/O     O       STD  FAST 
-DUARTCS             3     9     FB1_14  1    GCK/I/O O       STD  FAST RESET
-LED<0>              0     0     FB1_17  3    I/O     O       STD  FAST 
-ROMLCE              4     9     FB2_5   30   I/O     O       STD  FAST RESET
-BERR                0     0     FB2_9   33   GSR/I/O O       STD  FAST 
-RESET               1     2     FB2_15  37   I/O     O       STD  FAST 
-CPU_DTACK           1     1     FB2_17  38   I/O     O       STD  FAST 
-LED<1>              0     0     FB3_2   5    I/O     O       STD  FAST 
-LED<2>              0     0     FB3_5   6    I/O     O       STD  FAST 
-LED<4>              0     0     FB3_8   7    I/O     O       STD  FAST 
-LED<3>              0     0     FB3_9   8    I/O     O       STD  FAST 
-LED<5>              0     0     FB3_11  12   I/O     O       STD  FAST 
-RAMHOE              4     9     FB3_14  13   I/O     O       STD  FAST RESET
-RAMHCE<1>           4     9     FB3_15  14   I/O     O       STD  FAST RESET
-RAMHCE<0>           4     9     FB3_17  16   I/O     O       STD  FAST RESET
-ROMHOE              4     9     FB4_2   19   I/O     O       STD  FAST RESET
-ROMHCE              4     9     FB4_5   20   I/O     O       STD  FAST RESET
-RAMLCE<1>           3     9     FB4_11  22   I/O     O       STD  FAST RESET
-RAMLOE              3     9     FB4_14  23   I/O     O       STD  FAST RESET
-RAMLCE<0>           3     9     FB4_15  27   I/O     O       STD  FAST RESET
-ROMLOE              4     9     FB4_17  28   I/O     O       STD  FAST RESET
+LED<0>              0     0     FB1_5   2    I/O     O       STD  FAST 
+DUARTCS             0     0     FB1_6   3    I/O     O       STD  FAST 
+LED<1>              0     0     FB1_8   4    I/O     O       STD  FAST 
+LED<2>              0     0     FB1_9   5    GCK/I/O O       STD  FAST 
+LED<4>              0     0     FB1_14  7    GCK/I/O O       STD  FAST 
+LED<3>              0     0     FB1_15  8    I/O     O       STD  FAST 
+LED<5>              0     0     FB1_17  9    I/O     O       STD  FAST 
+RESET               1     2     FB2_6   37   I/O     O       STD  FAST 
+BERR                0     0     FB2_8   38   I/O     O       STD  FAST 
+HALT                1     2     FB2_9   39   GSR/I/O O       STD  FAST 
+CPU_DTACK           1     1     FB2_11  40   GTS/I/O O       STD  FAST 
+RAMHCE<1>           1     1     FB3_2   11   I/O     O       STD  FAST 
+RAMHCE<0>           1     1     FB3_8   13   I/O     O       STD  FAST 
+RAMHOE              1     1     FB3_9   14   I/O     O       STD  FAST 
+ROMHOE              1     1     FB3_15  20   I/O     O       STD  FAST 
+RAMLOE              1     1     FB3_16  24   I/O     O       STD  FAST 
+ROMHCE              1     1     FB3_17  22   I/O     O       STD  FAST 
+RAMLCE<1>           1     1     FB4_2   25   I/O     O       STD  FAST 
+ROMLOE              5     10    FB4_5   26   I/O     O       STD  FAST RESET
+RAMLCE<0>           1     1     FB4_8   27   I/O     O       STD  FAST 
+ROMLCE              2     2     FB4_11  28   I/O     O       STD  FAST 
 
-** 8 Buried Nodes **
+** 18 Buried Nodes **
 
 Signal              Total Total Loc     Pwr  Reg Init
 Name                Pts   Inps          Mode State
-decode_bus<7>       1     1     FB1_18  STD  RESET
+decode_bus<7>       1     1     FB2_12  STD  RESET
 decode_bus<6>       1     1     FB2_13  STD  RESET
 decode_bus<5>       1     1     FB2_14  STD  RESET
-decode_bus<4>       1     1     FB2_16  STD  RESET
-decode_bus<3>       1     1     FB2_18  STD  RESET
-decode_bus<2>       1     1     FB4_13  STD  RESET
-decode_bus<1>       1     1     FB4_16  STD  RESET
-decode_bus<0>       1     1     FB4_18  STD  RESET
+decode_bus<4>       1     1     FB2_15  STD  RESET
+decode_bus<3>       1     1     FB2_16  STD  RESET
+decode_bus<2>       1     1     FB2_17  STD  RESET
+decode_bus<1>       1     1     FB2_18  STD  RESET
+decode_bus<0>       1     1     FB3_11  STD  RESET
+Mtrien_RAMLOE       3     9     FB3_12  STD  RESET
+Mtrien_ROMHOE       4     9     FB3_13  STD  RESET
+Mtrien_ROMHCE       4     9     FB3_14  STD  RESET
+Mtrien_RAMHOE       4     9     FB3_18  STD  RESET
+Mtrien_RAMLCE<1>    3     9     FB4_13  STD  RESET
+Mtrien_RAMLCE<0>    3     9     FB4_14  STD  RESET
+Mtrien_ROMLOE       4     9     FB4_15  STD  RESET
+Mtrien_ROMLCE       4     9     FB4_16  STD  RESET
+Mtrien_RAMHCE<1>    4     9     FB4_17  STD  RESET
+Mtrien_RAMHCE<0>    4     9     FB4_18  STD  RESET
 
 ** 12 Inputs **
 
 Signal              Loc     Pin  Pin     Pin     
 Name                        No.  Type    Use     
-UDS                 FB1_5   40   I/O     I
-LDS                 FB1_6   41   I/O     I
-AS                  FB1_8   42   I/O     I
-CLK                 FB1_11  44   GCK/I/O GCK
-DUART_DTACK         FB1_15  2    I/O     I
-ABUS<3>             FB2_2   29   I/O     I
-ABUS<2>             FB2_6   31   I/O     I
-ABUS<4>             FB2_8   32   I/O     I
-ABUS<1>             FB2_11  34   GTS/I/O I
-ABUS<0>             FB2_14  36   GTS/I/O I
-BRESET              FB3_16  18   I/O     I
-SRESET              FB4_8   21   I/O     I
+AS                  FB1_2   1    I/O     I
+CLK                 FB1_11  6    GCK/I/O GCK
+ABUS<0>             FB2_2   35   I/O     I
+ABUS<1>             FB2_5   36   I/O     I
+UDS                 FB2_14  42   GTS/I/O I
+LDS                 FB2_15  43   I/O     I
+DUART_DTACK         FB2_17  44   I/O     I
+SRESET              FB3_11  18   I/O     I
+BRESET              FB3_14  19   I/O     I
+ABUS<4>             FB4_14  29   I/O     I
+ABUS<2>             FB4_15  33   I/O     I
+ABUS<3>             FB4_17  34   I/O     I
 
 Legend:
 Pin No. - ~ - User Assigned
@@ -131,172 +141,176 @@ Pin Type/Use - I  - Input             GCK - Global Clock
 X            - Signal used as input to the macrocell logic.
 Pin No.      - ~  - User Assigned
 *********************************** FB1  ***********************************
-Number of function block inputs used/remaining:               12/42
-Number of signals used by logic mapping into function block:  12
+Number of function block inputs used/remaining:               0/54
+Number of signals used by logic mapping into function block:  0
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_1         (b)     
-HALT                  1       0     0   4     FB1_2   39    I/O     O
+(unused)              0       0     0   5     FB1_2   1     I/O     I
 (unused)              0       0     0   5     FB1_3         (b)     
 (unused)              0       0     0   5     FB1_4         (b)     
-(unused)              0       0     0   5     FB1_5   40    I/O     I
-(unused)              0       0     0   5     FB1_6   41    I/O     I
+LED<0>                0       0     0   5     FB1_5   2     I/O     O
+DUARTCS               0       0     0   5     FB1_6   3     I/O     O
 (unused)              0       0     0   5     FB1_7         (b)     
-(unused)              0       0     0   5     FB1_8   42    I/O     I
-(unused)              0       0     0   5     FB1_9   43    GCK/I/O 
+LED<1>                0       0     0   5     FB1_8   4     I/O     O
+LED<2>                0       0     0   5     FB1_9   5     GCK/I/O O
 (unused)              0       0     0   5     FB1_10        (b)     
-(unused)              0       0     0   5     FB1_11  44    GCK/I/O GCK
+(unused)              0       0     0   5     FB1_11  6     GCK/I/O GCK
 (unused)              0       0     0   5     FB1_12        (b)     
 (unused)              0       0     0   5     FB1_13        (b)     
-DUARTCS               3       0     0   2     FB1_14  1     GCK/I/O O
-(unused)              0       0     0   5     FB1_15  2     I/O     I
+LED<4>                0       0     0   5     FB1_14  7     GCK/I/O O
+LED<3>                0       0     0   5     FB1_15  8     I/O     O
 (unused)              0       0     0   5     FB1_16        (b)     
-LED<0>                0       0     0   5     FB1_17  3     I/O     O
-decode_bus<7>         1       0     0   4     FB1_18        (b)     (b)
+LED<5>                0       0     0   5     FB1_17  9     I/O     O
+(unused)              0       0     0   5     FB1_18        (b)     
 
 Signals Used by Logic in Function Block
-  1: AS                 5: decode_bus<0>      9: decode_bus<4> 
-  2: BRESET             6: decode_bus<1>     10: decode_bus<5> 
-  3: DUARTCS            7: decode_bus<2>     11: decode_bus<6> 
-  4: SRESET             8: decode_bus<3>     12: decode_bus<7> 
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-HALT                 .X.X.................................... 2
-DUARTCS              ..X.XXXXXXXX............................ 9
 LED<0>               ........................................ 0
-decode_bus<7>        X....................................... 1
-                    0----+----1----+----2----+----3----+----4
-                              0         0         0         0
-*********************************** FB2  ***********************************
-Number of function block inputs used/remaining:               16/38
-Number of signals used by logic mapping into function block:  16
-Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
-Name                Pt      Pt    Pt  Pt               #    Type    Use
-(unused)              0       0     0   5     FB2_1         (b)     
-(unused)              0       0     0   5     FB2_2   29    I/O     I
-(unused)              0       0     0   5     FB2_3         (b)     
-(unused)              0       0     0   5     FB2_4         (b)     
-ROMLCE                4       0     0   1     FB2_5   30    I/O     O
-(unused)              0       0     0   5     FB2_6   31    I/O     I
-(unused)              0       0     0   5     FB2_7         (b)     
-(unused)              0       0     0   5     FB2_8   32    I/O     I
-BERR                  0       0     0   5     FB2_9   33    GSR/I/O O
-(unused)              0       0     0   5     FB2_10        (b)     
-(unused)              0       0     0   5     FB2_11  34    GTS/I/O I
-(unused)              0       0     0   5     FB2_12        (b)     
-decode_bus<6>         1       0     0   4     FB2_13        (b)     (b)
-decode_bus<5>         1       0     0   4     FB2_14  36    GTS/I/O I
-RESET                 1       0     0   4     FB2_15  37    I/O     O
-decode_bus<4>         1       0     0   4     FB2_16        (b)     (b)
-CPU_DTACK             1       0     0   4     FB2_17  38    I/O     O
-decode_bus<3>         1       0     0   4     FB2_18        (b)     (b)
-
-Signals Used by Logic in Function Block
-  1: ABUS<3>            7: SRESET            12: decode_bus<3> 
-  2: ABUS<4>            8: UDS               13: decode_bus<4> 
-  3: BRESET             9: decode_bus<0>     14: decode_bus<5> 
-  4: DUART_DTACK       10: decode_bus<1>     15: decode_bus<6> 
-  5: LDS               11: decode_bus<2>     16: decode_bus<7> 
-  6: ROMLOE           
-
-Signal                        1         2         3         4 FB
-Name                0----+----0----+----0----+----0----+----0 Inputs
-ROMLCE               .....X..XXXXXXXX........................ 9
-BERR                 ........................................ 0
-decode_bus<6>        ....X................................... 1
-decode_bus<5>        .......X................................ 1
-RESET                ..X...X................................. 2
-decode_bus<4>        .X...................................... 1
-CPU_DTACK            ...X.................................... 1
-decode_bus<3>        X....................................... 1
-                    0----+----1----+----2----+----3----+----4
-                              0         0         0         0
-*********************************** FB3  ***********************************
-Number of function block inputs used/remaining:               11/43
-Number of signals used by logic mapping into function block:  11
-Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
-Name                Pt      Pt    Pt  Pt               #    Type    Use
-(unused)              0       0     0   5     FB3_1         (b)     
-LED<1>                0       0     0   5     FB3_2   5     I/O     O
-(unused)              0       0     0   5     FB3_3         (b)     
-(unused)              0       0     0   5     FB3_4         (b)     
-LED<2>                0       0     0   5     FB3_5   6     I/O     O
-(unused)              0       0     0   5     FB3_6         (b)     
-(unused)              0       0     0   5     FB3_7         (b)     
-LED<4>                0       0     0   5     FB3_8   7     I/O     O
-LED<3>                0       0     0   5     FB3_9   8     I/O     O
-(unused)              0       0     0   5     FB3_10        (b)     
-LED<5>                0       0     0   5     FB3_11  12    I/O     O
-(unused)              0       0     0   5     FB3_12        (b)     
-(unused)              0       0     0   5     FB3_13        (b)     
-RAMHOE                4       0     0   1     FB3_14  13    I/O     O
-RAMHCE<1>             4       0     0   1     FB3_15  14    I/O     O
-(unused)              0       0     0   5     FB3_16  18    I/O     I
-RAMHCE<0>             4       0     0   1     FB3_17  16    I/O     O
-(unused)              0       0     0   5     FB3_18        (b)     
-
-Signals Used by Logic in Function Block
-  1: RAMHCE<0>          5: decode_bus<1>      9: decode_bus<5> 
-  2: RAMHCE<1>          6: decode_bus<2>     10: decode_bus<6> 
-  3: RAMHOE             7: decode_bus<3>     11: decode_bus<7> 
-  4: decode_bus<0>      8: decode_bus<4>    
-
-Signal                        1         2         3         4 FB
-Name                0----+----0----+----0----+----0----+----0 Inputs
+DUARTCS              ........................................ 0
 LED<1>               ........................................ 0
 LED<2>               ........................................ 0
 LED<4>               ........................................ 0
 LED<3>               ........................................ 0
 LED<5>               ........................................ 0
-RAMHOE               ..XXXXXXXXX............................. 9
-RAMHCE<1>            .X.XXXXXXXX............................. 9
-RAMHCE<0>            X..XXXXXXXX............................. 9
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
-*********************************** FB4  ***********************************
-Number of function block inputs used/remaining:               16/38
-Number of signals used by logic mapping into function block:  16
+*********************************** FB2  ***********************************
+Number of function block inputs used/remaining:               10/44
+Number of signals used by logic mapping into function block:  10
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
-(unused)              0       0     0   5     FB4_1         (b)     
-ROMHOE                4       0     0   1     FB4_2   19    I/O     O
-(unused)              0       0     0   5     FB4_3         (b)     
-(unused)              0       0     0   5     FB4_4         (b)     
-ROMHCE                4       0     0   1     FB4_5   20    I/O     O
-(unused)              0       0     0   5     FB4_6         (b)     
-(unused)              0       0     0   5     FB4_7         (b)     
-(unused)              0       0     0   5     FB4_8   21    I/O     I
-(unused)              0       0     0   5     FB4_9         (b)     
-(unused)              0       0     0   5     FB4_10        (b)     
-RAMLCE<1>             3       0     0   2     FB4_11  22    I/O     O
-(unused)              0       0     0   5     FB4_12        (b)     
-decode_bus<2>         1       0     0   4     FB4_13        (b)     (b)
-RAMLOE                3       0     0   2     FB4_14  23    I/O     O
-RAMLCE<0>             3       0     0   2     FB4_15  27    I/O     O
-decode_bus<1>         1       0     0   4     FB4_16        (b)     (b)
-ROMLOE                4       0     0   1     FB4_17  28    I/O     O
-decode_bus<0>         1       0     0   4     FB4_18        (b)     (b)
+(unused)              0       0     0   5     FB2_1         (b)     
+(unused)              0       0     0   5     FB2_2   35    I/O     I
+(unused)              0       0     0   5     FB2_3         (b)     
+(unused)              0       0     0   5     FB2_4         (b)     
+(unused)              0       0     0   5     FB2_5   36    I/O     I
+RESET                 1       0     0   4     FB2_6   37    I/O     O
+(unused)              0       0     0   5     FB2_7         (b)     
+BERR                  0       0     0   5     FB2_8   38    I/O     O
+HALT                  1       0     0   4     FB2_9   39    GSR/I/O O
+(unused)              0       0     0   5     FB2_10        (b)     
+CPU_DTACK             1       0     0   4     FB2_11  40    GTS/I/O O
+decode_bus<7>         1       0     0   4     FB2_12        (b)     (b)
+decode_bus<6>         1       0     0   4     FB2_13        (b)     (b)
+decode_bus<5>         1       0     0   4     FB2_14  42    GTS/I/O I
+decode_bus<4>         1       0     0   4     FB2_15  43    I/O     I
+decode_bus<3>         1       0     0   4     FB2_16        (b)     (b)
+decode_bus<2>         1       0     0   4     FB2_17  44    I/O     I
+decode_bus<1>         1       0     0   4     FB2_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: ABUS<0>            7: ROMHOE            12: decode_bus<3> 
-  2: ABUS<1>            8: ROMLOE            13: decode_bus<4> 
-  3: ABUS<2>            9: decode_bus<0>     14: decode_bus<5> 
-  4: RAMLCE<0>         10: decode_bus<1>     15: decode_bus<6> 
-  5: RAMLCE<1>         11: decode_bus<2>     16: decode_bus<7> 
-  6: RAMLOE           
+  1: ABUS<1>            5: AS                 8: LDS 
+  2: ABUS<2>            6: BRESET             9: SRESET 
+  3: ABUS<3>            7: DUART_DTACK       10: UDS 
+  4: ABUS<4>          
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-ROMHOE               ......X.XXXXXXXX........................ 9
-ROMHCE               ......X.XXXXXXXX........................ 9
-RAMLCE<1>            ....X...XXXXXXXX........................ 9
-decode_bus<2>        ..X..................................... 1
-RAMLOE               .....X..XXXXXXXX........................ 9
-RAMLCE<0>            ...X....XXXXXXXX........................ 9
-decode_bus<1>        .X...................................... 1
-ROMLOE               .......XXXXXXXXX........................ 9
+RESET                .....X..X............................... 2
+BERR                 ........................................ 0
+HALT                 .....X..X............................... 2
+CPU_DTACK            ......X................................. 1
+decode_bus<7>        ....X................................... 1
+decode_bus<6>        .......X................................ 1
+decode_bus<5>        .........X.............................. 1
+decode_bus<4>        ...X.................................... 1
+decode_bus<3>        ..X..................................... 1
+decode_bus<2>        .X...................................... 1
+decode_bus<1>        X....................................... 1
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB3  ***********************************
+Number of function block inputs used/remaining:               15/39
+Number of signals used by logic mapping into function block:  15
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB3_1         (b)     
+RAMHCE<1>             1       0     0   4     FB3_2   11    I/O     O
+(unused)              0       0     0   5     FB3_3         (b)     
+(unused)              0       0     0   5     FB3_4         (b)     
+(unused)              0       0     0   5     FB3_5   12    I/O     
+(unused)              0       0     0   5     FB3_6         (b)     
+(unused)              0       0     0   5     FB3_7         (b)     
+RAMHCE<0>             1       0     0   4     FB3_8   13    I/O     O
+RAMHOE                1       0     0   4     FB3_9   14    I/O     O
+(unused)              0       0     0   5     FB3_10        (b)     
+decode_bus<0>         1       0     0   4     FB3_11  18    I/O     I
+Mtrien_RAMLOE         3       0     0   2     FB3_12        (b)     (b)
+Mtrien_ROMHOE         4       0     0   1     FB3_13        (b)     (b)
+Mtrien_ROMHCE         4       0     0   1     FB3_14  19    I/O     I
+ROMHOE                1       0     0   4     FB3_15  20    I/O     O
+RAMLOE                1       0     0   4     FB3_16  24    I/O     O
+ROMHCE                1       0     0   4     FB3_17  22    I/O     O
+Mtrien_RAMHOE         4       0     0   1     FB3_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: ABUS<0>            6: Mtrien_ROMHCE     11: decode_bus<3> 
+  2: Mtrien_RAMHCE<0>   7: Mtrien_ROMHOE     12: decode_bus<4> 
+  3: Mtrien_RAMHCE<1>   8: decode_bus<0>     13: decode_bus<5> 
+  4: Mtrien_RAMHOE      9: decode_bus<1>     14: decode_bus<6> 
+  5: Mtrien_RAMLOE     10: decode_bus<2>     15: decode_bus<7> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+RAMHCE<1>            ..X..................................... 1
+RAMHCE<0>            .X...................................... 1
+RAMHOE               ...X.................................... 1
 decode_bus<0>        X....................................... 1
+Mtrien_RAMLOE        ....X..XXXXXXXX......................... 9
+Mtrien_ROMHOE        ......XXXXXXXXX......................... 9
+Mtrien_ROMHCE        .....X.XXXXXXXX......................... 9
+ROMHOE               ......X................................. 1
+RAMLOE               ....X................................... 1
+ROMHCE               .....X.................................. 1
+Mtrien_RAMHOE        ...X...XXXXXXXX......................... 9
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB4  ***********************************
+Number of function block inputs used/remaining:               15/39
+Number of signals used by logic mapping into function block:  15
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB4_1         (b)     
+RAMLCE<1>             1       0     0   4     FB4_2   25    I/O     O
+(unused)              0       0     0   5     FB4_3         (b)     
+(unused)              0       0     0   5     FB4_4         (b)     
+ROMLOE                5       0     0   0     FB4_5   26    I/O     O
+(unused)              0       0     0   5     FB4_6         (b)     
+(unused)              0       0     0   5     FB4_7         (b)     
+RAMLCE<0>             1       0     0   4     FB4_8   27    I/O     O
+(unused)              0       0     0   5     FB4_9         (b)     
+(unused)              0       0     0   5     FB4_10        (b)     
+ROMLCE                2       0     0   3     FB4_11  28    I/O     O
+(unused)              0       0     0   5     FB4_12        (b)     
+Mtrien_RAMLCE<1>      3       0     0   2     FB4_13        (b)     (b)
+Mtrien_RAMLCE<0>      3       0     0   2     FB4_14  29    I/O     I
+Mtrien_ROMLOE         4       0     0   1     FB4_15  33    I/O     I
+Mtrien_ROMLCE         4       0     0   1     FB4_16        (b)     (b)
+Mtrien_RAMHCE<1>      4       0     0   1     FB4_17  34    I/O     I
+Mtrien_RAMHCE<0>      4       0     0   1     FB4_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: Mtrien_RAMHCE<0>   6: Mtrien_ROMLOE     11: decode_bus<3> 
+  2: Mtrien_RAMHCE<1>   7: ROMLOE            12: decode_bus<4> 
+  3: Mtrien_RAMLCE<0>   8: decode_bus<0>     13: decode_bus<5> 
+  4: Mtrien_RAMLCE<1>   9: decode_bus<1>     14: decode_bus<6> 
+  5: Mtrien_ROMLCE     10: decode_bus<2>     15: decode_bus<7> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+RAMLCE<1>            ...X.................................... 1
+ROMLOE               .....XXXXXXXXXX......................... 10
+RAMLCE<0>            ..X..................................... 1
+ROMLCE               ....X.X................................. 2
+Mtrien_RAMLCE<1>     ...X...XXXXXXXX......................... 9
+Mtrien_RAMLCE<0>     ..X....XXXXXXXX......................... 9
+Mtrien_ROMLOE        .....X.XXXXXXXX......................... 9
+Mtrien_ROMLCE        ....X..XXXXXXXX......................... 9
+Mtrien_RAMHCE<1>     .X.....XXXXXXXX......................... 9
+Mtrien_RAMHCE<0>     X......XXXXXXXX......................... 9
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
 *******************************  Equations  ********************************
@@ -304,21 +318,15 @@ decode_bus<0>        X....................................... 1
 ********** Mapped Logic **********
 
 
-BERR <= '1';
+BERR_I <= '0';
+BERR <= BERR_I when BERR_OE = '1' else 'Z';
+BERR_OE <= '0';
 
 
 CPU_DTACK <= DUART_DTACK;
 
-FDCPE_DUARTCS: FDCPE port map (DUARTCS,DUARTCS_D,CLK,'0','0');
-DUARTCS_D <= ((DUARTCS AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (DUARTCS AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND decode_bus(2) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7)));
+
+DUARTCS <= '0';
 
 
 HALT <= (SRESET AND BRESET);
@@ -347,139 +355,200 @@ LED_I(5) <= '0';
 LED(5) <= LED_I(5) when LED_OE(5) = '1' else 'Z';
 LED_OE(5) <= '0';
 
-FDCPE_RAMHCE0: FDCPE port map (RAMHCE(0),RAMHCE_D(0),CLK,'0','0');
-RAMHCE_D(0) <= ((RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHCE0: FDCPE port map (Mtrien_RAMHCE(0),Mtrien_RAMHCE_D(0),CLK,'0','0');
+Mtrien_RAMHCE_D(0) <= ((Mtrien_RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (Mtrien_RAMHCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (RAMHCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (Mtrien_RAMHCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
 
-FDCPE_RAMHCE1: FDCPE port map (RAMHCE(1),RAMHCE_D(1),CLK,'0','0');
-RAMHCE_D(1) <= ((NOT RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHCE1: FDCPE port map (Mtrien_RAMHCE(1),Mtrien_RAMHCE_D(1),CLK,'0','0');
+Mtrien_RAMHCE_D(1) <= ((NOT Mtrien_RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMHCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMHCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMHCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
 
-FDCPE_RAMHOE: FDCPE port map (RAMHOE,RAMHOE_D,CLK,'0','0');
-RAMHOE_D <= ((NOT RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMHOE: FDCPE port map (Mtrien_RAMHOE,Mtrien_RAMHOE_D,CLK,'0','0');
+Mtrien_RAMHOE_D <= ((NOT Mtrien_RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
 
-FDCPE_RAMLCE0: FDCPE port map (RAMLCE(0),RAMLCE_D(0),CLK,'0','0');
-RAMLCE_D(0) <= ((RAMLCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLCE0: FDCPE port map (Mtrien_RAMLCE(0),Mtrien_RAMLCE_D(0),CLK,'0','0');
+Mtrien_RAMLCE_D(0) <= ((Mtrien_RAMLCE(0) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (RAMLCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (Mtrien_RAMLCE(0) AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
 
-FDCPE_RAMLCE1: FDCPE port map (RAMLCE(1),RAMLCE_D(1),CLK,'0','0');
-RAMLCE_D(1) <= ((NOT RAMLCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLCE1: FDCPE port map (Mtrien_RAMLCE(1),Mtrien_RAMLCE_D(1),CLK,'0','0');
+Mtrien_RAMLCE_D(1) <= ((NOT Mtrien_RAMLCE(1) AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMLCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMLCE(1) AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
 
-FDCPE_RAMLOE: FDCPE port map (RAMLOE,RAMLOE_D,CLK,'0','0');
-RAMLOE_D <= ((NOT RAMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+FDCPE_Mtrien_RAMLOE: FDCPE port map (Mtrien_RAMLOE,Mtrien_RAMLOE_D,CLK,'0','0');
+Mtrien_RAMLOE_D <= ((NOT Mtrien_RAMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (NOT RAMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (NOT Mtrien_RAMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-	decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
+
+FDCPE_Mtrien_ROMHCE: FDCPE port map (Mtrien_ROMHCE,Mtrien_ROMHCE_D,CLK,'0','0');
+Mtrien_ROMHCE_D <= ((NOT Mtrien_ROMHCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMHCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMHCE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7)));
+
+FDCPE_Mtrien_ROMHOE: FDCPE port map (Mtrien_ROMHOE,Mtrien_ROMHOE_D,CLK,'0','0');
+Mtrien_ROMHOE_D <= ((NOT Mtrien_ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(3) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7)));
+
+FDCPE_Mtrien_ROMLCE: FDCPE port map (Mtrien_ROMLCE,Mtrien_ROMLCE_D,CLK,'0','0');
+Mtrien_ROMLCE_D <= ((NOT Mtrien_ROMLCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMLCE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMLCE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7)));
+
+FDCPE_Mtrien_ROMLOE: FDCPE port map (Mtrien_ROMLOE,Mtrien_ROMLOE_D,CLK,'0','0');
+Mtrien_ROMLOE_D <= ((NOT Mtrien_ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (NOT Mtrien_ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7))
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
+	NOT decode_bus(7)));
+
+
+RAMHCE_I(0) <= '0';
+RAMHCE(0) <= RAMHCE_I(0) when RAMHCE_OE(0) = '1' else 'Z';
+RAMHCE_OE(0) <= NOT Mtrien_RAMHCE(0);
+
+
+RAMHCE_I(1) <= '0';
+RAMHCE(1) <= RAMHCE_I(1) when RAMHCE_OE(1) = '1' else 'Z';
+RAMHCE_OE(1) <= NOT Mtrien_RAMHCE(1);
+
+
+RAMHOE_I <= '0';
+RAMHOE <= RAMHOE_I when RAMHOE_OE = '1' else 'Z';
+RAMHOE_OE <= NOT Mtrien_RAMHOE;
+
+
+RAMLCE_I(0) <= '0';
+RAMLCE(0) <= RAMLCE_I(0) when RAMLCE_OE(0) = '1' else 'Z';
+RAMLCE_OE(0) <= NOT Mtrien_RAMLCE(0);
+
+
+RAMLCE_I(1) <= '0';
+RAMLCE(1) <= RAMLCE_I(1) when RAMLCE_OE(1) = '1' else 'Z';
+RAMLCE_OE(1) <= NOT Mtrien_RAMLCE(1);
+
+
+RAMLOE_I <= '0';
+RAMLOE <= RAMLOE_I when RAMLOE_OE = '1' else 'Z';
+RAMLOE_OE <= NOT Mtrien_RAMLOE;
 
 
 RESET <= (SRESET AND BRESET);
 
-FDCPE_ROMHCE: FDCPE port map (ROMHCE,ROMHCE_D,CLK,'0','0');
-ROMHCE_D <= ((NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7)));
 
-FDCPE_ROMHOE: FDCPE port map (ROMHOE,ROMHOE_D,CLK,'0','0');
-ROMHOE_D <= ((NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMHOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMHOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT decode_bus(5) AND decode_bus(6) AND NOT decode_bus(2) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7)));
+ROMHCE_I <= '0';
+ROMHCE <= ROMHCE_I when ROMHCE_OE = '1' else 'Z';
+ROMHCE_OE <= NOT Mtrien_ROMHCE;
 
-FDCPE_ROMLCE: FDCPE port map (ROMLCE,ROMLCE_D,CLK,'0','0');
-ROMLCE_D <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+
+ROMHOE_I <= '0';
+ROMHOE <= ROMHOE_I when ROMHOE_OE = '1' else 'Z';
+ROMHOE_OE <= NOT Mtrien_ROMHOE;
+
+
+ROMLCE_I <= ROMLOE;
+ROMLCE <= ROMLCE_I when ROMLCE_OE = '1' else 'Z';
+ROMLCE_OE <= NOT Mtrien_ROMLCE;
+
+FDCPE_ROMLOE: FDCPE port map (ROMLOE_I,ROMLOE,CLK,'0','0');
+ROMLOE <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
 	OR (NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
 	OR (NOT ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	NOT decode_bus(3) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
+	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(3) AND 
+	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(1) AND NOT decode_bus(4) AND 
 	NOT decode_bus(7)));
-
-FDCPE_ROMLOE: FDCPE port map (ROMLOE,ROMLOE_D,CLK,'0','0');
-ROMLOE_D <= ((NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMLOE AND decode_bus(5) AND NOT decode_bus(6) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (NOT ROMLOE AND NOT decode_bus(5) AND decode_bus(6) AND 
-	NOT decode_bus(2) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7))
-	OR (decode_bus(5) AND NOT decode_bus(6) AND NOT decode_bus(2) AND 
-	NOT decode_bus(1) AND NOT decode_bus(0) AND NOT decode_bus(3) AND NOT decode_bus(4) AND 
-	NOT decode_bus(7)));
+ROMLOE <= ROMLOE_I when ROMLOE_OE = '1' else 'Z';
+ROMLOE_OE <= NOT Mtrien_ROMLOE;
 
 FDCPE_decode_bus0: FDCPE port map (decode_bus(0),ABUS(0),CLK,'0','0');
 
@@ -504,50 +573,50 @@ Register Legend:
 
 ******************************  Device Pin Out *****************************
 
-Device : XC9572XL-10-VQ44
+Device : XC9572XL-10-PC44
 
 
    --------------------------------  
-  /44 43 42 41 40 39 38 37 36 35 34 \
- | 1                             33 | 
- | 2                             32 | 
- | 3                             31 | 
- | 4                             30 | 
- | 5        XC9572XL-10-VQ44     29 | 
- | 6                             28 | 
- | 7                             27 | 
- | 8                             26 | 
- | 9                             25 | 
- | 10                            24 | 
- | 11                            23 | 
- \ 12 13 14 15 16 17 18 19 20 21 22 /
+  /6  5  4  3  2  1  44 43 42 41 40 \
+ | 7                             39 | 
+ | 8                             38 | 
+ | 9                             37 | 
+ | 10                            36 | 
+ | 11       XC9572XL-10-PC44     35 | 
+ | 12                            34 | 
+ | 13                            33 | 
+ | 14                            32 | 
+ | 15                            31 | 
+ | 16                            30 | 
+ | 17                            29 | 
+ \ 18 19 20 21 22 23 24 25 26 27 28 /
    --------------------------------  
 
 
 Pin Signal                         Pin Signal                        
 No. Name                           No. Name                          
-  1 DUARTCS                          23 RAMLOE                        
-  2 DUART_DTACK                      24 TDO                           
-  3 LED<0>                           25 GND                           
-  4 GND                              26 VCC                           
-  5 LED<1>                           27 RAMLCE<0>                     
-  6 LED<2>                           28 ROMLOE                        
-  7 LED<4>                           29 ABUS<3>                       
-  8 LED<3>                           30 ROMLCE                        
-  9 TDI                              31 ABUS<2>                       
- 10 TMS                              32 ABUS<4>                       
- 11 TCK                              33 BERR                          
- 12 LED<5>                           34 ABUS<1>                       
- 13 RAMHOE                           35 VCC                           
- 14 RAMHCE<1>                        36 ABUS<0>                       
- 15 VCC                              37 RESET                         
- 16 RAMHCE<0>                        38 CPU_DTACK                     
- 17 GND                              39 HALT                          
- 18 BRESET                           40 UDS                           
- 19 ROMHOE                           41 LDS                           
- 20 ROMHCE                           42 AS                            
- 21 SRESET                           43 KPR                           
- 22 RAMLCE<1>                        44 CLK                           
+  1 AS                               23 GND                           
+  2 LED<0>                           24 RAMLOE                        
+  3 DUARTCS                          25 RAMLCE<1>                     
+  4 LED<1>                           26 ROMLOE                        
+  5 LED<2>                           27 RAMLCE<0>                     
+  6 CLK                              28 ROMLCE                        
+  7 LED<4>                           29 ABUS<4>                       
+  8 LED<3>                           30 TDO                           
+  9 LED<5>                           31 GND                           
+ 10 GND                              32 VCC                           
+ 11 RAMHCE<1>                        33 ABUS<2>                       
+ 12 KPR                              34 ABUS<3>                       
+ 13 RAMHCE<0>                        35 ABUS<0>                       
+ 14 RAMHOE                           36 ABUS<1>                       
+ 15 TDI                              37 RESET                         
+ 16 TMS                              38 BERR                          
+ 17 TCK                              39 HALT                          
+ 18 SRESET                           40 CPU_DTACK                     
+ 19 BRESET                           41 VCC                           
+ 20 ROMHOE                           42 UDS                           
+ 21 VCC                              43 LDS                           
+ 22 ROMHCE                           44 DUART_DTACK                   
 
 
 Legend :  NC  = Not Connected, unbonded pin
@@ -565,7 +634,7 @@ Legend :  NC  = Not Connected, unbonded pin
 
 Following is a list of all global compiler options used by the fitter run.
 
-Device(s) Specified                         : xc9572xl-10-VQ44
+Device(s) Specified                         : xc9572xl-10-PC44
 Optimization Method                         : SPEED
 Multi-Level Logic Optimization              : ON
 Ignore Timing Specifications                : OFF

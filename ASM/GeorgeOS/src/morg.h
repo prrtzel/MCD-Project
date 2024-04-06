@@ -7,7 +7,7 @@
 char output_buffer[OUTPUT_BUFFER_SIZE];
 char input_buffer[INPUT_BUFFER_SIZE];
 char command_buffer[80];
-char srec_data[255];
+char srec_data[];
 
 char srecord[80];
 

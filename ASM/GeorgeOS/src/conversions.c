@@ -48,7 +48,7 @@ extern char ascii_decimal_to_bin(char ascii_char) {
     return value;
 }
 
-extern void binary_to_ascii_hex(long binary_value, char* str_buffer, unsigned char length) {
+extern void binary_to_ascii_hex(long int binary_value, char* str_buffer, unsigned char length) {
     int i = 0;
     unsigned char shift_value = 0;
 
