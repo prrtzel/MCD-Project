@@ -8,59 +8,68 @@ char menu_distribute[] = "Distribute at your own risk!\n\r\0";
 char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands\r\n\0";
 char shell_pretty_thing[] = "\n\r>>\0";
 
-char parse_error[] = "Error: parse error!";
-
 char help_menu[] = "GeorgeOS\n\r
 'help' -- gives a list of commands\n\r
 '1'    -- read memory Ex: 1 00ff00ff\n\r
 '2'    -- dump memory Ex: 2 00000000 00001000\n\r
 '3'    -- write to memory Ex: 3 00ff0012 32\n\r
+'4'    -- read a register Ex: 4 d0\n\r
+'5'    -- write to a register Ex: 5 d4 0000ffff
 \n\r";
 
 char space[] = " ";
 char newline[] = "\n\r";
 char output_buffer[OUTPUT_BUFFER_SIZE] = {0};
 char input_buffer[INPUT_BUFFER_SIZE] = {0};
-char command_buffer[80] = {0};
+char command_buffer[COMMAND_BUFFER_SIZE] = {0};
+char srecord[INPUT_BUFFER_SIZE] = {0};
 
-char srec_data[] = "S00B0000535245432E533638D8
+/*
+srec test data =>
+int main() {
+    return 0;
+}
+*/
+char srec_test_data[] = "S00B0000535245432E533638D8
 S11100004E5600007000600000024E5E4E7509
 S9030000FC";
-
-
-//---------
-//srecord memory
-char srecord[80] = {0};
-
 
 //if exit status == 1, stop the program
 char exit_status = 0;
 
 void print_menu() {
+#ifdef SIM
     set_font(WHITE, BOLD);
     serial_print(&menu_name[0]);
     set_font(RED, ITALLIC);
     serial_print(&menu_distribute[0]);
     reset_font();
     serial_print(&menu_version[0]);
+#endif
+#ifdef HARDWARE
+    serial_print(&menu_name[0]);
+    serial_print(&menu_distribute[0]);
+    serial_print(&menu_version[0]);
+#endif
 }
 
 void init() {
+#ifdef HARDWARE
+    //initialize duart
+#endif
     print_menu();
 }
 
 void get_input() {
     serial_print(&shell_pretty_thing[0]);
-    getString(input_buffer, INPUT_BUFFER_SIZE);
+    get_string(input_buffer, INPUT_BUFFER_SIZE);
 }
-
 
 void read_memory(long address){
     char* address_pointer = (char*) address;
     char value = *address_pointer;
     binary_to_ascii_hex(value, output_buffer, HEX_BYTE_LENGTH);
     serial_print(&output_buffer[0]);
-    clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }
 
 void mem_dump(long starting_address, long ending_address){
@@ -140,7 +149,6 @@ void read_register(enum registers reg){
 
     binary_to_ascii_hex(register_result, output_buffer, 8);
     serial_print(&output_buffer[0]);
-    clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }
 
 int reg_write_value = 0;
@@ -210,59 +218,57 @@ void load_srecord() {
 
 void transfer_buffer() {
     int i = 0;
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < INPUT_BUFFER_SIZE; i++) {
         command_buffer[i] = input_buffer[i];
     }    
 }
 
 void run_srec() {
-    //char* ptr = &srecord[0];
-
+    
 }
 
 void parse_srecord() {
-    switch (type) {
-    char type = srecord[1];
-    int count = ascii_hex_to_bin(&srecord[2], 2);
-    int address = 0;
-    int i = 0;
-    case '0':
-    //skip line with S0 by incrementing counter
-        address = ascii_hex_to_bin(&srecord[4], 4);
-        break;
-    case '1':
-        address = ascii_hex_to_bin(&srecord[4], 4);
+    // switch (type) {
+    // char type = srecord[1];
+    // int count = ascii_hex_to_bin(&srecord[2], 2);
+    // int address = 0;
+    // int i = 0;
+    // case '0':
+    // //skip line with S0 by incrementing counter
+    //     address = ascii_hex_to_bin(&srecord[4], 4);
+    //     break;
+    // case '1':
+    //     address = ascii_hex_to_bin(&srecord[4], 4);
 
-        for(i = 0; i < count; i++) {
-            data[i] = ascii_hex_to_bin(&srecord[8], 2);
-        }
+    //     for(i = 0; i < count; i++) {
+    //         data[i] = ascii_hex_to_bin(&srecord[8], 2);
+    //     }
 
-        break;
-    case '2':
-        address = ascii_hex_to_bin(&srecord[4], 6);
-        break;
-    case '3':
-        address = ascii_hex_to_bin(&srecord[4], 8);
-        break;
-    case '5':
-        address = ascii_hex_to_bin(&srecord[4], 4);
-        break;
-    case '6':
-        address = ascii_hex_to_bin(&srecord[4], 6);
-        break;
-    case '7':
-        address = ascii_hex_to_bin(&srecord[4], 8);
-        break;
-    case '8':
-        address = ascii_hex_to_bin(&srecord[4], 6);
-        break;
-    case '9':
-        address = ascii_hex_to_bin(&srecord[4], 4);
-        break;
-    }
+    //     break;
+    // case '2':
+    //     address = ascii_hex_to_bin(&srecord[4], 6);
+    //     break;
+    // case '3':
+    //     address = ascii_hex_to_bin(&srecord[4], 8);
+    //     break;
+    // case '5':
+    //     address = ascii_hex_to_bin(&srecord[4], 4);
+    //     break;
+    // case '6':
+    //     address = ascii_hex_to_bin(&srecord[4], 6);
+    //     break;
+    // case '7':
+    //     address = ascii_hex_to_bin(&srecord[4], 8);
+    //     break;
+    // case '8':
+    //     address = ascii_hex_to_bin(&srecord[4], 6);
+    //     break;
+    // case '9':
+    //     address = ascii_hex_to_bin(&srecord[4], 4);
+    //     break;
+    // }
 }
 
-char testBuffer[8] = {0};
 void parse_cmd() {
     transfer_buffer();
 
@@ -443,4 +449,5 @@ void parse_cmd() {
     default:
         break;
     }
+    clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }

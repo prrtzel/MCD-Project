@@ -3,15 +3,11 @@
 
 #define OUTPUT_BUFFER_SIZE 100
 #define INPUT_BUFFER_SIZE 80
-#define COMMAND_BUFFER_SIZE 80;
+#define COMMAND_BUFFER_SIZE INPUT_BUFFER_SIZE
 char output_buffer[OUTPUT_BUFFER_SIZE];
 char input_buffer[INPUT_BUFFER_SIZE];
-char command_buffer[80];
-char srec_data[];
-
-char srecord[80];
-
-extern char newline[];
+char command_buffer[COMMAND_BUFFER_SIZE];
+char srecord[INPUT_BUFFER_SIZE];
 
 char exit_status;
 

@@ -13,9 +13,8 @@ extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
     long buffer = 0;
     for (i = 0; i < length; i++) {
         value = ascii_buffer[i];
-
-//--------------------------------------------------------------------------
-//convert the character in the string
+        
+        //convert the character in the string
         // if lowercase letter, subtract to convert to 0-16 range
         if (value >= 0x61 && value <= 0x66) {
             value = value - 0x57;
@@ -32,9 +31,8 @@ extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
             serial_print_error(&ascii_hex_to_bin_error[0]);
             return 0;
         }
-//--------------------------------------------------------------------------
-//shift it into the result
 
+        //shift it into the result
         shift_value = ((length - 1) * 4) - (i * 4);
         buffer = value;
         result = (buffer << shift_value) | result;

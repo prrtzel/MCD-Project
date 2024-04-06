@@ -6,8 +6,6 @@
 #define MAIN
 //#define TEST
 
-char str[8] = {0};
-long value;
 extern int __main() {
 #ifdef MAIN
     init();
@@ -18,12 +16,6 @@ extern int __main() {
 
 #endif
 #ifdef TEST
-    
-    read_register(d0);
-    serial_print(newline);
-    write_register(d0, 0x12345678);
-    serial_print(newline);
-    read_register(d0);
 #endif
     return 0;
 }

@@ -9,47 +9,24 @@
 #define ITALLIC     0x2
 #define UNDERSCORE  0x4
 #define STRIKEOUT   0x8
-#define BACKSPACE 0x08
+#define BACKSPACE   0x08
 
 #define SIM
 //#define HARDWARE
 
-/**
- * \name set_font 
- * sets font color and style
- * \param color 
- * \param style 
-*/
 extern void set_font(int color, char style);
 
 extern void reset_font();
 
-/**
- * \name serial_print
- * Prints a string to the serial monitor
- * set definitions to use simulator vs hardware
- * \param char* Pointer to string
-*/
 extern void serial_print(char* str_p);
 
+extern char get_char();
 
-/**
- * \name getChar
- * Returns a character from the serial monitor
- * \return char
-*/
-extern char getChar();
+extern void put_char(char value);
 
-/**
- * \name clear_input_buffer
- * initializes the buffer to 0
-*/
 extern void clear_buffer(char* input_buffer, int length);
 
-/**
- * fills the input buffer with a string
-*/
-extern void getString(char* input_buffer, unsigned char length);
+extern void get_string(char* input_buffer, unsigned char length);
 
 extern void serial_print_error(char* error_message);
 

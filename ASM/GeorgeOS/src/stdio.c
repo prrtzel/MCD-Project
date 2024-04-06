@@ -1,8 +1,11 @@
 #include "stdio.h"
 
 char* serial_print_pointer = 0;
+char get_char_buffer = 0;
 char style_buffer = 0;
 int color_buffer = 0;
+
+char input_overflow_error[] = "Error: too large an input!";
 char backspace[] = " \b\0";
 char eot[] = "\n\r\0";
 
@@ -19,15 +22,18 @@ extern void serial_print(char* str_p) {
 #endif
 }
 
-char charBuffer = 0;
-extern char getChar() {
+extern void put_char(char value) {
+
+}
+
+extern char get_char() {
 #ifdef SIM
     __asm__("
 	    move.l	#5, %d0
 	    trap	#15
-	    move.b	%d1, charBuffer
+	    move.b	%d1, get_char_buffer
     ");
-    return charBuffer;
+    return get_char_buffer;
 #endif
 #ifdef HARDWARE
 #endif
@@ -58,7 +64,6 @@ extern void serial_print_error(char* error_message) {
     reset_font();
 }
 
-
 extern void clear_buffer(char* input_buffer, int length) {
     int i = 0;
     for (i = 0; i < length; i++) {
@@ -66,9 +71,7 @@ extern void clear_buffer(char* input_buffer, int length) {
     }
 }
 
-
-char input_overflow[] = "Error: too large an input!";
-extern void getString(char* input_buffer, unsigned char length) {
+extern void get_string(char* input_buffer, unsigned char length) {
     int i = 0;
     char char_buffer = 1;
     
@@ -76,10 +79,10 @@ extern void getString(char* input_buffer, unsigned char length) {
 
     while (char_buffer != '\r') {
         if (i > length) {
-            serial_print_error(&input_overflow[0]);
+            serial_print_error(&input_overflow_error[0]);
             return;
         }
-        char_buffer = getChar();
+        char_buffer = get_char();
 
         if (char_buffer == BACKSPACE) {
             i--;
