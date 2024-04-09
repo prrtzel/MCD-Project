@@ -8,3 +8,29 @@ return stuff from stack except register altered
 put all registers on stack
 write to register
 put all registers except that register onto the stack
+
+
+
+S00B0000535245432E533638D8
+S11100004E5600007000600000024E5E4E7509
+S9030000FC
+
+S00B0000535245432E533638D8
+S 0 0B 0000 535245432E533638 D8
+
+
+S11100004E5600007000600000024E5E4E7509
+S 1 11 0000 4E5600007000600000024E5E4E75 09
+
+type
+count 
+address
+data
+checksum
+
+find type
+    ignore S0
+find count
+set start pointer to address
+
+

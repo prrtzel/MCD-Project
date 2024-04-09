@@ -26,6 +26,8 @@ extern void put_char(char value);
 
 extern void clear_buffer(char* input_buffer, int length);
 
+extern void transfer_buffer(char* input_buffer, char* output_buffer, int length);
+
 extern void get_string(char* input_buffer, unsigned char length);
 
 extern void serial_print_error(char* error_message);

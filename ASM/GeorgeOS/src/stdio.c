@@ -71,6 +71,13 @@ extern void clear_buffer(char* input_buffer, int length) {
     }
 }
 
+extern void transfer_buffer(char* input_buffer, char* output_buffer, int length) {
+    int i = 0;
+    for (i = 0; i < length; i++) {
+        input_buffer[i] = output_buffer[i];
+    }
+}
+
 extern void get_string(char* input_buffer, unsigned char length) {
     int i = 0;
     char char_buffer = 1;

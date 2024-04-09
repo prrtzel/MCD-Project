@@ -31,8 +31,8 @@ int main() {
 }
 */
 char srec_test_data[] = "S00B0000535245432E533638D8
-S11100004E5600007000600000024E5E4E7509
-S9030000FC";
+S313010000004E5600007000600000024E5E4E7506
+S70501000000F9";
 
 //if exit status == 1, stop the program
 char exit_status = 0;
@@ -54,6 +54,8 @@ void print_menu() {
 }
 
 void init() {
+    //initialize sp to end of ram
+    __asm__("move.l 0x0011FFFF, %sp");
 #ifdef HARDWARE
     //initialize duart
 #endif
@@ -64,6 +66,8 @@ void get_input() {
     serial_print(&shell_pretty_thing[0]);
     get_string(input_buffer, INPUT_BUFFER_SIZE);
 }
+
+#pragma region memory
 
 void read_memory(long address){
     char* address_pointer = (char*) address;
@@ -91,6 +95,9 @@ void write_memory(long address, char data){
     *address_pointer = data;
 }
 
+#pragma endregion
+
+#pragma region registers
 int register_result = 0;
 void read_register(enum registers reg){
     register_result = 0;
@@ -207,70 +214,43 @@ void write_register(enum registers reg, int data){
         break;
     }
 }
+#pragma endregion
+
+#pragma region srec
 
 void load_srecord() {
-    // int i = 2;
-    // for (i = 2; i < 80; i++) {
-    //     srecord[i] = input_buffer[i];
-    // }
-    parse_srecord();    
-}
-
-void transfer_buffer() {
-    int i = 0;
-    for (i = 0; i < INPUT_BUFFER_SIZE; i++) {
-        command_buffer[i] = input_buffer[i];
-    }    
+    //parse_srecord();    
 }
 
 void run_srec() {
     
 }
 
+char srec_executable[255] = {0};
+/*
 void parse_srecord() {
-    // switch (type) {
-    // char type = srecord[1];
-    // int count = ascii_hex_to_bin(&srecord[2], 2);
-    // int address = 0;
-    // int i = 0;
-    // case '0':
-    // //skip line with S0 by incrementing counter
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // case '1':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-
-    //     for(i = 0; i < count; i++) {
-    //         data[i] = ascii_hex_to_bin(&srecord[8], 2);
-    //     }
-
-    //     break;
-    // case '2':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '3':
-    //     address = ascii_hex_to_bin(&srecord[4], 8);
-    //     break;
-    // case '5':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // case '6':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '7':
-    //     address = ascii_hex_to_bin(&srecord[4], 8);
-    //     break;
-    // case '8':
-    //     address = ascii_hex_to_bin(&srecord[4], 6);
-    //     break;
-    // case '9':
-    //     address = ascii_hex_to_bin(&srecord[4], 4);
-    //     break;
-    // }
+    //currently only supports 32 bit addressing
+    char type = '3';
+    switch (type) {
+    char type = ascii_hex_to_bin(&srecord[1], 1);
+    int count = ascii_hex_to_bin(&srecord[2], 2);
+    //int address = ascii_hex_to_bin(&srecord[4], 8);
+    int i = 0;
+    case '3':
+        for (i = 0; i < count; i++) {
+            srec_executable[i] = ascii_hex_to_bin(&srecord[i+12], 2);
+        }
+        break;
+    case '7':
+        break;
+    }
 }
+*/
+#pragma endregion
 
 void parse_cmd() {
-    transfer_buffer();
+    transfer_buffer(&input_buffer[0], 
+    &command_buffer[0], INPUT_BUFFER_SIZE);
 
     if (command_buffer[0] == 'h') {
         if (command_buffer[1] == 'e') {

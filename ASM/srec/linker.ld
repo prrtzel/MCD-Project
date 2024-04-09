@@ -4,7 +4,7 @@ OUTPUT_FORMAT(srec)
 
 SECTIONS
 {
-  . = 0x00300000;
+  . = 0x01000000;
   .text : { *(.text) }
   .data : { *(.data) }
   .bss : { *(.bss) }

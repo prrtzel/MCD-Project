@@ -27,7 +27,7 @@ entity glue_logic is
 end glue_logic;
 
 architecture Behavioral of glue_logic is
-    signal reset_output : std_logic := '0';
+    signal reset_output : std_logic := '1';
 
     -- as, lds, uds, abus
     signal decode_bus : std_logic_vector (7 downto 0);
@@ -54,14 +54,14 @@ begin
                 when "01000000" =>
                     ROMHOE <= '0';
                     ROMHCE <= '0';
-                when "00100100" =>
+                when "00100010" =>
                     RAMLOE <= '0';
                     RAMLCE <= "0Z";
-                when "01000100" =>
+                when "01000010" =>
                     RAMHOE <= '0';
                     RAMHCE <= "0Z";
-                when "00101000" =>
-                    DUARTCS <= '0';
+                when "00100100" =>
+                    DUARTCS <= 'Z';
                 when others =>
                     ROMLOE <= 'Z';
                     ROMLCE <= 'Z';
