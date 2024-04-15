@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Reading design: glue_logic.prj
 
@@ -100,6 +100,8 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <glue_logic>.
     Related source file is "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd".
+WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit tristate buffer for signal <HALT>.
     Found 1-bit tristate buffer for signal <BERR>.
     Found 1-bit tristate buffer for signal <LED<5>>.
     Found 1-bit tristate buffer for signal <LED<3>>.
@@ -108,37 +110,16 @@ Synthesizing Unit <glue_logic>.
     Found 1-bit tristate buffer for signal <ROMLCE>.
     Found 1-bit tristate buffer for signal <ROMHOE>.
     Found 1-bit tristate buffer for signal <ROMHCE>.
-    Found 2-bit tristate buffer for signal <RAMLCE>.
+    Found 1-bit tristate buffer for signal <RAMLCE>.
+    Found 1-bit tristate buffer for signal <RAMLCE2>.
     Found 1-bit tristate buffer for signal <RAMLOE>.
-    Found 2-bit tristate buffer for signal <RAMHCE>.
+    Found 1-bit tristate buffer for signal <RAMHCE>.
+    Found 1-bit tristate buffer for signal <RAMHCE2>.
     Found 1-bit tristate buffer for signal <RAMHOE>.
+    Found 1-bit tristate buffer for signal <RESET>.
     Found 1-bit tristate buffer for signal <DUARTCS>.
-    Found 8-bit register for signal <decode_bus>.
-    Found 1-bit register for signal <Mtridata_DUARTCS> created at line 64.
-    Found 1-bit register for signal <Mtridata_RAMHCE<0>> created at line 62.
-    Found 1-bit register for signal <Mtridata_RAMHCE<1>> created at line 62.
-    Found 1-bit register for signal <Mtridata_RAMHOE> created at line 61.
-    Found 1-bit register for signal <Mtridata_RAMLCE<0>> created at line 59.
-    Found 1-bit register for signal <Mtridata_RAMLCE<1>> created at line 59.
-    Found 1-bit register for signal <Mtridata_RAMLOE> created at line 58.
-    Found 1-bit register for signal <Mtridata_ROMHCE> created at line 56.
-    Found 1-bit register for signal <Mtridata_ROMHOE> created at line 55.
-    Found 1-bit register for signal <Mtridata_ROMLCE> created at line 53.
-    Found 1-bit register for signal <Mtridata_ROMLOE> created at line 52.
-    Found 1-bit register for signal <Mtrien_DUARTCS> created at line 64.
-    Found 1-bit register for signal <Mtrien_RAMHCE<0>> created at line 62.
-    Found 1-bit register for signal <Mtrien_RAMHCE<1>> created at line 62.
-    Found 1-bit register for signal <Mtrien_RAMHOE> created at line 61.
-    Found 1-bit register for signal <Mtrien_RAMLCE<0>> created at line 59.
-    Found 1-bit register for signal <Mtrien_RAMLCE<1>> created at line 59.
-    Found 1-bit register for signal <Mtrien_RAMLOE> created at line 58.
-    Found 1-bit register for signal <Mtrien_ROMHCE> created at line 56.
-    Found 1-bit register for signal <Mtrien_ROMHOE> created at line 55.
-    Found 1-bit register for signal <Mtrien_ROMLCE> created at line 53.
-    Found 1-bit register for signal <Mtrien_ROMLOE> created at line 52.
     Summary:
-	inferred  20 D-type flip-flop(s).
-	inferred  15 Tristate(s).
+	inferred  17 Tristate(s).
 Unit <glue_logic> synthesized.
 
 
@@ -146,11 +127,8 @@ Unit <glue_logic> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Registers                                            : 23
- 1-bit register                                        : 22
- 8-bit register                                        : 1
-# Tristates                                            : 15
- 1-bit tristate buffer                                 : 15
+# Tristates                                            : 17
+ 1-bit tristate buffer                                 : 17
 
 =========================================================================
 
@@ -158,62 +136,18 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMLCE<1>>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMLCE<0>>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_DUARTCS>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_ROMHOE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMLOE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMHCE<1>>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMHCE<0>>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_RAMHOE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <Mtridata_ROMHCE>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
-Macro Statistics
-# Registers                                            : 20
- Flip-Flops                                            : 20
-
+Found no macro
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <Mtridata_ROMHCE> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMHOE> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMHCE<0>> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMHCE<1>> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMLOE> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_ROMHOE> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_DUARTCS> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMLCE<0>> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Mtridata_RAMLCE<1>> (without init value) has a constant value of 0 in block <glue_logic>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_ROMHCE and Mtridata_RAMHOE Mtridata_RAMHOE signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_RAMHOE and Mtridata_RAMHCE<0> Mtridata_RAMHCE<0> signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_RAMHCE<0> and Mtridata_RAMHCE<1> Mtridata_RAMHCE<1> signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_RAMHCE<0> and Mtridata_RAMLOE Mtridata_RAMLOE signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_RAMHCE<0> and Mtridata_ROMHOE Mtridata_ROMHOE signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_RAMHCE<0> and Mtridata_DUARTCS Mtridata_DUARTCS signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_DUARTCS and Mtridata_RAMLCE<0> Mtridata_RAMLCE<0> signal will be lost.
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_DUARTCS and Mtridata_RAMLCE<1> Mtridata_RAMLCE<1> signal will be lost.
-INFO:Xst:2261 - The FF/Latch <Mtridata_ROMLCE> in Unit <glue_logic> is equivalent to the following FF/Latch, which will be removed : <Mtridata_ROMLOE> 
-WARNING:Xst:638 - in unit glue_logic Conflict on KEEP property on signal Mtridata_ROMLCE and Mtridata_ROMLOE Mtridata_ROMLOE signal will be lost.
 
 Optimizing unit <glue_logic> ...
-  implementation constraint: IOB=auto	 : Mtrien_RAMLOE
-  implementation constraint: IOB=auto	 : Mtrien_RAMLCE<0>
-  implementation constraint: IOB=auto	 : Mtrien_ROMLCE
-  implementation constraint: IOB=auto	 : Mtrien_RAMLCE<1>
-  implementation constraint: IOB=auto	 : Mtridata_ROMLCE
-  implementation constraint: IOB=auto	 : Mtrien_RAMHCE<0>
-  implementation constraint: IOB=auto	 : Mtrien_RAMHCE<1>
-  implementation constraint: IOB=auto	 : Mtrien_ROMLOE
-  implementation constraint: IOB=auto	 : Mtridata_DUARTCS
-  implementation constraint: IOB=auto	 : Mtrien_RAMHOE
-  implementation constraint: IOB=auto	 : Mtrien_ROMHCE
-  implementation constraint: IOB=auto	 : Mtrien_DUARTCS
-  implementation constraint: IOB=auto	 : Mtrien_ROMHOE
 
 =========================================================================
 *                           Partition Report                            *
@@ -242,35 +176,30 @@ Clock Enable                       : YES
 wysiwyg                            : NO
 
 Design Statistics
-# IOs                              : 33
+# IOs                              : 30
 
 Cell Usage :
-# BELS                             : 92
-#      AND2                        : 23
-#      AND4                        : 1
+# BELS                             : 36
+#      AND2                        : 3
+#      AND4                        : 5
 #      GND                         : 1
-#      INV                         : 32
-#      OR2                         : 27
-#      OR3                         : 4
-#      OR4                         : 4
-# FlipFlops/Latches                : 20
-#      FD                          : 8
-#      FDCE                        : 12
-# IO Buffers                       : 33
-#      IBUF                        : 12
-#      OBUF                        : 6
-#      OBUFE                       : 15
+#      INV                         : 24
+#      OR2                         : 3
+# IO Buffers                       : 29
+#      IBUF                        : 8
+#      OBUF                        : 4
+#      OBUFE                       : 17
 =========================================================================
 
 
 Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.81 secs
+Total CPU time to Xst completion: 2.69 secs
  
 --> 
 
-Total memory usage is 4499460 kilobytes
+Total memory usage is 4499468 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   27 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 

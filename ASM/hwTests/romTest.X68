@@ -6,13 +6,9 @@
 
 * Date       : 2010 
 
-* Description: Testing RAM with a subroutine jump. To jump 
+* Description: Testing ROM. NOP is "No operation" and will 
 
-*              to a subroutine, the PC and SR are pushed onto 
-
-*              the stack which is a location in RAM. If the 
-
-*              program continually loops, the RAM is working 
+*              simply increase the PC 
 
 *----------------------------------------------------------- 
 
@@ -22,21 +18,27 @@
 
  
 
-SUPER_STACK     EQU     $00100000	; MUST BE A VALID RAM LOCATION 
+SUPER_STACK     EQU     $00FF0  ;note this stack pointer points to a location in ROM and therefore will not function as a stack, it is simply used as a place holder. 
 
-START   	ORG     $000000 
-        	DC.L    SUPER_STACK 
-        	DC.L    MAIN
  
-        	ORG     $000100         
-MAIN    	JSR	    RAM_TEST 
-            JMP    MAIN 
 
-RAM_TEST 	NOP 
-        	NOP 
-            NOP 
-            RTS 
-        	END     MAIN 
+ 
+
+START   ORG     $000000 
+        DC.L    SUPER_STACK 
+        DC.L    MAIN 
+        
+        ORG     $000100         
+MAIN    NOP
+        JMP     MAIN
+        NOP
+        NOP
+        END     MAIN 
+
+
+
+
+
 *~Font name~Courier New~
 *~Font size~16~
 *~Tab type~1~

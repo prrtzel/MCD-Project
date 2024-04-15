@@ -1,503 +1,190 @@
 MDF Database:  version 1.0
 MDF_INFO | glue_logic | XC9572XL-10-PC44
-MACROCELL | 3 | 4 | Mtridata_ROMLCE
-ATTRIBUTES | 8816386 | 0
-OUTPUTMC | 2 | 3 | 4 | 3 | 10
-INPUTS | 10 | ROMLOE  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<2>  | Mtrien_ROMLOE
-INPUTMC | 10 | 3 | 4 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 15 | 3 | 14
-EQ | 14 | 
-   !ROMLOE.D = !ROMLOE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !ROMLOE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !ROMLOE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   ROMLOE.CLK = CLK;	// GCK
-   ROMLOE.OE = !Mtrien_ROMLOE;
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 11 | Mtrien_DUARTCS
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 2 | 11 | 0 | 5
-INPUTS | 9 | Mtrien_DUARTCS  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 2 | 11 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 10 | 
-   Mtrien_DUARTCS.D = Mtrien_DUARTCS & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# Mtrien_DUARTCS & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_DUARTCS.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 17 | Mtrien_RAMHCE<0>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 17 | 2 | 7
-INPUTS | 9 | Mtrien_RAMHCE<0>  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 3 | 17 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 13 | 
-   Mtrien_RAMHCE<0>.D = Mtrien_RAMHCE<0> & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# Mtrien_RAMHCE<0> & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# Mtrien_RAMHCE<0> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMHCE<0>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 16 | Mtrien_RAMHCE<1>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 16 | 2 | 1
-INPUTS | 9 | Mtrien_RAMHCE<1>  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 3 | 16 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 13 | 
-   !Mtrien_RAMHCE<1>.D = !Mtrien_RAMHCE<1> & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMHCE<1> & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMHCE<1> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMHCE<1>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 17 | Mtrien_RAMHOE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 2 | 17 | 2 | 8
-INPUTS | 9 | Mtrien_RAMHOE  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 2 | 17 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 13 | 
-   !Mtrien_RAMHOE.D = !Mtrien_RAMHOE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMHOE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMHOE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMHOE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 13 | Mtrien_RAMLCE<0>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 13 | 3 | 7
-INPUTS | 9 | decode_bus<2>  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | Mtrien_RAMLCE<0>
-INPUTMC | 9 | 1 | 15 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 3 | 13
-EQ | 10 | 
-   Mtrien_RAMLCE<0>.D = Mtrien_RAMLCE<0> & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# Mtrien_RAMLCE<0> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMLCE<0>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 12 | Mtrien_RAMLCE<1>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 12 | 3 | 1
-INPUTS | 9 | decode_bus<2>  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | Mtrien_RAMLCE<1>
-INPUTMC | 9 | 1 | 15 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 3 | 12
-EQ | 10 | 
-   !Mtrien_RAMLCE<1>.D = !Mtrien_RAMLCE<1> & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMLCE<1> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMLCE<1>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 10 | Mtrien_RAMLOE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 2 | 10 | 2 | 15
-INPUTS | 9 | decode_bus<2>  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | Mtrien_RAMLOE
-INPUTMC | 9 | 1 | 15 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 2 | 10
-EQ | 10 | 
-   !Mtrien_RAMLOE.D = !Mtrien_RAMLOE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_RAMLOE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_RAMLOE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 13 | Mtrien_ROMHCE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 2 | 13 | 2 | 16
-INPUTS | 9 | Mtrien_ROMHCE  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 2 | 13 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 13 | 
-   !Mtrien_ROMHCE.D = !Mtrien_ROMHCE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMHCE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMHCE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_ROMHCE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 12 | Mtrien_ROMHOE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 2 | 12 | 2 | 14
-INPUTS | 9 | Mtrien_ROMHOE  | decode_bus<2>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<1>
-INPUTMC | 9 | 2 | 12 | 1 | 15 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 16
-EQ | 13 | 
-   !Mtrien_ROMHOE.D = !Mtrien_ROMHOE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMHOE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMHOE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_ROMHOE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 15 | Mtrien_ROMLCE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 15 | 3 | 10
-INPUTS | 9 | Mtrien_ROMLCE  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<2>
-INPUTMC | 9 | 3 | 15 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 15
-EQ | 13 | 
-   !Mtrien_ROMLCE.D = !Mtrien_ROMLCE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMLCE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMLCE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_ROMLCE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 3 | 14 | Mtrien_ROMLOE
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 2 | 3 | 4 | 3 | 14
-INPUTS | 9 | Mtrien_ROMLOE  | decode_bus<1>  | decode_bus<0>  | decode_bus<5>  | decode_bus<6>  | decode_bus<7>  | decode_bus<3>  | decode_bus<4>  | decode_bus<2>
-INPUTMC | 9 | 3 | 14 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13 | 1 | 15
-EQ | 13 | 
-   !Mtrien_ROMLOE.D = !Mtrien_ROMLOE & !decode_bus<2> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMLOE & !decode_bus<2> & !decode_bus<0> & 
-	!decode_bus<5> & decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !Mtrien_ROMLOE & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>
-	# !decode_bus<2> & !decode_bus<1> & !decode_bus<0> & 
-	decode_bus<5> & !decode_bus<6> & !decode_bus<7> & !decode_bus<3> & 
-	!decode_bus<4>;
-   Mtrien_ROMLOE.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 5 | RESET_OBUF
+MACROCELL | 1 | 10 | CPU_DTACK_OBUF
 ATTRIBUTES | 264962 | 0
-INPUTS | 2 | SRESET  | BRESET
-INPUTP | 2 | 46 | 49
-EQ | 1 | 
-   RESET = SRESET & BRESET;
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | DUART_DTACK
+INPUTP | 4 | 83 | 11 | 82 | 10
+EQ | 3 | 
+   CPU_DTACK = !ABUS<1> & AS
+	# AS & ABUS<0>
+	# ABUS<1> & !ABUS<0> & DUART_DTACK;
 
-MACROCELL | 3 | 10 | Mtridata_ROMLCE$BUF0
+MACROCELL | 3 | 4 | LED_0_OBUF
 ATTRIBUTES | 265986 | 0
-INPUTS | 2 | ROMLOE  | Mtrien_ROMLCE
-INPUTMC | 2 | 3 | 4 | 3 | 15
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
 EQ | 2 | 
-   ROMLCE = ROMLOE;
-   ROMLCE.OE = !Mtrien_ROMLCE;
+   ROMLOE = Gnd;
+   ROMLOE.OE = !ABUS<1> & !AS & !ABUS<0> & !LDS;
 
-MACROCELL | 1 | 15 | decode_bus<2>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | ABUS<2>
-INPUTP | 1 | 82
-EQ | 2 | 
-   decode_bus<2>.D = ABUS<2>;
-   decode_bus<2>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 16 | decode_bus<1>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | ABUS<1>
-INPUTP | 1 | 88
-EQ | 2 | 
-   decode_bus<1>.D = ABUS<1>;
-   decode_bus<1>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 17 | decode_bus<0>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | ABUS<0>
-INPUTP | 1 | 87
-EQ | 2 | 
-   decode_bus<0>.D = ABUS<0>;
-   decode_bus<0>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 12 | decode_bus<5>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | UDS
-INPUTP | 1 | 7
-EQ | 2 | 
-   decode_bus<5>.D = UDS;
-   decode_bus<5>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 11 | decode_bus<6>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | LDS
-INPUTP | 1 | 9
-EQ | 2 | 
-   decode_bus<6>.D = LDS;
-   decode_bus<6>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 9 | decode_bus<7>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | AS
-INPUTP | 1 | 11
-EQ | 2 | 
-   decode_bus<7>.D = AS;
-   decode_bus<7>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 14 | decode_bus<3>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | ABUS<3>
-INPUTP | 1 | 83
-EQ | 2 | 
-   decode_bus<3>.D = ABUS<3>;
-   decode_bus<3>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 1 | 13 | decode_bus<4>
-ATTRIBUTES | 8553216 | 0
-OUTPUTMC | 12 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14
-INPUTS | 1 | ABUS<4>
-INPUTP | 1 | 72
-EQ | 2 | 
-   decode_bus<4>.D = ABUS<4>;
-   decode_bus<4>.CLK = CLK;	// GCK
-GLOBALS | 1 | 2 | CLK
-
-MACROCELL | 2 | 14 | Mtridata_DUARTCS
+MACROCELL | 3 | 10 | LED_0_OBUF$BUF0
 ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_ROMHOE
-INPUTMC | 1 | 2 | 12
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
+EQ | 2 | 
+   ROMLCE = Gnd;
+   ROMLCE.OE = !ABUS<1> & !AS & !ABUS<0> & !LDS;
+
+MACROCELL | 2 | 14 | LED_0_OBUF$BUF1
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | UDS  | AS  | ABUS<0>
+INPUTP | 4 | 83 | 7 | 11 | 82
 EQ | 2 | 
    ROMHOE = Gnd;
-   ROMHOE.OE = !Mtrien_ROMHOE;
+   ROMHOE.OE = !ABUS<1> & !UDS & !AS & !ABUS<0>;
 
-MACROCELL | 2 | 16 | Mtridata_DUARTCS$BUF0
+MACROCELL | 1 | 8 | LED_0_OBUF$BUF16
 ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_ROMHCE
-INPUTMC | 1 | 2 | 13
-EQ | 2 | 
-   ROMHCE = Gnd;
-   ROMHCE.OE = !Mtrien_ROMHCE;
-
-MACROCELL | 2 | 15 | Mtridata_DUARTCS$BUF1
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMLOE
-INPUTMC | 1 | 2 | 10
-EQ | 2 | 
-   RAMLOE = Gnd;
-   RAMLOE.OE = !Mtrien_RAMLOE;
-
-MACROCELL | 0 | 5 | Mtridata_DUARTCS$BUF13
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_DUARTCS
-INPUTMC | 1 | 2 | 11
-EQ | 2 | 
-   DUARTCS = Gnd;
-   DUARTCS.OE = !Mtrien_DUARTCS;
-
-MACROCELL | 3 | 1 | Mtridata_DUARTCS$BUF2
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMLCE<1>
-INPUTMC | 1 | 3 | 12
-EQ | 2 | 
-   RAMLCE<1> = Gnd;
-   RAMLCE<1>.OE = !Mtrien_RAMLCE<1>;
-
-MACROCELL | 3 | 7 | Mtridata_DUARTCS$BUF3
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMLCE<0>
-INPUTMC | 1 | 3 | 13
-EQ | 2 | 
-   RAMLCE<0> = Gnd;
-   RAMLCE<0>.OE = !Mtrien_RAMLCE<0>;
-
-MACROCELL | 2 | 8 | Mtridata_DUARTCS$BUF4
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMHOE
-INPUTMC | 1 | 2 | 17
-EQ | 2 | 
-   RAMHOE = Gnd;
-   RAMHOE.OE = !Mtrien_RAMHOE;
-
-MACROCELL | 2 | 1 | Mtridata_DUARTCS$BUF5
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMHCE<1>
-INPUTMC | 1 | 3 | 16
-EQ | 2 | 
-   RAMHCE<1> = Gnd;
-   RAMHCE<1>.OE = !Mtrien_RAMHCE<1>;
-
-MACROCELL | 2 | 7 | Mtridata_DUARTCS$BUF6
-ATTRIBUTES | 265986 | 0
-INPUTS | 1 | Mtrien_RAMHCE<0>
-INPUTMC | 1 | 3 | 17
-EQ | 2 | 
-   RAMHCE<0> = Gnd;
-   RAMHCE<0>.OE = !Mtrien_RAMHCE<0>;
-
-MACROCELL | 1 | 10 | CPU_DTACK_OBUF$BUF0
-ATTRIBUTES | 264962 | 0
-INPUTS | 1 | DUART_DTACK
-INPUTP | 1 | 10
-EQ | 1 | 
-   CPU_DTACK = DUART_DTACK;
-
-MACROCELL | 1 | 8 | RESET_OBUF$BUF0
-ATTRIBUTES | 264962 | 0
 INPUTS | 2 | SRESET  | BRESET
 INPUTP | 2 | 46 | 49
-EQ | 1 | 
-   HALT = SRESET & BRESET;
-
-MACROCELL | 0 | 7 | Mtridata_DUARTCS$BUF11
-ATTRIBUTES | 265986 | 0
-INPUTS | 0
 EQ | 2 | 
-   LED<1> = Gnd;
-   LED<1>.OE = Gnd;
+   HALT = Gnd;
+   !HALT.OE = SRESET & BRESET;
 
-MACROCELL | 1 | 7 | Mtridata_DUARTCS$BUF14
+MACROCELL | 0 | 5 | LED_0_OBUF$BUF17
 ATTRIBUTES | 265986 | 0
-INPUTS | 0
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
 EQ | 2 | 
-   BERR = Gnd;
-   BERR.OE = Gnd;
+   DUARTCS = Gnd;
+   !DUARTCS.OE = ABUS<1> & !AS & !ABUS<0> & !LDS;
 
-MACROCELL | 0 | 16 | Mtridata_DUARTCS$BUF7
+MACROCELL | 2 | 16 | LED_0_OBUF$BUF2
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | UDS  | AS  | ABUS<0>
+INPUTP | 4 | 83 | 7 | 11 | 82
+EQ | 2 | 
+   ROMHCE = Gnd;
+   ROMHCE.OE = !ABUS<1> & !UDS & !AS & !ABUS<0>;
+
+MACROCELL | 1 | 5 | LED_0_OBUF$BUF3
+ATTRIBUTES | 265986 | 0
+INPUTS | 2 | SRESET  | BRESET
+INPUTP | 2 | 46 | 49
+EQ | 2 | 
+   RESET = Gnd;
+   !RESET.OE = SRESET & BRESET;
+
+MACROCELL | 2 | 15 | LED_0_OBUF$BUF4
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
+EQ | 2 | 
+   RAMLOE = Gnd;
+   RAMLOE.OE = !ABUS<1> & !AS & ABUS<0> & !LDS;
+
+MACROCELL | 3 | 7 | LED_0_OBUF$BUF5
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
+EQ | 2 | 
+   RAMLCE = Gnd;
+   RAMLCE.OE = !ABUS<1> & !AS & ABUS<0> & !LDS;
+
+MACROCELL | 3 | 1 | LED_0_OBUF$BUF6
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | AS  | ABUS<0>  | LDS
+INPUTP | 4 | 83 | 11 | 82 | 9
+EQ | 2 | 
+   RAMLCE2 = Gnd;
+   !RAMLCE2.OE = !ABUS<1> & !AS & ABUS<0> & !LDS;
+
+MACROCELL | 2 | 8 | LED_0_OBUF$BUF7
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | UDS  | AS  | ABUS<0>
+INPUTP | 4 | 83 | 7 | 11 | 82
+EQ | 2 | 
+   RAMHOE = Gnd;
+   RAMHOE.OE = ABUS<1> & !UDS & !AS & !ABUS<0>;
+
+MACROCELL | 2 | 7 | LED_0_OBUF$BUF8
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | UDS  | AS  | ABUS<0>
+INPUTP | 4 | 83 | 7 | 11 | 82
+EQ | 2 | 
+   RAMHCE = Gnd;
+   RAMHCE.OE = ABUS<1> & !UDS & !AS & !ABUS<0>;
+
+MACROCELL | 2 | 1 | LED_0_OBUF$BUF9
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<1>  | UDS  | AS  | ABUS<0>
+INPUTP | 4 | 83 | 7 | 11 | 82
+EQ | 2 | 
+   RAMHCE2 = Gnd;
+   !RAMHCE2.OE = ABUS<1> & !UDS & !AS & !ABUS<0>;
+
+MACROCELL | 0 | 16 | LED_0_OBUF$BUF10
 ATTRIBUTES | 265986 | 0
 INPUTS | 0
 EQ | 2 | 
    LED<5> = Gnd;
    LED<5>.OE = Gnd;
 
-MACROCELL | 0 | 14 | Mtridata_DUARTCS$BUF9
+MACROCELL | 0 | 14 | LED_0_OBUF$BUF12
 ATTRIBUTES | 265986 | 0
 INPUTS | 0
 EQ | 2 | 
    LED<3> = Gnd;
    LED<3>.OE = Gnd;
 
-MACROCELL | 0 | 8 | Mtridata_DUARTCS$BUF10
-ATTRIBUTES | 264962 | 0
+MACROCELL | 0 | 7 | LED_0_OBUF$BUF14
+ATTRIBUTES | 265986 | 0
 INPUTS | 0
-EQ | 1 | 
-   LED<2> = Gnd;
+EQ | 2 | 
+   LED<1> = Gnd;
+   LED<1>.OE = Gnd;
 
-MACROCELL | 0 | 4 | Mtridata_DUARTCS$BUF12
-ATTRIBUTES | 264962 | 0
+MACROCELL | 1 | 7 | LED_0_OBUF$BUF18
+ATTRIBUTES | 265986 | 0
 INPUTS | 0
-EQ | 1 | 
-   LED<0> = Gnd;
+EQ | 2 | 
+   BERR = Gnd;
+   BERR.OE = Gnd;
 
-MACROCELL | 0 | 13 | Mtridata_DUARTCS$BUF8
+MACROCELL | 0 | 13 | LED_0_OBUF$BUF11
 ATTRIBUTES | 264962 | 0
 INPUTS | 0
 EQ | 1 | 
    LED<4> = Gnd;
 
-PIN | CLK | 8192 | 0 | N/A | 21 | 20 | 3 | 4 | 2 | 11 | 3 | 17 | 3 | 16 | 2 | 17 | 3 | 13 | 3 | 12 | 2 | 10 | 2 | 13 | 2 | 12 | 3 | 15 | 3 | 14 | 1 | 15 | 1 | 16 | 1 | 17 | 1 | 12 | 1 | 11 | 1 | 9 | 1 | 14 | 1 | 13
-PIN | SRESET | 64 | 0 | N/A | 46 | 2 | 1 | 5 | 1 | 8
-PIN | BRESET | 64 | 0 | N/A | 49 | 2 | 1 | 5 | 1 | 8
-PIN | ABUS<2> | 64 | 0 | N/A | 82 | 1 | 1 | 15
-PIN | ABUS<1> | 64 | 0 | N/A | 88 | 1 | 1 | 16
-PIN | ABUS<0> | 64 | 0 | N/A | 87 | 1 | 1 | 17
-PIN | UDS | 64 | 0 | N/A | 7 | 1 | 1 | 12
-PIN | LDS | 64 | 0 | N/A | 9 | 1 | 1 | 11
-PIN | AS | 64 | 0 | N/A | 11 | 1 | 1 | 9
-PIN | ABUS<3> | 64 | 0 | N/A | 83 | 1 | 1 | 14
-PIN | ABUS<4> | 64 | 0 | N/A | 72 | 1 | 1 | 13
+MACROCELL | 0 | 8 | LED_0_OBUF$BUF13
+ATTRIBUTES | 264962 | 0
+INPUTS | 0
+EQ | 1 | 
+   LED<2> = Gnd;
+
+MACROCELL | 0 | 4 | LED_0_OBUF$BUF15
+ATTRIBUTES | 264962 | 0
+INPUTS | 0
+EQ | 1 | 
+   LED<0> = Gnd;
+
+PIN | ABUS<1> | 64 | 0 | N/A | 83 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | UDS | 64 | 0 | N/A | 7 | 5 | 2 | 14 | 2 | 16 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | AS | 64 | 0 | N/A | 11 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | ABUS<0> | 64 | 0 | N/A | 82 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | LDS | 64 | 0 | N/A | 9 | 6 | 3 | 4 | 3 | 10 | 0 | 5 | 2 | 15 | 3 | 7 | 3 | 1
+PIN | SRESET | 64 | 0 | N/A | 46 | 2 | 1 | 8 | 1 | 5
+PIN | BRESET | 64 | 0 | N/A | 49 | 2 | 1 | 8 | 1 | 5
 PIN | DUART_DTACK | 64 | 0 | N/A | 10 | 1 | 1 | 10
+PIN | CPU_DTACK | 536871040 | 0 | N/A | 3
 PIN | ROMLOE | 536871040 | 0 | N/A | 63
-PIN | RESET | 536871040 | 0 | N/A | 89
 PIN | ROMLCE | 536871040 | 0 | N/A | 68
 PIN | ROMHOE | 536871040 | 0 | N/A | 50
-PIN | ROMHCE | 536871040 | 0 | N/A | 52
-PIN | RAMLOE | 536871040 | 0 | N/A | 59
-PIN | DUARTCS | 536871040 | 0 | N/A | 13
-PIN | RAMLCE<1> | 536871040 | 0 | N/A | 62
-PIN | RAMLCE<0> | 536871040 | 0 | N/A | 65
-PIN | RAMHOE | 536871040 | 0 | N/A | 38
-PIN | RAMHCE<1> | 536871040 | 0 | N/A | 29
-PIN | RAMHCE<0> | 536871040 | 0 | N/A | 33
-PIN | CPU_DTACK | 536871040 | 0 | N/A | 3
 PIN | HALT | 536871040 | 0 | N/A | 92
-PIN | LED<1> | 536871040 | 0 | N/A | 15
-PIN | BERR | 536871040 | 0 | N/A | 90
+PIN | DUARTCS | 536871040 | 0 | N/A | 13
+PIN | ROMHCE | 536871040 | 0 | N/A | 52
+PIN | RESET | 536871040 | 0 | N/A | 89
+PIN | RAMLOE | 536871040 | 0 | N/A | 59
+PIN | RAMLCE | 536871040 | 0 | N/A | 65
+PIN | RAMLCE2 | 536871040 | 0 | N/A | 62
+PIN | RAMHOE | 536871040 | 0 | N/A | 38
+PIN | RAMHCE | 536871040 | 0 | N/A | 33
+PIN | RAMHCE2 | 536871040 | 0 | N/A | 29
 PIN | LED<5> | 536871040 | 0 | N/A | 27
 PIN | LED<3> | 536871040 | 0 | N/A | 26
+PIN | LED<1> | 536871040 | 0 | N/A | 15
+PIN | BERR | 536871040 | 0 | N/A | 90
+PIN | LED<4> | 536871040 | 0 | N/A | 24
 PIN | LED<2> | 536871040 | 0 | N/A | 20
 PIN | LED<0> | 536871040 | 0 | N/A | 12
-PIN | LED<4> | 536871040 | 0 | N/A | 24

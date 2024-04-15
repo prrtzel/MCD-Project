@@ -9,7 +9,7 @@ MEMORY
     RAM     (rwx)   : ORIGIN = 0x00100000,  LENGTH = 128K
 }
 
-PROVIDE(__stack = 0x0011fff0);
+PROVIDE(__stack = 0x0011ffff - 8);
 
 SECTIONS
 {

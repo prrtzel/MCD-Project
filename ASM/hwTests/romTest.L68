@@ -1,6 +1,6 @@
 00000100 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 4/4/2024 7:38:06 PM
+Created On: 4/15/2024 11:06:33 AM
 
 00000000                             1  *----------------------------------------------------------- 
 00000000                             2  
@@ -10,37 +10,34 @@ Created On: 4/4/2024 7:38:06 PM
 00000000                             6  
 00000000                             7  * Date       : 2010 
 00000000                             8  
-00000000                             9  * Description: Testing RAM with a subroutine jump. To jump 
+00000000                             9  * Description: Testing ROM. NOP is "No operation" and will 
 00000000                            10  
-00000000                            11  *              to a subroutine, the PC and SR are pushed onto 
+00000000                            11  *              simply increase the PC 
 00000000                            12  
-00000000                            13  *              the stack which is a location in RAM. If the 
+00000000                            13  *----------------------------------------------------------- 
 00000000                            14  
-00000000                            15  *              program continually loops, the RAM is working 
+00000000                            15   
 00000000                            16  
-00000000                            17  *----------------------------------------------------------- 
+00000000                            17   
 00000000                            18  
 00000000                            19   
 00000000                            20  
-00000000                            21   
+00000000  =00000FF0                 21  SUPER_STACK     EQU     $00FF0  ;note this stack pointer points to a location in ROM and therefore will not function as a stack, it is simply used as a place holder. 
 00000000                            22  
 00000000                            23   
 00000000                            24  
-00000000  =00100000                 25  SUPER_STACK     EQU     $00100000   ; MUST BE A VALID RAM LOCATION 
+00000000                            25   
 00000000                            26  
-00000000                            27  START       ORG     $000000 
-00000000= 00100000                  28              DC.L    SUPER_STACK 
-00000004= 00000100                  29              DC.L    MAIN
-00000008                            30   
-00000100                            31              ORG     $000100         
-00000100  4EB9 0000010A             32  MAIN        JSR     RAM_TEST 
-00000106  4EF8 0100                 33              JMP    MAIN 
-0000010A                            34  
-0000010A  4E71                      35  RAM_TEST    NOP 
-0000010C  4E71                      36              NOP 
-0000010E  4E71                      37              NOP 
-00000110  4E75                      38              RTS 
-00000112                            39              END     MAIN 
+00000000                            27  START   ORG     $000000 
+00000000= 00000FF0                  28          DC.L    SUPER_STACK 
+00000004= 00000100                  29          DC.L    MAIN 
+00000008                            30          
+00000100                            31          ORG     $000100         
+00000100  4E71                      32  MAIN    NOP
+00000102  4EF8 0100                 33          JMP     MAIN
+00000106  4E71                      34          NOP
+00000108  4E71                      35          NOP
+0000010A                            36          END     MAIN 
 
 No errors detected
 No warnings generated
@@ -50,6 +47,5 @@ SYMBOL TABLE INFORMATION
 Symbol-name         Value
 -------------------------
 MAIN                100
-RAM_TEST            10A
 START               0
-SUPER_STACK         100000
+SUPER_STACK         FF0

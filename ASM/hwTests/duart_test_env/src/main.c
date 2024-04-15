@@ -5,6 +5,6 @@ char hello[] = "hola";
 
 int __main() {
     init_duart();
-    put_char(test_char);    
+    put_char(test_char);
     return 0;
 }
