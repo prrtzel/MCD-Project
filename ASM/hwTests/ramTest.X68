@@ -22,21 +22,22 @@
 
  
 
-SUPER_STACK     EQU     $00100000	; MUST BE A VALID RAM LOCATION 
+SUPER_STACK     EQU     $0008FFF0	; MUST BE A VALID RAM LOCATION 
 
 START   	ORG     $000000 
         	DC.L    SUPER_STACK 
         	DC.L    MAIN
  
-        	ORG     $000100         
+        	ORG     $000200         
 MAIN    	JSR	    RAM_TEST 
-            JMP    MAIN 
+            JMP     MAIN 
 
 RAM_TEST 	NOP 
         	NOP 
             NOP 
             RTS 
         	END     MAIN 
+
 
 *~Font name~Courier New~
 *~Font size~16~

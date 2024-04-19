@@ -1,7 +1,6 @@
 /*Code that runs on reset*/
 
 .global start
-.global endloop
 
 start:
 
@@ -10,7 +9,3 @@ start:
 
 	/* jump to main function */
 	jsr			__main
-
-	/* endless loop for unused vectors */
-endloop:
-	bra.b		endloop

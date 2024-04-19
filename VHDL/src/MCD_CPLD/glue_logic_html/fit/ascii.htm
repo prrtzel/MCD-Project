@@ -3,7 +3,7 @@
  
 cpldfit:  version P.20131013                        Xilinx Inc.
                                   Fitter Report
-Design Name: glue_logic                          Date:  4-15-2024, 10:10AM
+Design Name: glue_logic                          Date:  4-18-2024, 11:27PM
 Device Used: XC9572XL-10-PC44
 Fitting Status: Successful
 
@@ -11,18 +11,18 @@ Fitting Status: Successful
 
 Macrocells     Product Terms    Function Block   Registers      Pins           
 Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
-21 /72  ( 29%) 16  /360  (  4%) 19 /216 (  9%)   0  /72  (  0%) 29 /34  ( 85%)
+20 /72  ( 28%) 15  /360  (  4%) 15 /216 (  7%)   0  /72  (  0%) 28 /34  ( 82%)
 
 ** Function Block Resources **
 
 Function    Mcells      FB Inps     Pterms      IO          
 Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
-FB1           7/18        4/54        1/90       8/ 9
-FB2           4/18        6/54        5/90       7/ 9
+FB1           6/18        0/54        0/90       7/ 9
+FB2           4/18        6/54        5/90       9/ 9*
 FB3           6/18        5/54        6/90       8/ 9
-FB4           4/18        4/54        4/90       6/ 7
+FB4           4/18        4/54        4/90       4/ 7
              -----       -----       -----      -----    
-             21/72       19/216      16/360     29/34 
+             20/72       15/216      15/360     28/34 
 
 * - Resource is exhausted
 
@@ -36,18 +36,18 @@ Global set/reset net(s) unused.
 
 Signal Type    Required     Mapped  |  Pin Type            Used    Total 
 ------------------------------------|------------------------------------
-Input         :    8           8    |  I/O              :    24      28
-Output        :   21          21    |  GCK/IO           :     2       3
+Input         :    8           8    |  I/O              :    23      28
+Output        :   20          20    |  GCK/IO           :     2       3
 Bidirectional :    0           0    |  GTS/IO           :     2       2
 GCK           :    0           0    |  GSR/IO           :     1       1
 GTS           :    0           0    |
 GSR           :    0           0    |
                  ----        ----
-        Total     29          29
+        Total     28          28
 
 ** Power Data **
 
-There are 21 macrocells in high performance mode (MCHP).
+There are 20 macrocells in high performance mode (MCHP).
 There are 0 macrocells in low power mode (MCLP).
 End of Mapped Resource Summary
 **************************  Errors and Warnings  ***************************
@@ -59,16 +59,17 @@ INFO:Cpld - Inferring BUFG constraint for signal 'CLK' based upon the LOC
    your design. Note that for certain device families the output of a BUFG
    constraint can not drive a gated clock, and the BUFG constraint will be
    ignored.
+WARNING:Cpld:936 - The output buffer 'DUARTCS_OBUF' is missing an input and will
+   be deleted.
 WARNING:Cpld:1007 - Removing unused input(s) 'CLK'.  The input(s) are unused
    after optimization. Please verify functionality via simulation.
 *************************  Summary of Mapped Logic  ************************
 
-** 21 Outputs **
+** 20 Outputs **
 
 Signal              Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
 Name                Pts   Inps          No.  Type    Use     Mode Rate State
 LED<0>              0     0     FB1_5   2    I/O     O       STD  FAST 
-DUARTCS             1     4     FB1_6   3    I/O     O       STD  FAST 
 LED<1>              0     0     FB1_8   4    I/O     O       STD  FAST 
 LED<2>              0     0     FB1_9   5    GCK/I/O O       STD  FAST 
 LED<4>              0     0     FB1_14  7    GCK/I/O O       STD  FAST 
@@ -94,13 +95,13 @@ ROMLCE              1     4     FB4_11  28   I/O     O       STD  FAST
 Signal              Loc     Pin  Pin     Pin     
 Name                        No.  Type    Use     
 AS                  FB1_2   1    I/O     I
+ABUS<0>             FB2_2   35   I/O     I
+ABUS<1>             FB2_5   36   I/O     I
 UDS                 FB2_14  42   GTS/I/O I
 LDS                 FB2_15  43   I/O     I
 DUART_DTACK         FB2_17  44   I/O     I
 SRESET              FB3_11  18   I/O     I
 BRESET              FB3_14  19   I/O     I
-ABUS<0>             FB4_15  33   I/O     I
-ABUS<1>             FB4_17  34   I/O     I
 
 Legend:
 Pin No. - ~ - User Assigned
@@ -118,8 +119,8 @@ Pin Type/Use - I  - Input             GCK - Global Clock
 X            - Signal used as input to the macrocell logic.
 Pin No.      - ~  - User Assigned
 *********************************** FB1  ***********************************
-Number of function block inputs used/remaining:               4/50
-Number of signals used by logic mapping into function block:  4
+Number of function block inputs used/remaining:               0/54
+Number of signals used by logic mapping into function block:  0
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_1         (b)     
@@ -127,7 +128,7 @@ Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_3         (b)     
 (unused)              0       0     0   5     FB1_4         (b)     
 LED<0>                0       0     0   5     FB1_5   2     I/O     O
-DUARTCS               1       0     0   4     FB1_6   3     I/O     O
+(unused)              0       0     0   5     FB1_6   3     I/O     
 (unused)              0       0     0   5     FB1_7         (b)     
 LED<1>                0       0     0   5     FB1_8   4     I/O     O
 LED<2>                0       0     0   5     FB1_9   5     GCK/I/O O
@@ -142,13 +143,10 @@ LED<5>                0       0     0   5     FB1_17  9     I/O     O
 (unused)              0       0     0   5     FB1_18        (b)     
 
 Signals Used by Logic in Function Block
-  1: ABUS<0>            3: AS                 4: LDS 
-  2: ABUS<1>          
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
 LED<0>               ........................................ 0
-DUARTCS              XXXX.................................... 4
 LED<1>               ........................................ 0
 LED<2>               ........................................ 0
 LED<4>               ........................................ 0
@@ -162,10 +160,10 @@ Number of signals used by logic mapping into function block:  6
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB2_1         (b)     
-(unused)              0       0     0   5     FB2_2   35    I/O     
+(unused)              0       0     0   5     FB2_2   35    I/O     I
 (unused)              0       0     0   5     FB2_3         (b)     
 (unused)              0       0     0   5     FB2_4         (b)     
-(unused)              0       0     0   5     FB2_5   36    I/O     
+(unused)              0       0     0   5     FB2_5   36    I/O     I
 RESET                 1       0     0   4     FB2_6   37    I/O     O
 (unused)              0       0     0   5     FB2_7         (b)     
 BERR                  0       0     0   5     FB2_8   38    I/O     O
@@ -249,9 +247,9 @@ ROMLCE                1       0     0   4     FB4_11  28    I/O     O
 (unused)              0       0     0   5     FB4_12        (b)     
 (unused)              0       0     0   5     FB4_13        (b)     
 (unused)              0       0     0   5     FB4_14  29    I/O     
-(unused)              0       0     0   5     FB4_15  33    I/O     I
+(unused)              0       0     0   5     FB4_15  33    I/O     
 (unused)              0       0     0   5     FB4_16        (b)     
-(unused)              0       0     0   5     FB4_17  34    I/O     I
+(unused)              0       0     0   5     FB4_17  34    I/O     
 (unused)              0       0     0   5     FB4_18        (b)     
 
 Signals Used by Logic in Function Block
@@ -276,14 +274,9 @@ BERR <= BERR_I when BERR_OE = '1' else 'Z';
 BERR_OE <= '0';
 
 
-CPU_DTACK <= ((NOT ABUS(1) AND AS)
-	OR (AS AND ABUS(0))
-	OR (ABUS(1) AND NOT ABUS(0) AND DUART_DTACK));
-
-
-DUARTCS_I <= '0';
-DUARTCS <= DUARTCS_I when DUARTCS_OE = '1' else 'Z';
-DUARTCS_OE <= NOT ((ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS));
+CPU_DTACK <= ((ABUS(0) AND AS)
+	OR (AS AND NOT ABUS(1))
+	OR (NOT ABUS(0) AND ABUS(1) AND DUART_DTACK));
 
 
 HALT_I <= '0';
@@ -317,32 +310,32 @@ LED_OE(5) <= '0';
 
 RAMHCE_I <= '0';
 RAMHCE <= RAMHCE_I when RAMHCE_OE = '1' else 'Z';
-RAMHCE_OE <= (ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+RAMHCE_OE <= (ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 
 
 RAMHCE2_I <= '0';
 RAMHCE2 <= RAMHCE2_I when RAMHCE2_OE = '1' else 'Z';
-RAMHCE2_OE <= NOT ((ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0)));
+RAMHCE2_OE <= NOT ((ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1)));
 
 
 RAMHOE_I <= '0';
 RAMHOE <= RAMHOE_I when RAMHOE_OE = '1' else 'Z';
-RAMHOE_OE <= (ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+RAMHOE_OE <= (ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 
 
 RAMLCE_I <= '0';
 RAMLCE <= RAMLCE_I when RAMLCE_OE = '1' else 'Z';
-RAMLCE_OE <= (NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS);
+RAMLCE_OE <= (ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 
 
 RAMLCE2_I <= '0';
 RAMLCE2 <= RAMLCE2_I when RAMLCE2_OE = '1' else 'Z';
-RAMLCE2_OE <= NOT ((NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS));
+RAMLCE2_OE <= NOT ((ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS));
 
 
 RAMLOE_I <= '0';
 RAMLOE <= RAMLOE_I when RAMLOE_OE = '1' else 'Z';
-RAMLOE_OE <= (NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS);
+RAMLOE_OE <= (ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 
 
 RESET_I <= '0';
@@ -352,22 +345,22 @@ RESET_OE <= NOT ((SRESET AND BRESET));
 
 ROMHCE_I <= '0';
 ROMHCE <= ROMHCE_I when ROMHCE_OE = '1' else 'Z';
-ROMHCE_OE <= (NOT ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+ROMHCE_OE <= (NOT ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 
 
 ROMHOE_I <= '0';
 ROMHOE <= ROMHOE_I when ROMHOE_OE = '1' else 'Z';
-ROMHOE_OE <= (NOT ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+ROMHOE_OE <= (NOT ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 
 
 ROMLCE_I <= '0';
 ROMLCE <= ROMLCE_I when ROMLCE_OE = '1' else 'Z';
-ROMLCE_OE <= (NOT ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS);
+ROMLCE_OE <= (NOT ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 
 
 ROMLOE_I <= '0';
 ROMLOE <= ROMLOE_I when ROMLOE_OE = '1' else 'Z';
-ROMLOE_OE <= (NOT ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS);
+ROMLOE_OE <= (NOT ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 
 Register Legend:
  FDCPE (Q,D,C,CLR,PRE,CE); 
@@ -400,7 +393,7 @@ Pin Signal                         Pin Signal
 No. Name                           No. Name                          
   1 AS                               23 GND                           
   2 LED<0>                           24 RAMLOE                        
-  3 DUARTCS                          25 RAMLCE2                       
+  3 KPR                              25 RAMLCE2                       
   4 LED<1>                           26 ROMLOE                        
   5 LED<2>                           27 RAMLCE                        
   6 KPR                              28 ROMLCE                        
@@ -408,10 +401,10 @@ No. Name                           No. Name
   8 LED<3>                           30 TDO                           
   9 LED<5>                           31 GND                           
  10 GND                              32 VCC                           
- 11 RAMHCE2                          33 ABUS<0>                       
- 12 KPR                              34 ABUS<1>                       
- 13 RAMHCE                           35 KPR                           
- 14 RAMHOE                           36 KPR                           
+ 11 RAMHCE2                          33 KPR                           
+ 12 KPR                              34 KPR                           
+ 13 RAMHCE                           35 ABUS<0>                       
+ 14 RAMHOE                           36 ABUS<1>                       
  15 TDI                              37 RESET                         
  16 TMS                              38 BERR                          
  17 TCK                              39 HALT                          

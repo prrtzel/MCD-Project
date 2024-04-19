@@ -66,8 +66,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1713193778" xil_pn:in_ck="4774924130197" xil_pn:name="TRANEXT_xstsynthesize_xc9500xl" xil_pn:prop_ck="3946032617803443616" xil_pn:start_ts="1713193773">
+    <transform xil_pn:end_ts="1713500853" xil_pn:in_ck="4774924130197" xil_pn:name="TRANEXT_xstsynthesize_xc9500xl" xil_pn:prop_ck="7915331197882506443" xil_pn:start_ts="1713500848">
       <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="glue_logic.lso"/>
@@ -82,11 +83,11 @@
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1713193817" xil_pn:in_ck="6578114222110546020" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-360867141383538798" xil_pn:start_ts="1713193817">
+    <transform xil_pn:end_ts="1713408297" xil_pn:in_ck="6578114222110546020" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-360867141383538798" xil_pn:start_ts="1713408297">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1713193821" xil_pn:in_ck="-6370377249028120732" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="920057667651985957" xil_pn:start_ts="1713193817">
+    <transform xil_pn:end_ts="1713500857" xil_pn:in_ck="-6370377249028120732" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="920057667651985957" xil_pn:start_ts="1713500853">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
@@ -95,7 +96,7 @@
       <outfile xil_pn:name="glue_logic.ngd"/>
       <outfile xil_pn:name="glue_logic_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1713193828" xil_pn:in_ck="7743339364853868545" xil_pn:name="TRANEXT_vm6File_xc9500xl" xil_pn:prop_ck="-5778162912812442714" xil_pn:start_ts="1713193821">
+    <transform xil_pn:end_ts="1713500864" xil_pn:in_ck="7743339364853868545" xil_pn:name="TRANEXT_vm6File_xc9500xl" xil_pn:prop_ck="-5778162912812442714" xil_pn:start_ts="1713500857">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -111,12 +112,18 @@
       <outfile xil_pn:name="glue_logic_html"/>
       <outfile xil_pn:name="glue_logic_pad.csv"/>
     </transform>
-    <transform xil_pn:end_ts="1713193830" xil_pn:in_ck="7743339364853877409" xil_pn:name="TRANEXT_crtProg_xc9500" xil_pn:prop_ck="-6294026017969277533" xil_pn:start_ts="1713193828">
+    <transform xil_pn:end_ts="1713500866" xil_pn:in_ck="7743339364853877409" xil_pn:name="TRANEXT_crtProg_xc9500" xil_pn:prop_ck="-6294026017969277533" xil_pn:start_ts="1713500864">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="glue_logic.jed"/>
     </transform>
-    <transform xil_pn:end_ts="1713197319" xil_pn:in_ck="7743339364853864123" xil_pn:name="TRAN_configureTargetDevice_CPLD" xil_pn:prop_ck="-154879694275837835" xil_pn:start_ts="1713197318">
+    <transform xil_pn:end_ts="1713408218" xil_pn:in_ck="7743339364853864123" xil_pn:name="TRAN_impactProgrammingTool_CPLD" xil_pn:prop_ck="-3598488201878296819" xil_pn:start_ts="1713408218">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputChanged"/>
+    </transform>
+    <transform xil_pn:end_ts="1713503060" xil_pn:in_ck="7743339364853864123" xil_pn:name="TRAN_configureTargetDevice_CPLD" xil_pn:prop_ck="-154879694275837835" xil_pn:start_ts="1713503059">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -127,7 +134,7 @@
       <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
     </transform>
-    <transform xil_pn:end_ts="1710782959" xil_pn:in_ck="-6370377249028120731" xil_pn:name="TRAN_createTimingConstraints" xil_pn:start_ts="1710782959">
+    <transform xil_pn:end_ts="1713407488" xil_pn:in_ck="-6370377249028120731" xil_pn:name="TRAN_createTimingConstraints" xil_pn:start_ts="1713407488">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>

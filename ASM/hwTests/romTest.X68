@@ -20,20 +20,17 @@
 
 SUPER_STACK     EQU     $00FF0  ;note this stack pointer points to a location in ROM and therefore will not function as a stack, it is simply used as a place holder. 
 
- 
-
- 
-
 START   ORG     $000000 
         DC.L    SUPER_STACK 
-        DC.L    MAIN 
+        DC.L    MAIN
         
-        ORG     $000100         
+        ORG     $000200         
 MAIN    NOP
+        NOP
         JMP     MAIN
-        NOP
-        NOP
         END     MAIN 
+
+
 
 
 

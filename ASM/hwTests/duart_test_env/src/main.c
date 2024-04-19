@@ -1,10 +1,6 @@
 #include "test.h"
 
-char test_char = '7';
-char hello[] = "hola";
-
 int __main() {
-    init_duart();
-    put_char(test_char);
+    while (1==1) {}
     return 0;
 }

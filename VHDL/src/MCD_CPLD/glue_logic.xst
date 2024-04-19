@@ -10,7 +10,7 @@ run
 -opt_mode Speed
 -opt_level 1
 -iuc NO
--keep_hierarchy Yes
+-keep_hierarchy Soft
 -netlist_hierarchy As_Optimized
 -rtlview Yes
 -hierarchy_separator /

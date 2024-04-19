@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> Reading design: glue_logic.prj
 
@@ -57,7 +57,7 @@ Equivalent register Removal        : YES
 ---- General Options
 Optimization Goal                  : Speed
 Optimization Effort                : 1
-Keep Hierarchy                     : Yes
+Keep Hierarchy                     : Soft
 Netlist Hierarchy                  : As_Optimized
 RTL Output                         : Yes
 Hierarchy Separator                : /
@@ -101,6 +101,7 @@ Performing bidirectional port resolution...
 Synthesizing Unit <glue_logic>.
     Related source file is "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd".
 WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1306 - Output <DUARTCS> is never assigned.
     Found 1-bit tristate buffer for signal <HALT>.
     Found 1-bit tristate buffer for signal <BERR>.
     Found 1-bit tristate buffer for signal <LED<5>>.
@@ -117,9 +118,8 @@ WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and lef
     Found 1-bit tristate buffer for signal <RAMHCE2>.
     Found 1-bit tristate buffer for signal <RAMHOE>.
     Found 1-bit tristate buffer for signal <RESET>.
-    Found 1-bit tristate buffer for signal <DUARTCS>.
     Summary:
-	inferred  17 Tristate(s).
+	inferred  16 Tristate(s).
 Unit <glue_logic> synthesized.
 
 
@@ -127,8 +127,8 @@ Unit <glue_logic> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Tristates                                            : 17
- 1-bit tristate buffer                                 : 17
+# Tristates                                            : 16
+ 1-bit tristate buffer                                 : 16
 
 =========================================================================
 
@@ -168,7 +168,7 @@ RTL Top Level Output File Name     : glue_logic.ngr
 Top Level Output File Name         : glue_logic
 Output Format                      : NGC
 Optimization Goal                  : Speed
-Keep Hierarchy                     : Yes
+Keep Hierarchy                     : Soft
 Target Technology                  : XC9500XL CPLDs
 Macro Preserve                     : YES
 XOR Preserve                       : YES
@@ -179,27 +179,27 @@ Design Statistics
 # IOs                              : 30
 
 Cell Usage :
-# BELS                             : 36
+# BELS                             : 31
 #      AND2                        : 3
-#      AND4                        : 5
+#      AND4                        : 4
 #      GND                         : 1
-#      INV                         : 24
+#      INV                         : 20
 #      OR2                         : 3
-# IO Buffers                       : 29
+# IO Buffers                       : 28
 #      IBUF                        : 8
 #      OBUF                        : 4
-#      OBUFE                       : 17
+#      OBUFE                       : 16
 =========================================================================
 
 
 Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.69 secs
+Total CPU time to Xst completion: 2.98 secs
  
 --> 
 
-Total memory usage is 4499468 kilobytes
+Total memory usage is 4499424 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    1 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

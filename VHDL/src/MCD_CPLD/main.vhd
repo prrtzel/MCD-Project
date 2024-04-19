@@ -38,7 +38,7 @@ begin
     HALT    <= '0' when (SRESET='0' or BRESET='0') else 'Z';
     BERR    <= 'Z';
     CPU_DTACK <= DUART_DTACK when (ABUS="10") else AS;
-
+    --CPU_DTACK <= DUART_DTACK;
 -------------------------------------------
 -- chip enable signals
 
@@ -56,7 +56,7 @@ begin
     RAMHCE  <= '0' when (ABUS="01" and AS='0' and UDS='0') else 'Z';
     RAMHCE2 <= 'Z' when (ABUS="01" and AS='0' and UDS='0') else '0';
 
-    DUARTCS <= 'Z' when (ABUS="10" and AS='0' and LDS='0') else '0';
+    --DUARTCS <= 'Z' when (ABUS="10" and AS='0' and LDS='0') else '0';
 
 
 -------------------------------------------
@@ -65,7 +65,6 @@ begin
 
     --NOTES
     --COULD BE DIFFERENCE OF LITTLE AND BIG ENDIAN
-    --changed duart to be enabled at 20 = 1 and 21 = 1
 
 
 end Behavioral;

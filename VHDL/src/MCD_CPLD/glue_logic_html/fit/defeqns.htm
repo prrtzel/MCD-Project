@@ -11,14 +11,9 @@ BERR_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BERR_OE <= '0';
 </td></tr><tr><td>
 </td></tr><tr><td>
-CPU_DTACK <= ((NOT ABUS(1) AND AS)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (AS AND ABUS(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (ABUS(1) AND NOT ABUS(0) AND DUART_DTACK));
-</td></tr><tr><td>
-</td></tr><tr><td>
-DUARTCS_I <= '0';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUARTCS <= DUARTCS_I when DUARTCS_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUARTCS_OE <= NOT ((ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS));
+CPU_DTACK <= ((ABUS(0) AND AS)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (AS AND NOT ABUS(1))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ABUS(0) AND ABUS(1) AND DUART_DTACK));
 </td></tr><tr><td>
 </td></tr><tr><td>
 HALT_I <= '0';
@@ -52,32 +47,32 @@ LED_I(5) <= '0';
 </td></tr><tr><td>
 RAMHCE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE <= RAMHCE_I when RAMHCE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_OE <= (ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE_OE <= (ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 </td></tr><tr><td>
 </td></tr><tr><td>
 RAMHCE2_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE2 <= RAMHCE2_I when RAMHCE2_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE2_OE <= NOT ((ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0)));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHCE2_OE <= NOT ((ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1)));
 </td></tr><tr><td>
 </td></tr><tr><td>
 RAMHOE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE <= RAMHOE_I when RAMHOE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE_OE <= (ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMHOE_OE <= (ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 </td></tr><tr><td>
 </td></tr><tr><td>
 RAMLCE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE <= RAMLCE_I when RAMLCE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_OE <= (NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE_OE <= (ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 </td></tr><tr><td>
 </td></tr><tr><td>
 RAMLCE2_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE2 <= RAMLCE2_I when RAMLCE2_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE2_OE <= NOT ((NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLCE2_OE <= NOT ((ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS));
 </td></tr><tr><td>
 </td></tr><tr><td>
 RAMLOE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE <= RAMLOE_I when RAMLOE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE_OE <= (NOT ABUS(1) AND NOT AS AND ABUS(0) AND NOT LDS);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAMLOE_OE <= (ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 </td></tr><tr><td>
 </td></tr><tr><td>
 RESET_I <= '0';
@@ -87,22 +82,22 @@ RESET_I <= '0';
 </td></tr><tr><td>
 ROMHCE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE <= ROMHCE_I when ROMHCE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE_OE <= (NOT ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHCE_OE <= (NOT ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 </td></tr><tr><td>
 </td></tr><tr><td>
 ROMHOE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE <= ROMHOE_I when ROMHOE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE_OE <= (NOT ABUS(1) AND NOT UDS AND NOT AS AND NOT ABUS(0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMHOE_OE <= (NOT ABUS(0) AND NOT UDS AND NOT AS AND NOT ABUS(1));
 </td></tr><tr><td>
 </td></tr><tr><td>
 ROMLCE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE <= ROMLCE_I when ROMLCE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE_OE <= (NOT ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLCE_OE <= (NOT ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 </td></tr><tr><td>
 </td></tr><tr><td>
 ROMLOE_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE <= ROMLOE_I when ROMLOE_OE = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE_OE <= (NOT ABUS(1) AND NOT AS AND NOT ABUS(0) AND NOT LDS);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMLOE_OE <= (NOT ABUS(0) AND NOT AS AND NOT ABUS(1) AND NOT LDS);
 </td></tr><tr><td>
 Register Legend:
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FDCPE (Q,D,C,CLR,PRE,CE); 
