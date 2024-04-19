@@ -1,6 +1,6 @@
 00000200 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 4/19/2024 4:30:53 AM
+Created On: 4/19/2024 12:07:24 PM
 
 00000000  =00100000                  1  DUART   EQU     $00100000  loaded in A0 when needed, regs are offsets 
 00000000  =00000001                  2  MR1A    EQU     1   Mode Register1 
@@ -25,64 +25,60 @@ Created On: 4/19/2024 4:30:53 AM
 00000200                            21      ORG $200
 00000200                            22  START:
 00000200  4EB9 00000210             23      JSR INIT_DUART
-00000206                            24      
-00000206  4EB9 00000248             25      JSR GET_CHAR
-0000020C                            26      
-0000020C  4EB8 0200                 27      JSR START
-00000210                            28      
+00000206  4EB9 00000248             24      JSR GET_CHAR
+0000020C  4EB8 0200                 25      JSR START
+00000210                            26      
+00000210                            27  
+00000210                            28  
 00000210                            29  
 00000210                            30  
-00000210                            31  
-00000210                            32  
-00000210                            33  INIT_DUART:  
-00000210  41F9 00100000             34      LEA     DUART,A0        A0 points to base DUART address 
-00000216                            35  
-00000216                            36  ; Software reset: 
-00000216  117C 0030 0005            37      MOVE.B  #$30,CRA(A0)    Reset TxA 
-0000021C  117C 0020 0005            38      MOVE.B  #$20,CRA(A0)    Reset RxA 
-00000222  117C 0010 0005            39      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
-00000228                            40  
-00000228                            41  ; Initialization: 
-00000228  117C 0080 0009            42      MOVE.B      #$80,ACR(A0)        selects baud rate set 2 
-0000022E  117C 00CC 0003            43      MOVE.B      #BAUD,CSRA(A0)      set 19.2k baud Rx/Tx 
-00000234  117C 0013 0001            44      MOVE.B      #$13,MR1A(A0)       8-bits, no parity, 1 stop bit 
-0000023A                            45  
-0000023A                            46   
-0000023A                            47  ; This is the most important register to set in the 68681 DUART. 
-0000023A                            48  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
-0000023A                            49  ; For testing load $#47 to enable auto-echo 
-0000023A                            50  
-0000023A  117C 0007 0001            51      MOVE.B  #$07,MR2A(A0)    
-00000240  117C 0005 0005            52      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
-00000246  4E75                      53      RTS     
-00000248                            54  
-00000248                            55  GET_CHAR:
-00000248                            56  IN_POLL:
-00000248                            57      *checks if reciever is ready
-00000248  1228 0003                 58      MOVE.B  SRA(A0),D1 
-0000024C  0801 0000                 59      BTST    #0,D1 
-00000250  67F6                      60      BEQ     IN_POLL 
-00000252  1228 0007                 61      MOVE.B  RBA(A0),D1 
-00000256  4EB9 0000025E             62      JSR     PUT_CHAR
-0000025C  4E75                      63      RTS 
-0000025E                            64  
-0000025E                            65  ;PUT CHAR SUBROUTINE 
-0000025E                            66  PUT_CHAR:
-0000025E  3F02                      67      MOVE.W  D2, -(SP) 
-00000260                            68  
-00000260                            69  OUT_POLL:
-00000260  1428 0003                 70      MOVE.B  SRA(A0),D2 
-00000264  0802 0002                 71      BTST    #2,D2 
-00000268  67F6                      72      BEQ     OUT_POLL 
-0000026A  1141 0007                 73      MOVE.B  D1,TBA(A0) 
-0000026E  341F                      74      MOVE.W  (SP)+,D2
-00000270  4E75                      75      RTS
-00000272                            76  
-00000272                            77      
-00000272                            78      END START
+00000210                            31  INIT_DUART:  
+00000210  41F9 00100000             32      LEA     DUART,A0        A0 points to base DUART address 
+00000216                            33  
+00000216                            34  ; Software reset: 
+00000216  117C 0030 0005            35      MOVE.B  #$30,CRA(A0)    Reset TxA 
+0000021C  117C 0020 0005            36      MOVE.B  #$20,CRA(A0)    Reset RxA 
+00000222  117C 0010 0005            37      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
+00000228                            38  
+00000228                            39  ; Initialization: 
+00000228  117C 0080 0009            40      MOVE.B      #$80,ACR(A0)        selects baud rate set 2 
+0000022E  117C 00CC 0003            41      MOVE.B      #BAUD,CSRA(A0)      set 19.2k baud Rx/Tx 
+00000234  117C 0013 0001            42      MOVE.B      #$13,MR1A(A0)       8-bits, no parity, 1 stop bit 
+0000023A                            43  
+0000023A                            44   
+0000023A                            45  ; This is the most important register to set in the 68681 DUART. 
+0000023A                            46  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
+0000023A                            47  ; For testing load $#47 to enable auto-echo 
+0000023A                            48  
+0000023A  117C 0007 0001            49      MOVE.B  #$07,MR2A(A0)    
+00000240  117C 0005 0005            50      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
+00000246  4E75                      51      RTS     
+00000248                            52  
+00000248                            53  GET_CHAR:
+00000248                            54  IN_POLL:
+00000248                            55      *checks if reciever is ready
+00000248  1228 0003                 56      MOVE.B  SRA(A0),D1 
+0000024C  0801 0000                 57      BTST    #0,D1 
+00000250  67F6                      58      BEQ     IN_POLL 
+00000252  1228 0007                 59      MOVE.B  RBA(A0),D1 
+00000256  4EB9 0000025E             60      JSR     PUT_CHAR
+0000025C  4E75                      61      RTS 
+0000025E                            62  
+0000025E                            63  ;PUT CHAR SUBROUTINE 
+0000025E                            64  PUT_CHAR:
+0000025E  3F02                      65      MOVE.W  D2, -(SP) 
+00000260                            66  
+00000260                            67  OUT_POLL:
+00000260  1428 0003                 68      MOVE.B  SRA(A0),D2 
+00000264  0802 0002                 69      BTST    #2,D2 
+00000268  67F6                      70      BEQ     OUT_POLL 
+0000026A  1141 0007                 71      MOVE.B  D1,TBA(A0) 
+0000026E  341F                      72      MOVE.W  (SP)+,D2
+00000270  4E75                      73      RTS
+Line 74 WARNING: END directive missing, starting address not set
 
 No errors detected
-No warnings generated
+1 warning generated
 
 
 SYMBOL TABLE INFORMATION

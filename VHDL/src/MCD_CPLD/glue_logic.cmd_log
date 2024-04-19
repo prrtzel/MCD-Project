@@ -444,3 +444,15 @@ cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize speed -htmlrpt -l
 XSLTProcess glue_logic_build.xml 
 tsim -intstyle ise glue_logic glue_logic.nga 
 hprep6 -s IEEE1149 -n glue_logic -i glue_logic 
+xst -intstyle ise -ifn "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/glue_logic.xst" -ofn "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/glue_logic.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc constraints.ucf -p xc9572xl-PC44-10 "glue_logic.ngc" glue_logic.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize speed -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper glue_logic.ngd 
+XSLTProcess glue_logic_build.xml 
+tsim -intstyle ise glue_logic glue_logic.nga 
+hprep6 -s IEEE1149 -n glue_logic -i glue_logic 
+xst -intstyle ise -ifn "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/glue_logic.xst" -ofn "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/glue_logic.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc constraints.ucf -p xc9572xl-PC44-10 "glue_logic.ngc" glue_logic.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize speed -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper glue_logic.ngd 
+XSLTProcess glue_logic_build.xml 
+tsim -intstyle ise glue_logic glue_logic.nga 
+hprep6 -s IEEE1149 -n glue_logic -i glue_logic 
