@@ -1,7 +1,7 @@
  
 cpldfit:  version P.20131013                        Xilinx Inc.
                                   Fitter Report
-Design Name: glue_logic                          Date:  4-18-2024, 11:27PM
+Design Name: glue_logic                          Date:  4-19-2024,  0:52AM
 Device Used: XC9572XL-10-PC44
 Fitting Status: Successful
 
@@ -9,18 +9,18 @@ Fitting Status: Successful
 
 Macrocells     Product Terms    Function Block   Registers      Pins           
 Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
-20 /72  ( 28%) 15  /360  (  4%) 15 /216 (  7%)   0  /72  (  0%) 28 /34  ( 82%)
+21 /72  ( 29%) 16  /360  (  4%) 19 /216 (  9%)   0  /72  (  0%) 29 /34  ( 85%)
 
 ** Function Block Resources **
 
 Function    Mcells      FB Inps     Pterms      IO          
 Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
-FB1           6/18        0/54        0/90       7/ 9
+FB1           7/18        4/54        1/90       8/ 9
 FB2           4/18        6/54        5/90       9/ 9*
 FB3           6/18        5/54        6/90       8/ 9
 FB4           4/18        4/54        4/90       4/ 7
              -----       -----       -----      -----    
-             20/72       15/216      15/360     28/34 
+             21/72       19/216      16/360     29/34 
 
 * - Resource is exhausted
 
@@ -34,18 +34,18 @@ Global set/reset net(s) unused.
 
 Signal Type    Required     Mapped  |  Pin Type            Used    Total 
 ------------------------------------|------------------------------------
-Input         :    8           8    |  I/O              :    23      28
-Output        :   20          20    |  GCK/IO           :     2       3
+Input         :    8           8    |  I/O              :    24      28
+Output        :   21          21    |  GCK/IO           :     2       3
 Bidirectional :    0           0    |  GTS/IO           :     2       2
 GCK           :    0           0    |  GSR/IO           :     1       1
 GTS           :    0           0    |
 GSR           :    0           0    |
                  ----        ----
-        Total     28          28
+        Total     29          29
 
 ** Power Data **
 
-There are 20 macrocells in high performance mode (MCHP).
+There are 21 macrocells in high performance mode (MCHP).
 There are 0 macrocells in low power mode (MCLP).
 End of Mapped Resource Summary
 **************************  Errors and Warnings  ***************************
@@ -57,17 +57,16 @@ INFO:Cpld - Inferring BUFG constraint for signal 'CLK' based upon the LOC
    your design. Note that for certain device families the output of a BUFG
    constraint can not drive a gated clock, and the BUFG constraint will be
    ignored.
-WARNING:Cpld:936 - The output buffer 'DUARTCS_OBUF' is missing an input and will
-   be deleted.
 WARNING:Cpld:1007 - Removing unused input(s) 'CLK'.  The input(s) are unused
    after optimization. Please verify functionality via simulation.
 *************************  Summary of Mapped Logic  ************************
 
-** 20 Outputs **
+** 21 Outputs **
 
 Signal              Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
 Name                Pts   Inps          No.  Type    Use     Mode Rate State
 LED<0>              0     0     FB1_5   2    I/O     O       STD  FAST 
+DUARTCS             1     4     FB1_6   3    I/O     O       STD  FAST 
 LED<1>              0     0     FB1_8   4    I/O     O       STD  FAST 
 LED<2>              0     0     FB1_9   5    GCK/I/O O       STD  FAST 
 LED<4>              0     0     FB1_14  7    GCK/I/O O       STD  FAST 
@@ -117,8 +116,8 @@ Pin Type/Use - I  - Input             GCK - Global Clock
 X            - Signal used as input to the macrocell logic.
 Pin No.      - ~  - User Assigned
 *********************************** FB1  ***********************************
-Number of function block inputs used/remaining:               0/54
-Number of signals used by logic mapping into function block:  0
+Number of function block inputs used/remaining:               4/50
+Number of signals used by logic mapping into function block:  4
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_1         (b)     
@@ -126,7 +125,7 @@ Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_3         (b)     
 (unused)              0       0     0   5     FB1_4         (b)     
 LED<0>                0       0     0   5     FB1_5   2     I/O     O
-(unused)              0       0     0   5     FB1_6   3     I/O     
+DUARTCS               1       0     0   4     FB1_6   3     I/O     O
 (unused)              0       0     0   5     FB1_7         (b)     
 LED<1>                0       0     0   5     FB1_8   4     I/O     O
 LED<2>                0       0     0   5     FB1_9   5     GCK/I/O O
@@ -141,10 +140,13 @@ LED<5>                0       0     0   5     FB1_17  9     I/O     O
 (unused)              0       0     0   5     FB1_18        (b)     
 
 Signals Used by Logic in Function Block
+  1: ABUS<0>            3: AS                 4: LDS 
+  2: ABUS<1>          
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
 LED<0>               ........................................ 0
+DUARTCS              XXXX.................................... 4
 LED<1>               ........................................ 0
 LED<2>               ........................................ 0
 LED<4>               ........................................ 0
@@ -277,6 +279,11 @@ CPU_DTACK <= ((ABUS(0) AND AS)
 	OR (NOT ABUS(0) AND ABUS(1) AND DUART_DTACK));
 
 
+DUARTCS_I <= '0';
+DUARTCS <= DUARTCS_I when DUARTCS_OE = '1' else 'Z';
+DUARTCS_OE <= NOT ((NOT ABUS(0) AND NOT AS AND ABUS(1) AND NOT LDS));
+
+
 HALT_I <= '0';
 HALT <= HALT_I when HALT_OE = '1' else 'Z';
 HALT_OE <= NOT ((SRESET AND BRESET));
@@ -391,7 +398,7 @@ Pin Signal                         Pin Signal
 No. Name                           No. Name                          
   1 AS                               23 GND                           
   2 LED<0>                           24 RAMLOE                        
-  3 KPR                              25 RAMLCE2                       
+  3 DUARTCS                          25 RAMLCE2                       
   4 LED<1>                           26 ROMLOE                        
   5 LED<2>                           27 RAMLCE                        
   6 KPR                              28 ROMLCE                        

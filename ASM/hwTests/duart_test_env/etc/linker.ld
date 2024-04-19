@@ -1,10 +1,10 @@
-ENTRY(start)
+ENTRY(__main)
 OUTPUT_ARCH(m68k)
 OUTPUT_FORMAT(srec)
 
 MEMORY
 {
-    VECTOR  (rx)    : ORIGIN = 0x00000000,  LENGTH = 512
+    VECTOR  (rx)    : ORIGIN = 0x00000000,  LENGTH = 500
     ROM     (rx)    : ORIGIN = 0x00000200,  LENGTH = 500K
     RAM     (rwx)   : ORIGIN = 0x00080200,  LENGTH = 128K
 }
@@ -17,6 +17,7 @@ SECTIONS
 
     .text :
     {
+        . = ALIGN(0x10);
         *(.text)
     }> ROM
 

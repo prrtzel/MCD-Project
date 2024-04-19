@@ -16,6 +16,11 @@ CPU_DTACK <= ((ABUS(0) AND AS)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ABUS(0) AND ABUS(1) AND DUART_DTACK));
 </td></tr><tr><td>
 </td></tr><tr><td>
+DUARTCS_I <= '0';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUARTCS <= DUARTCS_I when DUARTCS_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUARTCS_OE <= NOT ((NOT ABUS(0) AND NOT AS AND ABUS(1) AND NOT LDS));
+</td></tr><tr><td>
+</td></tr><tr><td>
 HALT_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HALT <= HALT_I when HALT_OE = '1' else 'Z';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HALT_OE <= NOT ((SRESET AND BRESET));

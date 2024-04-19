@@ -1,6 +1,8 @@
 #include "test.h"
 
 int __main() {
-    while (1==1) {}
+    init();
+    init_duart();
+    put_char('7');
     return 0;
 }

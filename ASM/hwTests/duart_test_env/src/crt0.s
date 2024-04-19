@@ -1,5 +1,5 @@
 /*Code that runs on reset*/
-
+/*
 .global start
 
 start:
@@ -9,3 +9,4 @@ start:
 
 	/* jump to main function */
 	jsr			__main
+*/

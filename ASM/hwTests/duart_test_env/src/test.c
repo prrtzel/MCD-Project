@@ -8,6 +8,8 @@ char* THRA;
 char* RHRA;
 char* ACR;   
 char BAUD;
+char is_valid;
+char value;
 
 extern void init() {
     MR1A  = (char*)0x00100001; //mode register
@@ -19,6 +21,8 @@ extern void init() {
     RHRA  = (char*)0x00100007; //Rx holding register
     ACR   = (char*)0x00100009; //Aux control register
     BAUD   = 0xCC; //baud rate 19.2k
+    is_valid = 0;
+    value = 0;
     return;
 }
 
@@ -33,9 +37,6 @@ extern void serial_print(char* str_p) {
         ");
 }
 
-
-
-
 extern void init_duart() {
     // software reset
     *CRA = 0x30;    //reset TxA
@@ -44,42 +45,65 @@ extern void init_duart() {
 
     //initialization
     *ACR = 0x80;    //select baud rate 2
+    *CRA = 0x09;    //select extend bit X = 0 to select 19.2k baud rate
     *CSRA = BAUD;   //set 19.2k baud Rx/Tx
     *MR1A = 0x13;   //8-bits, no parity, 1 stop bit
 
     //07: normal mode, CTS and RTS disabled, stop bit length = 1
     //for testing load 0x47 to enable auto-echo
-    *MR2A = 0x47;
+    *MR2A = 0x07;
     *CRA = 0x05;    //enable Tx and Rx
     return;
 }
 
 extern char get_char() {
     char value = 0;
+    char is_valid = 0;
 
     //extract 0th bit from SRA register for RxRDY
     //4 => 0b00000001
-    char is_valid = ((*SRA) & 1);
-
-    //check bit 0 in SRA
     while(is_valid == 0x00) {
         //in poll
+        is_valid = ((*SRA) & 1);
     }
     value = *RHRA;
     put_char(*RHRA); //echo
     return value;
 }
 
-extern void put_char(char value) {
-    char buffer = value;
-    //extract 2nd bit from SRA register for TxRDY
-    //4 => 0b00000100
-    char is_valid = ((*SRA) & 4) >> 2; //DO THIS FOR THE GET_CHAR!!!!
+// extern void put_char(char value) {
+//     //extract 2nd bit from SRA register for TxRDY
+//     //4 => 0b00000100
+    
+//     //check bit 2 in SRA
+//     while(is_valid != 4) {
+//         //out poll
+//         is_valid = ((*SRA) & 4);
+//     }
+//     *THRA = value;
+//     return;
+// }
 
-    //check bit 2 in SRA
-    while(is_valid == 0x00) {
-        //out poll
+
+
+extern void put_char(char value) {
+__asm__("
+        move.b SRA,is_valid
+        btst #2,is_valid    
+        beq put_char
+        move.b value, THRA
+        rts
+    ");
+}
+
+
+
+
+
+
+extern void test_loop() {
+    int counter = 0;
+    while(counter != 1000) {
+        counter++;
     }
-    *THRA = buffer;
-    return;
 }

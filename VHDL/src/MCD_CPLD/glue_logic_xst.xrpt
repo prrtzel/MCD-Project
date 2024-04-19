@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Thu Apr 18 23:27:29 2024">
+  <application stringID="Xst" timeStamp="Fri Apr 19 00:52:33 2024">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -75,8 +75,8 @@
       <item DEFAULT="YES" label="-equivalent_register_removal" stringID="XST_EQUIVALENTREGISTERREMOVAL" value="YES"/>
     </section>
     <section stringID="XST_HDL_SYNTHESIS_REPORT">
-      <item dataType="int" stringID="XST_TRISTATES" value="16">
-        <item dataType="int" stringID="XST_1BIT_TRISTATE_BUFFER" value="16"/>
+      <item dataType="int" stringID="XST_TRISTATES" value="17">
+        <item dataType="int" stringID="XST_1BIT_TRISTATE_BUFFER" value="17"/>
       </item>
     </section>
     <section stringID="XST_ADVANCED_HDL_SYNTHESIS_REPORTFOUND_NO_MACRO"/>
@@ -97,14 +97,14 @@
         <item stringID="XST_IOS" value="30"/>
       </section>
       <section stringID="XST_CELL_USAGE">
-        <item dataType="int" stringID="XST_BELS" value="31">
+        <item dataType="int" stringID="XST_BELS" value="36">
           <item dataType="int" stringID="XST_AND2" value="3"/>
-          <item dataType="int" stringID="XST_AND4" value="4"/>
+          <item dataType="int" stringID="XST_AND4" value="5"/>
           <item dataType="int" stringID="XST_GND" value="1"/>
-          <item dataType="int" stringID="XST_INV" value="20"/>
+          <item dataType="int" stringID="XST_INV" value="24"/>
           <item dataType="int" stringID="XST_OR2" value="3"/>
         </item>
-        <item dataType="int" stringID="XST_IO_BUFFERS" value="28">
+        <item dataType="int" stringID="XST_IO_BUFFERS" value="29">
           <item dataType="int" stringID="XST_IBUF" value="8"/>
           <item dataType="int" stringID="XST_OBUF" value="4"/>
         </item>
@@ -112,7 +112,7 @@
     </section>
     <section stringID="XST_ERRORS_STATISTICS">
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_ERRORS" value="0"/>
-      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="2"/>
+      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="1"/>
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_INFOS" value="0"/>
     </section>
   </application>

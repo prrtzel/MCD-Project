@@ -1,8 +1,8 @@
-00000000 Starting Address
+00000200 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 4/5/2024 9:33:38 PM
+Created On: 4/19/2024 4:30:53 AM
 
-00000000  =00200000                  1  DUART   EQU     $00200000  loaded in A0 when needed, regs are offsets 
+00000000  =00100000                  1  DUART   EQU     $00100000  loaded in A0 when needed, regs are offsets 
 00000000  =00000001                  2  MR1A    EQU     1   Mode Register1 
 00000000  =00000001                  3  MR2A    EQU     1   points here after MR1A is set 
 00000000  =00000003                  4  SRA     EQU     3   Status Register (read) 
@@ -15,66 +15,74 @@ Created On: 4/5/2024 9:33:38 PM
 00000000  =00000002                 11  TxRDY   EQU     2   Transmit ready bit position 
 00000000  =000000CC                 12  BAUD    EQU     $CC baud rate value = 19,200 baud 
 00000000                            13  
-00000000                            14      org $00000000
-00000000                            15      
-00000000  4EB9 00000006             16      jsr INIT_DUART
-00000006                            17  
-00000006                            18  
-00000006                            19  INIT_DUART  
-00000006  41F9 00200000             20      LEA     DUART,A0        A0 points to base DUART address 
-0000000C                            21  
-0000000C                            22  ; Software reset: 
-0000000C  117C 0030 0005            23      MOVE.B  #$30,CRA(A0)    Reset TxA 
-00000012  117C 0020 0005            24      MOVE.B  #$20,CRA(A0)    Reset RxA 
-00000018  117C 0010 0005            25      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
-0000001E                            26  
-0000001E                            27  ; Initialization: 
-0000001E  117C 0080 0009            28      MOVE.B      #$80,ACR(A0)        selects baud rate set 2 
-00000024  117C 00CC 0003            29      MOVE.B      #BAUD,CSRA(A0)      set 19.2k baud Rx/Tx 
-0000002A  117C 0013 0001            30      MOVE.B      #$13,MR1A(A0)       8-bits, no parity, 1 stop bit 
-00000030                            31  
-00000030                            32   
-00000030                            33  ; This is the most important register to set in the 68681 DUART. 
-00000030                            34  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
-00000030                            35  ; For testing load $#47 to enable auto-echo 
-00000030                            36  
-00000030  117C 0047 0001            37      MOVE.B  #$47,MR2A(A0)    
-00000036  117C 0005 0005            38      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
-0000003C  4E75                      39      RTS     
-0000003E                            40  
-0000003E                            41  
-Line 42 ERROR: Invalid syntax
-0000003E                            42  IN_POLL 
-0000003E                            43      *checks if reciever is ready
-0000003E  1228 0003                 44      MOVE.B  SRA(A0),D1 
-Line 45 ERROR: Invalid syntax
-00000042                            45      BTST    #0,D1 
-Line 46 ERROR: Invalid syntax
-00000042                            46      BEQ     IN_POLL 
-00000042  1228 0007                 47      MOVE.B  RBA(A0),D1 
-Line 48 ERROR: Undefined symbol
-00000046  4EB9 004DBD16             48      JSR     PUT_CHAR
-0000004C  4E75                      49      RTS 
-0000004E                            50  
-0000004E                            51  ;PUT CHAR SUBROUTINE 
-Line 52 ERROR: Invalid syntax
-0000004E                            52  PUT_CHAR  
-0000004E  3F02                      53      MOVE.W  D2, -(SP) 
-00000050                            54  
-00000050                            55  OUT_POLL 
-00000050  1428 0003                 56      MOVE.B  SRA(A0),D2 
-Line 57 ERROR: Invalid syntax
-00000054                            57      BTST    #2,D2 
-Line 58 ERROR: Invalid syntax
-00000054                            58      BEQ     OUT_POLL 
-00000054  1141 0007                 59      MOVE.B  D1,TBA(A0) 
-00000058  341F                      60      MOVE.W  (SP)+,D2 
-Line 61 ERROR: Invalid syntax
-0000005A                            61      RTS  
-Line 62 WARNING: END directive missing, starting address not set
+00000000  =0008FFF0                 14  SUPER_STACK EQU $8FFF0
+00000000                            15  
+00000000                            16  
+00000000                            17      ORG $00000000
+00000000= 0008FFF0                  18      DC.L SUPER_STACK
+00000004= 00000200                  19      DC.L START
+00000008                            20      
+00000200                            21      ORG $200
+00000200                            22  START:
+00000200  4EB9 00000210             23      JSR INIT_DUART
+00000206                            24      
+00000206  4EB9 00000248             25      JSR GET_CHAR
+0000020C                            26      
+0000020C  4EB8 0200                 27      JSR START
+00000210                            28      
+00000210                            29  
+00000210                            30  
+00000210                            31  
+00000210                            32  
+00000210                            33  INIT_DUART:  
+00000210  41F9 00100000             34      LEA     DUART,A0        A0 points to base DUART address 
+00000216                            35  
+00000216                            36  ; Software reset: 
+00000216  117C 0030 0005            37      MOVE.B  #$30,CRA(A0)    Reset TxA 
+0000021C  117C 0020 0005            38      MOVE.B  #$20,CRA(A0)    Reset RxA 
+00000222  117C 0010 0005            39      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
+00000228                            40  
+00000228                            41  ; Initialization: 
+00000228  117C 0080 0009            42      MOVE.B      #$80,ACR(A0)        selects baud rate set 2 
+0000022E  117C 00CC 0003            43      MOVE.B      #BAUD,CSRA(A0)      set 19.2k baud Rx/Tx 
+00000234  117C 0013 0001            44      MOVE.B      #$13,MR1A(A0)       8-bits, no parity, 1 stop bit 
+0000023A                            45  
+0000023A                            46   
+0000023A                            47  ; This is the most important register to set in the 68681 DUART. 
+0000023A                            48  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
+0000023A                            49  ; For testing load $#47 to enable auto-echo 
+0000023A                            50  
+0000023A  117C 0007 0001            51      MOVE.B  #$07,MR2A(A0)    
+00000240  117C 0005 0005            52      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
+00000246  4E75                      53      RTS     
+00000248                            54  
+00000248                            55  GET_CHAR:
+00000248                            56  IN_POLL:
+00000248                            57      *checks if reciever is ready
+00000248  1228 0003                 58      MOVE.B  SRA(A0),D1 
+0000024C  0801 0000                 59      BTST    #0,D1 
+00000250  67F6                      60      BEQ     IN_POLL 
+00000252  1228 0007                 61      MOVE.B  RBA(A0),D1 
+00000256  4EB9 0000025E             62      JSR     PUT_CHAR
+0000025C  4E75                      63      RTS 
+0000025E                            64  
+0000025E                            65  ;PUT CHAR SUBROUTINE 
+0000025E                            66  PUT_CHAR:
+0000025E  3F02                      67      MOVE.W  D2, -(SP) 
+00000260                            68  
+00000260                            69  OUT_POLL:
+00000260  1428 0003                 70      MOVE.B  SRA(A0),D2 
+00000264  0802 0002                 71      BTST    #2,D2 
+00000268  67F6                      72      BEQ     OUT_POLL 
+0000026A  1141 0007                 73      MOVE.B  D1,TBA(A0) 
+0000026E  341F                      74      MOVE.W  (SP)+,D2
+00000270  4E75                      75      RTS
+00000272                            76  
+00000272                            77      
+00000272                            78      END START
 
-8 errors detected
-1 warning generated
+No errors detected
+No warnings generated
 
 
 SYMBOL TABLE INFORMATION
@@ -84,13 +92,18 @@ ACR                 9
 BAUD                CC
 CRA                 5
 CSRA                3
-DUART               200000
-INIT_DUART          6
+DUART               100000
+GET_CHAR            248
+INIT_DUART          210
+IN_POLL             248
 MR1A                1
 MR2A                1
-OUT_POLL            50
+OUT_POLL            260
+PUT_CHAR            25E
 RBA                 7
 RXRDY               0
 SRA                 3
+START               200
+SUPER_STACK         8FFF0
 TBA                 7
 TXRDY               2

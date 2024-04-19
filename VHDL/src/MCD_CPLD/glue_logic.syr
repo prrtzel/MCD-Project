@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: glue_logic.prj
 
@@ -101,7 +101,6 @@ Performing bidirectional port resolution...
 Synthesizing Unit <glue_logic>.
     Related source file is "C:/Users/gsyac/Documents/MCD/MCD Project/VHDL/src/MCD_CPLD/main.vhd".
 WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1306 - Output <DUARTCS> is never assigned.
     Found 1-bit tristate buffer for signal <HALT>.
     Found 1-bit tristate buffer for signal <BERR>.
     Found 1-bit tristate buffer for signal <LED<5>>.
@@ -118,8 +117,9 @@ WARNING:Xst:1306 - Output <DUARTCS> is never assigned.
     Found 1-bit tristate buffer for signal <RAMHCE2>.
     Found 1-bit tristate buffer for signal <RAMHOE>.
     Found 1-bit tristate buffer for signal <RESET>.
+    Found 1-bit tristate buffer for signal <DUARTCS>.
     Summary:
-	inferred  16 Tristate(s).
+	inferred  17 Tristate(s).
 Unit <glue_logic> synthesized.
 
 
@@ -127,8 +127,8 @@ Unit <glue_logic> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Tristates                                            : 16
- 1-bit tristate buffer                                 : 16
+# Tristates                                            : 17
+ 1-bit tristate buffer                                 : 17
 
 =========================================================================
 
@@ -179,27 +179,27 @@ Design Statistics
 # IOs                              : 30
 
 Cell Usage :
-# BELS                             : 31
+# BELS                             : 36
 #      AND2                        : 3
-#      AND4                        : 4
+#      AND4                        : 5
 #      GND                         : 1
-#      INV                         : 20
+#      INV                         : 24
 #      OR2                         : 3
-# IO Buffers                       : 28
+# IO Buffers                       : 29
 #      IBUF                        : 8
 #      OBUF                        : 4
-#      OBUFE                       : 16
+#      OBUFE                       : 17
 =========================================================================
 
 
 Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.98 secs
+Total CPU time to Xst completion: 2.83 secs
  
 --> 
 
-Total memory usage is 4499424 kilobytes
+Total memory usage is 4499480 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    2 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

@@ -1,4 +1,4 @@
-DUART   EQU	    $00200000  loaded in A0 when needed, regs are offsets 
+DUART   EQU	    $00100000  loaded in A0 when needed, regs are offsets 
 MR1A   	EQU   	1	Mode Register1 
 MR2A  	EQU   	1	points here after MR1A is set 
 SRA    	EQU   	3   Status Register (read) 
@@ -11,12 +11,26 @@ RxRDY	EQU		0	Recieve ready bit position
 TxRDY	EQU		2	Transmit ready bit position 
 BAUD	EQU	  	$CC baud rate value = 19,200 baud 
 
-    org $00000000
+SUPER_STACK EQU $8FFF0
+
+
+    ORG $00000000
+    DC.L SUPER_STACK
+    DC.L START
     
-    jsr INIT_DUART
+    ORG $200
+START:
+    JSR INIT_DUART
+    
+    JSR GET_CHAR
+    
+    JSR START
+    
 
 
-INIT_DUART  
+
+
+INIT_DUART:  
     LEA	  	DUART,A0		A0 points to base DUART address 
 
 ; Software reset: 
@@ -34,31 +48,35 @@ INIT_DUART
 ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
 ; For testing load $#47 to enable auto-echo 
 
-    MOVE.B	#$47,MR2A(A0)	 
+    MOVE.B	#$07,MR2A(A0)	 
     MOVE.B	#$05,CRA(A0)	enable Tx and Rx 
     RTS     
 
-
-IN_POLL 
+GET_CHAR:
+IN_POLL:
     *checks if reciever is ready
     MOVE.B  SRA(A0),D1 
-    BTST    #0,D1 
-    BEQ     IN_POLL 
+    BTST    #0,D1 
+    BEQ     IN_POLL 
     MOVE.B  RBA(A0),D1 
     JSR     PUT_CHAR
     RTS 
 
 ;PUT CHAR SUBROUTINE 
-PUT_CHAR  
+PUT_CHAR:
     MOVE.W  D2, -(SP) 
 
-OUT_POLL 
+OUT_POLL:
     MOVE.B  SRA(A0),D2 
-    BTST    #2,D2 
-    BEQ     OUT_POLL 
+    BTST    #2,D2 
+    BEQ     OUT_POLL 
     MOVE.B  D1,TBA(A0) 
-    MOVE.W  (SP)+,D2 
-    RTS  
+    MOVE.W  (SP)+,D2
+    RTS
+
+    
+    END START
+
 *~Font name~Courier New~
 *~Font size~16~
 *~Tab type~1~

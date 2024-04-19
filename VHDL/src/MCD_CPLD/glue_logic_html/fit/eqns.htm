@@ -3,9 +3,9 @@
 <script src="paths.js"></script><script src="eqns.js"></script><script>
       var design = "glue_logic";
       var device = "XC9572XL";
-      signals = new Array("BERR","CPU_DTACK","HALT","LED0_SPECSIG","LED1_SPECSIG","LED2_SPECSIG","LED3_SPECSIG","LED4_SPECSIG","LED5_SPECSIG","RAMHCE","RAMHCE2","RAMHOE","RAMLCE","RAMLCE2","RAMLOE","RESET","ROMHCE","ROMHOE","ROMLCE","ROMLOE");
-      sigNegs = new Array("OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF");
-      sigTypes = new Array("","","","","","","","","","","","","","","","","","","","");
+      signals = new Array("BERR","CPU_DTACK","DUARTCS","HALT","LED0_SPECSIG","LED1_SPECSIG","LED2_SPECSIG","LED3_SPECSIG","LED4_SPECSIG","LED5_SPECSIG","RAMHCE","RAMHCE2","RAMHOE","RAMLCE","RAMLCE2","RAMLOE","RESET","ROMHCE","ROMHOE","ROMLCE","ROMLOE");
+      sigNegs = new Array("OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF","OFF");
+      sigTypes = new Array("","","","","","","","","","","","","","","","","","","","","");
 
       
         specSig["ABUS0_SPECSIG"]=new Array("ABUS<0>");
@@ -24,6 +24,8 @@
       
         specSig["LED5_SPECSIG"]=new Array("LED<5>");
       
+            pterms["FB1_6_1"]=new Array("/ABUS0_SPECSIG","/AS","ABUS1_SPECSIG","/LDS");
+          
             pterms["FB2_6_1"]=new Array("SRESET","BRESET");
           
             pterms["FB2_9_1"]=new Array("SRESET","BRESET");
@@ -58,6 +60,14 @@
           
             d2imp["LED0_SPECSIG"]=new Array("1");
           
+          d2["DUARTCS"]=new Array("GND");
+          
+            d2imp["DUARTCS"]=new Array("1");
+          
+              trst["DUARTCS"]=new Array("FB1_6_1");
+              
+                trstimp["DUARTCS"]=new Array("1");
+              
           d2["LED1_SPECSIG"]=new Array("GND");
           
             d2imp["LED1_SPECSIG"]=new Array("1");

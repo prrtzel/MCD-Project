@@ -56,7 +56,7 @@ begin
     RAMHCE  <= '0' when (ABUS="01" and AS='0' and UDS='0') else 'Z';
     RAMHCE2 <= 'Z' when (ABUS="01" and AS='0' and UDS='0') else '0';
 
-    --DUARTCS <= 'Z' when (ABUS="10" and AS='0' and LDS='0') else '0';
+    DUARTCS <= 'Z' when (ABUS="10" and AS='0' and LDS='0') else '0';
 
 
 -------------------------------------------
