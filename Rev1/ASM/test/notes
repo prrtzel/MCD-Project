@@ -1,0 +1,128 @@
+env variables:
+    set VBCC=C:\Program Files\vbcc\vbcc
+    set PATH=C:\Program Files\vbcc\vbcc\bin;%PATH%
+
+makefile builds as follows:
+    - C is compiled with vbccm68k (32bit) using the amiga softfloat lib for floating point values
+    - the object file is then compiled to assembly for readability
+    - this is then linked with an assembly header file
+    - final object is converted to s-record
+    - the s-record is opened with batch file to easy68k sim
+
+notes:
+    .L debugging files currently not supported 
+    time spent:
+
+# TODO
+- add if define for simulator vs hardware
+- figure out how to put all strings into header file
+- implement malloc if time
+- add exceptions for read mem
+- cleanup code
+- implement clrscreen into main
+- change parse of commands
+- GET BETTER WAY OF PUTTING INPUT STRING DATA IN BUIFEFR
+
+# Morg the Monitor Program
+Morg needs to:
+    1. read from memory
+    2. write to memory
+    3. read from a register
+    4. write to a register
+    5. load an s-record
+    6. run an s-record
+
+Morg Menu
+
+To select an option select the number and press enter
+
+1. read from memory
+2. write to memory
+3. read from a register
+4. write to a register
+5. load an s-record
+6. run an s-record
+
+
+
+
+
+# read from register
+move all resgisters to the stack
+choose which one to read from 
+index the stack to the chosen register
+move it to d0
+send 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Reading From Memory (1)
+Ex: Read Address 0x6969
+'6969' ascii hex to binary for each byte
+shift each byte in word
+final result is 0x6969
+ptr = 0x6969
+
+data = *ptr
+convert data into ascii
+output ascii
+
+printMemory
+
+
+
+
+
+
+
+# backspace
+
+buffer = [a, b, c, d, e, f, g, bs]
+j=7
+backspace
+
+TRACKED POSITION OF J!!
+
+
+
+# parsing commmands
+- PUT THINGS IN BUFFER!!!
+
+# write to memory
+
+
+
+# notes with Brian
+.txt rom
+.data ram
+
+all .data:
+second linker script for user program
+
+crt0.s
+
+figure out linker and 
+
+look at std lib!!!!
+
+
+
+
+
+
+
+
+
+
+# startup file
+vector table on page 448 in textbook from 000 to 3FC

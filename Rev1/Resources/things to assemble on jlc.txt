@@ -1,0 +1,5 @@
+things to assemble from jlc
+- voltage regulator
+- debouncer
+
+
