@@ -1,0 +1,13 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '8444_11B1_RK_TP'
+CLASS = IC
+
+{========================================================================================}
+:PACK_TYPE | VALUE = MANUFACTURER_PART_NUMBER | COPYRIGHT | MFR_NAME | JEDEC_TYPE | PART_NUMBER ;
+{========================================================================================}
+ 'THRU' | '8444-11B1-RK-TP'(!) = '8444-11B1-RK-TP' | 'Copyright (C) 2024 Ultra Librarian. All rights reserved.' | '3M' | 'TO_11B1-RK-TP_3MM' | '8444-11B1-RK-TP'
+
+END_PART
+
+END.
