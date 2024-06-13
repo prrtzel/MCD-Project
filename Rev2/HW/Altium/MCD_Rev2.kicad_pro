@@ -51,7 +51,6 @@
       "diff_pair_dimensions": [],
       "drc_exclusions": [
         "malformed_courtyard|118098300|169222000|058d3048-a769-43ce-b22e-d51cb460b2a9|00000000-0000-0000-0000-000000000000",
-        "malformed_courtyard|118115423|172292000|058d3048-a769-43ce-b22e-d51cb460b2a9|00000000-0000-0000-0000-000000000000",
         "silk_over_copper|136860000|132110000|58633a66-53a7-4a80-bb62-9adf9147da29|b5ea13a8-3e37-4201-b115-0647094f76a8"
       ],
       "meta": {
