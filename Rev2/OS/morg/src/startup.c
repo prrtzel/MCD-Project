@@ -1,8 +1,8 @@
 #include "startup.h"
 #include "main.c"
 
-void init(void);
 void Reset_Handler(void);
+
 extern long _estack;
 
 extern long _sidata;
@@ -13,7 +13,6 @@ extern long _ebss;
 long* src;
 long* dst;
 
-//vector table
 __attribute__((section(".isr_vec")))
 const long *isr_vectors[] = {
     (long *) &_estack,                              // Initial Stack Pointer
@@ -49,37 +48,24 @@ const long *isr_vectors[] = {
 };
 
 void Reset_Handler(void) {
-    //initialize stack pointer
-    __asm__("move.l _estack, %sp");
+    // Initialize stack pointer
+    __asm__("move.l #_estack, %sp");
 
-  // Copy data segment initializers from flash to SRAM
- 
+    // Copy .data section from ROM to RAM
     src = &_sidata;
     dst = &_sdata;
-
-    while (dst < &_edata) {
+    while (dst < &_edata)
+    {
         *dst++ = *src++;
     }
 
-    // Zero initialize the .bss segment
-
-    dst = &_sbss;
-
-    while (dst < &_ebss) {
-        *dst++ = 0;
-    }
-
-    init();
 
 #ifdef HARDWARE
-    //Initialize DUART
+    // Initialize DUART
 #endif
-    //call the main function
+
+    // Call the main function
     __main();
 
     return;
-}
-
-void init(void) {
-    
 }

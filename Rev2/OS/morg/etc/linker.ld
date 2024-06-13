@@ -9,6 +9,7 @@ MEMORY
 }
 
 
+PROVIDE(_estack = 0x00100000 + 0x0001FFF0); 
 
 SECTIONS
 {
@@ -24,18 +25,26 @@ SECTIONS
         . = ALIGN(4);
         *(.text)
         *(.rodata)
+        _etext = .;
         . = ALIGN(4);
     }> ROM
+
+    .data_rom : AT (_etext)
+    {
+        . = ALIGN(4);
+        _sidata = .;
+        *(.data)
+        . = ALIGN(4);
+    } > ROM
 
     .data :
     {
         . = ALIGN(4);
-        _sidata = LOADADDR(.data);
         _sdata = .;
         *(.data)
         _edata = .;
         . = ALIGN(4);
-    } > RAM AT > ROM
+    }> RAM
 
     .bss :
     {
@@ -45,6 +54,4 @@ SECTIONS
         _ebss = .;
         . = ALIGN(4);
     }> RAM
-
-    _estack = 0x00100000 + 0x1FFFF;   
 }

@@ -24,7 +24,8 @@ void Level6_Interrupt_Autovector_Handler(void)__attribute__((weak));
 void Level7_Interrupt_Autovector_Handler(void)__attribute__((weak));
 
 void Default_Handler(void) {
-    while (1);
+    // while (1);
+    return;
 }
 
 // Provide weak definitions for the interrupt handlers
