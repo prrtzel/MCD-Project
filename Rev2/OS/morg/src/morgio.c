@@ -1,9 +1,19 @@
 #include "startup.h"
-extern void serial_print(const char* str_ptr);
+#include "morgio.h"
 
+extern char get_char() {
+#ifdef SIM
+    __asm__("
+	    move.l	#5, %d0
+	    trap	#15
+	    move.b	%d1, get_char_buffer
+    ");
+    return get_char_buffer;
+#endif
+#ifdef HARDWARE
+#endif
+}
 
-
-static char* str_ptr_buffer;
 void serial_print(const char* str_ptr) {
     str_ptr_buffer = (char*) str_ptr;
 #ifdef SIM
@@ -17,3 +27,4 @@ void serial_print(const char* str_ptr) {
 
 #endif
 }
+
