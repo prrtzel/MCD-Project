@@ -5,11 +5,11 @@ void Reset_Handler(void);
 
 extern long _estack;
 
-extern long _sidata;
-extern long _sdata;
-extern long _edata;
-extern long _sbss;
-extern long _ebss;
+extern long* _etext;
+extern long* _sdata;
+extern long* _edata;
+extern long* _sbss;
+extern long* _ebss;
 long* src;
 long* dst;
 
@@ -52,11 +52,18 @@ void Reset_Handler(void) {
     __asm__("move.l #_estack, %sp");
 
     // Copy .data section from ROM to RAM
-    src = &_sidata;
-    dst = &_sdata;
-    while (dst < &_edata)
+    src = _etext;
+    dst =  _sdata;
+    while (dst < _edata)
     {
         *dst++ = *src++;
+    }
+
+    // Zero initialize .bss section in RAM
+    dst = _sbss;
+    while (dst < _ebss)
+    {
+        *dst = 0;
     }
 
 
@@ -69,3 +76,7 @@ void Reset_Handler(void) {
 
     return;
 }
+
+
+
+

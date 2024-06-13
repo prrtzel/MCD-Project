@@ -24,27 +24,17 @@ SECTIONS
     {
         . = ALIGN(4);
         *(.text)
-        *(.rodata)
         _etext = .;
         . = ALIGN(4);
     }> ROM
 
-    .data_rom : AT (_etext)
-    {
-        . = ALIGN(4);
-        _sidata = .;
-        *(.data)
-        . = ALIGN(4);
-    } > ROM
-
-    .data :
-    {
-        . = ALIGN(4);
-        _sdata = .;
-        *(.data)
-        _edata = .;
-        . = ALIGN(4);
-    }> RAM
+.data :
+    AT ( ADDR(.text) + SIZEOF ( .text ) )
+    { 
+        _sdata = . ; 
+        *(.data); 
+        _edata = . ;  
+    }
 
     .bss :
     {
