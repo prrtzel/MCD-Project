@@ -1,8 +1,6 @@
 #include "morgio.c"
-
+#include "strings.c"
 /*
-Where to put crap
-
 .rodata
 const char str[] = "holy moly batman!!";
 
@@ -11,14 +9,11 @@ static int var;
 
 .data
 int var = definition;
-
 */
 
-int var = 0x430;
-
-extern int __main(void);
 
 int __main() {
-    
+    serial_print(&str[0]);
+    serial_print(&str2[0]);
     return 0;
 }

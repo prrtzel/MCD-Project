@@ -1,0 +1,9 @@
+
+.rodata
+const char str[] = "holy moly batman!!";
+
+.bss
+static int var;
+
+.data
+int var = definition;
