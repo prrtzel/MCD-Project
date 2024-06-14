@@ -2,4 +2,5 @@
 #define MAIN_H
 
 extern int __main(void);
+
 #endif

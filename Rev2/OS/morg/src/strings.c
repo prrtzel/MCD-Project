@@ -1,3 +1,5 @@
+#include "strings.h"
+#include "morgio.h"
 
 //---------------------------------------------------
 // Menu Display
@@ -14,12 +16,13 @@ const char help_menu[] = "Morg Monitor System\n\r
 '5'    -- write to a register Ex: 5 d4 0000ffff
 \n\r";
 
+
+//-------------------------------------------------
+// Shell thing
+const char shell_pretty_thing[] = "\n\r>>\0";
+
 void print_menu() {
     serial_print(&menu_name[0]);
     serial_print(&menu_distribute[0]);
     serial_print(&menu_version[0]);
 }
-
-//-------------------------------------------------
-// Shell thing
-const char shell_pretty_thing[] = "\n\r>>\0";

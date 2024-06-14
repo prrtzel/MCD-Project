@@ -1,3 +1,4 @@
+Where variables are placed:
 
 .rodata
 const char str[] = "holy moly batman!!";
@@ -7,3 +8,23 @@ static int var;
 
 .data
 int var = definition;
+
+
+Commands for Morg:
+
+help - help page
+
+rm - read memory location
+dmp - dump memory region
+wm - write to a memory location
+
+rr - read register
+wr - write to register
+
+ld - load an srecord
+run - run the srecord
+
+
+
+
+
