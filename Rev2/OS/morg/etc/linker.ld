@@ -28,13 +28,15 @@ SECTIONS
         . = ALIGN(4);
     }> ROM
 
-.data :
-    AT ( ADDR(.text) + SIZEOF ( .text ) )
+    .data :
+    AT (ADDR(.text) + SIZEOF (.text))
     { 
-        _sdata = . ; 
-        *(.data); 
-        _edata = . ;  
-    }
+        . = ALIGN(4);
+        _sdata = .; 
+        *(.data);
+        _edata = .;  
+        . = ALIGN(4);
+    } > RAM
 
     .bss :
     {

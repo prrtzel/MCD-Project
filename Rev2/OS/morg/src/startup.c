@@ -1,5 +1,6 @@
 #include "startup.h"
 #include "main.h"
+#include "morgio.h"
 
 extern long _estack;
 extern long* _etext;
@@ -7,8 +8,7 @@ extern long* _sdata;
 extern long* _edata;
 extern long* _sbss;
 extern long* _ebss;
-long* src;
-long* dst;
+
 
 __attribute__((section(".isr_vec")))
 const long *isr_vectors[] = {
@@ -45,6 +45,9 @@ const long *isr_vectors[] = {
 };
 
 void Reset_Handler(void) {
+    long* src;
+    long* dst;
+
     // Initialize stack pointer
     __asm__("move.l #_estack, %sp");
 
@@ -53,15 +56,19 @@ void Reset_Handler(void) {
     dst =  _sdata;
     while (dst < _edata)
     {
+        serial_print("initializing data\r\n");
         *dst++ = *src++;
     }
+    serial_print("data initialized\r\n");
 
     // Zero initialize .bss section in RAM
     dst = _sbss;
     while (dst < _ebss)
     {
+        serial_print("initializing bss\r\n");
         *dst++ = 0;
     }
+    serial_print("bss initialized\r\n");
 
 
 #ifdef HARDWARE

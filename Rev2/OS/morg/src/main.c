@@ -1,16 +1,16 @@
 #include "morgio.h"
 #include "strings.h"
 
-const char tr[] = "true";
-const char fl[] = "false";
+const char tr[] = "Little endian";
+const char fl[] = "big endian";
 const char str[] = "fale";
 
+long two = 0x5678;
+long one = 0x1234;
+long three;
+
+
 int __main() {
-    enum bool result;
-    result = cmp_str(&str[0], &fl[0], 5);
-    if (result == TRUE)
-        serial_print(&tr[0]);
-    else
-        serial_print(&fl[0]);
+
     return 0;
 }

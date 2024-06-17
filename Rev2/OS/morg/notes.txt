@@ -28,3 +28,11 @@ run - run the srecord
 
 
 
+
+
+
+OK SO
+IT WILL WRITE TO MEMORY DEPENDING ON THE SIZE
+
+
+memory is still a bit wack, making conversions so that we can debug that
