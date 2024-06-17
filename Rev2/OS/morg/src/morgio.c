@@ -51,6 +51,7 @@ void serial_print(const char* str_ptr) {
 #ifdef HARDWARE
 
 #endif
+    return;
 }
 
 extern void get_string() {
@@ -79,7 +80,6 @@ extern void get_string() {
     }
     input_buffer[i + 1] = '\0';
     serial_print(&eot[0]);
-    input_buffer[INPUT_BUFFER_SIZE] = 0;
 }
 
 extern void clear_buffer(char* buffer, int size) {
@@ -90,11 +90,14 @@ extern void clear_buffer(char* buffer, int size) {
 }
 
 extern enum bool cmp_str(const char* str1, const char* str2) {
-    while (*str1 != '\0' || *str2 != '\0') {
-        if (*str1 != *str2)
+    while (1) {
+        if (*str1 != *str2) {
             return false;
+        }
         str1++;
         str2++;
+        if (*str1 != '\0' || *str2 != '\0')
+            break;
     }
     return true;
 }

@@ -1,10 +1,12 @@
 #ifndef MORGIO_H
 #define MORGIO_H
 
-#define INPUT_BUFFER_SIZE 100
 #define BACKSPACE 0x08
-char input_buffer[INPUT_BUFFER_SIZE];
+#define INPUT_BUFFER_SIZE 100
+#define OUTPUT_BUFFER_SIZE 100
 
+char input_buffer[INPUT_BUFFER_SIZE];
+char output_buffer[OUTPUT_BUFFER_SIZE];
 
 /*
  "we have a bool at home"
@@ -46,12 +48,9 @@ extern void clear_buffer(char* buffer, int size);
  * 
  * @param str1 
  * @param str2 
- * @param length 
  * @return enum Bool false if they are not equal, true otherwise
  */
 extern enum bool cmp_str(const char* str1, const char* str2);
-
-
 
 
 

@@ -1,11 +1,14 @@
+#include "morg.h"
 #include "morgio.h"
 
 enum bool exit_code = false;
 
-char key[8][4] = {"help", "exit", "rm", "wm", "rr", "wr", "ld", "run"};
+char key[NUM_OF_COMMANDS][5] = {"help\0", "exit\0", "rm\0", "wm\0", "rr\0", "wr\0", "ld\0", "run\0"};
 
-
-
+void get_input() {
+    serial_print(">> ");
+    get_string();
+}
 
 void parse_cmd() {
     // if (cmp_str("exit", &input_buffer[0], 4) == true)
@@ -23,15 +26,17 @@ void parse_cmd() {
     //     ");
     
     int i = 0;
-    for (i = 0; i < 8; i++) {
-        if (cmp_str(&input_buffer[0], &key[i][0]) == true)
+    for (i = 0; i < NUM_OF_COMMANDS; i++) {
+        if (cmp_str(&input_buffer[0], &key[i][0]) == true) {
+            serial_print("true\n\r");
+        }
+        else {
+            serial_print("false\n\r");
+            serial_print("input: ");
+            serial_print(&input_buffer[0]);
+            serial_print("\n\rkey: ");
             serial_print(&key[i][0]);
-    }
-    
-}
-
-void get_input() {
-    serial_print(">> ");
-    get_string();
-    parse_cmd();
+            serial_print("\n\r");
+        }
+    }   
 }

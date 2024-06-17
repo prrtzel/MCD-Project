@@ -3,21 +3,21 @@
 #include "strings.h"
 #include "conversions.h"
 
-//#define MAIN
-#define TEST
+
+#define ARRAY_LENGTH(arr) ((sizeof(arr) / sizeof((arr)[0])))
+
 
 int __main() {
+    // while (exit_code == false) {
+    //     get_input();
+    //     parse_cmd();
+    // }
 
-    if (cmp_str("hello", "hell0") == true)
+    get_string();
+    if (cmp_str(&input_buffer[0], "run") == true)
         serial_print("true");
     else
         serial_print("false");
-
-#if MAIN
-    while (exit_code == false) {
-        get_input();
-    }
-#endif
 
     return 0;
 }
