@@ -2,14 +2,7 @@
 #define MORGIO_H
 
 #define INPUT_BUFFER_SIZE 100
-
-/**
- * @brief input buffer for get_string() 
- */
-char input_buffer[INPUT_BUFFER_SIZE];
-
 #define BACKSPACE 0x08
-
 
 /*
  "we have a bool at home"
@@ -19,7 +12,6 @@ enum bool {
     FALSE
 };
 
-
 /**
  * @brief Obtains a char from the serial monitor
  * @return char 
@@ -27,24 +19,10 @@ enum bool {
 extern char get_char();
 
 /**
- * @brief Buffer needed for get_char(). 
-    Assembly references need a non 
-    local variable
- */
- char get_char_buffer;
-
-/**
  * @brief This prints a string to the serial monitor
  * @param str_ptr Constant pointer to first char in the string
  */
 extern void serial_print(const char* str_ptr);
-
-/**
- * @brief Buffer needed for serial_print(). 
-    Assembly references need a non 
-    local variable
- */
-char* str_ptr_buffer;
 
 /**
  * @brief Obtains a string from the serial monitor and places it into 
@@ -60,7 +38,6 @@ extern void get_string();
  * @param size size of thy buffer (it does matter in this case)
  */
 extern void clear_buffer(char* buffer, int size);
-
 
 /**
  * @brief compares 2 strings

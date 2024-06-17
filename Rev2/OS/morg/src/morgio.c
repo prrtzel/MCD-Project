@@ -2,6 +2,15 @@
 #include "startup.h"
 #include "strings.h"
 
+static char input_buffer[INPUT_BUFFER_SIZE];
+
+// Assembly references need a non local variable
+
+// serial_print buffer
+static char* str_ptr_buffer;
+// get_char buffer
+static char get_char_buffer;
+
 const char input_overflow_error[] = "Error: too large an input!";
 const char backspace[] = " \b\0";
 const char eot[] = "\n\r\0";
