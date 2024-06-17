@@ -7,6 +7,7 @@
         "startup.h": "c",
         "strings.h": "c",
         "morgio.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "conversions.h": "c"
     }
 }
