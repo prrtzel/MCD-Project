@@ -2,8 +2,6 @@
 #include "startup.h"
 #include "strings.h"
 
-static char input_buffer[INPUT_BUFFER_SIZE];
-
 // Assembly references need a non local variable
 
 // serial_print buffer
@@ -81,6 +79,7 @@ extern void get_string() {
     }
     input_buffer[i + 1] = '\0';
     serial_print(&eot[0]);
+    input_buffer[INPUT_BUFFER_SIZE] = 0;
 }
 
 extern void clear_buffer(char* buffer, int size) {
@@ -90,13 +89,12 @@ extern void clear_buffer(char* buffer, int size) {
     }
 }
 
-extern enum bool cmp_str(const char* str1, const char* str2, int length) {
-    int i;
-    for (i = 0; i < length; i++) {
+extern enum bool cmp_str(const char* str1, const char* str2) {
+    while (*str1 != '\0' || *str2 != '\0') {
         if (*str1 != *str2)
-            return FALSE;
+            return false;
         str1++;
         str2++;
     }
-    return TRUE;
+    return true;
 }

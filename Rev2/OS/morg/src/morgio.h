@@ -3,13 +3,15 @@
 
 #define INPUT_BUFFER_SIZE 100
 #define BACKSPACE 0x08
+char input_buffer[INPUT_BUFFER_SIZE];
+
 
 /*
  "we have a bool at home"
 */
 enum bool {
-    TRUE,
-    FALSE
+    true = 1,
+    false = 0
 };
 
 /**
@@ -47,7 +49,7 @@ extern void clear_buffer(char* buffer, int size);
  * @param length 
  * @return enum Bool false if they are not equal, true otherwise
  */
-extern enum bool cmp_str(const char* str1, const char* str2, int length);
+extern enum bool cmp_str(const char* str1, const char* str2);
 
 
 
