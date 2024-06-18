@@ -2,6 +2,10 @@
 #include "morgio.h"
 #include "conversions.h"
 
+#define ADDRESS_16 4
+#define ADDRESS_24 6
+#define ADDRESS_32 8
+
 enum bool exit_code = false;
 
 
@@ -172,6 +176,96 @@ void write_register(enum registers reg, int data){
 #pragma endregion
 
 #pragma region srecord
+// take input buffer
+// write raw data to srec memory location
+
+//#define DEBUG_SREC
+
+long load_srec() {
+#ifdef DEBUG_SREC
+//add srec string to test things with
+#endif
+
+    // read type
+    // read address
+    // write data to determined address
+    // check the checksum
+    // repeat until no more records
+
+    enum bool has_next_srec = true;
+    int counter = 0;
+    char srec_type  = 0;
+    char byte_count = 0;
+    long address    = 0;
+    char checksum   = 0;
+    long start_address = 0;
+
+    while (has_next_srec == true) {
+        //skipping the S
+        counter++;
+
+        // read srec type
+        srec_type = ascii_hex_to_bin(&input_buffer[counter], 1);
+        counter++;
+
+        // read srec byte count
+        byte_count = ascii_hex_to_bin(&input_buffer[counter], 2);
+        counter = counter  + 2;
+
+        // get address based on type
+        switch (srec_type)
+        {
+        case 1:
+        // 16-Bit Data
+            address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_16);
+            counter = counter + ADDRESS_16;
+            write_srec_data(&input_buffer[counter], byte_count, (long*)address);
+            break;
+
+        // 32-Bit Data
+        case 3:
+            address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_32);
+            counter = counter + ADDRESS_32;
+            write_srec_data(&input_buffer[counter], byte_count, (long*)address);
+            counter = counter + byte_count;
+            break;
+
+        // 32-bit Termination
+        case 7:
+            start_address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_32);
+            counter = counter + ADDRESS_32;
+            has_next_srec = false;
+            break;
+
+        // 16-bit Termination
+        case 9:
+            start_address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_16);
+            counter = counter  + ADDRESS_16;
+            has_next_srec = false;
+            break;
+        default:
+            break;
+        }
+
+        checksum = ascii_hex_to_bin(&input_buffer[counter], 2);
+        counter = counter + 2; 
+
+        //check checksum
+    }
+    return start_address;
+}
+
+void write_srec_data(char* data, int length, long* address) {
+    int i = 0;
+    for (i = 0; i < length; i = i + 2) {
+        *address = ascii_hex_to_bin(&data[i], 2);
+    }
+}
+
+
+void run_srec() {
+
+}
 
 #pragma endregion
 

@@ -36,6 +36,17 @@ void read_register(enum registers reg);
 
 void write_register(enum registers reg, int data);
 
+/**
+ * @brief 
+ * 
+ * @return long - address to start of srec execution  
+ */
+long load_srec();
+
+void write_srec_data(char* data, int length, long* address);
+
+void run_srec();
+
 extern void parse_cmd();
 
 extern void get_input();
