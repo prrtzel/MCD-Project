@@ -2,34 +2,12 @@
 #include "stdio.h"
 #include "conversions.h"
 
-//menu strings
-char menu_name[] = "GeorgeOS\n\r\0";
-char menu_distribute[] = "Distribute at your own risk!\n\r\0";
-char menu_version[] = "ver 1.0\n\rType 'help' for a list of commands\r\n\0";
-char shell_pretty_thing[] = "\n\r>>\0";
-
-char help_menu[] = "GeorgeOS\n\r
-'help' -- gives a list of commands\n\r
-'1'    -- read memory Ex: 1 00ff00ff\n\r
-'2'    -- dump memory Ex: 2 00000000 00001000\n\r
-'3'    -- write to memory Ex: 3 00ff0012 32\n\r
-'4'    -- read a register Ex: 4 d0\n\r
-'5'    -- write to a register Ex: 5 d4 0000ffff
-\n\r";
-
 char space[] = " ";
 char newline[] = "\n\r";
 char output_buffer[OUTPUT_BUFFER_SIZE] = {0};
 char input_buffer[INPUT_BUFFER_SIZE] = {0};
 char command_buffer[COMMAND_BUFFER_SIZE] = {0};
-char srecord[INPUT_BUFFER_SIZE] = {0};
 
-/*
-srec test data =>
-int main() {
-    return 0;
-}
-*/
 char srec_test_data[] = "S00B0000535245432E533638D8
 S313010000004E5600007000600000024E5E4E7506
 S70501000000F9";
@@ -226,7 +204,6 @@ void run_srec() {
     
 }
 
-char srec_executable[255] = {0};
 /*
 void parse_srecord() {
     //currently only supports 32 bit addressing

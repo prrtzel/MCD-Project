@@ -50,7 +50,7 @@ extern void clear_buffer(char* buffer, int size);
  * @param str2 
  * @return enum Bool false if they are not equal, true otherwise
  */
-extern enum bool cmp_str(const char* str1, const char* str2);
+extern enum bool cmp_str(const char* str1, const char* str2, int length);
 
 
 

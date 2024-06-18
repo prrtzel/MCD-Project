@@ -89,15 +89,14 @@ extern void clear_buffer(char* buffer, int size) {
     }
 }
 
-extern enum bool cmp_str(const char* str1, const char* str2) {
-    while (1) {
+extern enum bool cmp_str(const char* str1, const char* str2, int length) {
+    int i = 0;
+    for (i = 0; i < length; i++) {
         if (*str1 != *str2) {
             return false;
         }
         str1++;
         str2++;
-        if (*str1 != '\0' || *str2 != '\0')
-            break;
     }
     return true;
 }

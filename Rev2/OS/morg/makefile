@@ -17,4 +17,4 @@ clean:
 done:
 	echo "ALL DONE :)"
 run: 
-	morg.bat
+	cmd.exe /c morg.bat
