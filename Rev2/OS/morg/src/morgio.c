@@ -1,6 +1,5 @@
 #include "morgio.h"
-#include "startup.h"
-#include "strings.h"
+#include "crt0.h"
 
 // Assembly references need a non local variable
 
@@ -12,18 +11,6 @@ static char get_char_buffer;
 const char input_overflow_error[] = "Error: too large an input!";
 const char backspace[] = " \b\0";
 const char eot[] = "\n\r\0";
-
-const char help_cmd[] = "help";
-
-const char read_memory_cmd[] = "rm ";
-const char write_memory_cmd[] = "wm ";
-const char dump_memory_cmd[] = "dmp ";
-
-const char read_register_cmd[] = "rr ";
-const char write_register_cmd[] = "wr ";
-
-const char load_srec_cmd[] = "ld "; 
-const char run_srec_cmd[] = "run";
 
 
 extern char get_char() {

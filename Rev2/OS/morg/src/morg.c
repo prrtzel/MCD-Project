@@ -4,6 +4,17 @@
 
 enum bool exit_code = false;
 
+
+//---------------------------------------------------
+// Menu Display
+
+void print_menu() {
+    serial_print("Morg Monitor System\r
+Distribute at your own risk!\r
+ver 3.0\r
+Type 'help' for a list of commands\r\n");
+}
+
 void get_input() {
     serial_print(">> ");
     get_string();
@@ -158,6 +169,10 @@ void write_register(enum registers reg, int data){
         break;
     }
 }
+#pragma endregion
+
+#pragma region srecord
+
 #pragma endregion
 
 void parse_cmd() {

@@ -1,4 +1,4 @@
-#include "startup.h"
+#include "crt0.h"
 #include "main.h"
 
 extern long _estack;

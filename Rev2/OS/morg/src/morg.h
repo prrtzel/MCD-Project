@@ -5,6 +5,8 @@
 
 extern enum bool exit_code;
 
+extern void print_menu(void);
+
 enum registers {
     d0,
     d1,
