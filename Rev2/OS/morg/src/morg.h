@@ -37,13 +37,14 @@ void read_register(enum registers reg);
 void write_register(enum registers reg, int data);
 
 /**
- * @brief 
+ * @brief parses an srec string and writes it to memory
  * 
- * @return long - address to start of srec execution  
+ * @param srec pointer to srec string
+ * @return long - address of srec start
  */
-long load_srec();
+long load_srec(char* srec);
 
-void write_srec_data(char* data, int length, long* address);
+void write_srec_data(char* data, int length, char* address);
 
 void run_srec();
 

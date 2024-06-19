@@ -7,6 +7,7 @@ extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
     char value = 0;
     int shift_value = 0;
     long buffer = 0;
+
     for (i = 0; i < length; i++) {
         value = ascii_buffer[i];
         
@@ -24,7 +25,7 @@ extern long ascii_hex_to_bin (char* ascii_buffer, int length) {
             value = value - 0x30;
         }
         if (value > 0x0F) {
-            serial_print("Conversion error in ascii_hex_to_bin: value > 0x0F\0");
+            serial_print("Error: Conversion in ascii_hex_to_bin: value > 0x0F\n\r");
             return 0;
         }
 
@@ -60,7 +61,7 @@ extern void binary_to_ascii_hex(long int binary_value, char* str_buffer, unsigne
             str_buffer[i] = str_buffer[i] | 0x40;
         }
         else {
-            serial_print("Conversion error in binary_to_ascii_hex\0");
+            serial_print("Error: Conversion in binary_to_ascii_hex\n\r");
             return;
         }
     }

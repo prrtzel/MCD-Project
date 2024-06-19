@@ -6,6 +6,11 @@
 #define ADDRESS_24 6
 #define ADDRESS_32 8
 
+#define CHECKSUM_SIZE_COUNTER 2
+
+#define DATA_SIZE_COUNTER_16(X) (X - 3) * 2
+#define DATA_SIZE_COUNTER_32(X) (X - 5) * 2
+
 enum bool exit_code = false;
 
 
@@ -176,15 +181,8 @@ void write_register(enum registers reg, int data){
 #pragma endregion
 
 #pragma region srecord
-// take input buffer
-// write raw data to srec memory location
 
-//#define DEBUG_SREC
-
-long load_srec() {
-#ifdef DEBUG_SREC
-//add srec string to test things with
-#endif
+long load_srec(char* srec) {
 
     // read type
     // read address
@@ -193,72 +191,95 @@ long load_srec() {
     // repeat until no more records
 
     enum bool has_next_srec = true;
-    int counter = 0;
-    char srec_type  = 0;
-    char byte_count = 0;
-    long address    = 0;
-    char checksum   = 0;
-    long start_address = 0;
+    int  counter         = 0;
+    char srec_type      = 0;
+    char byte_count     = 0;
+    int  data_counter_size = 0;
+    long address        = 0;
+    long start_address  = 0;
 
     while (has_next_srec == true) {
         //skipping the S
         counter++;
 
         // read srec type
-        srec_type = ascii_hex_to_bin(&input_buffer[counter], 1);
+        srec_type = ascii_hex_to_bin(&srec[counter], 1);
         counter++;
 
-        // read srec byte count
-        byte_count = ascii_hex_to_bin(&input_buffer[counter], 2);
-        counter = counter  + 2;
+        serial_print("srec type: ");
+        binary_to_ascii_hex(srec_type, &output_buffer[0], 2);
+        serial_print(&output_buffer[0]);
+        clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
+        serial_print("\n\r");
+
+        // read srec byte count 
+        byte_count = ascii_hex_to_bin(&srec[counter], 2);
+        counter = counter + 2;
+
+        serial_print("byte count: ");
+        binary_to_ascii_hex(byte_count, &output_buffer[0], 2);
+        serial_print(&output_buffer[0]);
+        clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
+        serial_print("\n\r");
 
         // get address based on type
         switch (srec_type)
         {
-        case 1:
+        // Header
+        case 0:
+            serial_print("0\n\r");
+            data_counter_size = DATA_SIZE_COUNTER_16(byte_count);
+            counter = counter + ADDRESS_16 + data_counter_size + CHECKSUM_SIZE_COUNTER;
+            break;
+
         // 16-Bit Data
-            address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_16);
+        case 1:
+            serial_print("1\n\r");
+            data_counter_size = DATA_SIZE_COUNTER_16(byte_count);
+            address = ascii_hex_to_bin(&srec[counter], ADDRESS_16);
             counter = counter + ADDRESS_16;
-            write_srec_data(&input_buffer[counter], byte_count, (long*)address);
+            write_srec_data(&srec[counter], data_counter_size, (char*) address);
+            counter = counter + data_counter_size + CHECKSUM_SIZE_COUNTER;
             break;
 
         // 32-Bit Data
         case 3:
-            address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_32);
+            serial_print("3\n\r");
+            data_counter_size = DATA_SIZE_COUNTER_32(byte_count);
+            address = ascii_hex_to_bin(&srec[counter], ADDRESS_32);
             counter = counter + ADDRESS_32;
-            write_srec_data(&input_buffer[counter], byte_count, (long*)address);
-            counter = counter + byte_count;
+            write_srec_data(&srec[counter], data_counter_size, (char*)address);
+            counter = counter + data_counter_size + CHECKSUM_SIZE_COUNTER;
             break;
 
         // 32-bit Termination
         case 7:
-            start_address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_32);
-            counter = counter + ADDRESS_32;
+            start_address = ascii_hex_to_bin(&srec[counter], ADDRESS_32);
+            serial_print("SREC Parsed Successfully.");
             has_next_srec = false;
             break;
 
         // 16-bit Termination
         case 9:
-            start_address = ascii_hex_to_bin(&input_buffer[counter], ADDRESS_16);
-            counter = counter  + ADDRESS_16;
+            start_address = ascii_hex_to_bin(&srec[counter], ADDRESS_16);
             has_next_srec = false;
             break;
         default:
+            serial_print("Error: Invalid SREC type!");
+            has_next_srec = false;
             break;
         }
-
-        checksum = ascii_hex_to_bin(&input_buffer[counter], 2);
-        counter = counter + 2; 
-
-        //check checksum
+        // Increments through the eol, may need to change for putty
+        counter++;
     }
     return start_address;
 }
 
-void write_srec_data(char* data, int length, long* address) {
+void write_srec_data(char* data, int length, char* address) {
     int i = 0;
     for (i = 0; i < length; i = i + 2) {
-        *address = ascii_hex_to_bin(&data[i], 2);
+        *address = (char) ascii_hex_to_bin(&data[i], 2);
+        address = address + 1;
     }
 }
 
