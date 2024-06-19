@@ -1,3 +1,4 @@
+#include "main.h"
 #include "morg.h"
 #include "morgio.h"
 #include "conversions.h"
@@ -5,9 +6,7 @@
 #define ADDRESS_16 4
 #define ADDRESS_24 6
 #define ADDRESS_32 8
-
 #define CHECKSUM_SIZE_COUNTER 2
-
 #define DATA_SIZE_COUNTER_16(X) (X - 3) * 2
 #define DATA_SIZE_COUNTER_32(X) (X - 5) * 2
 
@@ -182,14 +181,10 @@ void write_register(enum registers reg, int data){
 
 #pragma region srecord
 
+//#define PREDEFINED_SREC
+//#define DBUG
+
 long load_srec(char* srec) {
-
-    // read type
-    // read address
-    // write data to determined address
-    // check the checksum
-    // repeat until no more records
-
     enum bool has_next_srec = true;
     int  counter         = 0;
     char srec_type      = 0;
@@ -206,35 +201,43 @@ long load_srec(char* srec) {
         srec_type = ascii_hex_to_bin(&srec[counter], 1);
         counter++;
 
+#ifdef DBUG
         serial_print("srec type: ");
         binary_to_ascii_hex(srec_type, &output_buffer[0], 2);
         serial_print(&output_buffer[0]);
         clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
         serial_print("\n\r");
+#endif
 
         // read srec byte count 
         byte_count = ascii_hex_to_bin(&srec[counter], 2);
         counter = counter + 2;
 
+#ifdef DBUG
         serial_print("byte count: ");
         binary_to_ascii_hex(byte_count, &output_buffer[0], 2);
         serial_print(&output_buffer[0]);
         clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
         serial_print("\n\r");
+#endif
 
         // get address based on type
         switch (srec_type)
         {
         // Header
         case 0:
+#ifdef DBUG
             serial_print("0\n\r");
+#endif
             data_counter_size = DATA_SIZE_COUNTER_16(byte_count);
             counter = counter + ADDRESS_16 + data_counter_size + CHECKSUM_SIZE_COUNTER;
             break;
 
         // 16-Bit Data
         case 1:
+#ifdef DBUG
             serial_print("1\n\r");
+#endif
             data_counter_size = DATA_SIZE_COUNTER_16(byte_count);
             address = ascii_hex_to_bin(&srec[counter], ADDRESS_16);
             counter = counter + ADDRESS_16;
@@ -244,7 +247,9 @@ long load_srec(char* srec) {
 
         // 32-Bit Data
         case 3:
+#ifdef DBUG
             serial_print("3\n\r");
+#endif
             data_counter_size = DATA_SIZE_COUNTER_32(byte_count);
             address = ascii_hex_to_bin(&srec[counter], ADDRESS_32);
             counter = counter + ADDRESS_32;
@@ -255,7 +260,7 @@ long load_srec(char* srec) {
         // 32-bit Termination
         case 7:
             start_address = ascii_hex_to_bin(&srec[counter], ADDRESS_32);
-            serial_print("SREC Parsed Successfully.");
+            serial_print("SREC Parsed Successfully.\n\r");
             has_next_srec = false;
             break;
 
@@ -264,13 +269,16 @@ long load_srec(char* srec) {
             start_address = ascii_hex_to_bin(&srec[counter], ADDRESS_16);
             has_next_srec = false;
             break;
+            
         default:
-            serial_print("Error: Invalid SREC type!");
+            serial_print("Error: Invalid SREC type!\n\r");
             has_next_srec = false;
             break;
         }
         // Increments through the eol, may need to change for putty
+#ifdef PREDEFINED_SREC
         counter++;
+#endif
     }
     return start_address;
 }
@@ -296,14 +304,16 @@ void parse_cmd() {
 
     else if (cmp_str("help", &input_buffer[0], 4) == true)
         serial_print("
- Morg Monitor System\n\r
- 'help' -- gives a list of inputs\n\r
- '1'    -- read memory Ex: 1 00ff00ff\n\r
- '2'    -- dump memory Ex: 2 00000000 00001000\n\r
- '3'    -- write to memory Ex: 3 00ff0012 32\n\r
- '4'    -- read a register Ex: 4 d0\n\r
- '5'    -- write to a register Ex: 5 d4 0000ffff\n\r
- 'exit' -- exit Morg Monitor System (you monster)\n\r");
+ Morg Monitor System\r
+ 'help' -- gives a list of inputs\r
+ '1'    -- read memory Ex: 1 00ff00ff\r
+ '2'    -- dump memory Ex: 2 00000000 00001000\r
+ '3'    -- write to memory Ex: 3 00ff0012 32\r
+ '4'    -- read a register Ex: 4 d0\r
+ '5'    -- write to a register Ex: 5 d4 0000ffff\r
+ '6'    -- load an srecord\r
+ '7'    -- run the srecord\r
+ 'exit' -- exit Morg Monitor System (you monster)\r\n");
 
     else {
         switch (input_buffer[0]) {
@@ -457,9 +467,14 @@ void parse_cmd() {
             break;
         case '6':
         //load srec
+            serial_print("Enter the S-Record\n\r");
+            get_string();
+            addr = load_srec(&input_buffer[0]);
             break;
         case '7':
         //run srec
+            run_srec(addr);
+            serial_print("\n\r");
             break;
         default:
             break;

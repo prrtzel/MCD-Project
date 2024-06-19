@@ -2,7 +2,7 @@
 #define MORGIO_H
 
 #define BACKSPACE 0x08
-#define INPUT_BUFFER_SIZE 100
+#define INPUT_BUFFER_SIZE 1000
 #define OUTPUT_BUFFER_SIZE 100
 
 char input_buffer[INPUT_BUFFER_SIZE];
