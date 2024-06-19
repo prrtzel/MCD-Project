@@ -12,10 +12,6 @@
 
 enum bool exit_code = false;
 
-
-//---------------------------------------------------
-// Menu Display
-
 void print_menu() {
     serial_print("Morg Monitor System\r
 Distribute at your own risk!\r
@@ -469,11 +465,18 @@ void parse_cmd() {
         //load srec
             serial_print("Enter the S-Record\n\r");
             get_string();
-            addr = load_srec(&input_buffer[0]);
+            srec_address = load_srec(&input_buffer[0]);
+
+            /*
+            Note: morg ABSOLUTELY HATES srec_address.
+            Because morg literally threw a tantrum when srec_address 
+            was put in the same file/header file, srec_address was
+            relocated to main.h. 
+            */
             break;
         case '7':
         //run srec
-            run_srec(addr);
+            run_srec(srec_address);
             serial_print("\n\r");
             break;
         default:

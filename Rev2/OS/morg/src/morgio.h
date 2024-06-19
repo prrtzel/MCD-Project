@@ -52,14 +52,4 @@ extern void clear_buffer(char* buffer, int size);
  */
 extern enum bool cmp_str(const char* str1, const char* str2, int length);
 
-
-
-
-
-
-
-
-
-
-
 #endif
