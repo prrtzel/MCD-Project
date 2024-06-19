@@ -283,9 +283,9 @@ void write_srec_data(char* data, int length, char* address) {
     }
 }
 
-
-void run_srec() {
-
+void run_srec(long address) {
+    ((void (*)(void))address)();
+    return;
 }
 
 #pragma endregion

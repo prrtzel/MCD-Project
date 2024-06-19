@@ -46,7 +46,7 @@ long load_srec(char* srec);
 
 void write_srec_data(char* data, int length, char* address);
 
-void run_srec();
+void run_srec(long address);
 
 extern void parse_cmd();
 

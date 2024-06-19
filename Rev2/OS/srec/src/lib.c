@@ -1,5 +1,7 @@
 #include "lib.h"
 
+#define SIM
+
 // serial_print buffer
 static char* str_ptr_buffer;
 
