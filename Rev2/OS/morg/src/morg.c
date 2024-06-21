@@ -56,7 +56,7 @@ void write_memory(long address, char data){
 #pragma endregion
 
 #pragma region registers
-int register_result = 0;
+unsigned long register_result = 0;
 void read_register(enum registers reg){
     register_result = 0;
     switch (reg) {
@@ -117,7 +117,7 @@ void read_register(enum registers reg){
     serial_print("\n\r");
 }
 
-int reg_write_value = 0;
+unsigned long reg_write_value = 0;
 void write_register(enum registers reg, int data){
     reg_write_value = data;
     switch (reg) {
@@ -295,193 +295,188 @@ void run_srec(long address) {
 #pragma endregion
 
 void parse_cmd() {
+    long value_1;
+    long value_2;
+
     if (cmp_str("exit", &input_buffer[0], 4) == true)
         exit_code = true;
 
     else if (cmp_str("help", &input_buffer[0], 4) == true)
         serial_print("
  Morg Monitor System\r
- 'help' -- gives a list of inputs\r
- '1'    -- read memory Ex: 1 00ff00ff\r
- '2'    -- dump memory Ex: 2 00000000 00001000\r
- '3'    -- write to memory Ex: 3 00ff0012 32\r
- '4'    -- read a register Ex: 4 d0\r
- '5'    -- write to a register Ex: 5 d4 0000ffff\r
- '6'    -- load an srecord\r
- '7'    -- run the srecord\r
- 'exit' -- exit Morg Monitor System (you monster)\r\n");
+ 'help'   -- gives a list of inputs\r
+ 'rm'     -- read memory Ex: rm 00ff00ff\r
+ 'dmp'    -- dump memory Ex: dmp 00000000 00001000\r
+ 'wm'     -- write to memory Ex: wm 00ff0012 32\r
+ 'rr'     -- read a register Ex: rr d0\r
+ 'wr'     -- write to a register Ex: wr d4 0000ffff\r
+ 'ld'     -- load an srecord\r
+ 'run'    -- run the srecord\r
+ 'exit'   -- exit Morg Monitor System (you monster)\r\n");
 
-    else {
-        switch (input_buffer[0]) {
-        long value_1;
-        long value_2;
-        case '1':
-        //read memory
-            value_1 = ascii_hex_to_bin(&input_buffer[2], 8);
-            read_memory(value_1);
-            serial_print("\n\r");
-            break;
-        case '2':
-        //mem dump
-            value_1 = ascii_hex_to_bin(&input_buffer[2], 8);
-            value_2 = ascii_hex_to_bin(&input_buffer[11], 8);
-            mem_dump(value_1, value_2);
-            break;
-        case '3':
-        //write to memory
-            value_1 = ascii_hex_to_bin(&input_buffer[2], 8);
-            value_2 = ascii_hex_to_bin(&input_buffer[11], 2);
-            write_memory(value_1, value_2);
-            break;
-        case '4':
-        //read register
-            if (input_buffer[2] == 'd') {
-                switch (input_buffer[3]) {
-                    case '0':
-                        read_register(d0);
-                        break;
-                    case '1':
-                        read_register(d1);
-                        break;
-                    case '2':
-                        read_register(d2);
-                        break;
-                    case '3':
-                        read_register(d3);
-                        break;
-                    case '4':
-                        read_register(d4);
-                        break;
-                    case '5':
-                        read_register(d5);
-                        break;
-                    case '6':
-                        read_register(d6);
-                        break;
-                    case '7':
-                        read_register(d7);
-                        break;
-                    default:
-                        break;
-                }
+    //read memory
+    else if (cmp_str("rm", &input_buffer[0], 2) == true) {
+        value_1 = ascii_hex_to_bin(&input_buffer[3], 8);
+        read_memory(value_1);
+        serial_print("\n\r");
+    }
+    //mem dump
+    else if (cmp_str("dmp", &input_buffer[0], 3) == true){
+        value_1 = ascii_hex_to_bin(&input_buffer[4], 8);
+        value_2 = ascii_hex_to_bin(&input_buffer[13], 8);
+        mem_dump(value_1, value_2);
+    }
+    //write to memory
+    else if (cmp_str("wm", &input_buffer[0], 2) == true){
+        value_1 = ascii_hex_to_bin(&input_buffer[3], 8);
+        value_2 = ascii_hex_to_bin(&input_buffer[12], 2);
+        write_memory(value_1, value_2);
+    }
+    //read register
+    else if (cmp_str("rr", &input_buffer[0], 2) == true){
+        if (input_buffer[3] == 'd') {
+            switch (input_buffer[4]) {
+                case '0':
+                    read_register(d0);
+                    break;
+                case '1':
+                    read_register(d1);
+                    break;
+                case '2':
+                    read_register(d2);
+                    break;
+                case '3':
+                    read_register(d3);
+                    break;
+                case '4':
+                    read_register(d4);
+                    break;
+                case '5':
+                    read_register(d5);
+                    break;
+                case '6':
+                    read_register(d6);
+                    break;
+                case '7':
+                    read_register(d7);
+                    break;
+                default:
+                    break;
             }
-            else if (input_buffer[2] == 'a') {
-                switch (input_buffer[3]) {
-                    case '0':
-                        read_register(a0);
-                        break;
-                    case '1':
-                        read_register(a1);
-                        break;
-                    case '2':
-                        read_register(a2);
-                        break;
-                    case '3':
-                        read_register(a3);
-                        break;
-                    case '4':
-                        read_register(a4);
-                        break;
-                    case '5':
-                        read_register(a5);
-                        break;
-                    case '6':
-                        read_register(a6);
-                        break;
-                    case '7':
-                        read_register(a7);
-                        break;
-                    default:
-                        break;
-                }
+        }
+        else if (input_buffer[3] == 'a') {
+            switch (input_buffer[4]) {
+                case '0':
+                    read_register(a0);
+                    break;
+                case '1':
+                    read_register(a1);
+                    break;
+                case '2':
+                    read_register(a2);
+                    break;
+                case '3':
+                    read_register(a3);
+                    break;
+                case '4':
+                    read_register(a4);
+                    break;
+                case '5':
+                    read_register(a5);
+                    break;
+                case '6':
+                    read_register(a6);
+                    break;
+                case '7':
+                    read_register(a7);
+                    break;
+                default:
+                    break;
             }
-            break;
-        case '5':
-        //write to register
-            value_1 = ascii_hex_to_bin(&input_buffer[5], 8);
-
-            if (input_buffer[2] == 'd') {
-                switch (input_buffer[3]) {
-                    case '0':
-                        write_register(d0, value_1);
-                        break;
-                    case '1':
-                        write_register(d1, value_1);
-                        break;
-                    case '2':
-                        write_register(d2, value_1);
-                        break;
-                    case '3':
-                        write_register(d3, value_1);
-                        break;
-                    case '4':
-                        write_register(d4, value_1);
-                        break;
-                    case '5':
-                        write_register(d5, value_1);
-                        break;
-                    case '6':
-                        write_register(d6, value_1);
-                        break;
-                    case '7':
-                        write_register(d7, value_1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if (input_buffer[2] == 'a') {
-                switch (input_buffer[3]) {
-                    case '0':
-                        write_register(a0, value_1);
-                        break;
-                    case '1':
-                        write_register(a1, value_1);
-                        break;
-                    case '2':
-                        write_register(a2, value_1);
-                        break;
-                    case '3':
-                        write_register(a3, value_1);
-                        break;
-                    case '4':
-                        write_register(a4, value_1);
-                        break;
-                    case '5':
-                        write_register(a5, value_1);
-                        break;
-                    case '6':
-                        write_register(a6, value_1);
-                        break;
-                    case '7':
-                        write_register(a7, value_1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            break;
-        case '6':
-        //load srec
-            serial_print("Enter the S-Record\n\r");
-            get_string();
-            srec_address = load_srec(&input_buffer[0]);
-
-            /*
-            Note: morg ABSOLUTELY HATES srec_address.
-            Because morg literally threw a tantrum when srec_address 
-            was put in the same file/header file, srec_address was
-            relocated to main.h. 
-            */
-            break;
-        case '7':
-        //run srec
-            run_srec(srec_address);
-            serial_print("\n\r");
-            break;
-        default:
-            break;
         }
     }
+    //write to register
+    else if (cmp_str("wr", &input_buffer[0], 2) == true){
+        value_1 = ascii_hex_to_bin(&input_buffer[6], 8);
+        if (input_buffer[3] == 'd') {
+            switch (input_buffer[4]) {
+                case '0':
+                    write_register(d0, value_1);
+                    break;
+                case '1':
+                    write_register(d1, value_1);
+                    break;
+                case '2':
+                    write_register(d2, value_1);
+                    break;
+                case '3':
+                    write_register(d3, value_1);
+                    break;
+                case '4':
+                    write_register(d4, value_1);
+                    break;
+                case '5':
+                    write_register(d5, value_1);
+                    break;
+                case '6':
+                    write_register(d6, value_1);
+                    break;
+                case '7':
+                    write_register(d7, value_1);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (input_buffer[3] == 'a') {
+            switch (input_buffer[4]) {
+                case '0':
+                    write_register(a0, value_1);
+                    break;
+                case '1':
+                    write_register(a1, value_1);
+                    break;
+                case '2':
+                    write_register(a2, value_1);
+                    break;
+                case '3':
+                    write_register(a3, value_1);
+                    break;
+                case '4':
+                    write_register(a4, value_1);
+                    break;
+                case '5':
+                    write_register(a5, value_1);
+                    break;
+                case '6':
+                    write_register(a6, value_1);
+                    break;
+                case '7':
+                    write_register(a7, value_1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    //load srec
+    else if (cmp_str("ld", &input_buffer[0], 2) == true){  
+        serial_print("Enter the S-Record\n\r");
+        get_string();
+
+        /*
+        Note: morg ABSOLUTELY HATES srec_address.
+        Because morg literally threw a tantrum when srec_address 
+        was put in the same file/header file, srec_address was
+        relocated to main.h. 
+        */
+        srec_address = load_srec(&input_buffer[0]);
+    }
+    //run srec
+    else if (cmp_str("run", &input_buffer[0], 3) == true){
+        run_srec(srec_address);
+        serial_print("\n\r");
+    }
+
     clear_buffer(output_buffer, OUTPUT_BUFFER_SIZE);
 }

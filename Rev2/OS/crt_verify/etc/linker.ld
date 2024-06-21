@@ -1,10 +1,11 @@
-ENTRY(__main)
+ENTRY(Reset_Handler)
 OUTPUT_ARCH(m68k)
 OUTPUT_FORMAT(srec)
 
 MEMORY
 {
-    RAM (rwx) : ORIGIN = 0x00110000, LENGTH = 128K - 64k
+    ROM (rx)  : ORIGIN = 0x00000000, LENGTH = 500K
+    RAM (rwx) : ORIGIN = 0x00100000, LENGTH = 128K
 }
 
 
@@ -12,13 +13,20 @@ PROVIDE(_estack = 0x00100000 + 0x0001FFF0);
 
 SECTIONS
 {
+    .isr_vec :
+    {
+        . = ALIGN(4);
+        *(.isr_vec)
+        . = ALIGN(4);
+    }> ROM
+
     .text :
     {
         . = ALIGN(4);
         *(.text)
         _etext = .;
         . = ALIGN(4);
-    }> RAM
+    }> ROM
 
     .data :
     AT (ADDR(.text) + SIZEOF (.text))

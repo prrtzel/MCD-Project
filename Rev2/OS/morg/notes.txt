@@ -44,3 +44,16 @@ memory is still a bit wack, making conversions so that we can debug that
         serial_print(&output_buffer[0]);
         clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
         serial_print("\n\r");
+
+
+
+
+
+get list of symbols
+IE cmd arg1 arg2
+
+check  length and make sure they are valid
+
+parse
+execute
+

@@ -29,6 +29,6 @@ extern char ascii_decimal_to_bin(char ascii_char);
  * @param str_buffer buffer to place the string in
  * @param length number of characters to produce
  */
-extern void binary_to_ascii_hex(long int binary_value, char* str_buffer, unsigned char length);
+extern void binary_to_ascii_hex(unsigned long binary_value, char* str_buffer, unsigned char length);
 
 #endif
