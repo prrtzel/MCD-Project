@@ -1,5 +1,5 @@
 # George Yacoubian
-# Test project for MCD Rev 2
+# MCD Rev 3
 
 LINKER := etc/linker.ld
 FILES := crt0 main morgio conversions morg
@@ -17,4 +17,6 @@ clean:
 done:
 	echo "ALL DONE :)"
 run: 
-	cmd.exe /c morg.bat
+	cd bat && cmd.exe /c morg.bat
+morgbin:
+	cd bat && cmd.exe /c master.bat
