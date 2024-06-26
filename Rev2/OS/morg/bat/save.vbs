@@ -2,7 +2,6 @@ Set WshShell = WScript.CreateObject("WScript.Shell")
 WshShell.SendKeys "{ENTER}"
 WshShell.SendKeys "{TAB}"
 WshShell.SendKeys "{TAB}"
-WshShell.SendKeys "{DOWN}"
 WshShell.SendKeys "{TAB}"
 WshShell.SendKeys "{TAB}"
 WshShell.SendKeys "{TAB}"

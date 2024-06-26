@@ -1,0 +1,2 @@
+"C:\Xgpro\Xgpro"
+exit
