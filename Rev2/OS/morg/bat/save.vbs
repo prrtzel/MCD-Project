@@ -1,10 +1,8 @@
 Set WshShell = WScript.CreateObject("WScript.Shell")
 WshShell.SendKeys "{ENTER}"
-WshShell.SendKeys "{TAB}"
-WshShell.SendKeys "{TAB}"
-WshShell.SendKeys "{TAB}"
-WshShell.SendKeys "{TAB}"
-WshShell.SendKeys "{TAB}"
+for i = 1 to 5
+    WshShell.SendKeys "{TAB}"
+next
 WshShell.SendKeys "{ENTER}"
 WScript.sleep 500
 WshShell.SendKeys "{M}"

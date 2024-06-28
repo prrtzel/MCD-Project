@@ -1,2 +1,3 @@
-"C:\Xgpro\Xgpro"
+@echo off
+xgpro
 exit

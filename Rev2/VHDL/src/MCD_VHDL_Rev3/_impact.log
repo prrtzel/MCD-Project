@@ -1,0 +1,74 @@
+iMPACT Version: 14.7
+
+iMPACT log file Started on Wed Jun 26 13:10:43 2024
+
+Welcome to iMPACT
+iMPACT Version: 14.7
+Project: C:\Users\gsyac\Documents\MCD\MCDProject\Rev1\VHDL\src\MCD_CPLD\\auto_project.ipf created.
+// *** BATCH CMD : setMode -bs
+GUI --- Auto connect to cable...
+// *** BATCH CMD : setCable -port auto
+AutoDetecting cable. Please wait.
+*** WARNING ***: When port is set to auto detect mode, cable speed is set todefault 6 MHz regardless of explicit arguments supplied for setting the baudrates
+PROGRESS_START - Starting Operation.
+Connecting to cable (Usb Port - USB21).
+Checking cable driver.
+ Source driver files not found.
+The Platform Cable USB is not detected. Please connect a cable.If a cable isconnected, please disconnect
+and reconnect to the usb port, follow the instructions in the 'Found NewHardware Wizard', then retry
+the Cable Setup operation.
+Cable connection failed.
+Connecting to cable (Parallel Port - LPT1).
+Checking cable driver.
+Your driver installation is not complete. Please re-run your application or run
+install_drivers.exe from the ISE installation area as an Administrator tocomplete the driver installation.
+Service using windrvr6.sys : SYSTEM\CurrentControlSet\Services\WinDriver6.
+ ImagePath = \SystemRoot\system32\drivers\windrvr6.sys.
+ Start = 3.
+ ErrorControl = 1.
+ Type=1.
+Cable connection failed.
+Connecting to cable (Parallel Port - LPT2).
+Checking cable driver.
+Your driver installation is not complete. Please re-run your application or run
+install_drivers.exe from the ISE installation area as an Administrator tocomplete the driver installation.
+Service using windrvr6.sys : SYSTEM\CurrentControlSet\Services\WinDriver6.
+ ImagePath = \SystemRoot\system32\drivers\windrvr6.sys.
+ Start = 3.
+ ErrorControl = 1.
+ Type=1.
+Cable connection failed.
+Connecting to cable (Parallel Port - LPT3).
+Checking cable driver.
+Your driver installation is not complete. Please re-run your application or run
+install_drivers.exe from the ISE installation area as an Administrator tocomplete the driver installation.
+Service using windrvr6.sys : SYSTEM\CurrentControlSet\Services\WinDriver6.
+ ImagePath = \SystemRoot\system32\drivers\windrvr6.sys.
+ Start = 3.
+ ErrorControl = 1.
+ Type=1.
+Cable connection failed.
+Connecting to cable (Parallel Port - LPT4).
+Checking cable driver.
+Your driver installation is not complete. Please re-run your application or run
+install_drivers.exe from the ISE installation area as an Administrator tocomplete the driver installation.
+Service using windrvr6.sys : SYSTEM\CurrentControlSet\Services\WinDriver6.
+ ImagePath = \SystemRoot\system32\drivers\windrvr6.sys.
+ Start = 3.
+ ErrorControl = 1.
+ Type=1.
+Cable connection failed.
+PROGRESS_END - End Operation.
+Elapsed time =      2 sec.
+Cable autodetection failed.
+WARNING:iMPACT:923 - Can not find cable, check cable setup !// *** BATCH CMD : setMode -bs
+INFO:iMPACT - Launching WebTalk, please refer to the webtalk log at   C:\Users\gsyac\Documents\MCD\MCD Project\Rev1\VHDL\src\MCD_CPLD\webtalk.log   for details.
+INFO:iMPACT - Running wbtc successfully.
+// *** BATCH CMD : setMode -bs
+// *** BATCH CMD : setMode -ss
+// *** BATCH CMD : setMode -sm
+// *** BATCH CMD : setMode -hw140
+// *** BATCH CMD : setMode -spi
+// *** BATCH CMD : setMode -acecf
+// *** BATCH CMD : setMode -acempm
+// *** BATCH CMD : setMode -pff
