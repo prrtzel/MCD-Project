@@ -1,6 +1,9 @@
 #include "morg.h"
 #include "morgio.h"
 
+
+#include "conversions.h"
+
 int __main() {
     print_menu();
     while (exit_code == false) {

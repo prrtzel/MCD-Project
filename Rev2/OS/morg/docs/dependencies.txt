@@ -1,0 +1,3 @@
+easy68k
+gcc ashware m68k 
+xgpro

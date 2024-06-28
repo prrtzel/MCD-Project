@@ -1,0 +1,59 @@
+Where variables are placed:
+
+.rodata
+const char str[] = "holy moly batman!!";
+
+.bss
+static int var;
+
+.data
+int var = definition;
+
+
+Commands for Morg:
+
+help - help page
+
+rm - read memory location
+dmp - dump memory region
+wm - write to a memory location
+
+rr - read register
+wr - write to register
+
+ld - load an srecord
+run - run the srecord
+
+
+
+
+
+
+
+
+OK SO
+IT WILL WRITE TO MEMORY DEPENDING ON THE SIZE
+
+
+memory is still a bit wack, making conversions so that we can debug that
+
+
+
+        serial_print("Byte Count: ");
+        binary_to_ascii_hex(byte_count, &output_buffer[0], 2);
+        serial_print(&output_buffer[0]);
+        clear_buffer(&output_buffer[0], OUTPUT_BUFFER_SIZE);
+        serial_print("\n\r");
+
+
+
+
+
+get list of symbols
+IE cmd arg1 arg2
+
+check  length and make sure they are valid
+
+parse
+execute
+

@@ -1,8 +1,8 @@
 INTSTYLE=impact
-INFILE=C:\Users\gsyac\Documents\MCD\MCD Project\VHDL\src\MCD_CPLD\impact.xsl
-OUTFILE=C:\Users\gsyac\Documents\MCD\MCD Project\VHDL\src\MCD_CPLD\impact.xsl
+INFILE=C:\Users\gsyac\Documents\MCD\MCD Project\Rev1\VHDL\src\MCD_CPLD\impact.xsl
+OUTFILE=C:\Users\gsyac\Documents\MCD\MCD Project\Rev1\VHDL\src\MCD_CPLD\impact.xsl
 FAMILY=Single
 PART=Single
-WORKINGDIR=C:\Users\gsyac\Documents\MCD\MCD Project\VHDL\src\MCD_CPLD
+WORKINGDIR=C:\Users\gsyac\Documents\MCD\MCD Project\Rev1\VHDL\src\MCD_CPLD
 LICENSE=iMPACT
 USER_INFO=iMPACT

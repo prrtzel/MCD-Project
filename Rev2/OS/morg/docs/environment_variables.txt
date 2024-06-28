@@ -1,0 +1,4 @@
+c:\Xgpro\Xgpro\
+c:\GccAshWare\gcc-m68k-ashware\bin\
+c:\GccAshWare\Bin\
+C:\EASy68K\

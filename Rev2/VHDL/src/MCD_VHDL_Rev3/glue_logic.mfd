@@ -1,0 +1,190 @@
+MDF Database:  version 1.0
+MDF_INFO | glue_logic | XC9572XL-10-PC44
+MACROCELL | 1 | 10 | CPU_DTACK_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 4 | AS  | ABUS<1>  | ABUS<0>  | DUART_DTACK
+INPUTP | 4 | 11 | 88 | 87 | 10
+EQ | 3 | 
+   CPU_DTACK = ABUS<0> & AS
+	# AS & !ABUS<1>
+	# !ABUS<0> & ABUS<1> & DUART_DTACK;
+
+MACROCELL | 3 | 4 | LED_0_OBUF
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   ROMLOE = Gnd;
+   ROMLOE.OE = !ABUS<0> & !AS & !ABUS<1> & !LDS;
+
+MACROCELL | 3 | 10 | LED_0_OBUF$BUF0
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   ROMLCE = Gnd;
+   ROMLCE.OE = !ABUS<0> & !AS & !ABUS<1> & !LDS;
+
+MACROCELL | 2 | 14 | LED_0_OBUF$BUF1
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | UDS  | AS  | ABUS<1>
+INPUTP | 4 | 87 | 7 | 11 | 88
+EQ | 2 | 
+   ROMHOE = Gnd;
+   ROMHOE.OE = !ABUS<0> & !UDS & !AS & !ABUS<1>;
+
+MACROCELL | 1 | 8 | LED_0_OBUF$BUF16
+ATTRIBUTES | 265986 | 0
+INPUTS | 2 | SRESET  | BRESET
+INPUTP | 2 | 46 | 49
+EQ | 2 | 
+   HALT = Gnd;
+   !HALT.OE = SRESET & BRESET;
+
+MACROCELL | 0 | 5 | LED_0_OBUF$BUF17
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   DUARTCS = Gnd;
+   !DUARTCS.OE = !ABUS<0> & !AS & ABUS<1> & !LDS;
+
+MACROCELL | 2 | 16 | LED_0_OBUF$BUF2
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | UDS  | AS  | ABUS<1>
+INPUTP | 4 | 87 | 7 | 11 | 88
+EQ | 2 | 
+   ROMHCE = Gnd;
+   ROMHCE.OE = !ABUS<0> & !UDS & !AS & !ABUS<1>;
+
+MACROCELL | 1 | 5 | LED_0_OBUF$BUF3
+ATTRIBUTES | 265986 | 0
+INPUTS | 2 | SRESET  | BRESET
+INPUTP | 2 | 46 | 49
+EQ | 2 | 
+   RESET = Gnd;
+   !RESET.OE = SRESET & BRESET;
+
+MACROCELL | 2 | 15 | LED_0_OBUF$BUF4
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   RAMLOE = Gnd;
+   RAMLOE.OE = ABUS<0> & !AS & !ABUS<1> & !LDS;
+
+MACROCELL | 3 | 7 | LED_0_OBUF$BUF5
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   RAMLCE = Gnd;
+   RAMLCE.OE = ABUS<0> & !AS & !ABUS<1> & !LDS;
+
+MACROCELL | 3 | 1 | LED_0_OBUF$BUF6
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | AS  | ABUS<1>  | LDS
+INPUTP | 4 | 87 | 11 | 88 | 9
+EQ | 2 | 
+   RAMLCE2 = Gnd;
+   !RAMLCE2.OE = ABUS<0> & !AS & !ABUS<1> & !LDS;
+
+MACROCELL | 2 | 8 | LED_0_OBUF$BUF7
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | UDS  | AS  | ABUS<1>
+INPUTP | 4 | 87 | 7 | 11 | 88
+EQ | 2 | 
+   RAMHOE = Gnd;
+   RAMHOE.OE = ABUS<0> & !UDS & !AS & !ABUS<1>;
+
+MACROCELL | 2 | 7 | LED_0_OBUF$BUF8
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | UDS  | AS  | ABUS<1>
+INPUTP | 4 | 87 | 7 | 11 | 88
+EQ | 2 | 
+   RAMHCE = Gnd;
+   RAMHCE.OE = ABUS<0> & !UDS & !AS & !ABUS<1>;
+
+MACROCELL | 2 | 1 | LED_0_OBUF$BUF9
+ATTRIBUTES | 265986 | 0
+INPUTS | 4 | ABUS<0>  | UDS  | AS  | ABUS<1>
+INPUTP | 4 | 87 | 7 | 11 | 88
+EQ | 2 | 
+   RAMHCE2 = Gnd;
+   !RAMHCE2.OE = ABUS<0> & !UDS & !AS & !ABUS<1>;
+
+MACROCELL | 0 | 16 | LED_0_OBUF$BUF10
+ATTRIBUTES | 265986 | 0
+INPUTS | 0
+EQ | 2 | 
+   LED<5> = Gnd;
+   LED<5>.OE = Gnd;
+
+MACROCELL | 0 | 14 | LED_0_OBUF$BUF12
+ATTRIBUTES | 265986 | 0
+INPUTS | 0
+EQ | 2 | 
+   LED<3> = Gnd;
+   LED<3>.OE = Gnd;
+
+MACROCELL | 0 | 7 | LED_0_OBUF$BUF14
+ATTRIBUTES | 265986 | 0
+INPUTS | 0
+EQ | 2 | 
+   LED<1> = Gnd;
+   LED<1>.OE = Gnd;
+
+MACROCELL | 1 | 7 | LED_0_OBUF$BUF18
+ATTRIBUTES | 265986 | 0
+INPUTS | 0
+EQ | 2 | 
+   BERR = Gnd;
+   BERR.OE = Gnd;
+
+MACROCELL | 0 | 13 | LED_0_OBUF$BUF11
+ATTRIBUTES | 264962 | 0
+INPUTS | 0
+EQ | 1 | 
+   LED<4> = Gnd;
+
+MACROCELL | 0 | 8 | LED_0_OBUF$BUF13
+ATTRIBUTES | 264962 | 0
+INPUTS | 0
+EQ | 1 | 
+   LED<2> = Gnd;
+
+MACROCELL | 0 | 4 | LED_0_OBUF$BUF15
+ATTRIBUTES | 264962 | 0
+INPUTS | 0
+EQ | 1 | 
+   LED<0> = Gnd;
+
+PIN | ABUS<0> | 64 | 0 | N/A | 87 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | UDS | 64 | 0 | N/A | 7 | 5 | 2 | 14 | 2 | 16 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | AS | 64 | 0 | N/A | 11 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | ABUS<1> | 64 | 0 | N/A | 88 | 12 | 1 | 10 | 3 | 4 | 3 | 10 | 2 | 14 | 0 | 5 | 2 | 16 | 2 | 15 | 3 | 7 | 3 | 1 | 2 | 8 | 2 | 7 | 2 | 1
+PIN | LDS | 64 | 0 | N/A | 9 | 6 | 3 | 4 | 3 | 10 | 0 | 5 | 2 | 15 | 3 | 7 | 3 | 1
+PIN | SRESET | 64 | 0 | N/A | 46 | 2 | 1 | 8 | 1 | 5
+PIN | BRESET | 64 | 0 | N/A | 49 | 2 | 1 | 8 | 1 | 5
+PIN | DUART_DTACK | 64 | 0 | N/A | 10 | 1 | 1 | 10
+PIN | CPU_DTACK | 536871040 | 0 | N/A | 3
+PIN | ROMLOE | 536871040 | 0 | N/A | 63
+PIN | ROMLCE | 536871040 | 0 | N/A | 68
+PIN | ROMHOE | 536871040 | 0 | N/A | 50
+PIN | HALT | 536871040 | 0 | N/A | 92
+PIN | DUARTCS | 536871040 | 0 | N/A | 13
+PIN | ROMHCE | 536871040 | 0 | N/A | 52
+PIN | RESET | 536871040 | 0 | N/A | 89
+PIN | RAMLOE | 536871040 | 0 | N/A | 59
+PIN | RAMLCE | 536871040 | 0 | N/A | 65
+PIN | RAMLCE2 | 536871040 | 0 | N/A | 62
+PIN | RAMHOE | 536871040 | 0 | N/A | 38
+PIN | RAMHCE | 536871040 | 0 | N/A | 33
+PIN | RAMHCE2 | 536871040 | 0 | N/A | 29
+PIN | LED<5> | 536871040 | 0 | N/A | 27
+PIN | LED<3> | 536871040 | 0 | N/A | 26
+PIN | LED<1> | 536871040 | 0 | N/A | 15
+PIN | BERR | 536871040 | 0 | N/A | 90
+PIN | LED<4> | 536871040 | 0 | N/A | 24
+PIN | LED<2> | 536871040 | 0 | N/A | 20
+PIN | LED<0> | 536871040 | 0 | N/A | 12

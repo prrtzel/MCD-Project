@@ -56,9 +56,11 @@ extern void get_string() {
         char_buffer = get_char();
 
         if (char_buffer == BACKSPACE) {
-            i--;
-            input_buffer[i] = '\0';
-            serial_print(&backspace[0]);
+            if (i != 0) {
+                i--;
+                input_buffer[i] = '\0';
+                serial_print(&backspace[0]);
+            }
         }
         else {
             input_buffer[i] = char_buffer;

@@ -1,0 +1,79 @@
+                           Performance Summary Report
+                           --------------------------
+
+Design:     glue_logic
+Device:     XC9572XL-10-PC44
+Speed File: Version 3.0
+Program:    Timing Report Generator:  version P.20131013
+Date:       Wed Jun 26 13:12:24 2024
+
+Performance Summary:
+
+Pad to Pad (tPD)                          :         11.0ns (1 macrocell levels)
+Pad 'ABUS<0>' to Pad 'ROMLOE'                                     
+
+--------------------------------------------------------------------------------
+                            Pad to Pad (tPD) (nsec)
+
+\ From          A     A     A     B     D     L     S     U
+ \              B     B     S     R     U     D     R     D
+  \             U     U           E     A     S     E     S
+   \            S     S           S     R           S      
+    \           <     <           E     T           E      
+     \          0     1           T     _           T      
+      \         >     >                 D                  
+       \                                T                  
+        \                               A                  
+         \                              C                  
+          \                             K                  
+  To       \------------------------------------------------
+
+CPU_DTACK    10.0  10.0  10.0        10.0                  
+DUARTCS      11.0  11.0  11.0              11.0            
+HALT                           11.0              11.0      
+RAMHCE       11.0  11.0  11.0                          11.0
+RAMHCE2      11.0  11.0  11.0                          11.0
+RAMHOE       11.0  11.0  11.0                          11.0
+RAMLCE       11.0  11.0  11.0              11.0            
+RAMLCE2      11.0  11.0  11.0              11.0            
+RAMLOE       11.0  11.0  11.0              11.0            
+RESET                          11.0              11.0      
+ROMHCE       11.0  11.0  11.0                          11.0
+ROMHOE       11.0  11.0  11.0                          11.0
+ROMLCE       11.0  11.0  11.0              11.0            
+ROMLOE       11.0  11.0  11.0              11.0            
+
+Path Type Definition: 
+
+Pad to Pad (tPD) -                        Reports pad to pad paths that start 
+                                          at input pads and end at output pads. 
+                                          Paths are not traced through 
+                                          registers. 
+
+Clock Pad to Output Pad (tCO) -           Reports paths that start at input 
+                                          pads trace through clock inputs of 
+                                          registers and end at output pads. 
+                                          Paths are not traced through PRE/CLR 
+                                          inputs of registers. 
+
+Setup to Clock at Pad (tSU or tSUF) -     Reports external setup time of data 
+                                          to clock at pad. Data path starts at 
+                                          an input pad and ends at register 
+                                          (Fast Input Register for tSUF) D/T 
+                                          input. Clock path starts at input pad 
+                                          and ends at the register clock input. 
+                                          Paths are not traced through 
+                                          registers. Pin-to-pin setup 
+                                          requirement is not reported or 
+                                          guaranteed for product-term clocks 
+                                          derived from macrocell feedback 
+                                          signals. 
+
+Clock to Setup (tCYC) -                   Register to register cycle time. 
+                                          Include source register tCO and 
+                                          destination register tSU. Note that 
+                                          when the computed Maximum Clock Speed 
+                                          is limited by tCYC it is computed 
+                                          assuming that all registers are 
+                                          rising-edge sensitive. 
+

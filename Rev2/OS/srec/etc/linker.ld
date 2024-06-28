@@ -4,7 +4,7 @@ OUTPUT_FORMAT(srec)
 
 MEMORY
 {
-    RAM (rwx) : ORIGIN = 0x00110000, LENGTH = 128K
+    RAM (rwx) : ORIGIN = 0x00110000, LENGTH = 128K - 64k
 }
 
 
